@@ -4,29 +4,38 @@
   "canonical_branch": "main",
   "working_pr": 31,
   "current_task": {
-    "id": "REPO-001",
-    "title": "Establish complete GitHub canon, browser QA and fixed deployment",
-    "status": "in_progress",
-    "next_action": "fix CI-discovered battleCallout error; rerun unchanged E2E assertions; merge on green",
-    "acceptance": [
-      "5 canon/control files committed",
-      "all source and asset blobs verified",
-      "browser E2E green",
-      "main merged",
-      "fixed HTTPS deployment verified"
+    "id": "PAGES-001",
+    "title": "Enable fixed HTTPS deployment",
+    "status": "blocked",
+    "blocker": "GitHub Pages has_pages=false; connection cannot administer Pages settings",
+    "required_action": "Repository Settings > Pages > Source = GitHub Actions",
+    "resume_action": "Read main; verify successful main Web QA deployment; open returned page_url and run Android checks",
+    "do_not_repeat": [
+      "bootstrap import",
+      "completed source hash inventory",
+      "completed initial browser regression"
     ]
   },
   "completed": [
     {
       "id": "IMPORT-001",
       "evidence": "PR31 commit f3d14861bb436a49f694a220c1f802606a756b27; 266 files; 72 binary blobs verified; 73 manifest entries pass in CI"
+    },
+    {
+      "id": "CANON-001",
+      "evidence": "Five control files and governing master handoff merged in PR31; 8 source-sheet bindings; 200 ID slots with unknown names explicit; no candidate promotion"
+    },
+    {
+      "id": "BROWSER-001",
+      "evidence": "https://github.com/saitou730/monster-legacy/actions/runs/34067400176",
+      "result": "6/6 passed: START/HOME/HUNT and boar turn at 360/390/430; Android NOT RUN"
+    },
+    {
+      "id": "MAIN-001",
+      "evidence": "PR31 merged at 3ef12b96c67b8004a6fd859de6ccbd3eec429a7e"
     }
   ],
   "blocked": [
-    {
-      "id": "PAGES-001",
-      "reason": "GitHub Pages Source must be enabled; current connector has no administration API"
-    },
     {
       "id": "ART-GRAUSEN-PALETTE",
       "reason": "exact candidate and governing source not attached",

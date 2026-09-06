@@ -6,9 +6,9 @@
 - [x] Add package-lock and npm ci for repeatable installation.
 - [x] Add mandatory touch-path checks at 360/390/430 widths.
 - [x] Gate main deployment on browser E2E success.
-- [ ] Verify the committed GitHub tree contains every source and asset blob.
-- [ ] BROWSER E2E PASS on GitHub Actions.
-- [ ] Merge reviewed migration PR into main.
+- [x] Verify the committed GitHub tree contains every source and asset blob.
+- [x] BROWSER E2E PASS (initial two flows × three widths) on GitHub Actions.
+- [x] Merge reviewed migration PR #31 into main.
 - [ ] Enable GitHub Pages Source = GitHub Actions and verify deployment URL.
 - [ ] ANDROID MANUAL PASS for touch, sticky HUD, audio, Save/Continue.
 - [ ] Expand E2E through resonance, JOIN, FUSION, species test and archive.
