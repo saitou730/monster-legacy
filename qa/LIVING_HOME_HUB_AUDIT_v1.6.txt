@@ -1,0 +1,15 @@
+MONSTER LEGACY v1.6 LIVING HOME HUB AUDIT
+1 PASS HOME renders LEGACY RECORD shelf
+2 PASS shelf derives locked/unlocked state from legacyCores
+3 PASS HOME renders LINEAGE history state
+4 PASS lineage reflects inherited HERITAGE after fusion
+5 PASS HOME renders JOIN/FUSION/MASTERY field counts
+6 PASS CURRENT PARTY surfaces equipment or equipped LEGACY
+7 PASS HOME visual milestone classes derive from state
+8 PASS Chapter 1 completion indicator requires all 3 mastery flags
+9 PASS state-driven NEXT JOURNEY remains unchanged
+10 PASS battle UI geometry not changed by v1.6 pass
+11 PASS NEXT turn-lock/core battle rules unchanged
+12 PASS reduced-motion fallback retained
+RESULT 12/12 PASS
+DIRECTOR SCORE 82 HOLD — no physical/external-player evidence added.

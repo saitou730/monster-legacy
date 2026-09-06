@@ -1,0 +1,44 @@
+{
+  "flame": {
+    "idle": "flame/idle.png",
+    "attack": "flame/attack.png",
+    "stance": "flame/stance.png",
+    "danger": "flame/danger.png",
+    "hit": "hit.png"
+  },
+  "wind_bat": {
+    "idle": "wind_bat/idle.png",
+    "attack": "wind_bat/attack.png",
+    "stance": "wind_bat/stance.png",
+    "danger": "wind_bat/danger.png",
+    "hit": "hit.png"
+  },
+  "boar": {
+    "idle": "boar/idle.png",
+    "attack": "boar/attack.png",
+    "stance": "boar/stance.png",
+    "danger": "boar/danger.png",
+    "hit": "hit.png"
+  },
+  "goura": {
+    "idle": "goura/idle.png",
+    "attack": "goura/attack.png",
+    "stance": "goura/stance.png",
+    "danger": "goura/danger.png",
+    "hit": "hit.png"
+  },
+  "fire": {
+    "idle": "fire/idle.png",
+    "attack": "fire/attack.png",
+    "stance": "fire/stance.png",
+    "danger": "fire/danger.png",
+    "hit": "hit.png"
+  },
+  "leaf": {
+    "idle": "leaf/idle.png",
+    "attack": "leaf/attack.png",
+    "stance": "leaf/stance.png",
+    "danger": "leaf/danger.png",
+    "hit": "hit.png"
+  }
+}

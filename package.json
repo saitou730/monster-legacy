@@ -1,12 +1,13 @@
 {
   "name": "monster-legacy-web",
   "private": true,
-  "version": "1.8.2",
+  "version": "1.8.3",
   "scripts": {
     "serve": "http-server . -p 4173 -c-1",
     "test:e2e": "playwright test",
     "test:e2e:mobile": "playwright test --project=android-chrome",
-    "test:e2e:report": "playwright show-report"
+    "verify:assets": "python3 scripts/verify_asset_manifest.py",
+    "test:regression": "node tests/motion-regression.cjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.0",

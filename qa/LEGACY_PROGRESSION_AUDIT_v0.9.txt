@@ -1,0 +1,15 @@
+PASS archive screen
+PASS legacy and codex tabs
+PASS three legacy cores
+PASS boss reward mapping
+PASS persistent legacy inventory
+PASS per-unit translation
+PASS runtime equip
+PASS runtime modifier
+PASS boss mastery unlock
+PASS commercial progression
+PASS progression all three bosses
+PASS director-only telemetry
+PASS archive nav
+PASS v0.9 label
+RESULT 14/14

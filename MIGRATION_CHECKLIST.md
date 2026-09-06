@@ -1,21 +1,17 @@
-# Development v2 migration checklist
+# Repository-first migration — Work
 
-## Done
-- [x] Repository-first policy documented
-- [x] Playwright dependency scaffold added
-- [x] Mobile projects: 360 / 390 / 430 width
-- [x] First-session interaction smoke test scaffold added
-- [x] QA levels split into STATIC / BROWSER E2E / ANDROID MANUAL
+- [x] Receive full v1.8.2 source and official binary assets.
+- [x] Verify all 73 asset-manifest entries locally.
+- [x] Preserve v1.8.3 battle-impact bug fixes and regression test.
+- [x] Add package-lock and npm ci for repeatable installation.
+- [x] Add mandatory touch-path checks at 360/390/430 widths.
+- [x] Gate main deployment on browser E2E success.
+- [ ] Verify the committed GitHub tree contains every source and asset blob.
+- [ ] BROWSER E2E PASS on GitHub Actions.
+- [ ] Merge reviewed migration PR into main.
+- [ ] Enable GitHub Pages Source = GitHub Actions and verify deployment URL.
+- [ ] ANDROID MANUAL PASS for touch, sticky HUD, audio, Save/Continue.
+- [ ] Expand E2E through resonance, JOIN, FUSION, species test and archive.
 
-## Required before GitHub becomes canonical
-- [ ] Upload v1.8.2 `index.html`, `styles/`, `src/`
-- [ ] Upload v1.8.2 official `assets/` unchanged
-- [ ] Verify asset hashes / file count against packaged v1.8.2
-- [ ] Add/enable GitHub Actions E2E workflow
-- [ ] Run BROWSER E2E PASS on the repository build
-- [ ] Enable fixed HTTPS deployment (GitHub Pages / equivalent)
-- [ ] Validate fixed URL on physical Android Chrome
-- [ ] Mark first ANDROID MANUAL PASS
-- [ ] Retire Direct Play downloads as the normal test path
-
-Issue: #30
+Local Chromium installation failed (download timeout/502). No local browser PASS.
+Issue #30 remains the migration tracker. Do not call main complete before tree verification and merge.

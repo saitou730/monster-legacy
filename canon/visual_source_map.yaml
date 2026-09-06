@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "authority": "docs/WORK_GITHUB_MASTER_HANDOFF_2026-09-07.md",
+  "policy": "Preserve existing paths; do not duplicate or promote candidates by file name/stamp alone.",
+  "sources": [
+    {
+      "key": "SP-001",
+      "governing_source": {
+        "path": "assets/reference/熔岩守護獣ゴウラ_モンスターデザインシート.png",
+        "sha256": "7089b6b62cd5da9e77b644650891953403c20d2079051a0e39df6e437ef5bff5"
+      },
+      "source_scope": "ゴウラ個体。SP-001種全体のデザインを新規確定しない",
+      "lock_status": "existing_approved_sheet_from_bootstrap",
+      "authority": "docs/WORK_GITHUB_MASTER_HANDOFF_2026-09-07.md",
+      "qa": {
+        "byte_integrity": "PASS",
+        "new_visual_comparison": "NOT_PERFORMED",
+        "promotion_this_session": false
+      },
+      "runtime_derivatives": [
+        {
+          "path": "assets/battle/goura/attack.png",
+          "sha256": "c5068449d7d0c2914fd93eeef83325947477b771432e32fcd82e26903eb7b465"
+        },
+        {
+          "path": "assets/battle/goura/danger.png",
+          "sha256": "d5c77599fcd19debce46246613cd547993a273830892f82b30cfd5889c75a2c8"
+        },
+        {
+          "path": "assets/battle/goura/hit.png",
+          "sha256": "902b1c4e37ef72f1b5c945be211c4817d34c5000e0273ae7e53e7439635e494a"
+        },
+        {
+          "path": "assets/battle/goura/idle.png",
+          "sha256": "902b1c4e37ef72f1b5c945be211c4817d34c5000e0273ae7e53e7439635e494a"
+        },
+        {
+          "path": "assets/battle/goura/stance.png",
+          "sha256": "89107e4b8cb56aa59857bd8045cf91caea4fa9afbf7895cd608c84ebb13596d7"
+        }
+      ]
+    },
+    {
+      "key": "SP-011",
+      "governing_source": {
+        "path": "assets/reference/火トカゲ_モンスターデザインシート.png",
+        "sha256": "446462af2a05f3ed5e6975deea6ea40246dc6faebce646804d234f6adb313df2"
+      },
+      "source_scope": "dedicated source sheet",
+      "lock_status": "existing_approved_sheet_from_bootstrap",
+      "authority": "docs/WORK_GITHUB_MASTER_HANDOFF_2026-09-07.md",
+      "qa": {
+        "byte_integrity": "PASS",
+        "new_visual_comparison": "NOT_PERFORMED",
+        "promotion_this_session": false
+      },
+      "runtime_derivatives": [
+        {
+          "path": "assets/battle/fire/attack.png",
+          "sha256": "f9457765f268989c9eebb3efbbf7988bb346162f7e83196da7bce219bf7635b8"
+        },
+        {
+          "path": "assets/battle/fire/danger.png",
+          "sha256": "9bca23fbdb2b0059ded00050cf70f36bbf3bbf810cee45b9a7dcf43c2b96638a"
+        },
+        {
+          "path": "assets/battle/fire/hit.png",
+          "sha256": "7bb51274e6445fe3f44494eea00ebd1471df721d588e975a924a9bf54c9b0fd8"
+        },
+        {
+          "path": "assets/battle/fire/idle.png",
+          "sha256": "7bb51274e6445fe3f44494eea00ebd1471df721d588e975a924a9bf54c9b0fd8"
+        },
+        {
+          "path": "assets/battle/fire/stance.png",
+          "sha256": "6b6f690f84dca979aa244b8d705062c906ea79d517c0639896c736b58251ee99"
+        }
+      ]
+    },
+    {
+      "key": "SP-018",
+      "governing_source": {
+        "path": "assets/reference/炎翼リザル_公式デザインシート.png",
+        "sha256": "e4093ba78b5967b9019b62c5ebe879277bd6b01a077568127ecab4b96dc55105"
+      },
+      "source_scope": "dedicated source sheet",
+      "lock_status": "inherited_official_lock",
+      "authority": "docs/WORK_GITHUB_MASTER_HANDOFF_2026-09-07.md",
+      "qa": {
+        "byte_integrity": "PASS",
+        "new_visual_comparison": "NOT_PERFORMED",
+        "promotion_this_session": false
+      },
+      "runtime_derivatives": [
+        {
+          "path": "assets/battle/flame/attack.png",
+          "sha256": "a4f7a13e4c150545548834a1b1a964de0f0c33dbb9f45f8701af3a76de0eb213"
+        },
+        {
+          "path": "assets/battle/flame/danger.png",
+          "sha256": "4b12b37d89322eb338b20e05777d025178a9482f3a0cc709cd0ab5cd07a485fb"
+        },
+        {
+          "path": "assets/battle/flame/hit.png",
+          "sha256": "62edf235a15c09edfed17c893e74a5e75287f76d2ee3c938c9ce06a101bbaeff"
+        },
+        {
+          "path": "assets/battle/flame/idle.png",
+          "sha256": "62edf235a15c09edfed17c893e74a5e75287f76d2ee3c938c9ce06a101bbaeff"
+        },
+        {
+          "path": "assets/battle/flame/stance.png",
+          "sha256": "e3be4427118c46847f019ad4edf7a17d7f166de6a6e2f8a0b2046d045dc8d475"
+        }
+      ]
+    },
+    {
+      "key": "SP-031",
+      "governing_source": {
+        "path": "assets/reference/風コウモリ公式モンスターデザインシート.png",
+        "sha256": "eaad2dc29f26e8ce82f28cc408bb5943eb2d3054e2977e07652f8aac876e5ec3"
+      },
+      "source_scope": "dedicated source sheet",
+      "lock_status": "existing_approved_sheet_from_bootstrap",
+      "authority": "docs/WORK_GITHUB_MASTER_HANDOFF_2026-09-07.md",
+      "qa": {
+        "byte_integrity": "PASS",
+        "new_visual_comparison": "NOT_PERFORMED",
+        "promotion_this_session": false
+      },
+      "runtime_derivatives": [
+        {
+          "path": "assets/battle/wind_bat/attack.png",
+          "sha256": "b02169688336eafbc690b2260572ee44b60ea80e76a317bdb7cef93166ac528c"
+        },
+        {
+          "path": "assets/battle/wind_bat/danger.png",
+          "sha256": "81f5b2811c187a9e3ec45e0b9eaf5e267cea0a18ac20355448a0773c445cc217"
+        },
+        {
+          "path": "assets/battle/wind_bat/hit.png",
+          "sha256": "8d523d30d4e931e9c44998d34e93bd68b8c1a78eeb7d1b80808a4c4d5a09660d"
+        },
+        {
+          "path": "assets/battle/wind_bat/idle.png",
+          "sha256": "8d523d30d4e931e9c44998d34e93bd68b8c1a78eeb7d1b80808a4c4d5a09660d"
+        },
+        {
+          "path": "assets/battle/wind_bat/stance.png",
+          "sha256": "397312b5398b1c0e388f8d89e74c1544426840b91be4f075c40b1a264ad20590"
+        }
+      ]
+    },
+    {
+      "key": "SP-044",
+      "governing_source": {
+        "path": "assets/reference/雷フクロウ_CHARACTER_DESIGN_BIBLE_ML-001_v1.1.png",
+        "sha256": "6e3cacaf83b8541d85560d9bf4358029c0be484af976125a399a7df14e72fedc"
+      },
+      "source_scope": "dedicated source sheet",
+      "lock_status": "inherited_official_lock",
+      "authority": "docs/WORK_GITHUB_MASTER_HANDOFF_2026-09-07.md",
+      "qa": {
+        "byte_integrity": "PASS",
+        "new_visual_comparison": "NOT_PERFORMED",
+        "promotion_this_session": false
+      },
+      "runtime_derivatives": [
+        {
+          "path": "assets/battle/owl/attack.png",
+          "sha256": "edb1ce15e24879141ecb10cade15006db867f3a0feda7ee91200fdf28d99bc69"
+        },
+        {
+          "path": "assets/battle/owl/attack_prep.png",
+          "sha256": "48b10fc51bf90922f87e02f6721ff4a8b66811a7a03c8db473ce5940a918d199"
+        },
+        {
+          "path": "assets/battle/owl/danger.png",
+          "sha256": "f281ffa31b4d7a19f5501aed9399b9cd241d2b7efa8ca3d205cce7967b284550"
+        },
+        {
+          "path": "assets/battle/owl/hit.png",
+          "sha256": "0feda8711ca6b999ca70d475460b8a5ded67cfc0addb7f68a5d80681e5a12ccb"
+        },
+        {
+          "path": "assets/battle/owl/icon_portrait.png",
+          "sha256": "2c3c71185d2a2f916bead8977dc93a29918865763c3a55105cb8d6bc32c7dc55"
+        },
+        {
+          "path": "assets/battle/owl/idle.png",
+          "sha256": "e2bbe8ae445014d613b4349a5e57cb95219b86a599343c667fcfb5e24fd17492"
+        },
+        {
+          "path": "assets/battle/owl/stance.png",
+          "sha256": "48b10fc51bf90922f87e02f6721ff4a8b66811a7a03c8db473ce5940a918d199"
+        }
+      ]
+    },
+    {
+      "key": "SP-071",
+      "governing_source": {
+        "path": "assets/reference/葉ウサギ_植物幻想モンスター設定画.png",
+        "sha256": "a004ac016ad98cd0c66ca3d511c95a4a2e8f964f48dd8328c0a6bf68d7e8861b"
+      },
+      "source_scope": "dedicated source sheet",
+      "lock_status": "existing_approved_sheet_from_bootstrap",
+      "authority": "docs/WORK_GITHUB_MASTER_HANDOFF_2026-09-07.md",
+      "qa": {
+        "byte_integrity": "PASS",
+        "new_visual_comparison": "NOT_PERFORMED",
+        "promotion_this_session": false
+      },
+      "runtime_derivatives": [
+        {
+          "path": "assets/battle/leaf/attack.png",
+          "sha256": "bf50e27eb8bdf864f99a1b73c4949992247a7b0b98b23a5f1ae16c8546a4c248"
+        },
+        {
+          "path": "assets/battle/leaf/danger.png",
+          "sha256": "21930bed44ca037ed0b10dbcd54f782259098319648270b0a7dec86d6c44176b"
+        },
+        {
+          "path": "assets/battle/leaf/hit.png",
+          "sha256": "1d55bdb3fe6ad44d9628548b0f4edf8b7d099b5974ee535b50047452be89981c"
+        },
+        {
+          "path": "assets/battle/leaf/idle.png",
+          "sha256": "1d55bdb3fe6ad44d9628548b0f4edf8b7d099b5974ee535b50047452be89981c"
+        },
+        {
+          "path": "assets/battle/leaf/stance.png",
+          "sha256": "e432baf77eac0644ea0ff8f6934dfe031a7b96e0a4f92b3c178336e559642b8f"
+        }
+      ]
+    },
+    {
+      "key": "SP-191",
+      "governing_source": {
+        "path": "assets/reference/荊棘の大猪_モンスターデザイン画稿.png",
+        "sha256": "3fcbec67740d77f1bbc63c48b423269865fcc26e00d217e0139758a8afcaa88a"
+      },
+      "source_scope": "dedicated source sheet",
+      "lock_status": "inherited_official_lock",
+      "authority": "docs/WORK_GITHUB_MASTER_HANDOFF_2026-09-07.md",
+      "qa": {
+        "byte_integrity": "PASS",
+        "new_visual_comparison": "NOT_PERFORMED",
+        "promotion_this_session": false
+      },
+      "runtime_derivatives": [
+        {
+          "path": "assets/battle/boar/attack.png",
+          "sha256": "6846faa742f8a2b8d79f24c1bed8c95793125584b7fb1025af9b3170acb37aac"
+        },
+        {
+          "path": "assets/battle/boar/danger.png",
+          "sha256": "e9aba3aacb263a89cd9c9454f265bb5847cb903ab0c598a9d80c5ba8b94b87bc"
+        },
+        {
+          "path": "assets/battle/boar/hit.png",
+          "sha256": "8adf3660fed9efbc5982f5e4965cfe0663dd0317398d315ff57d299772069357"
+        },
+        {
+          "path": "assets/battle/boar/idle.png",
+          "sha256": "8adf3660fed9efbc5982f5e4965cfe0663dd0317398d315ff57d299772069357"
+        },
+        {
+          "path": "assets/battle/boar/stance.png",
+          "sha256": "8adf3660fed9efbc5982f5e4965cfe0663dd0317398d315ff57d299772069357"
+        }
+      ]
+    },
+    {
+      "key": "SP-192",
+      "governing_source": {
+        "path": "assets/reference/裂空マンティコア_CHARACTER_DESIGN_SHEET_ML-002_v1.2.png",
+        "sha256": "0b1b8a4a9148cccd7342aa42e0a2d314d1dc09734b3137f064569777e40a1777"
+      },
+      "source_scope": "dedicated source sheet",
+      "lock_status": "inherited_official_lock",
+      "authority": "docs/WORK_GITHUB_MASTER_HANDOFF_2026-09-07.md",
+      "qa": {
+        "byte_integrity": "PASS",
+        "new_visual_comparison": "NOT_PERFORMED",
+        "promotion_this_session": false
+      },
+      "runtime_derivatives": [
+        {
+          "path": "assets/battle/manticore/attack.png",
+          "sha256": "38413bbd83088189ca5b1a4f6a51bbe7d8e476433aad64a2efbbf07ee998a1e6"
+        },
+        {
+          "path": "assets/battle/manticore/attack_prep.png",
+          "sha256": "7499717c0b803251b5033c2a8eb4775469205080b1147e380f01e08b4547f44c"
+        },
+        {
+          "path": "assets/battle/manticore/danger.png",
+          "sha256": "d7696dc21e26af752bbcb328f84ea5aabd2dc438f20393ef3373db5f09e2f595"
+        },
+        {
+          "path": "assets/battle/manticore/hit.png",
+          "sha256": "579a8680176e2a4038cc00adfcbf41e4bd8d987c0492f8dec36298d3ac79dafa"
+        },
+        {
+          "path": "assets/battle/manticore/icon_portrait.png",
+          "sha256": "dd89b38375476fbc4833ed1916116b38588b7e07d017da7d4b90833c57089a31"
+        },
+        {
+          "path": "assets/battle/manticore/idle.png",
+          "sha256": "579a8680176e2a4038cc00adfcbf41e4bd8d987c0492f8dec36298d3ac79dafa"
+        },
+        {
+          "path": "assets/battle/manticore/stance.png",
+          "sha256": "7499717c0b803251b5033c2a8eb4775469205080b1147e380f01e08b4547f44c"
+        }
+      ]
+    }
+  ],
+  "blocked_candidates": [
+    {
+      "name": "バルク",
+      "path": null,
+      "status": "CANDIDATE_FORM_PASS_NOT_OFFICIAL_LOCK",
+      "blocker": "exact candidate/source missing; ring differentiation review required"
+    },
+    {
+      "name": "グラウゼン",
+      "path": null,
+      "status": "CANDIDATE_FORM_PASS_PALETTE_FAIL_NOT_OFFICIAL_LOCK",
+      "blocker": "exact candidate/source missing; black/dark-purple/red-copper + white ring glow required"
+    }
+  ]
+}
