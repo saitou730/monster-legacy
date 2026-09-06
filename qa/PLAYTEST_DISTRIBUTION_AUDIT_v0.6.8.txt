@@ -1,0 +1,14 @@
+PASS  v0.6.8 session key
+PASS  tester query mode
+PASS  clean external session
+PASS  routes to chapter 1
+PASS  tester guide launch
+PASS  collector multi json
+PASS  collector duplicate filter
+PASS  collector csv export
+PASS  collector director summary
+PASS  five-player gate
+PASS  no collector network
+PASS  privacy guidance
+PASS  art locks preserved
+PASS  13/13 distribution checks

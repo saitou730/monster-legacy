@@ -1,0 +1,13 @@
+PASS party persisted
+PASS available roster
+PASS normalize fusion
+PASS current party state-driven
+PASS slot focus
+PASS assign unit
+PASS 3 slot UI
+PASS roster UI
+PASS tactical summary
+PASS formation CSS
+PASS core rule copy
+PASS loadout preserved
+12/12 PASS

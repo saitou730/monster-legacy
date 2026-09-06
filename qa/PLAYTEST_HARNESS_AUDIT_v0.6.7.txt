@@ -1,0 +1,17 @@
+PASS | playtest script loaded
+PASS | home playtest controls
+PASS | survey modal
+PASS | four comprehension questions
+PASS | replay intent
+PASS | clarity
+PASS | json export
+PASS | no network upload
+PASS | story telemetry
+PASS | 2 command telemetry
+PASS | stance telemetry
+PASS | boss turn telemetry
+PASS | boss clear telemetry
+PASS | survey after boar
+PASS | fixed rules preserved
+PASS | art lock pending bosses
+RESULT 16/16

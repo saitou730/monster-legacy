@@ -1,0 +1,13 @@
+PASS direct self-contained runtime at 390x844 via Chromium page.set_content
+PASS typeof ML == object
+PASS fresh HOME objective = CHAPTER 1
+PASS advanced-state progression objective = LEGACY ARCHIVE
+PASS archive = 3 Legacy Cores
+PASS equip 不退転 -> ゴウラ
+PASS boss card shows LEGACY 不退転
+PASS 9 direct command tiles
+PASS two actor commands -> EXECUTE 2/2
+PASS execute turn 01 -> 02
+PASS codex = 8 cards
+PASS page errors = 0
+NOTE localhost navigation blocked by administrator policy; this is browser runtime, not Android physical-device QA.

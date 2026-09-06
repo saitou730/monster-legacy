@@ -1,0 +1,19 @@
+PASS owl locked
+PASS owl official reference
+PASS owl idle
+PASS owl attack_prep
+PASS owl attack
+PASS owl hit
+PASS owl stance
+PASS owl danger
+PASS owl icon_portrait
+PASS manticore locked
+PASS manticore official reference
+PASS manticore idle
+PASS manticore attack_prep
+PASS manticore attack
+PASS manticore hit
+PASS manticore stance
+PASS manticore danger
+PASS manticore icon_portrait
+RESULT 18/18

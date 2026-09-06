@@ -1,0 +1,23 @@
+MONSTER LEGACY v1.0 Motion Feel — Chromium runtime smoke
+Viewport: 390 x 844
+Delivery: self-contained Direct Play loaded with Playwright page.set_content
+Reason: environment blocks localhost navigation with ERR_BLOCKED_BY_ADMINISTRATOR.
+
+PASS  MLMotion runtime loaded
+PASS  Manticore stage received VOL band class
+PASS  14 motion particles instantiated
+PASS  Manticore official attack_prep asset used during NEXT decision state
+PASS  Goura COMMAND field pose
+PASS  Fire Lizard COMMAND field pose
+PASS  Leaf Rabbit STANCE field pose
+PASS  player strike choreography class observed
+PASS  enemy AOE strike choreography class observed
+PASS  TURN 01 -> TURN 02
+PASS  HUNT field party contains 3 allies
+PASS  HUNT motion particles instantiated
+PASS  HUNT animated turn resolves and resets COMMAND 0/2
+PASS  JavaScript page errors = 0
+PASS  console errors = 0
+
+RESULT: PASS browser runtime motion smoke.
+NOT A PHYSICAL-DEVICE PASS.

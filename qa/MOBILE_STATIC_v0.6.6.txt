@@ -1,0 +1,16 @@
+PASS  zoom allowed
+PASS  viewport fit cover
+PASS  vh fallback
+PASS  sticky NEXT
+PASS  sticky action rail
+PASS  hunt action rail
+PASS  boss action rail
+PASS  safe bottom
+PASS  touch manipulation
+PASS  toast wraps
+PASS  header no absolute controls
+PASS  version label
+PASS  formal voltage seal
+PASS  field party layer
+PASS  execute 2-command label
+PASS  15/15 static readiness checks

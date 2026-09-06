@@ -1,0 +1,10 @@
+# MONSTER LEGACY — External Playtest Aggregate
+Players: 5
+Median comprehension: 4/4
+Comprehension >=3/4: 5/5
+Median replay intent: 4/5
+Replay intent >=4/5: 5/5
+Median clarity: 4/5
+90-point external evidence gate: PASS CANDIDATE
+CSV: /tmp/tmp.KOeC2ptm84/PLAYTEST_AGGREGATE.csv
+Summary: /tmp/tmp.KOeC2ptm84/PLAYTEST_DIRECTOR_SUMMARY.md
