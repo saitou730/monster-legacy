@@ -1485,7 +1485,7 @@ window.ML = (() => {
     // Patch releases must not move the permanent UI layout; readability is temporal only.
     setTimeout(()=>{
       const label = enemyWasSkipped ? "ENEMY ACTION — CRASH" : `ENEMY ACTION — ${enemyLocked.name||"NEXT"}`;
-      battleCallout(label, enemyWasSkipped ? "BREAK" : (enemyLocked.legacy ? "LEGACY" : "NEXT"));
+      callout(label, enemyWasSkipped ? "crash" : (enemyLocked.legacy ? "legacy" : "next"));
       if(window.MLMotion){
         MLMotion.focus("bossStage","enemy",enemyLocked.target||null);
         if(MLMotion.enemyWarning) MLMotion.enemyWarning("bossStage",enemyLocked,enemyWasSkipped);
