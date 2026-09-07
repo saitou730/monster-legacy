@@ -1,0 +1,64 @@
+schema_version: 1
+status: DESIGN_SPEC_CANDIDATE
+batch: NEW-SPECIES-BATCH-05
+updated: 2026-09-07
+rules:
+  - "All entries are separate species. MONSTER LEGACY has no evolution system."
+  - "Do not reuse silhouettes from Batch 03/04."
+  - "Do not use large round glossy eyes or multiple sparkling highlights as the default attachment device."
+  - "Attachment value must come from behavior, ecology, silhouette, material, posture, and animation potential."
+  - "Late-game power does not require armor spikes, aggression, or canine/deer body plans."
+  - "No VISUAL_DIRECTION_LOCK until a fresh, non-duplicated concept sheet passes art-director QA."
+
+species:
+  - id: EX-057
+    name: "潮貝ムル"
+    class: BUDDY
+    theme: MOLLUSK_TIDE
+    body_plan: "low soft-bodied mollusk with layered shell fins; small slit eyes under shell rim"
+    hook: "stores tidewater inside its shell and releases it to cross dry ground"
+  - id: EX-058
+    name: "沼角イモリ"
+    class: BUDDY
+    theme: AMPHIBIAN_SWAMP
+    body_plan: "long-bodied newt with sensory horn ridge and horizontal pupils"
+    hook: "reads changes in water chemistry before danger arrives"
+  - id: EX-059
+    name: "群珠ムシ"
+    class: TACTICAL
+    theme: SWARM_COLLECTIVE
+    body_plan: "many small bead-bodied insects acting as one shifting organism"
+    hook: "changes formation to block, scatter, or guide attacks"
+  - id: EX-060
+    name: "風布クラゲ"
+    class: MYSTIC
+    theme: WIND_SOFTBODY
+    body_plan: "airborne ribbon-jelly organism, no bird anatomy, minimal sensory dots"
+    hook: "rides pressure layers and folds its body to redirect airflow"
+  - id: EX-061
+    name: "灰灯モグ"
+    class: TACTICAL
+    theme: FIRE_ASH
+    body_plan: "ash-coated digging beast with ember vents under fur, narrow eyes, no flame armor"
+    hook: "uses stored heat to soften ground and open tactical routes"
+  - id: EX-062
+    name: "晶殻ミラ"
+    class: MYSTIC
+    theme: CRYSTAL_REFRACTION
+    body_plan: "faceted translucent organism with asymmetric crystal plates and recessed eyes"
+    hook: "refracts light and targeting cues rather than firing generic beams"
+  - id: EX-063
+    name: "眠背マンタ"
+    class: ELITE
+    theme: GENTLE_POWERHOUSE
+    body_plan: "huge low-floating manta-like guardian with stone-fur dorsal ridges and calm half-lidded eyes"
+    hook: "carries allies through hazardous terrain and protects them with its broad body"
+  - id: EX-064
+    name: "天鰭オルカ"
+    class: ELITE
+    theme: SKY_AQUATIC
+    body_plan: "aerial cetacean with long fin-wings, compact eyes, no dragon silhouette"
+    hook: "dives through cloud layers like water and controls vertical battle space"
+
+lock_state: NONE
+next_action: "Generate one fresh Batch 05 sheet with EX-057..EX-064 only; QA silhouette diversity, eye language, ecology, and overlap before selective lock."
