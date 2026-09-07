@@ -128,3 +128,13 @@ window.MLPlaytest = (() => {
   if(!session.events.length) event('session_start',{source:'load'});
   return {event,inc,restart,metrics,survey,download,summaryText,renderHomeSummary,showSurvey,hideSurvey,bind,testerMode,startTesterMode,json};
 })();
+
+// v1.8.4 — load the first-run prologue + contextual long-press help without disturbing the locked battle layout.
+(() => {
+  if (document.querySelector('script[data-ml-ux-context]')) return;
+  const script = document.createElement('script');
+  script.src = 'src/ux_context.js';
+  script.defer = true;
+  script.dataset.mlUxContext = '1';
+  document.head.appendChild(script);
+})();
