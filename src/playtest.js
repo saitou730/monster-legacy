@@ -128,3 +128,13 @@ window.MLPlaytest = (() => {
   if(!session.events.length) event('session_start',{source:'load'});
   return {event,inc,restart,metrics,survey,download,summaryText,renderHomeSummary,showSurvey,hideSurvey,bind,testerMode,startTesterMode,json};
 })();
+
+// Runtime UX extension loader. This executes after src/app.js has completed its synchronous INIT,
+// allowing first-run routing and dynamic STANCE help to bind without rewriting locked battle logic.
+window.addEventListener('DOMContentLoaded', () => {
+  if(document.querySelector('script[data-ml-ux]')) return;
+  const script = document.createElement('script');
+  script.src = 'src/ux.js';
+  script.dataset.mlUx = '1.8.4';
+  document.body.appendChild(script);
+}, {once:true});
