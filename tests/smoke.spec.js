@@ -6,7 +6,14 @@ test('START → HOME → HUNT: two actual touch commands and a resolved turn', a
   await expect(page.locator('#journeyResult')).toHaveClass(/show/);
   await page.locator('#journeyResultPrimary').tap();
   await expect(page.locator('#story')).toHaveClass(/show/);
-  await page.locator('.nav [data-go="hunt"]').tap();
+  // STORY intentionally hides global navigation: complete the actual tutorial route.
+  await page.locator('[onclick="ML.storyNext()"]').tap();
+  await page.locator('[onclick="ML.storyCmd(this)"][data-unit="goura"]').tap();
+  await page.locator('[onclick="ML.storyCmd(this)"][data-unit="fire"]').tap();
+  await page.locator('[onclick="ML.storyStance(\'goura\')"]').tap();
+  await page.locator('[onclick="ML.storyVol(\'calm\')"]').tap();
+  await page.locator('[onclick="ML.storyEquip(\'bell\')"]').tap();
+  await page.locator('[onclick="ML.storyBoss()"]').tap();
   await expect(page.locator('#hunt')).toHaveClass(/show/);
   await expect(page.locator('#huntStickyHpText')).toBeVisible();
   await expect(page.locator('#huntStickyVolText')).toBeVisible();

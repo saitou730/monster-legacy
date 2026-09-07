@@ -415,6 +415,7 @@ window.ML = (() => {
   function stanceText(uid,context="boss"){
     if(uid==="goura") return context==="boss"?"未選択で発動。このターンの味方への単体ダメージを45%、全体・連続攻撃を30%軽減。ROLEの炉守と重複しません。":"現在のHUNTでは固有の軽減効果は未実装です。";
     if(uid==="leaf") return context==="boss"?"未選択で発動。このターン、自分のHPを6回復。装備したLEGACYで回復量が増える場合があります。":"現在のHUNTでは固有の回復効果は未実装です。";
+    if(uid==="flame" && context!=="boss") return "この練習戦では固有STANCE効果は未実装です。BOSSでは次の炎翼牙を強化します。";
     if(uid==="flame") return "未選択で次のCOREを準備。次に使う炎翼牙のダメージ+12%、VOLTAGE上昇+2。重複蓄積しません。";
     return "未選択の1体として待機します。この個体の固有STANCE効果は現行ビルドでは未実装です。";
   }

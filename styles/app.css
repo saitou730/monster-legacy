@@ -1100,3 +1100,6 @@ body.bossMode .directorDetails{display:none}
 .skillExplanation p{margin:0 0 16px}
 .skillExplanation .btn{width:100%;min-height:48px}
 .stanceLock small{display:block;line-height:1.5;white-space:normal;margin-top:6px;font-size:12px}
+
+/* A closing sheet must stop intercepting touches immediately. */
+.sheet:not(.show), .sheet:not(.show) *{pointer-events:none!important}

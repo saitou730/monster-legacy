@@ -1,2 +1,0 @@
-stems=5 se=10 loop_seconds=6.667
-PASS

@@ -17,3 +17,5 @@ Known gaps explicitly exposed, not silently claimed complete:
 - Humanoid unique character names/settings exist, but governing source images are missing from main. No text-only regeneration permitted.
 
 Validation: syntax and asset hashes PASS locally. CI must run existing HUNT/boar cases plus intro persistence and non-selecting long-press/tap explanation at three widths. No Android MANUAL PASS; Score82 HOLD.
+
+First CI found the smoke test attempting hidden STORY navigation: replaced that shortcut with actual six-lesson taps into HUNT. A flaky long press exposed closing-sheet touch interception; closed sheet descendants now immediately disable pointer events. Verna source registry recovered: libfile_1054b449f75c8191813e305303457a4a; exact source file_00000000332882119034b17fa590c007 is accessible. Source image is not yet bound into GitHub or newly approved.
