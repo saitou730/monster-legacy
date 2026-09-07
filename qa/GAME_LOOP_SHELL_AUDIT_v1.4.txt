@@ -1,0 +1,15 @@
+PASS boot_gate
+PASS home_first
+PASS journey_route
+PASS party_preview
+PASS quick_story
+PASS quick_hunt
+PASS quick_party
+PASS quick_fusion
+PASS flow_test
+PASS flow_boss
+PASS archive_access
+PASS battle_rules_preserved
+PASS patch_geometry_untouched
+PASS audio_start
+RESULT 14/14

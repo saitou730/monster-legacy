@@ -1,0 +1,11 @@
+PASS  equipment resolver exists
+PASS  loadout renderer exists
+PASS  setEquipment exists
+PASS  localStorage read guarded
+PASS  localStorage write guarded
+PASS  storage save guarded
+PASS  stale boss VOL DOM guarded
+PASS  formal direct commands
+PASS  turn lock text
+PASS  v1.3.2 label
+PASS  10/10 source-integrity checks

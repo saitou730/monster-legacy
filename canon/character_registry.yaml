@@ -1,0 +1,1964 @@
+{
+  "schema_version": 1,
+  "authority": "docs/WORK_GITHUB_MASTER_HANDOFF_2026-09-07.md",
+  "serialization": "JSON (valid YAML 1.2)",
+  "floor": {
+    "web": "0.6",
+    "director_score": 82,
+    "gate": "PASSED (inherited)",
+    "score_policy": "HOLD; no new score without runtime/device evidence"
+  },
+  "layers": [
+    "A species",
+    "B unique characters",
+    "C unique monsters/contracts",
+    "D historical/story entities"
+  ],
+  "species": [
+    {
+      "id": "SP-001",
+      "name": "炉甲獣",
+      "lineage": "炉甲",
+      "tier": 1,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_bound_review_pending",
+      "visual_source_key": "SP-001"
+    },
+    {
+      "id": "SP-002",
+      "name": null,
+      "lineage": "炉甲",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-003",
+      "name": null,
+      "lineage": "炉甲",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-004",
+      "name": null,
+      "lineage": "炉甲",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-005",
+      "name": null,
+      "lineage": "炉甲",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-006",
+      "name": null,
+      "lineage": "炉甲",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-007",
+      "name": null,
+      "lineage": "炉甲",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-008",
+      "name": null,
+      "lineage": "炉甲",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-009",
+      "name": null,
+      "lineage": "炉甲",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-010",
+      "name": "原炉獣ガルガン",
+      "lineage": "炉甲",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-011",
+      "name": "火トカゲ",
+      "lineage": "焔牙",
+      "tier": 1,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_bound_review_pending",
+      "visual_source_key": "SP-011"
+    },
+    {
+      "id": "SP-012",
+      "name": null,
+      "lineage": "焔牙",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-013",
+      "name": null,
+      "lineage": "焔牙",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-014",
+      "name": null,
+      "lineage": "焔牙",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-015",
+      "name": null,
+      "lineage": "焔牙",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-016",
+      "name": null,
+      "lineage": "焔牙",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-017",
+      "name": null,
+      "lineage": "焔牙",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-018",
+      "name": "炎翼リザル",
+      "lineage": "焔牙",
+      "tier": 3,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "inherited_official_lock",
+      "visual_source_key": "SP-018"
+    },
+    {
+      "id": "SP-019",
+      "name": null,
+      "lineage": "焔牙",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-020",
+      "name": "焔帝ヴァルガス",
+      "lineage": "焔牙",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-021",
+      "name": null,
+      "lineage": "岩殻",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-022",
+      "name": null,
+      "lineage": "岩殻",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-023",
+      "name": null,
+      "lineage": "岩殻",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-024",
+      "name": null,
+      "lineage": "岩殻",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-025",
+      "name": null,
+      "lineage": "岩殻",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-026",
+      "name": null,
+      "lineage": "岩殻",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-027",
+      "name": null,
+      "lineage": "岩殻",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-028",
+      "name": null,
+      "lineage": "岩殻",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-029",
+      "name": null,
+      "lineage": "岩殻",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-030",
+      "name": "地殻獣グランダ",
+      "lineage": "岩殻",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-031",
+      "name": "風コウモリ",
+      "lineage": "風翼",
+      "tier": 1,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_bound_review_pending",
+      "visual_source_key": "SP-031"
+    },
+    {
+      "id": "SP-032",
+      "name": null,
+      "lineage": "風翼",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-033",
+      "name": null,
+      "lineage": "風翼",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-034",
+      "name": null,
+      "lineage": "風翼",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-035",
+      "name": null,
+      "lineage": "風翼",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-036",
+      "name": null,
+      "lineage": "風翼",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-037",
+      "name": null,
+      "lineage": "風翼",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-038",
+      "name": null,
+      "lineage": "風翼",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-039",
+      "name": null,
+      "lineage": "風翼",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-040",
+      "name": "天翔獣アルケイン",
+      "lineage": "風翼",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-041",
+      "name": null,
+      "lineage": "雷羽",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-042",
+      "name": null,
+      "lineage": "雷羽",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-043",
+      "name": null,
+      "lineage": "雷羽",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-044",
+      "name": "雷フクロウ",
+      "lineage": "雷羽",
+      "tier": 2,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "inherited_official_lock",
+      "visual_source_key": "SP-044"
+    },
+    {
+      "id": "SP-045",
+      "name": null,
+      "lineage": "雷羽",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-046",
+      "name": null,
+      "lineage": "雷羽",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-047",
+      "name": null,
+      "lineage": "雷羽",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-048",
+      "name": null,
+      "lineage": "雷羽",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-049",
+      "name": null,
+      "lineage": "雷羽",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-050",
+      "name": "天雷鳥ヴァジュラ",
+      "lineage": "雷羽",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-051",
+      "name": null,
+      "lineage": "水鱗",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-052",
+      "name": null,
+      "lineage": "水鱗",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-053",
+      "name": null,
+      "lineage": "水鱗",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-054",
+      "name": null,
+      "lineage": "水鱗",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-055",
+      "name": null,
+      "lineage": "水鱗",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-056",
+      "name": null,
+      "lineage": "水鱗",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-057",
+      "name": null,
+      "lineage": "水鱗",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-058",
+      "name": null,
+      "lineage": "水鱗",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-059",
+      "name": null,
+      "lineage": "水鱗",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-060",
+      "name": "蒼海竜ネレイド",
+      "lineage": "水鱗",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-061",
+      "name": null,
+      "lineage": "氷晶",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-062",
+      "name": null,
+      "lineage": "氷晶",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-063",
+      "name": null,
+      "lineage": "氷晶",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-064",
+      "name": null,
+      "lineage": "氷晶",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-065",
+      "name": null,
+      "lineage": "氷晶",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-066",
+      "name": null,
+      "lineage": "氷晶",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-067",
+      "name": null,
+      "lineage": "氷晶",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-068",
+      "name": null,
+      "lineage": "氷晶",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-069",
+      "name": null,
+      "lineage": "氷晶",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-070",
+      "name": "極晶竜フロストラ",
+      "lineage": "氷晶",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-071",
+      "name": "葉ウサギ",
+      "lineage": "森芽",
+      "tier": 1,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_bound_review_pending",
+      "visual_source_key": "SP-071"
+    },
+    {
+      "id": "SP-072",
+      "name": null,
+      "lineage": "森芽",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-073",
+      "name": null,
+      "lineage": "森芽",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-074",
+      "name": null,
+      "lineage": "森芽",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-075",
+      "name": null,
+      "lineage": "森芽",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-076",
+      "name": null,
+      "lineage": "森芽",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-077",
+      "name": null,
+      "lineage": "森芽",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-078",
+      "name": null,
+      "lineage": "森芽",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-079",
+      "name": null,
+      "lineage": "森芽",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-080",
+      "name": "大樹獣ユグラン",
+      "lineage": "森芽",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-081",
+      "name": null,
+      "lineage": "毒胞",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-082",
+      "name": null,
+      "lineage": "毒胞",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-083",
+      "name": null,
+      "lineage": "毒胞",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-084",
+      "name": null,
+      "lineage": "毒胞",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-085",
+      "name": null,
+      "lineage": "毒胞",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-086",
+      "name": null,
+      "lineage": "毒胞",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-087",
+      "name": null,
+      "lineage": "毒胞",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-088",
+      "name": null,
+      "lineage": "毒胞",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-089",
+      "name": null,
+      "lineage": "毒胞",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-090",
+      "name": "深森菌獣ミコトラ",
+      "lineage": "毒胞",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-091",
+      "name": null,
+      "lineage": "砂牙",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-092",
+      "name": null,
+      "lineage": "砂牙",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-093",
+      "name": null,
+      "lineage": "砂牙",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-094",
+      "name": null,
+      "lineage": "砂牙",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-095",
+      "name": null,
+      "lineage": "砂牙",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-096",
+      "name": null,
+      "lineage": "砂牙",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-097",
+      "name": null,
+      "lineage": "砂牙",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-098",
+      "name": null,
+      "lineage": "砂牙",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-099",
+      "name": null,
+      "lineage": "砂牙",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-100",
+      "name": "荒神獣ガルーダン",
+      "lineage": "砂牙",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-101",
+      "name": null,
+      "lineage": "月霊",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-102",
+      "name": null,
+      "lineage": "月霊",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-103",
+      "name": null,
+      "lineage": "月霊",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-104",
+      "name": null,
+      "lineage": "月霊",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-105",
+      "name": null,
+      "lineage": "月霊",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-106",
+      "name": null,
+      "lineage": "月霊",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-107",
+      "name": null,
+      "lineage": "月霊",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-108",
+      "name": null,
+      "lineage": "月霊",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-109",
+      "name": null,
+      "lineage": "月霊",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-110",
+      "name": "月界獣セレネ",
+      "lineage": "月霊",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-111",
+      "name": null,
+      "lineage": "聖律",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-112",
+      "name": null,
+      "lineage": "聖律",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-113",
+      "name": null,
+      "lineage": "聖律",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-114",
+      "name": null,
+      "lineage": "聖律",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-115",
+      "name": null,
+      "lineage": "聖律",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-116",
+      "name": null,
+      "lineage": "聖律",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-117",
+      "name": null,
+      "lineage": "聖律",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-118",
+      "name": null,
+      "lineage": "聖律",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-119",
+      "name": null,
+      "lineage": "聖律",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-120",
+      "name": "熾天律セラフィオン",
+      "lineage": "聖律",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-121",
+      "name": "契印インプ",
+      "lineage": "魔契",
+      "tier": 1,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-122",
+      "name": null,
+      "lineage": "魔契",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-123",
+      "name": null,
+      "lineage": "魔契",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-124",
+      "name": null,
+      "lineage": "魔契",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-125",
+      "name": "魔環ゴート",
+      "lineage": "魔契",
+      "tier": 2,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-126",
+      "name": null,
+      "lineage": "魔契",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-127",
+      "name": null,
+      "lineage": "魔契",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-128",
+      "name": null,
+      "lineage": "魔契",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-129",
+      "name": null,
+      "lineage": "魔契",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-130",
+      "name": "大契魔アザルク",
+      "lineage": "魔契",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-131",
+      "name": null,
+      "lineage": "機構",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-132",
+      "name": null,
+      "lineage": "機構",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-133",
+      "name": null,
+      "lineage": "機構",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-134",
+      "name": null,
+      "lineage": "機構",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-135",
+      "name": null,
+      "lineage": "機構",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-136",
+      "name": null,
+      "lineage": "機構",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-137",
+      "name": null,
+      "lineage": "機構",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-138",
+      "name": null,
+      "lineage": "機構",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-139",
+      "name": null,
+      "lineage": "機構",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-140",
+      "name": "城塞機獣バルカディア",
+      "lineage": "機構",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-141",
+      "name": null,
+      "lineage": "蟲甲",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-142",
+      "name": null,
+      "lineage": "蟲甲",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-143",
+      "name": null,
+      "lineage": "蟲甲",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-144",
+      "name": null,
+      "lineage": "蟲甲",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-145",
+      "name": null,
+      "lineage": "蟲甲",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-146",
+      "name": null,
+      "lineage": "蟲甲",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-147",
+      "name": null,
+      "lineage": "蟲甲",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-148",
+      "name": null,
+      "lineage": "蟲甲",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-149",
+      "name": null,
+      "lineage": "蟲甲",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-150",
+      "name": "天殻蟲ゼクティス",
+      "lineage": "蟲甲",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-151",
+      "name": "角竜仔",
+      "lineage": "竜血",
+      "tier": 1,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-152",
+      "name": "鱗尾竜",
+      "lineage": "竜血",
+      "tier": 1,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-153",
+      "name": "翼芽ドレイク",
+      "lineage": "竜血",
+      "tier": 1,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-154",
+      "name": "竜槍兵",
+      "lineage": "竜血",
+      "tier": 2,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-155",
+      "name": "双角竜人",
+      "lineage": "竜血",
+      "tier": 2,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-156",
+      "name": "蒼鱗ワイバーン",
+      "lineage": "竜血",
+      "tier": 2,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-157",
+      "name": "王血ドラグーン",
+      "lineage": "竜血",
+      "tier": 3,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-158",
+      "name": "断界竜騎",
+      "lineage": "竜血",
+      "tier": 3,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-159",
+      "name": "古血バハル",
+      "lineage": "竜血",
+      "tier": 3,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-160",
+      "name": "原初竜ヴァルナス",
+      "lineage": "竜血",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-161",
+      "name": "猫耳狩人",
+      "lineage": "獣人",
+      "tier": 1,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-162",
+      "name": "犬牙闘士",
+      "lineage": "獣人",
+      "tier": 1,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-163",
+      "name": "兎脚斥候",
+      "lineage": "獣人",
+      "tier": 1,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-164",
+      "name": "獅子拳士",
+      "lineage": "獣人",
+      "tier": 2,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-165",
+      "name": "狼槍兵",
+      "lineage": "獣人",
+      "tier": 2,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-166",
+      "name": "熊盾兵",
+      "lineage": "獣人",
+      "tier": 2,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-167",
+      "name": "虎爪武人",
+      "lineage": "獣人",
+      "tier": 3,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-168",
+      "name": "豹影剣士",
+      "lineage": "獣人",
+      "tier": 3,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-169",
+      "name": "獣王戦士レオル",
+      "lineage": "獣人",
+      "tier": 3,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-170",
+      "name": "百獣覇ガルディア",
+      "lineage": "獣人",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-171",
+      "name": "灯守霊",
+      "lineage": "霊人",
+      "tier": 1,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-172",
+      "name": "霞の童子",
+      "lineage": "霊人",
+      "tier": 1,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-173",
+      "name": "記憶拾い",
+      "lineage": "霊人",
+      "tier": 1,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-174",
+      "name": "鏡面童子",
+      "lineage": "霊人",
+      "tier": 2,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-175",
+      "name": "夢路案内人",
+      "lineage": "霊人",
+      "tier": 2,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-176",
+      "name": "夢記の司書",
+      "lineage": "霊人",
+      "tier": 2,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-177",
+      "name": "月環の導師",
+      "lineage": "霊人",
+      "tier": 3,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-178",
+      "name": "忘却の騎士",
+      "lineage": "霊人",
+      "tier": 3,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-179",
+      "name": "月記の賢霊",
+      "lineage": "霊人",
+      "tier": 3,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-180",
+      "name": "無名霊王アノン",
+      "lineage": "霊人",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-181",
+      "name": null,
+      "lineage": "機人",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-182",
+      "name": null,
+      "lineage": "機人",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-183",
+      "name": null,
+      "lineage": "機人",
+      "tier": 1,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-184",
+      "name": null,
+      "lineage": "機人",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-185",
+      "name": null,
+      "lineage": "機人",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-186",
+      "name": null,
+      "lineage": "機人",
+      "tier": 2,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-187",
+      "name": null,
+      "lineage": "機人",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-188",
+      "name": null,
+      "lineage": "機人",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-189",
+      "name": null,
+      "lineage": "機人",
+      "tier": 3,
+      "name_status": "source_recovery_required_DO_NOT_INVENT",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-190",
+      "name": "完全記録体メモリア",
+      "lineage": "機人",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-191",
+      "name": "荊棘の大猪",
+      "lineage": "古種",
+      "tier": 1,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "inherited_official_lock",
+      "visual_source_key": "SP-191"
+    },
+    {
+      "id": "SP-192",
+      "name": "裂空マンティコア",
+      "lineage": "古種",
+      "tier": 1,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "inherited_official_lock",
+      "visual_source_key": "SP-192"
+    },
+    {
+      "id": "SP-193",
+      "name": "灰海キマイラ",
+      "lineage": "古種",
+      "tier": 1,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-194",
+      "name": "墓守スフィンクス",
+      "lineage": "古種",
+      "tier": 2,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-195",
+      "name": "星喰いワーム",
+      "lineage": "古種",
+      "tier": 2,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-196",
+      "name": "天蓋ロック",
+      "lineage": "古種",
+      "tier": 2,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-197",
+      "name": "古殻ティタノス",
+      "lineage": "古種",
+      "tier": 3,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-198",
+      "name": "界渡りヒュドラ",
+      "lineage": "古種",
+      "tier": 3,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-199",
+      "name": "王墓ケルベロス",
+      "lineage": "古種",
+      "tier": 3,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    },
+    {
+      "id": "SP-200",
+      "name": "遺世獣アークノア",
+      "lineage": "古種",
+      "tier": 4,
+      "name_status": "provided_by_master_handoff",
+      "visual_status": "source_missing",
+      "visual_source_key": null
+    }
+  ],
+  "unique_characters": [
+    {
+      "name": "ヴェルナ",
+      "species_binding": null,
+      "source_status": "source_recovery_required",
+      "normal_fusion_consumable": null
+    },
+    {
+      "name": "アウレル",
+      "species_binding": null,
+      "source_status": "source_recovery_required",
+      "normal_fusion_consumable": null
+    },
+    {
+      "name": "ミラ",
+      "species_binding": null,
+      "source_status": "source_recovery_required",
+      "normal_fusion_consumable": null
+    },
+    {
+      "name": "ゴウラ",
+      "species_binding": "SP-001",
+      "source_status": "see SP-001 individual source",
+      "normal_fusion_consumable": null
+    },
+    {
+      "name": "リシェラ",
+      "species_binding": null,
+      "source_status": "source_recovery_required",
+      "normal_fusion_consumable": null
+    },
+    {
+      "name": "シエラ",
+      "species_binding": null,
+      "source_status": "source_recovery_required",
+      "normal_fusion_consumable": null
+    },
+    {
+      "name": "カイル",
+      "species_binding": null,
+      "source_status": "source_recovery_required",
+      "normal_fusion_consumable": null
+    },
+    {
+      "name": "ガルム",
+      "species_binding": null,
+      "source_status": "source_recovery_required",
+      "normal_fusion_consumable": null
+    },
+    {
+      "name": "イオネ・Σ9",
+      "species_binding": null,
+      "source_status": "source_recovery_required",
+      "normal_fusion_consumable": null
+    },
+    {
+      "name": "リュシア・ヴァルガ",
+      "species_binding": null,
+      "source_status": "source_recovery_required",
+      "normal_fusion_consumable": null
+    },
+    {
+      "name": "ネネリ",
+      "species_binding": null,
+      "source_status": "source_recovery_required",
+      "normal_fusion_consumable": null
+    },
+    {
+      "name": "ダリオ・クロウ",
+      "species_binding": null,
+      "source_status": "source_recovery_required",
+      "normal_fusion_consumable": null
+    },
+    {
+      "name": "エルゼ",
+      "species_binding": null,
+      "source_status": "source_recovery_required",
+      "normal_fusion_consumable": null
+    },
+    {
+      "name": "ゼファ",
+      "species_binding": null,
+      "source_status": "source_recovery_required",
+      "normal_fusion_consumable": null
+    },
+    {
+      "name": "フィル",
+      "species_binding": null,
+      "source_status": "source_recovery_required",
+      "normal_fusion_consumable": null
+    },
+    {
+      "name": "ネムリネ",
+      "species_binding": null,
+      "source_status": "source_recovery_required",
+      "normal_fusion_consumable": null
+    },
+    {
+      "name": "アーク＝03『バルク』",
+      "species_binding": null,
+      "source_status": "source_recovery_required",
+      "normal_fusion_consumable": null
+    },
+    {
+      "name": "ノクタ",
+      "species_binding": null,
+      "source_status": "source_recovery_required",
+      "normal_fusion_consumable": null
+    },
+    {
+      "name": "エルガルド",
+      "species_binding": null,
+      "source_status": "source_recovery_required",
+      "normal_fusion_consumable": null
+    },
+    {
+      "name": "グラウゼン",
+      "species_binding": null,
+      "source_status": "source_recovery_required",
+      "normal_fusion_consumable": false
+    }
+  ],
+  "historical_entities": [
+    "セラフィム",
+    "ノクス",
+    "ゼノン",
+    "イグニス",
+    "ルーナ",
+    "トレント",
+    "ニーズヘッグ",
+    "オルディア"
+  ],
+  "separation_rules": [
+    "SP-120熾天律セラフィオン != historicalセラフィム",
+    "ゴウラ is an individual of SP-001, not a new species",
+    "Unique/story/contract entities must not be absorbed into species IDs"
+  ],
+  "special_fusion": {
+    "parents": [
+      "SP-011",
+      "SP-031"
+    ],
+    "child": "SP-018",
+    "random": false
+  }
+}

@@ -1,0 +1,13 @@
+PASS battlefield expanded
+PASS boss halo
+PASS perspective floor
+PASS command advance
+PASS stance retreat
+PASS input battlefield reaction
+PASS target forecast
+PASS aoe forecast
+PASS random forecast
+PASS boss-specific mood
+PASS reduced motion
+PASS core untouched
+TOTAL 12/12

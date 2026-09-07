@@ -1,0 +1,14 @@
+TACTICAL LOADOUT AUDIT v1.8
+[PASS] 3 persistent formation slots preserved
+[PASS] focused slot drives loadout editor
+[PASS] equipment selectable as 3rd COMMAND
+[PASS] acquired LEGACY selectable per unit
+[PASS] NO LEGACY option available
+[PASS] unit-specific LEGACY effect preview visible
+[PASS] 3-member loadout matrix visible
+[PASS] equipment changes save state
+[PASS] LEGACY changes save state
+[PASS] formation inline handlers exported via ML
+[PASS] battle geometry untouched
+[PASS] NEXT / 2 COMMAND / 1 STANCE rules untouched
+RESULT 12/12 PASS
