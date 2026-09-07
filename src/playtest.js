@@ -129,12 +129,15 @@ window.MLPlaytest = (() => {
   return {event,inc,restart,metrics,survey,download,summaryText,renderHomeSummary,showSurvey,hideSurvey,bind,testerMode,startTesterMode,json};
 })();
 
-// v1.8.4 — load the first-run prologue + contextual long-press help without disturbing the locked battle layout.
+// v1.8.4 — load first-run prologue + contextual long-press help without disturbing the locked battle layout.
 (() => {
-  if (document.querySelector('script[data-ml-ux-context]')) return;
-  const script = document.createElement('script');
-  script.src = 'src/ux_context.js';
-  script.defer = true;
-  script.dataset.mlUxContext = '1';
-  document.head.appendChild(script);
+  const files=['src/ux_context_sheet_bridge.js','src/ux_context.js'];
+  files.forEach((src,index)=>{
+    if(document.querySelector(`script[data-ml-ux-index="${index}"]`)) return;
+    const script=document.createElement('script');
+    script.src=src;
+    script.async=false;
+    script.dataset.mlUxIndex=String(index);
+    document.head.appendChild(script);
+  });
 })();
