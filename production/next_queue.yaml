@@ -4,12 +4,11 @@
   "canonical_branch": "main",
   "working_pr": 31,
   "current_task": {
-    "id": "QA-ANDROID",
-    "title": "Verify first play on physical Android at fixed HTTPS URL",
-    "status": "awaiting_device_evidence",
-    "url": "https://saitou730.github.io/monster-legacy/",
-    "next_action": "Check technique taps, two-command execution, sticky HP/VOLTAGE, sound continuity and save return; record failures without assigning Android PASS prematurely",
-    "browser_evidence": "Initial HUNT and boar flows passed at 360/390/430; complete progression still pending"
+    "id": "UX-SKILL-INTRO",
+    "title": "Skill/STANCE explanation and first-session entry",
+    "status": "in_progress",
+    "next_action": "Run 9 browser cases; merge on green and verify deployment",
+    "remaining_scope": "See production/FIRST_SESSION_TO_CHARACTERS.md for STANCE gaps, full fusion loop, sources and summon design"
   },
   "completed": [
     {

@@ -2,6 +2,8 @@ const { test, expect } = require('@playwright/test');
 test('boar: selected commands resolve, locked NEXT survives impact, enemy damages party', async ({ page }) => {
   const errors=[];page.on('pageerror',e=>errors.push(String(e)));
   await page.goto('/');await page.locator('#bootStart').tap();
+  await expect(page.locator('#journeyResult')).toHaveClass(/show/);
+  await page.locator('#journeyResultPrimary').tap();
   // Direct route isolates this regression from onboarding unlocks.
   await page.evaluate(()=>ML.go('boss'));
   await expect(page.locator('#bossNext')).toBeVisible();

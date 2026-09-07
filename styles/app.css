@@ -1090,3 +1090,13 @@ body.bossMode .directorDetails{display:none}
 
 /* v1.8.2 Android touch hardening */
 .sheet,.sheetIn,#sheetBody,.skill{pointer-events:auto!important}.skill{touch-action:manipulation;-webkit-tap-highlight-color:transparent;position:relative;z-index:2}
+
+/* v1.8.4: visible, thumb-sized explanations alongside optional long press. */
+.skillWithHelp{display:flex;flex-direction:column;min-width:0;gap:3px}
+.skillWithHelp .commandTile{width:100%;flex:1}
+.skillInfo{min-height:44px;padding:6px 10px;border:1px solid #68778b;border-radius:8px;background:#172334;color:#e9dfc8;font:inherit;font-size:12px;touch-action:manipulation;cursor:pointer}
+.skillInfo:focus-visible{outline:2px solid #f0cf82;outline-offset:2px}
+.skillExplanation{font-size:15px;line-height:1.65;padding:8px 4px 18px;color:#f0eee9}
+.skillExplanation p{margin:0 0 16px}
+.skillExplanation .btn{width:100%;min-height:48px}
+.stanceLock small{display:block;line-height:1.5;white-space:normal;margin-top:6px;font-size:12px}

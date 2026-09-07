@@ -217,12 +217,20 @@ window.ML = (() => {
   };
 
 
+  function showIntro(){
+    showJourneyResult({eyebrow:"CHAPTER 1 — 残響の獣",title:"森の奥で、獣が応える。",
+      body:"ゴウラ、火トカゲ、葉ウサギと、最初の探索へ。<br>敵の次の動きを読み、動かす2体と、支える1体を決めよう。",
+      meta:"予告を知る → 風コウモリを仲間に → 炎翼リザルへ合体",
+      art:`<img src="${MLAsset('assets/battle/goura/idle.png')}" alt="ゴウラ">`,
+      primary:"最初の探索へ",onPrimary:()=>{state.introSeen=true;save();go("story");}});
+  }
+
   const bootStart=$("bootStart");
   if(bootStart){
     bootStart.onclick=async()=>{
       await enableGameAudio();
       $("bootGate")?.classList.add("dismissed");
-      go("home");
+      if(!state.introSeen && !state.storyStep && !state.storyComplete && !state.joinedBat && !state.fused){ showIntro(); } else { go("home"); }
       if(window.MLPlaytest) MLPlaytest.event("game_start",{entry:"home",progress:MLProgression.next(state).kind});
     };
   }
@@ -397,12 +405,28 @@ window.ML = (() => {
     const spriteState = stance ? "stance" : "idle";
     return `<div class="panel unit ${selected} ${stance}">
       <div class="unitTop">${u.battle ? `<img class="unitSprite" src="${MLAsset(`${u.battle}/${spriteState}.png`)}" alt="">` : ""}<b>${u.name}</b><span class="unitStateBadge">${stateLabel}</span></div>
-      <div class="small">${u.core} / ${u.role}</div>
+      <div class="small">${u.core} / ${u.role}</div>${helpButton(u.id,"STANCE",ctx.fn==="ML.openHunt"?"hunt":"test")}
       <div class="mini"><i style="width:${100*u.hp/u.maxHp}%"></i></div>
       <div class="small">${u.hp}/${u.maxHp}</div>
       <button class="btn" style="width:100%;padding:7px;margin-top:6px" onclick="${ctx.fn}('${u.id}')">${stance ? "STANCE" : selected ? "SELECTED" : "COMMAND"}</button>
     </div>`;
   }
+
+  function stanceText(uid,context="boss"){
+    if(uid==="goura") return context==="boss"?"未選択で発動。このターンの味方への単体ダメージを45%、全体・連続攻撃を30%軽減。ROLEの炉守と重複しません。":"現在のHUNTでは固有の軽減効果は未実装です。";
+    if(uid==="leaf") return context==="boss"?"未選択で発動。このターン、自分のHPを6回復。装備したLEGACYで回復量が増える場合があります。":"現在のHUNTでは固有の回復効果は未実装です。";
+    if(uid==="flame") return "未選択で次のCOREを準備。次に使う炎翼牙のダメージ+12%、VOLTAGE上昇+2。重複蓄積しません。";
+    return "未選択の1体として待機します。この個体の固有STANCE効果は現行ビルドでは未実装です。";
+  }
+  function skillHelp(uid,kind,context="boss"){
+    const u=D.units[uid];if(!u)return;
+    const eq=equippedFor(uid);
+    const title=kind==="STANCE"?u.stance:kind==="CORE"?u.core:kind==="ROLE"?u.role:eq.action;
+    let detail=kind==="STANCE"?stanceText(uid,context):kind==="CORE"?`敵へ基礎${u.coreDmg}ダメージ / VOL +${u.coreVol}。敵の状態やLEGACYで実際の値は変わります。`:kind==="ROLE"?(u.roleType==="calm"?"敵VOLTAGEを12下げる。現在のNEXTは変わらず、次ターンの予告に影響します。":u.roleType==="guard"?"味方を守る準備。BOSSでは単体45%、全体・連続攻撃30%軽減。HUNTでは未実装です。":"次の単体攻撃を回避する準備。全体攻撃には無効。BOSSでは火トカゲ・炎翼リザルが対象のときに有効です。"):
+      eq.type==="damage"?`${eq.desc} 基礎${eq.dmg}ダメージ / VOL +${eq.vol}。`:eq.desc;
+    openSheet(`${u.name} / ${kind}「${title}」`,`<div class="skillExplanation"><p>${detail}</p><p>${kind==="STANCE"?"COMMANDを2体分選ぶと、残った1体に自動で割り当てられます。STANCE自体をCOMMANDとして選ぶ必要はありません。":"この説明を開いてもCOMMANDは選択されません。閉じてから使う技をタップしてください。"}</p><button class="btn primary" onclick="ML.closeSkillHelp()">説明を閉じる</button></div>`);
+  }
+  function helpButton(uid,kind,context){return `<button type="button" class="skillInfo" data-help-unit="${uid}" data-help-kind="${kind}" data-help-context="${context}" aria-label="${D.units[uid].name} ${kind}の説明">ⓘ ${kind==="STANCE"?"STANCEの効果":"効果"}</button>`;}
 
   function bossUnitHtml(u, stanceUid){
     const queued = boss.queue.find(q=>q.uid===u.id);
@@ -413,12 +437,13 @@ window.ML = (() => {
     const eq = equippedFor(u.id);
     const hpPct = Math.max(0,Math.round(100*u.hp/u.maxHp));
     const disabled = stance || u.hp<=0 || boss.won || resolvingBossTurn;
-    const tile=(kind,glyph,name)=>`<button class="commandTile ${queued?.kind===kind?"on":""}" ${disabled?"disabled":""} onclick="ML.pickBoss('${u.id}','${kind}')" aria-label="${u.name} ${name}"><span>${glyph}</span><b>${name}</b></button>`;
+    const tile=(kind,glyph,name)=>`<div class="skillWithHelp"><button data-help-unit="${u.id}" data-help-kind="${kind}" data-help-context="boss" class="commandTile ${queued?.kind===kind?"on":""}" ${disabled?"disabled":""} onclick="ML.pickBoss('${u.id}','${kind}')" aria-label="${u.name} ${name}"><span>${glyph}</span><b>${name}</b></button>${helpButton(u.id,kind,"boss")}</div>`;
     return `<div class="panel unit formalUnit ${selected?"active":""} ${stance?"stance":""} ${u.hp<=0?"ko":""}">
       <div class="unitTop">${u.battle ? `<img class="unitSprite" src="${MLAsset(`${u.battle}/${spriteState}.png`)}" alt="">` : ""}<div class="unitIdentity"><b>${u.name}</b><span class="unitStateBadge">${stateLabel}</span></div></div>
+      ${helpButton(u.id,"STANCE","boss")}
       <div class="formalHp"><span>HP</span><div class="mini"><i style="width:${hpPct}%"></i></div><small>${u.hp}/${u.maxHp}</small></div>
       ${MLLegacy.equippedCore(D,state,u.id)?`<div class="equipmentTag legacyTag">LEGACY ${MLLegacy.equippedCore(D,state,u.id).name}</div>`:""}
-      ${stance ? `<div class="stanceLock"><span>STANCE</span><b>${u.stance}</b></div>` : `<div class="commandTiles">${tile("CORE","◆",u.core)}${tile("ROLE","◇",u.role)}${tile("EQUIPMENT","✦",eq.name)}</div>`}
+      ${stance ? `<div class="stanceLock"><span>STANCE</span><b>${u.stance}</b><small>${stanceText(u.id)}</small></div>` : `<div class="commandTiles">${tile("CORE","◆",u.core)}${tile("ROLE","◇",u.role)}${tile("EQUIPMENT","✦",eq.name)}</div>`}
     </div>`;
   }
 
@@ -501,7 +526,7 @@ window.ML = (() => {
     </div><div id="storyStanceMsg" class="storyDecision">残す1体で、ターンの意味が変わる。</div></div>`;
     const volBody = `<div class="storyBattleDemo"><div class="storyVoltage"><div><span>VOLTAGE</span><strong id="storyVolNumber">48</strong><em id="storyVolBand">HEAT</em></div><div class="volTutor formal"><i id="storyVolBar" style="width:48%"></i></div></div><div id="storyVolText" class="storyDecision">VOL 48 / HEAT。雷フクロウならRAGEへ入れない判断が必要。</div><div class="storyChoiceRow"><button onclick="ML.storyVol('attack')">火牙 <small>VOL +8</small></button><button onclick="ML.storyVol('calm')">鎮めの風 <small>VOL -12</small></button></div></div>`;
     const eqBody = `<div class="storyBattleDemo"><div class="storyRule"><b>EQUIPMENT</b><span>能力値ではなく“技”を持ち込む</span></div><div class="storyEquipChoice"><button onclick="ML.storyEquip('spear')"><span class="eqSigil">✦</span><b>追撃の槍</b><small>40 DMG / VOL +8</small></button><button onclick="ML.storyEquip('bell')"><span class="eqSigil">◉</span><b>鎮静の鈴</b><small>VOL -14 / 小回復</small></button></div><div id="storyEquipMsg" class="storyDecision">想定敵：雷フクロウ。RAGEを避けるなら、どちらを持ち込む？</div></div>`;
-    const bossBody = `<div class="storyBossReveal"><img src="assets/battle/boar/danger.png" alt="荊棘の大猪"><div class="storyBossCopy"><div class="eyebrow">CHAPTER BOSS / RAISE & RECEIVE</div><h3>荊棘の大猪</h3><p>NEXTを読み、2 COMMANDを選び、残る1体に受けさせる。<br>この敵だけは危険を避けない。VOLTAGE 100へ到達させ、LEGACY ARTを耐えた後に倒す。</p><button class="btn primary storyPrimary" onclick="ML.storyBoss()">BOSS BATTLE START</button></div></div>`;
+    const bossBody = `<div class="storyBossReveal"><img src="assets/battle/boar/danger.png" alt="荊棘の大猪"><div class="storyBossCopy"><div class="eyebrow">CHAPTER BOSS / RAISE & RECEIVE</div><h3>荊棘の大猪</h3><p>NEXTを読み、2 COMMANDを選び、残る1体に受けさせる。<br>この敵には危険を受け切る準備が必要だ。まず風コウモリと出会い、合体で力を継ごう。</p><button class="btn primary storyPrimary" onclick="ML.storyBoss()">風コウモリを探しに行く</button></div></div>`;
     const bodies=[nextBody,cmdBody,stanceBody,volBody,eqBody,bossBody];
     $("storyLessons").innerHTML=storyLesson(step,lessons[step].title,bodies[step]);
   }
@@ -554,8 +579,7 @@ window.ML = (() => {
       completeStoryStep(5);
       state.selectedBoss="boar";
       MLStorage.save(state);
-      selectBoss("boar");
-      go("boss");
+      go("hunt");
     }else if(state.storyComplete){
       state.selectedBoss="boar"; MLStorage.save(state); selectBoss("boar"); go("boss");
     }
@@ -765,7 +789,7 @@ window.ML = (() => {
     if(window.MLMotion) MLMotion.joinCinematic("huntStage");
     const jb=$("joinBtn"); if(jb){jb.disabled=true;jb.textContent="RESONANCE CONNECTED";}
     setTimeout(()=>showJourneyResult({
-      eyebrow:"RESONANCE / JOIN COMPLETE", title:"風コウモリ「フィル」",
+      eyebrow:"RESONANCE / JOIN COMPLETE", title:"風コウモリが仲間になった",
       body:"戦い方を理解したことで、風コウモリが自ら同行を選んだ。<br>次は3体編成と持ち込む技を整える。",
       meta:"JOIN METHOD  RESONATE\nROLE  EVADE / 風翼系\nLINEAGE  FUSION親候補として登録",
       art:`<img src="${MLAsset('assets/battle/wind_bat/idle.png')}" alt="風コウモリ">`,
@@ -1293,7 +1317,7 @@ window.ML = (() => {
       leaf.hp = Math.min(leaf.maxHp,leaf.hp+heal);
       log.push(`STANCE 葉ウサギ: 芽息 HEAL ${heal}${lm.stanceHealBonus?" / LEGACY":""}`);
     }
-    if(st === "flame"){ boss.boost = true; log.push("STANCE 炎翼リザル: 滑空炎"); }
+    if(st === "flame"){ const f=boss.party.find(u=>u.id==="flame"); if(f) f.stanceCoreReady=true; log.push("STANCE 炎翼リザル: 滑空炎"); }
 
     for(const q of boss.queue){
       const u = boss.party.find(x=>x.id===q.uid);
@@ -1301,7 +1325,7 @@ window.ML = (() => {
         const lm=MLLegacy.modifier(D,state,u.id,{hp:u.hp,maxHp:u.maxHp,anyAllyLow:boss.party.some(x=>x.hp/x.maxHp<=.5),crash:boss.crash});
         let d = Math.round(u.coreDmg*lm.coreDamageMul);
         let vv = Math.max(0,u.coreVol+lm.coreVolDelta);
-        if(u.id==="flame" && boss.boost){ d=Math.round(d*1.12); vv+=2; }
+        if(u.id==="flame" && u.stanceCoreReady){ d=Math.round(d*1.12); vv+=2; u.stanceCoreReady=false; }
         if(u.id==="flame" && boss.vol>=30 && boss.vol<90) d=Math.round(d*1.10);
         if(lm.crashDamageBonus && boss.crash) d=Math.round(d*(1+lm.crashDamageBonus));
         d = damageBoss(d);
@@ -1604,5 +1628,5 @@ window.ML = (() => {
   go("home");
   if(window.MLPlaytest){ MLPlaytest.bind(); MLPlaytest.event("app_ready",{screen:state.lastScreen||"home"}); }
 
-  return {go,goJourney,storyNext,storyCmd,storyStance,storyVol,storyEquip,storyBoss,setEquipment,setPartyLegacy,setPartyFocus,assignParty,setLegacy,archiveTab,openHunt,pickHunt,removeHunt,openTest,pickTest,removeTest,advanceFromTest,selectBoss,openBossSelect,openBoss,pickBoss,removeBoss,resetBoss};
+  return {closeSkillHelp:closeSheet,skillHelp,showIntro,go,goJourney,storyNext,storyCmd,storyStance,storyVol,storyEquip,storyBoss,setEquipment,setPartyLegacy,setPartyFocus,assignParty,setLegacy,archiveTab,openHunt,pickHunt,removeHunt,openTest,pickTest,removeTest,advanceFromTest,selectBoss,openBossSelect,openBoss,pickBoss,removeBoss,resetBoss};
 })();
