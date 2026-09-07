@@ -10,7 +10,7 @@
 - Does not mutate save, party, command selection, NEXT, rewards, story transitions or art.
 
 ## Verification
-- Browser CI pending. Added regression for tap/hold, movement cancellation, modal bounds, unchanged save/progression, reload and route continuation at existing 360/390/430 projects.
+- Browser CI PASS: 12/12 cases without retry failure in run https://github.com/saitou730/monster-legacy/actions/runs/34113144673 (head 26afe726). PR39 merged at 772aa32. Includes regression for tap/hold, movement cancellation, modal bounds, unchanged save/progression, reload and route continuation at existing 360/390/430 projects.
 - Existing integrated Chapter 1 route test remains unchanged.
 - Android physical long press / TalkBack: NOT RUN.
 

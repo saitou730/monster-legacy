@@ -1,46 +1,14 @@
 {
-  "schema_version": 1,
   "authority": "docs/WORK_GITHUB_MASTER_HANDOFF_2026-09-07.md",
-  "canonical_branch": "main",
-  "working_pr": 31,
-  "current_task": {
-    "id": "QA-ANDROID",
-    "title": "Verify first play on physical Android at fixed HTTPS URL",
-    "status": "awaiting_device_evidence",
-    "url": "https://saitou730.github.io/monster-legacy/",
-    "next_action": "Check technique taps, two-command execution, sticky HP/VOLTAGE, sound continuity and save return; record failures without assigning Android PASS prematurely",
-    "browser_evidence": "Initial HUNT and boar flows passed at 360/390/430; complete progression still pending"
+  "automation": {
+    "auto_generation": false,
+    "old_art_jobs": "disabled per handoff; not re-enabled"
   },
-  "completed": [
-    {
-      "id": "IMPORT-001",
-      "evidence": "PR31 commit f3d14861bb436a49f694a220c1f802606a756b27; 266 files; 72 binary blobs verified; 73 manifest entries pass in CI"
-    },
-    {
-      "id": "CANON-001",
-      "evidence": "Five control files and governing master handoff merged in PR31; 8 source-sheet bindings; 200 ID slots with unknown names explicit; no candidate promotion"
-    },
-    {
-      "id": "BROWSER-001",
-      "evidence": "https://github.com/saitou730/monster-legacy/actions/runs/34067400176",
-      "result": "6/6 passed: START/HOME/HUNT and boar turn at 360/390/430; Android NOT RUN"
-    },
-    {
-      "id": "MAIN-001",
-      "evidence": "PR31 merged at 3ef12b96c67b8004a6fd859de6ccbd3eec429a7e"
-    },
-    {
-      "id": "PAGES-001",
-      "evidence": "https://github.com/saitou730/monster-legacy/actions/runs/34067703835",
-      "result": "deploy success; HTTPS 200 and v1.8.3 entry HTML confirmed",
-      "url": "https://saitou730.github.io/monster-legacy/"
-    }
-  ],
   "blocked": [
     {
       "id": "ART-GRAUSEN-PALETTE",
-      "reason": "exact candidate and governing source not attached",
-      "next": "source recovery then source-referenced edit only"
+      "next": "source recovery then source-referenced edit only",
+      "reason": "exact candidate and governing source not attached"
     },
     {
       "id": "ART-BULK-DIFFERENTIATION",
@@ -59,15 +27,57 @@
       "reason": "unique individual source missing; do not substitute generic SP-031"
     }
   ],
+  "canonical_branch": "main",
+  "completed": [
+    {
+      "evidence": "PR31 commit f3d14861bb436a49f694a220c1f802606a756b27; 266 files; 72 binary blobs verified; 73 manifest entries pass in CI",
+      "id": "IMPORT-001"
+    },
+    {
+      "evidence": "Five control files and governing master handoff merged in PR31; 8 source-sheet bindings; 200 ID slots with unknown names explicit; no candidate promotion",
+      "id": "CANON-001"
+    },
+    {
+      "evidence": "https://github.com/saitou730/monster-legacy/actions/runs/34067400176",
+      "id": "BROWSER-001",
+      "result": "6/6 passed: START/HOME/HUNT and boar turn at 360/390/430; Android NOT RUN"
+    },
+    {
+      "evidence": "PR31 merged at 3ef12b96c67b8004a6fd859de6ccbd3eec429a7e",
+      "id": "MAIN-001"
+    },
+    {
+      "evidence": "https://github.com/saitou730/monster-legacy/actions/runs/34067703835",
+      "id": "PAGES-001",
+      "result": "deploy success; HTTPS 200 and v1.8.3 entry HTML confirmed",
+      "url": "https://saitou730.github.io/monster-legacy/"
+    },
+    {
+      "id": "CH1-CONTEXT-001",
+      "evidence": "https://github.com/saitou730/monster-legacy/actions/runs/34113144673",
+      "result": "PR39 merged 772aa32; 12/12 browser cases passed, including help gestures/save neutrality at 360/390/430. Not Android manual PASS."
+    }
+  ],
+  "current_task": {
+    "id": "BATTLE-CONTROLLER-INTEGRATION",
+    "title": "Connect actual battle behavior to Chapter 1 with separate Chat/Work ownership",
+    "status": "pending",
+    "ownership": "production/WORK_CHAT_OWNERSHIP.md",
+    "next_action": "Chat maintains progression; Work binds actual command and STANCE data to battle UX once controller integration is defined. Do not merge root-runtime introduction PRs blindly.",
+    "blocker": "Chapter 1 currently advances placeholder battle screens using completion buttons."
+  },
   "pending": [
     {
       "id": "QA-FULL-LOOP",
       "title": "extend browser coverage through JOIN/FUSION/TEST/ARCHIVE"
+    },
+    {
+      "id": "QA-ANDROID",
+      "title": "Physical touch, TalkBack and save return on deployed Chapter 1",
+      "status": "not_run"
     }
   ],
-  "automation": {
-    "old_art_jobs": "disabled per handoff; not re-enabled",
-    "auto_generation": false
-  },
-  "resume_rule": "Read main and current_task; do not repeat completed inventory without concrete reason; blocked art never advances by generation."
+  "resume_rule": "Read main and current_task; do not repeat completed inventory without concrete reason; blocked art never advances by generation.",
+  "schema_version": 1,
+  "working_pr": 39
 }
