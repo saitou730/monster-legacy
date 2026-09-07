@@ -4,17 +4,12 @@
   "canonical_branch": "main",
   "working_pr": 31,
   "current_task": {
-    "id": "PAGES-001",
-    "title": "Enable fixed HTTPS deployment",
-    "status": "blocked",
-    "blocker": "GitHub Pages has_pages=false; connection cannot administer Pages settings",
-    "required_action": "Repository Settings > Pages > Source = GitHub Actions",
-    "resume_action": "Read main; verify successful main Web QA deployment; open returned page_url and run Android checks",
-    "do_not_repeat": [
-      "bootstrap import",
-      "completed source hash inventory",
-      "completed initial browser regression"
-    ]
+    "id": "QA-ANDROID",
+    "title": "Verify first play on physical Android at fixed HTTPS URL",
+    "status": "awaiting_device_evidence",
+    "url": "https://saitou730.github.io/monster-legacy/",
+    "next_action": "Check technique taps, two-command execution, sticky HP/VOLTAGE, sound continuity and save return; record failures without assigning Android PASS prematurely",
+    "browser_evidence": "Initial HUNT and boar flows passed at 360/390/430; complete progression still pending"
   },
   "completed": [
     {
@@ -33,6 +28,12 @@
     {
       "id": "MAIN-001",
       "evidence": "PR31 merged at 3ef12b96c67b8004a6fd859de6ccbd3eec429a7e"
+    },
+    {
+      "id": "PAGES-001",
+      "evidence": "https://github.com/saitou730/monster-legacy/actions/runs/34067703835",
+      "result": "deploy success; HTTPS 200 and v1.8.3 entry HTML confirmed",
+      "url": "https://saitou730.github.io/monster-legacy/"
     }
   ],
   "blocked": [
@@ -59,10 +60,6 @@
     }
   ],
   "pending": [
-    {
-      "id": "QA-ANDROID",
-      "title": "physical touch/sticky/audio/save checks at verified HTTPS URL"
-    },
     {
       "id": "QA-FULL-LOOP",
       "title": "extend browser coverage through JOIN/FUSION/TEST/ARCHIVE"
