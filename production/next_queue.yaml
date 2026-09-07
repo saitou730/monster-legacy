@@ -2,14 +2,17 @@
   "schema_version": 1,
   "authority": "docs/WORK_GITHUB_MASTER_HANDOFF_2026-09-07.md",
   "canonical_branch": "main",
-  "working_pr": 31,
+  "working_branch": "work/v1.8.4-stance-onboarding",
   "current_task": {
-    "id": "QA-ANDROID",
-    "title": "Verify first play on physical Android at fixed HTTPS URL",
-    "status": "awaiting_device_evidence",
-    "url": "https://saitou730.github.io/monster-legacy/",
-    "next_action": "Check technique taps, two-command execution, sticky HP/VOLTAGE, sound continuity and save return; record failures without assigning Android PASS prematurely",
-    "browser_evidence": "Initial HUNT and boar flows passed at 360/390/430; complete progression still pending"
+    "id": "UX-STANCE-ONBOARDING",
+    "title": "Validate Battle STANCE comprehension and first-run STORY entry",
+    "status": "implementation_complete_awaiting_ci_and_browser_qa",
+    "next_action": "Run Playwright at 360/390/430; verify fresh START enters STORY, returning save enters HOME, command sheet exposes STANCE, and long-press opens STANCE explanation without breaking 2 COMMAND / 1 STANCE or NEXT turn-lock",
+    "files": [
+      "src/ux.js",
+      "src/playtest.js",
+      "tests/ux-onboarding.spec.js"
+    ]
   },
   "completed": [
     {
@@ -34,40 +37,43 @@
       "evidence": "https://github.com/saitou730/monster-legacy/actions/runs/34067703835",
       "result": "deploy success; HTTPS 200 and v1.8.3 entry HTML confirmed",
       "url": "https://saitou730.github.io/monster-legacy/"
+    },
+    {
+      "id": "CANON-V13-ALIGNMENT",
+      "evidence": "CANON-BOUND encyclopedia confirms Unique Character 20/20 LOCK and Core Official Monster 4/4 LOCK; canon/RELEASE_ALIGNMENT_v1.3.yaml records fingerprints and prevents false source promotion",
+      "result": "Identity constraints accepted; exact v1.3 paths/full SHA-256 still require the exact release bundle before authoritative GitHub source replacement"
+    },
+    {
+      "id": "UX-IMPLEMENT-001",
+      "evidence": "Fresh START routing, first-journey focus, inline STANCE/AUTO explanation and long-press STANCE detail implemented on work/v1.8.4-stance-onboarding",
+      "result": "No locked art, hard battle rules, fusion canon, or Director Score changed"
     }
   ],
   "blocked": [
     {
-      "id": "ART-GRAUSEN-PALETTE",
-      "reason": "exact candidate and governing source not attached",
-      "next": "source recovery then source-referenced edit only"
-    },
-    {
-      "id": "ART-BULK-DIFFERENTIATION",
-      "reason": "exact candidate/source missing"
-    },
-    {
-      "id": "ART-NOCTA-SOURCE",
-      "reason": "dedicated source missing"
-    },
-    {
-      "id": "ART-LUCIA",
-      "reason": "dedicated source missing"
-    },
-    {
-      "id": "ART-PHIL",
-      "reason": "unique individual source missing; do not substitute generic SP-031"
+      "id": "CANON-V13-EXACT-BUNDLE",
+      "reason": "The exact MONSTER_LEGACY_CANON_RELEASE_v1.3.zip / RELEASE_MANIFEST_v1.3.yaml is not present in the current conversation or repository. The encyclopedia exposes lock status and abbreviated fingerprints, not authoritative exact asset paths plus full SHA-256 for all 20 unique characters.",
+      "next": "When the exact bundle is available, compare against main and promote only path+full-SHA matches. Do not regenerate identities."
     }
   ],
   "pending": [
     {
       "id": "QA-FULL-LOOP",
       "title": "extend browser coverage through JOIN/FUSION/TEST/ARCHIVE"
+    },
+    {
+      "id": "QA-ANDROID",
+      "title": "verify first play on physical Android at the fixed HTTPS URL after UX changes",
+      "url": "https://saitou730.github.io/monster-legacy/"
+    },
+    {
+      "id": "CANON-V13-EXACT-MERGE",
+      "title": "safely integrate exact v1.3 asset paths and full SHA-256 when the bundle is available"
     }
   ],
   "automation": {
     "old_art_jobs": "disabled per handoff; not re-enabled",
     "auto_generation": false
   },
-  "resume_rule": "Read main and current_task; do not repeat completed inventory without concrete reason; blocked art never advances by generation."
+  "resume_rule": "Read main and current_task; do not repeat completed inventory without concrete reason; completed/locked identities never return to generation."
 }
