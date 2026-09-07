@@ -4,6 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>MONSTER LEGACY — Chapter 1 Vertical Slice v0.4 POLISH</title>
+<link rel="stylesheet" href="styles/battle-context.css">
 <style>
 :root{
  --bg:#080b10;--panel:#151a22;--panel2:#1b2029;--line:#343c47;
@@ -137,5 +138,6 @@ document.getElementById('debug').onclick=()=>{document.getElementById('debugBody
 function closeDebug(){document.getElementById('sheetback').classList.remove('open')}document.getElementById('sheetback').onclick=closeDebug;function resetAll(){localStorage.removeItem('ml_ch1_v04');location.reload()}
 render();
 </script>
+<script src="src/battle-context.js"></script>
 </body>
 </html>
