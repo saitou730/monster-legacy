@@ -1,0 +1,75 @@
+schema_version: 1
+release: MONSTER_LEGACY_CANON_RELEASE_v1.3
+status: PARTIAL_EVIDENCE_ONLY_AWAITING_EXACT_RELEASE_BUNDLE
+recorded_from: MONSTER_LEGACY_VISUAL_ENCYCLOPEDIA_v0.2_2026-09-07.pdf
+policy:
+  - GitHub main remains the development SSOT.
+  - This alignment file is NOT a replacement for RELEASE_MANIFEST_v1.3.yaml.
+  - Printed lock labels are not authority.
+  - Do not promote or replace governing art until exact asset path plus full SHA-256 from the v1.3 release bundle is available.
+  - Do not text-regenerate any identity listed here.
+lock_summary:
+  unique_characters: 20/20
+  core_official_monsters: 4/4
+  encyclopedia_render_qa: PASS
+unique_character_fingerprints:
+  - {name: "ヴェルナ・ノクス", source_class: GOVERNING_SOURCE_CROP, expected_sha256_prefix: d996c3ef1893a28c}
+  - {name: "アウレル・セラフィス", source_class: GOVERNING_SOURCE_CROP, expected_sha256_prefix: 84ae580706ba8f07}
+  - {name: "ミラ・フェルン", source_class: GOVERNING_SOURCE_CROP, expected_sha256_prefix: 65d64f3b9a4f6419}
+  - {name: "ゴウラ", source_class: GOVERNING_SOURCE_CROP, expected_sha256_prefix: 60a301581c3339da}
+  - {name: "リシェラ・ヴァルク", source_class: GOVERNING_SOURCE_CROP, expected_sha256_prefix: 3c9fad7d131abb7b}
+  - {name: "シエラ・ルクス", source_class: GOVERNING_SOURCE_CROP, expected_sha256_prefix: 47d44eddc80fa803}
+  - {name: "カイル・レグナ", source_class: EXACT_LOCKED_ASSET, expected_sha256_prefix: 5a2c40f362c1c903}
+  - {name: "ガルム・レオネス", source_class: EXACT_LOCKED_ASSET, expected_sha256_prefix: abd95a420e401d18}
+  - {name: "イオネ・Σ9", source_class: EXACT_LOCKED_ASSET, expected_sha256_prefix: d4bd2df3c2b0d6e4}
+  - {name: "リュシア・ヴァルガ", source_class: EXACT_LOCKED_ASSET, expected_sha256_prefix: 8d2cda1abb3cad27}
+  - {name: "ネネリ", source_class: EXACT_LOCKED_ASSET, expected_sha256_prefix: dd16287c5ede76bf}
+  - {name: "ダリオ・クロウ", source_class: EXACT_LOCKED_ASSET, expected_sha256_prefix: 7d09c31adfa14b42}
+  - {name: "エルゼ", source_class: EXACT_LOCKED_ASSET, expected_sha256_prefix: 061a8f97d894d041}
+  - {name: "ゼファ", source_class: EXACT_LOCKED_ASSET, expected_sha256_prefix: 89b0cf68f045dc6f}
+  - {name: "フィル", source_class: EXACT_LOCKED_ASSET, expected_sha256_prefix: 234a364dd592576b}
+  - {name: "ネムリネ", source_class: EXACT_LOCKED_ASSET, expected_sha256_prefix: cfd4e22c31b1d2f9}
+  - {name: "アーク＝03『バルク』", source_class: EXACT_LOCKED_ASSET, expected_sha256_prefix: 06c9b3fd3982267b}
+  - {name: "ノクタ", source_class: EXACT_LOCKED_ASSET, expected_sha256_prefix: 2cccf80b69043765}
+  - {name: "エルガルド", source_class: EXACT_LOCKED_ASSET, expected_sha256_prefix: af17d7b9184ca279}
+  - {name: "グラウゼン", source_class: EXACT_LOCKED_ASSET, expected_sha256_prefix: 32d04d958d4cb194}
+core_official_monster_alignment:
+  - id: SP-018
+    name: 炎翼リザル
+    source_class: OFFICIAL_GOVERNING_ASSET
+    expected_sha256_prefix: 4151d5a76c8f7e18
+    main_current_source: assets/reference/炎翼リザル_公式デザインシート.png
+    main_current_sha256: e4093ba78b5967b9019b62c5ebe879277bd6b01a077568127ecab4b96dc55105
+    alignment: MISMATCH_DO_NOT_OVERWRITE_WITHOUT_V1_3_ASSET
+  - id: SP-044
+    name: 雷フクロウ
+    source_class: OFFICIAL_GOVERNING_ASSET
+    expected_sha256_prefix: dbcc54c2af082aa2
+    main_current_source: assets/reference/雷フクロウ_CHARACTER_DESIGN_BIBLE_ML-001_v1.1.png
+    main_current_sha256: 6e3cacaf83b8541d85560d9bf4358029c0be484af976125a399a7df14e72fedc
+    alignment: MISMATCH_DO_NOT_OVERWRITE_WITHOUT_V1_3_ASSET
+  - id: SP-191
+    name: 荊棘の大猪
+    source_class: OFFICIAL_GOVERNING_ASSET
+    expected_sha256_prefix: 314a54688d3d4b17
+    main_current_source: assets/reference/荊棘の大猪_モンスターデザイン画稿.png
+    main_current_sha256: 3fcbec67740d77f1bbc63c48b423269865fcc26e00d217e0139758a8afcaa88a
+    alignment: MISMATCH_DO_NOT_OVERWRITE_WITHOUT_V1_3_ASSET
+  - id: SP-192
+    name: 裂空マンティコア
+    source_class: OFFICIAL_GOVERNING_ASSET
+    expected_sha256_prefix: 0b1b8a4a9148cccd
+    main_current_source: assets/reference/裂空マンティコア_CHARACTER_DESIGN_SHEET_ML-002_v1.2.png
+    main_current_sha256: 0b1b8a4a9148cccd7342aa42e0a2d314d1dc09734b3137f064569777e40a1777
+    alignment: PREFIX_MATCH_CONFIRMED
+integration_gate:
+  exact_v1_3_bundle_available_in_current_chat: false
+  release_manifest_v1_3_present_on_main: false
+  safe_actions_now:
+    - preserve all existing canon assets
+    - preserve 20/20 and 4/4 lock declarations as identity constraints
+    - continue gameplay UX work without regenerating locked identities
+  blocked_actions:
+    - create authoritative RELEASE_MANIFEST_v1.3.yaml from abbreviated hashes
+    - replace SP-018/SP-044/SP-191 governing sources
+    - promote missing unique-character sources into assets/canon
