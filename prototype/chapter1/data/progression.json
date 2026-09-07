@@ -1,0 +1,58 @@
+{
+  "version": "0.6",
+  "chapter": 1,
+  "sourceOfTruth": "latest-main-at-branch-start",
+  "states": [
+    "P00_TITLE","P01_PROLOGUE","P02_FIRST_BATTLE","P03_BOAR_FIRST_ENCOUNTER","P04_RETREAT_RESULT","P05_HOME_FIRST_ARRIVAL","P06_HUNT_BRIEF","P07_HUNT_WIND_BAT","P08_JOIN_RESULT","P09_PARTY_REBUILD","P10_FUSION_INTRO","P11_FUSION_FLAME_WING","P12_NEW_SPECIES_TEST","P13_SUMMON_UNLOCK","P14_SUMMON_TUTORIAL","P15_CONTRACT_EQUIP","P16_BOAR_REMATCH_BRIEF","P17_BOAR_MASTERY","P18_LEGACY_REWARD","P19_ARCHIVE_UNLOCK","P20_CHAPTER1_COMPLETE_HOME"
+  ],
+  "events": [
+    {"id":"START","from":"P00_TITLE","to":"P01_PROLOGUE"},
+    {"id":"PROLOGUE_COMPLETE","from":"P01_PROLOGUE","to":"P02_FIRST_BATTLE"},
+    {"id":"FIRST_BATTLE_COMPLETE","from":"P02_FIRST_BATTLE","to":"P03_BOAR_FIRST_ENCOUNTER","reward":{"fieldMark":100}},
+    {"id":"BOAR_RETREAT","from":"P03_BOAR_FIRST_ENCOUNTER","to":"P04_RETREAT_RESULT"},
+    {"id":"HOME_FIRST_ARRIVAL","from":"P04_RETREAT_RESULT","to":"P05_HOME_FIRST_ARRIVAL"},
+    {"id":"HUNT_BRIEF_ACCEPT","from":"P05_HOME_FIRST_ARRIVAL","to":"P06_HUNT_BRIEF"},
+    {"id":"HUNT_START","from":"P06_HUNT_BRIEF","to":"P07_HUNT_WIND_BAT"},
+    {"id":"WIND_BAT_JOIN","from":"P07_HUNT_WIND_BAT","to":"P08_JOIN_RESULT","atomic":true,"reward":{"fieldMark":150,"fusionCatalyst":1}},
+    {"id":"JOIN_RESULT_ACK","from":"P08_JOIN_RESULT","to":"P09_PARTY_REBUILD"},
+    {"id":"PARTY_REBUILD_COMPLETE","from":"P09_PARTY_REBUILD","to":"P10_FUSION_INTRO","guards":["ACTIVE_PARTY_EXACTLY_3","WIND_BAT_IN_ACTIVE_PARTY"]},
+    {"id":"FUSION_INTRO_ACK","from":"P10_FUSION_INTRO","to":"P11_FUSION_FLAME_WING"},
+    {"id":"FUSION_FLAME_WING_COMPLETE","from":"P11_FUSION_FLAME_WING","to":"P12_NEW_SPECIES_TEST","atomic":true,"guards":["FIRE_LIZARD_OWNED","WIND_BAT_OWNED","PARENTS_NOT_FAVORITE","FUSION_CATALYST_GE_1"],"result":"flame_wing_lizard"},
+    {"id":"NEW_SPECIES_TEST_COMPLETE","from":"P12_NEW_SPECIES_TEST","to":"P13_SUMMON_UNLOCK"},
+    {"id":"SUMMON_UNLOCK_ACK","from":"P13_SUMMON_UNLOCK","to":"P14_SUMMON_TUTORIAL"},
+    {"id":"SUMMON_TUTORIAL_COMPLETE","from":"P14_SUMMON_TUTORIAL","to":"P15_CONTRACT_EQUIP","atomic":true,"result":"lyra_vell","free":true,"guaranteed":true},
+    {"id":"CONTRACT_EQUIP_COMPLETE","from":"P15_CONTRACT_EQUIP","to":"P16_BOAR_REMATCH_BRIEF","guards":["LYRA_OWNED","CONTRACT_OUTSIDE_MONSTER_PARTY"]},
+    {"id":"BOAR_REMATCH_ACCEPT","from":"P16_BOAR_REMATCH_BRIEF","to":"P17_BOAR_MASTERY"},
+    {"id":"BOAR_MASTERY_COMPLETE","from":"P17_BOAR_MASTERY","to":"P18_LEGACY_REWARD","reward":{"fieldMark":300,"legacyCore":1}},
+    {"id":"LEGACY_CLAIM","from":"P18_LEGACY_REWARD","to":"P19_ARCHIVE_UNLOCK","atomic":true,"result":"unyielding","reward":{"signalShard":300}},
+    {"id":"ARCHIVE_COMPLETE","from":"P19_ARCHIVE_UNLOCK","to":"P20_CHAPTER1_COMPLETE_HOME","reward":{"fieldMark":500,"signalShard":700}}
+  ],
+  "atomicReceipts": [
+    "WIND_BAT_JOIN","FUSION_FLAME_WING_COMPLETE","SUMMON_TUTORIAL_COMPLETE","LEGACY_CLAIM","ARCHIVE_COMPLETE"
+  ],
+  "fusion": {
+    "parents": ["fire_lizard","wind_bat"],
+    "result": "flame_wing_lizard",
+    "random": false,
+    "heritageA": ["火炎適応","牙撃強化"],
+    "heritageB": ["風読み","回避反応"],
+    "growthEcho": 0.6,
+    "consumeParents": true,
+    "returnEquipment": true,
+    "saveLineage": true,
+    "childLevel": 1
+  },
+  "contract": {
+    "tutorialResult":"lyra_vell",
+    "occupiesMonsterPartySlot":false,
+    "supportSlots":1
+  },
+  "canonGuards": [
+    "PORTRAIT_9_16",
+    "NEXT_LOCKED_AT_TURN_START",
+    "THREE_MONSTER_PARTY",
+    "TWO_COMMAND_PLUS_ONE_STANCE",
+    "ART_LOCK_PRESERVED",
+    "SAVE_COMPATIBLE"
+  ]
+}
