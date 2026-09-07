@@ -10,6 +10,21 @@ principles:
   - "Design target is monster-first with attachment value: lovable does not mean toy-like, and endgame strength does not require grim/edgy styling."
   - "Avoid repeated regeneration of an already-approved concept unless QA identifies a concrete defect."
   - "Do not reinterpret existing OFFICIAL ART LOCK / VISUAL DESIGN LOCK monsters."
+  - "Attachment value must come from silhouette, behavior, ecology, posture, texture and animation potential; do not default to round sparkling mascot eyes."
+
+eye_language:
+  status: LOCKED_DIRECTION
+  preferred:
+    - "animal-like almond eyes"
+    - "narrow or species-specific pupils"
+    - "hooded lids / deep-set eyes"
+    - "small restrained catchlights"
+    - "non-eye sensory organs where ecologically appropriate"
+  avoid:
+    - "large round glossy eyes as default"
+    - "multiple kira-kira highlights"
+    - "toy-like baby-face proportions across the roster"
+  exception: "A deliberately mascot-forward species may bend this rule only when the silhouette and ecology remain MONSTER LEGACY-specific."
 
 lock_policy:
   official_art_lock_requires: "exact repository asset path + SHA-256 + source comparison QA"
@@ -17,38 +32,30 @@ lock_policy:
   candidate: "usable design candidate; may be accepted, revised, or rejected after comparison QA"
 
 visual_direction_locks:
-  - id: BM-001
-    name: "ポヨン"
-    archetype: "炎の小型スライム系"
-    role_intent: "early lovable / RAISE"
-    lock: VISUAL_DIRECTION_LOCK
-    source_binding: PENDING
-    notes: "Rebalance 01 approved direction: unstable molten body, ember core, restrained expression, wild fire-being feel."
-  - id: BM-002
-    name: "モコタネ"
-    archetype: "草の種獣"
-    role_intent: "early lovable / RECOVER"
-    lock: VISUAL_DIRECTION_LOCK
-    source_binding: PENDING
-    notes: "Rebalance 01 approved direction: quadruped forest creature, leaf ears, bud tail, grounded animal anatomy."
-  - id: BM-003
-    name: "ピリモフ"
-    archetype: "雷の小獣"
-    role_intent: "early lovable / SUPPRESS"
-    lock: VISUAL_DIRECTION_LOCK
-    source_binding: PENDING
-    notes: "Rebalance 01 approved direction: original electric quadruped; static mane/conductor-tail language; avoid famous mascot resemblance."
-  - id: BM-005
-    name: "シズクル"
-    archetype: "水の小型霊獣"
-    role_intent: "early lovable / CONTROL"
-    lock: VISUAL_DIRECTION_LOCK
-    source_binding: PENDING
-    notes: "Rebalance 01 approved direction: amphibious river-beast/water-spirit balance; serene rather than toy-like."
+  - {id: BM-001, name: "ポヨン", archetype: "炎の小型スライム系", role_intent: "early lovable / RAISE", lock: VISUAL_DIRECTION_LOCK, source_binding: PENDING}
+  - {id: BM-002, name: "モコタネ", archetype: "草の種獣", role_intent: "early lovable / RECOVER", lock: VISUAL_DIRECTION_LOCK, source_binding: PENDING}
+  - {id: BM-003, name: "ピリモフ", archetype: "雷の小獣", role_intent: "early lovable / SUPPRESS", lock: VISUAL_DIRECTION_LOCK, source_binding: PENDING}
+  - {id: BM-005, name: "シズクル", archetype: "水の小型霊獣", role_intent: "early lovable / CONTROL", lock: VISUAL_DIRECTION_LOCK, source_binding: PENDING}
 
-candidate_batch_01:
-  status: CANDIDATE
-  species:
+  # Batch 03 — selective lock after art-director QA
+  - {id: EX-021, name: "鉄コロ", archetype: "金属・鉱物小獣", role_intent: "buddy / mineral utility", lock: VISUAL_DIRECTION_LOCK, source_binding: PENDING}
+  - {id: EX-023, name: "砂トビトカゲ", archetype: "砂漠滑走爬虫類", role_intent: "buddy / heat traversal", lock: VISUAL_DIRECTION_LOCK, source_binding: PENDING}
+  - {id: EX-024, name: "遺灯ウツワ", archetype: "遺物精霊", role_intent: "mystic / relic guide", lock: VISUAL_DIRECTION_LOCK, source_binding: PENDING}
+  - {id: EX-035, name: "共鳴蟲リンガ", archetype: "共鳴昆虫", role_intent: "tactical / sound disruption", lock: VISUAL_DIRECTION_LOCK, source_binding: PENDING}
+  - {id: EX-047, name: "宝岳獣モフドン", archetype: "大型鉱岳獣", role_intent: "late lovable powerhouse", lock: VISUAL_DIRECTION_LOCK, source_binding: PENDING}
+  - {id: EX-048, name: "天環クラゲラ", archetype: "浮遊水天クラゲ", role_intent: "elite / non-quadruped field control", lock: VISUAL_DIRECTION_LOCK, source_binding: PENDING}
+
+  # Batch 04 — eye-language corrected silhouettes
+  - {id: EX-049, name: "ドクノサレ", archetype: "沼毒大型生物", role_intent: "poison / swamp control", lock: VISUAL_DIRECTION_LOCK, source_binding: PENDING}
+  - {id: EX-050, name: "ギアロック", archetype: "遺跡機構生命", role_intent: "inorganic / defensive utility", lock: VISUAL_DIRECTION_LOCK, source_binding: PENDING}
+  - {id: EX-051, name: "カゲメン", archetype: "仮面霊体", role_intent: "mystic / spirit disruption", lock: VISUAL_DIRECTION_LOCK, source_binding: PENDING}
+  - {id: EX-052, name: "ヨルグモ", archetype: "洞窟夜行蜘蛛", role_intent: "tactical / trap control", lock: VISUAL_DIRECTION_LOCK, source_binding: PENDING}
+  - {id: EX-053, name: "ミズハグロ", archetype: "水辺装甲爬虫類", role_intent: "freshwater / ambush", lock: VISUAL_DIRECTION_LOCK, source_binding: PENDING}
+  - {id: EX-054, name: "ハヤテドリ", archetype: "中型戦術飛鳥", role_intent: "air tactical / coordinated strike", lock: VISUAL_DIRECTION_LOCK, source_binding: PENDING}
+  - {id: EX-056, name: "フウリン", archetype: "漂う特殊精霊", role_intent: "special / attachment through motion", lock: VISUAL_DIRECTION_LOCK, source_binding: PENDING}
+
+candidates:
+  batch_01:
     - {id: EX-013, name: "砂モグラ", class: BUDDY, theme: EARTH}
     - {id: EX-014, name: "風ツバメ", class: BUDDY, theme: WIND}
     - {id: EX-015, name: "月ヒツジ", class: MYSTIC, theme: DREAM}
@@ -57,10 +64,7 @@ candidate_batch_01:
     - {id: EX-032, name: "旋風狐ハヤカゼ", class: TACTICAL, theme: WIND}
     - {id: EX-041, name: "森護獣ラフローラ", class: ELITE, theme: FOREST}
     - {id: EX-042, name: "深潮獣ネレル", class: ELITE, theme: WATER}
-
-candidate_batch_02:
-  status: CANDIDATE
-  species:
+  batch_02:
     - {id: EX-017, name: "苔カメ", class: BUDDY, theme: FOREST}
     - {id: EX-018, name: "雪フクロ", class: BUDDY, theme: ICE}
     - {id: EX-019, name: "星クラゲ", class: MYSTIC, theme: STAR_DREAM}
@@ -69,27 +73,33 @@ candidate_batch_02:
     - {id: EX-034, name: "花鎌虫フロル", class: TACTICAL, theme: FLORA_INSECT}
     - {id: EX-045, name: "霜樹鹿ユルヴァ", class: ELITE, theme: ICE_FOREST}
     - {id: EX-046, name: "天遊魚アステラ", class: ELITE, theme: SKY_WATER}
+  batch_03_hold:
+    - {id: EX-022, name: "胞子マロ", reason: "face/eye language too mascot-forward; concept retained, visual not locked"}
+    - {id: EX-036, name: "群牙アリオン", reason: "swarm function works but silhouette needs stronger identity"}
+  batch_04_hold:
+    - {id: EX-055, name: "ゴウキ", reason: "solid earth-heavy silhouette but too generic and name proximity risk; hold before lock"}
 
 rejected_or_noncanonical_presentations:
   - "Evolution-line presentation or wording"
   - "Any implication that BUDDY -> TACTICAL -> ELITE are transformation stages of one species"
   - "All-new monsters rendered uniformly super-cute / toy-like"
   - "Late-game monsters required to become uniformly aggressive, armored, or edgy"
-  - "Repeated redraws of the same approved four monsters without a specific QA reason"
+  - "Repeated redraws of approved monsters without a specific QA reason"
+  - "Large round sparkling eyes used as a default solution for attachment"
 
 next_design_queue:
-  - id: NEW-SPECIES-BATCH-03
-    goal: "Expand silhouette/ecology coverage rather than revisit existing concepts"
+  - id: NEW-SPECIES-BATCH-05
+    goal: "Continue new-species expansion with broader body plans and endgame attachment value"
     target_count: 8
     desired_gaps:
-      - "metal / mineral"
-      - "poison / fungus"
-      - "sound / resonance"
-      - "insect / swarm"
-      - "spirit / relic"
-      - "desert / heat"
-      - "late-game lovable powerhouse"
-      - "non-quadruped elite silhouette"
-    rule: "All eight must be new species. No evolution. No re-generation of BM-001/BM-002/BM-003/BM-005."
+      - "mollusk / soft-body"
+      - "amphibian without mascot eyes"
+      - "small swarm / collective organism"
+      - "wind species that is not a bird"
+      - "fire species that is not flame-armored"
+      - "crystal / refractive organism"
+      - "late-game gentle powerhouse with a non-canine/deer body plan"
+      - "elite aquatic or aerial silhouette unlike existing dragons"
+    rule: "All eight must be new species. No evolution. No re-generation of previously locked species. Apply locked eye-language direction."
 
-source_binding_note: "Generated concept images currently exist in conversation context but are not yet authoritative repository assets. Do not promote these entries to OFFICIAL ART LOCK until exact source image path and SHA-256 are bound in GitHub."
+source_binding_note: "Generated concept images currently exist in conversation context but are not yet authoritative repository assets. VISUAL_DIRECTION_LOCK freezes concept direction only. Do not promote any entry to OFFICIAL ART LOCK until exact source image path and SHA-256 are bound in GitHub."
