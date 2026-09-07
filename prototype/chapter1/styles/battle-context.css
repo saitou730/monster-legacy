@@ -1,0 +1,14 @@
+.battle-context{margin:12px 14px;padding:12px;border:1px solid #46505e;border-radius:14px;background:#151a22}
+.battle-context p{margin:0 0 8px;color:#c2cad4;font-size:12px}
+.battle-context-actions{display:flex;flex-wrap:wrap;gap:8px}
+.battle-context button,.battle-help-close{min-height:48px;padding:10px 12px;border:1px solid #7f6c42;border-radius:10px;color:#f2d480;background:#262217;font:inherit;font-size:13px;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.battle-context button:active{background:#3d331e}
+.battle-context button:focus-visible,.battle-help-close:focus-visible{outline:3px solid #a8cef5;outline-offset:3px}
+.battle-help-dialog{position:fixed;inset:auto 0 0;margin:0 auto;width:min(100%,390px);max-width:100%;max-height:85dvh;overflow:auto;padding:0;border:1px solid #596372;border-radius:22px 22px 0 0;background:#151a22;color:#f4f6f8;box-shadow:0 -8px 32px #0006;overscroll-behavior:contain}
+.battle-help-dialog::backdrop{background:#000a}
+.battle-help-content{padding:22px 20px calc(20px + env(safe-area-inset-bottom))}
+.battle-help-label{margin:0 0 8px;color:#e5bf6d;font-size:12px;letter-spacing:.06em}
+.battle-help-dialog h2{margin:0 0 16px;font-size:20px;line-height:1.45}
+.battle-help-body,.battle-help-tip{font-size:16px;line-height:1.75;overflow-wrap:anywhere}
+.battle-help-tip{padding:12px;border-left:3px solid #e5bf6d;background:#1c222c;color:#d3dbe5}
+.battle-help-close{width:100%;margin-top:8px}
