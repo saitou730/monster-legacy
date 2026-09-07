@@ -1,10 +1,12 @@
 const { test, expect } = require('@playwright/test');
-test('START → HOME → HUNT: two actual touch commands and a resolved turn', async ({ page }) => {
+test('START → STORY → HUNT: two actual touch commands and a resolved turn', async ({ page }) => {
   const errors=[];page.on('pageerror',e=>errors.push(String(e)));
   await page.goto('/');
+  await page.waitForFunction(() => window.ML_UX_BUILD === '1.8.4-ux');
   await page.locator('#bootStart').tap();
-  await expect(page.locator('#home')).toHaveClass(/show/);
-  await page.locator('.nav [data-go="hunt"]').tap();
+  await expect(page.locator('#story')).toHaveClass(/show/);
+  // Tactical smoke remains focused on HUNT execution; onboarding progression has dedicated coverage.
+  await page.evaluate(() => window.ML.go('hunt'));
   await expect(page.locator('#hunt')).toHaveClass(/show/);
   await expect(page.locator('#huntStickyHpText')).toBeVisible();
   await expect(page.locator('#huntStickyVolText')).toBeVisible();
