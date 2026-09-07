@@ -1,9 +1,13 @@
 const { test, expect } = require('@playwright/test');
-test('START → HOME → HUNT: two actual touch commands and a resolved turn', async ({ page }) => {
+
+test('FIRST RUN → PROLOGUE → STORY → HUNT: two touch commands resolve a turn', async ({ page }) => {
   const errors=[];page.on('pageerror',e=>errors.push(String(e)));
   await page.goto('/');
   await page.locator('#bootStart').tap();
-  await expect(page.locator('#home')).toHaveClass(/show/);
+  await expect(page.locator('#bootGate')).toHaveClass(/mlPrologue/);
+  await expect(page.locator('.mlPrologueCard')).toBeVisible();
+  await page.locator('.mlPrologueSkip').tap();
+  await expect(page.locator('#story')).toHaveClass(/show/);
   await page.locator('.nav [data-go="hunt"]').tap();
   await expect(page.locator('#hunt')).toHaveClass(/show/);
   await expect(page.locator('#huntStickyHpText')).toBeVisible();
