@@ -1,12 +1,12 @@
 window.MLFusion = (() => {
   const TRAITS = {
     a: {
-      '昂火牙': {id:'rising_fire_fang', name:'昂火牙', source:'火トカゲ', effect:'CORE VOL+2 / Damage+4%'},
-      '火走り': {id:'fire_run', name:'火走り', source:'火トカゲ', effect:'STANCE後の次攻撃+10%'}
+      '火炎適応': {id:'fire_adaptation', name:'火炎適応', source:'火トカゲ', effect:'CORE VOL+2 / Damage+4%'},
+      '牙撃強化': {id:'fang_boost', name:'牙撃強化', source:'火トカゲ', effect:'STANCE後の次攻撃+10%'}
     },
     b: {
-      '風影': {id:'wind_shadow', name:'風影', source:'風コウモリ', effect:'回避成功で敵VOL-4'},
-      '滑空姿勢': {id:'glide_form', name:'滑空姿勢', source:'風コウモリ', effect:'STANCE後回避補正+15%'}
+      '風読み': {id:'wind_reading', name:'風読み', source:'風コウモリ', effect:'回避成功で敵VOL-4'},
+      '回避反応': {id:'evasion_response', name:'回避反応', source:'風コウモリ', effect:'STANCE後回避補正+15%'}
     }
   };
 
