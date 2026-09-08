@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>MONSTER LEGACY — Chapter 1 Vertical Slice v0.4 POLISH</title>
+<link rel="stylesheet" href="styles/battle-context.css">
+<style>
+:root{
+ --bg:#080b10;--panel:#151a22;--panel2:#1b2029;--line:#343c47;
+ --text:#f4f6f8;--muted:#a7afb9;--gold:#e5bf6d;--green:#81b18f;--blue:#8fb1d7;--danger:#d8796d;--violet:#a994d6
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:#06080c;color:var(--text);font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif}
+body{display:flex;justify-content:center}
+.phone{width:min(390px,100vw);height:100dvh;max-height:932px;background:linear-gradient(#11151b,#0a0d12);position:relative;overflow:hidden}
+.top{height:52px;display:flex;align-items:center;gap:8px;padding:8px 12px;background:#0f1319;border-bottom:1px solid #252b34}
+.top b{flex:1}.state{font-size:9px;border:1px solid #4c5662;border-radius:999px;padding:4px 7px;color:#c7cdd5}
+.view{height:calc(100% - 52px);overflow:auto;padding-bottom:116px}
+.hero{min-height:265px;padding:18px;display:flex;flex-direction:column;justify-content:flex-end;background:
+ radial-gradient(circle at 50% 15%,rgba(229,191,109,.11),transparent 30%),
+ linear-gradient(#171d25,#10141a)}
+.hero.center{align-items:center;justify-content:center;text-align:center}
+.hero h1{font-size:29px;margin:0 0 8px}.hero h2{font-size:21px;margin:0 0 6px}.hero p{font-size:11px;color:#b0b7c1;line-height:1.6;margin:0}
+.art{width:160px;height:170px;border:1px dashed #56606d;border-radius:24px;display:flex;align-items:center;justify-content:center;text-align:center;color:#85909c;background:#141922;margin-bottom:14px;transition:.25s transform,.25s border,.25s box-shadow}
+.art.glow{border-style:solid;border-color:#806b3c;box-shadow:0 0 28px rgba(229,191,109,.12)}
+.art.ready{border-style:solid;border-color:#5d8267;box-shadow:0 0 28px rgba(129,177,143,.12)}
+.objective,.card{margin:10px 14px;padding:11px 12px;border:1px solid #343c47;border-radius:15px;background:#151a22}
+.objective small,.card small{font-size:9px;color:#9ea7b2}.objective strong{display:block;font-size:14px;margin-top:4px}
+.card b{font-size:12px}.card p{font-size:10px;line-height:1.5;color:#aeb5bf;margin:4px 0 0}
+.section{padding:10px 14px 5px;color:#9da5b0;font-size:10px;letter-spacing:.10em}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:0 14px}.unit{padding:8px;background:#151a22;border:1px solid #343c47;border-radius:14px;text-align:center;min-height:105px}.unit.sel{border-color:#836d3e;background:#1c1a14}.mini{height:58px;border:1px dashed #515b68;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#7f8996;font-size:8px;margin-bottom:5px}.unit b{font-size:10px}.unit small{display:block;color:#9ca5af;font-size:8px;margin-top:2px}
+.roster{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;padding:0 14px}.r{padding:10px;background:#151a22;border:1px solid #343c47;border-radius:13px}.r.sel{border-color:#836d3e}.r b{font-size:11px}.r small{display:block;color:#9ca5af;font-size:8px;margin-top:3px}
+.choice{margin:7px 14px;padding:11px 12px;background:#151a22;border:1px solid #343c47;border-radius:14px}.choice.sel{border-color:#836d3e;background:#1c1a14}.choice b{font-size:11px}.choice p{font-size:9px;color:#aab1bc;margin:3px 0 0}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:0 14px 8px}.tabs button{height:34px;border:1px solid #303743;border-radius:10px;background:#161b23;color:#c2c8d0;font-size:9px}.tabs button.active{border-color:#7d693b;color:#f0cc78}
+.timeline{display:flex;gap:5px;flex-wrap:wrap;padding:0 14px}.chip{font-size:8px;padding:4px 6px;border:1px solid #3f4854;border-radius:999px;color:#aeb5bf}.chip.done{border-color:#55715f;color:#a7d0b0}
+.footer{position:absolute;left:0;right:0;bottom:0;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:#0d1117;border-top:1px solid #252b34;z-index:20}
+.footer button{width:100%;height:52px;border-radius:15px;border:1px solid #6e5b30;background:#2a2416;color:#f2d480;font-weight:800}
+.footer .secondary{height:38px;margin-top:6px;border-color:#3b4450;background:#171b23;color:#e3e6ea}
+.dev{position:absolute;right:8px;top:60px;z-index:22}.dev button{width:34px;height:34px;border-radius:50%;border:1px solid #3b4450;background:#171c24;color:#aeb5bf}
+.sheetback{display:none;position:absolute;inset:0;background:#0008;z-index:30}.sheetback.open{display:block}.sheet{position:absolute;left:0;right:0;bottom:0;max-height:72%;overflow:auto;background:#151a22;border-radius:24px 24px 0 0;padding:14px}.info{padding:10px 12px;background:#12171e;border:1px solid #343c47;border-radius:12px;margin-top:8px}.info b{font-size:10px}.info p{font-size:9px;color:#aeb5bf;line-height:1.5}
+.scene{margin:10px 14px;padding:14px;border:1px solid #303844;border-radius:16px;background:linear-gradient(#141920,#11161d)}
+.scene .speaker{font-size:9px;color:#e4c875;letter-spacing:.12em}.scene .line{font-size:13px;line-height:1.7;margin-top:6px}
+.memory{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:0 14px}.memory .m{height:52px;border:1px solid #353d48;border-radius:12px;background:#12171e;color:#8993a0;font-size:8px;display:flex;align-items:center;justify-content:center;text-align:center}.memory .m.on{border-color:#806b3c;color:#e8c66f;background:#191712}
+.reveal{padding:18px 14px;text-align:center}.reveal-stage{height:360px;border:1px solid #353d48;border-radius:22px;background:radial-gradient(circle at 50% 48%,rgba(229,191,109,.16),transparent 30%),linear-gradient(#171c24,#10141a);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.lineA,.lineB{position:absolute;width:3px;height:150px;border-radius:99px;top:64px;opacity:.8}.lineA{left:110px;transform:rotate(24deg);background:#bd744c}.lineB{right:110px;transform:rotate(-24deg);background:#7298bd}.reveal .art{margin:0;z-index:2}
+.signal{height:360px;margin:10px 14px;border:1px solid #353d48;border-radius:22px;background:radial-gradient(circle at 50% 50%,rgba(169,148,214,.16),transparent 33%),linear-gradient(#171c24,#10141a);display:flex;align-items:center;justify-content:center;position:relative}.ring{width:180px;height:180px;border:1px solid #74668b;border-radius:50%;position:relative;box-shadow:0 0 36px rgba(169,148,214,.10)}.ring:before,.ring:after{content:"";position:absolute;border:1px solid #514765;border-radius:50%;inset:20px}.ring:after{inset:44px}
+.complete{padding:18px 14px;text-align:center}.complete h1{font-size:25px;margin:8px 0}.complete p{font-size:10px;color:#aeb5bf;line-height:1.6}.stamp{width:110px;height:110px;border:1px solid #806b3c;border-radius:50%;margin:16px auto;display:flex;align-items:center;justify-content:center;color:#e5bf6d;font-size:13px;text-align:center;box-shadow:0 0 30px rgba(229,191,109,.12)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="phone">
+<div class="top"><b id="title">MONSTER LEGACY</b><span class="state" id="state">P00_TITLE</span></div>
+<div class="view" id="view"></div>
+<div class="footer"><button id="primary">START</button><button id="secondary" class="secondary" style="display:none">戻る</button></div>
+<div class="dev"><button id="debug">≡</button></div>
+<div class="sheetback" id="sheetback"><div class="sheet" onclick="event.stopPropagation()"><h3>PROGRESS DEBUG</h3><div id="debugBody"></div><button class="secondary" onclick="closeDebug()">閉じる</button></div></div>
+</div>
+<script>
+const states=['P00_TITLE','P01_PROLOGUE','P02_FIRST_BATTLE','P03_BOAR_FIRST_ENCOUNTER','P04_RETREAT_RESULT','P05_HOME_FIRST_ARRIVAL','P06_HUNT_BRIEF','P07_HUNT_WIND_BAT','P08_JOIN_RESULT','P09_PARTY_REBUILD','P10_FUSION_INTRO','P11_FUSION_FLAME_WING','P12_NEW_SPECIES_TEST','P13_SUMMON_UNLOCK','P14_SUMMON_TUTORIAL','P15_CONTRACT_EQUIP','P16_BOAR_REMATCH_BRIEF','P17_BOAR_MASTERY','P18_LEGACY_REWARD','P19_ARCHIVE_UNLOCK','P20_CHAPTER1_COMPLETE_HOME'];
+let save=JSON.parse(localStorage.getItem('ml_ch1_v04')||'null')||{
+ state:'P00_TITLE',flags:{},owned:['ゴウラ','火トカゲ','葉ウサギ'],party:['ゴウラ','火トカゲ','葉ウサギ'],
+ heritage:{a:'火炎適応',b:'風読み'},contract:null,legacy:null,archiveTab:'FIELD',
+ huntDone:false,testDone:false,bossDone:false
+};
+let idx=Math.max(0,states.indexOf(save.state));
+const view=document.getElementById('view'),primary=document.getElementById('primary'),secondary=document.getElementById('secondary'),title=document.getElementById('title'),state=document.getElementById('state');
+const role={'ゴウラ':'RECEIVE','火トカゲ':'BURST','葉ウサギ':'SUPPORT','風コウモリ':'EVADE','炎翼リザル':'BURST / EVADE'};
+function art(name,cls=''){return `<div class="art ${cls}">LOCKED ART<br>${name}</div>`}
+function mini(name){return `<div class="unit"><div class="mini">ART<br>${name}</div><b>${name}</b><small>${role[name]||''}</small></div>`}
+function party(){return `<div class="grid3">${save.party.map(mini).join('')}</div>`}
+function timeline(){return `<div class="timeline">${[['JOIN',save.flags.join],['FUSION',save.flags.fusion],['CONTRACT',save.flags.contract],['LEGACY',save.flags.legacy]].map(x=>`<span class="chip ${x[1]?'done':''}">${x[1]?'✓':'○'} ${x[0]}</span>`).join('')}</div>`}
+function memories(){return `<div class="memory"><div class="m ${save.flags.join?'on':''}">FIELD<br>RECORD</div><div class="m ${save.flags.fusion?'on':''}">LINEAGE<br>MARK</div><div class="m ${save.flags.contract?'on':''}">CONTRACT<br>SIGNAL</div><div class="m ${save.flags.legacy?'on':''}">LEGACY<br>SIGIL</div></div>`}
+function persist(){localStorage.setItem('ml_ch1_v04',JSON.stringify(save))}
+function homeHTML(){
+ let o='風裂谷で風コウモリを追う';
+ if(save.flags.join&&!save.flags.fusion)o='FUSION LABで反応を調べる';
+ if(save.flags.fusion&&!save.flags.contract)o='CONTRACT SIGNALを調べる';
+ if(save.flags.contract&&!save.flags.legacy)o='荊棘の大猪へ再挑戦する';
+ if(save.flags.legacy)o='旅の記録を確認する';
+ return `<div class="objective"><small>CHAPTER 1 — 荊棘の境界</small><strong>${o}</strong></div>
+ <div class="hero center">${party()}<p style="margin-top:14px">帰るたびに、旅の痕跡が増える。</p></div>${memories()}${timeline()}`;
+}
+function partyHTML(){return `<div class="objective"><small>PARTY</small><strong>3体を選ぶ</strong></div><div class="roster">${save.owned.map(m=>`<div class="r ${save.party.includes(m)?'sel':''}" data-roster="${m}"><b>${m}</b><small>${role[m]}</small></div>`).join('')}</div><div class="card"><b>TACTICAL IDENTITY</b><p>3体のみ選択可能。数値ではなく役割の組合せを見る。</p></div>`}
+function bindParty(){document.querySelectorAll('[data-roster]').forEach(el=>el.onclick=()=>{const m=el.dataset.roster;if(save.party.includes(m)){if(save.party.length>1)save.party=save.party.filter(x=>x!==m)}else if(save.party.length<3)save.party.push(m);render()})}
+function fusionHTML(){
+ return `<div class="reveal"><div class="reveal-stage"><div class="lineA"></div><div class="lineB"></div>${art('炎翼リザル','glow')}</div><h2>FIXED RESULT — 炎翼リザル</h2><p>火トカゲ + 風コウモリ</p></div>
+ <div class="section">HERITAGE A</div>${['火炎適応','牙撃強化'].map(x=>`<div class="choice ${save.heritage.a===x?'sel':''}" data-ha="${x}"><b>${x}</b></div>`).join('')}
+ <div class="section">HERITAGE B</div>${['風読み','回避反応'].map(x=>`<div class="choice ${save.heritage.b===x?'sel':''}" data-hb="${x}"><b>${x}</b></div>`).join('')}
+ <div class="card"><b>この融合は元に戻せません</b><p>親2体消費 / 装備・LEGACY CORE返却 / LINEAGE保存。</p></div>`;
+}
+function bindFusion(){document.querySelectorAll('[data-ha]').forEach(x=>x.onclick=()=>{save.heritage.a=x.dataset.ha;render()});document.querySelectorAll('[data-hb]').forEach(x=>x.onclick=()=>{save.heritage.b=x.dataset.hb;render()})}
+function archiveHTML(){const tab=save.archiveTab,b={FIELD:`<div class="card"><b>風コウモリ</b><p>風裂谷 / RESONANCE COMPLETE / JOINED</p></div><div class="card"><b>荊棘の大猪</b><p>BOSS MASTERY / LEGACY SOURCE</p></div>`,LINEAGE:`<div class="card"><b>炎翼リザル</b><p>火トカゲ + 風コウモリ<br>HERITAGE: ${save.heritage.a} + ${save.heritage.b}</p></div>`,LEGACY:`<div class="card"><b>不退転</b><p>Source: 荊棘の大猪<br>受け手によって効果変化。</p></div>`,CONTRACT:`<div class="card"><b>Lyra Vell</b><p>EVADE / HUNT SUPPORT<br>Memory 0</p></div>`}[tab];return `<div class="objective"><small>ARCHIVE</small><strong>あなたの旅の履歴</strong></div><div class="tabs">${['FIELD','LINEAGE','LEGACY','CONTRACT'].map(t=>`<button class="${t===tab?'active':''}" data-tab="${t}">${t}</button>`).join('')}</div>${b}`}
+function bindArchive(){document.querySelectorAll('[data-tab]').forEach(x=>x.onclick=()=>{save.archiveTab=x.dataset.tab;render()})}
+function screenHTML(s){
+ if(s==='P00_TITLE')return `<div class="hero center"><h1>MONSTER<br>LEGACY</h1><p>理解する。仲間にする。受け継ぐ。</p></div><div class="scene"><div class="speaker">CHAPTER 1</div><div class="line">荊棘の境界</div></div>`;
+ if(s==='P01_PROLOGUE')return `<div class="hero"><h2>境界の風</h2><p>薄い霧の向こうで、何かが枝を踏んだ。</p></div><div class="scene"><div class="speaker">MIRA</div><div class="line">「見えているものだけで、決めないで。」</div></div>`;
+ if(s==='P02_FIRST_BATTLE')return `<div class="hero center">${art('初期3体')}<h2>FIRST BATTLE</h2><p>NEXT / 2 COMMAND + 1 STANCEだけを学ぶ。</p></div><div class="card"><b>最初に教えるのは3つだけ</b><p>NEXTを見る / 2体を動かす / 残る1体がSTANCE。</p></div>`;
+ if(s==='P03_BOAR_FIRST_ENCOUNTER')return `<div class="hero center">${art('荊棘の大猪')}<h2>まだ、分からない</h2><p>判断は間違っていない。それでも押し切れない。</p></div><div class="choice sel"><b>RETREAT</b><p>敗北ではなく、自分で撤退を選ぶ。</p></div>`;
+ if(s==='P04_RETREAT_RESULT')return `<div class="hero center"><h2>BATTLE INTERRUPTED</h2><p>撤退成功</p></div><div class="scene"><div class="speaker">MIRA</div><div class="line">「違う。まだ分からなかっただけ。」</div></div>`;
+ if(s==='P05_HOME_FIRST_ARRIVAL')return homeHTML();
+ if(s==='P06_HUNT_BRIEF')return `<div class="hero center">${art('風コウモリ')}<h2>HUNT BRIEF</h2><p>回避する。弱らせる。怒らせすぎない。</p></div><div class="card"><b>FIELD HINT</b><p>条件を満たすと“倒す”以外の選択肢が生まれる。</p></div>`;
+ if(s==='P07_HUNT_WIND_BAT')return `<div class="hero center">${art('風コウモリ','ready')}<h2>RESONANCE READY</h2><p>EVADE → HP35%以下 → RAGE未満。</p></div><div class="card"><b>RESONATE</b><p>1 COMMAND / 成功率100%。</p></div>`;
+ if(s==='P08_JOIN_RESULT')return `<div class="hero center">${art('風コウモリ','ready')}<h2>JOIN</h2><p>風コウモリがこちらへ降りてくる。</p></div><div class="scene"><div class="speaker">MIRA</div><div class="line">「捕まえたんじゃない。分かってもらえたんだと思う。」</div></div>${timeline()}`;
+ if(s==='P09_PARTY_REBUILD')return partyHTML();
+ if(s==='P10_FUSION_INTRO')return `<div class="hero center"><h2>FUSION LAB</h2><p>“何になるか”ではなく、“何を残すか”を選ぶ。</p></div><div class="card"><b>LINEAGE</b><p>親が消えても、系譜は消えない。</p></div>`;
+ if(s==='P11_FUSION_FLAME_WING')return fusionHTML();
+ if(s==='P12_NEW_SPECIES_TEST')return `<div class="hero center">${art('炎翼リザル','glow')}<h2>NEW SPECIES TEST</h2><p>CORE / ROLE / EQUIPMENT / STANCEを使い、新しい戦い方を確かめる。</p></div><div class="card"><b>TEST COMPLETE</b><p>炎翼リザルの特徴を一通り理解した。</p></div>`;
+ if(s==='P13_SUMMON_UNLOCK')return `<div class="signal"><div class="ring"></div></div><div class="scene"><div class="speaker">UNKNOWN SIGNAL</div><div class="line">拠点に、人間側の契約信号が届く。</div></div>`;
+ if(s==='P14_SUMMON_TUTORIAL')return `<div class="reveal"><div class="reveal-stage" style="background:radial-gradient(circle at 50% 48%,rgba(169,148,214,.18),transparent 32%),linear-gradient(#171c24,#10141a)">${art('Lyra Vell','glow')}</div><h2>CONTRACT ESTABLISHED</h2><p>Lyra Vell — EVADE / HUNT SUPPORT</p></div><div class="card"><b>MONSTER 0%</b><p>初回無料・確定。これは契約者のSUMMON。</p></div>`;
+ if(s==='P15_CONTRACT_EQUIP')return `<div class="objective"><small>SUPPORT CONTRACT</small><strong>Lyra Vellを設定する</strong></div>${party()}<div class="card"><b>＋ SUPPORT CONTRACT</b><p>3体パーティの外側に設定。4体目の通常戦闘員ではない。</p></div>`;
+ if(s==='P16_BOAR_REMATCH_BRIEF')return `<div class="hero center">${art('荊棘の大猪')}<h2>もう一度、境界へ</h2><p>今度は、何を見るべきか分かっている。</p></div><div class="scene"><div class="speaker">MIRA</div><div class="line">「勝ちに行くんじゃない。分かりに行こう。」</div></div>`;
+ if(s==='P17_BOAR_MASTERY')return `<div class="hero center">${art('荊棘の大猪','ready')}<h2>BOSS MASTERY</h2><p>STANCE / RECEIVE / VOLTAGE CONTROL。</p></div><div class="card"><b>MASTERED</b><p>初遭遇で見えなかった“受けるべき瞬間”を理解した。</p></div>`;
+ if(s==='P18_LEGACY_REWARD')return `<div class="reveal"><div class="reveal-stage">${art('LEGACY — 不退転','glow')}</div><h2>戦い方を受け継ぐ</h2><p>Bossの強さではなく、選択の思想を受け取る。</p></div><div class="card"><b>不退転</b><p>同じLEGACYでも、受け手で効果が変わる。</p></div>`;
+ if(s==='P19_ARCHIVE_UNLOCK')return archiveHTML();
+ return `<div class="complete"><div class="stamp">CHAPTER 1<br>COMPLETE</div><h1>荊棘の境界</h1><p>JOIN / FUSION / CONTRACT / LEGACY。<br>Chapter 1で作ったものが、すべてHOMEに残る。</p></div>${party()}${memories()}${timeline()}<div class="card"><b>NEXT REGION</b><p>雷雲域 — 雷フクロウの気配</p></div>`;
+}
+const labels={P00_TITLE:'START',P01_PROLOGUE:'フィールドへ',P02_FIRST_BATTLE:'戦闘を完了',P03_BOAR_FIRST_ENCOUNTER:'撤退する',P04_RETREAT_RESULT:'HOMEへ',P05_HOME_FIRST_ARRIVAL:'風裂谷へ',P06_HUNT_BRIEF:'HUNT開始',P07_HUNT_WIND_BAT:'RESONATE',P08_JOIN_RESULT:'PARTYへ',P09_PARTY_REBUILD:'編成を確定',P10_FUSION_INTRO:'融合へ',P11_FUSION_FLAME_WING:'融合する',P12_NEW_SPECIES_TEST:'TEST完了',P13_SUMMON_UNLOCK:'SIGNALを調べる',P14_SUMMON_TUTORIAL:'無料で契約する',P15_CONTRACT_EQUIP:'契約枠に設定',P16_BOAR_REMATCH_BRIEF:'再戦する',P17_BOAR_MASTERY:'MASTERY COMPLETE',P18_LEGACY_REWARD:'不退転を受け継ぐ',P19_ARCHIVE_UNLOCK:'記録を閉じる',P20_CHAPTER1_COMPLETE_HOME:'CHAPTER 1 COMPLETE'};
+function goNext(){idx=Math.min(idx+1,states.length-1);save.state=states[idx];persist();render()}
+function advance(){
+ const s=save.state;
+ if(s==='P07_HUNT_WIND_BAT'&&!save.flags.join){save.flags.join=true;if(!save.owned.includes('風コウモリ'))save.owned.push('風コウモリ')}
+ if(s==='P09_PARTY_REBUILD'&&save.party.length!==3){alert('ACTIVE PARTYは3体必要です');return}
+ if(s==='P11_FUSION_FLAME_WING'&&!save.flags.fusion){save.flags.fusion=true;save.owned=save.owned.filter(x=>!['火トカゲ','風コウモリ'].includes(x));save.owned.push('炎翼リザル');save.party=['ゴウラ','炎翼リザル','葉ウサギ']}
+ if(s==='P14_SUMMON_TUTORIAL'){save.flags.contract=true;save.contract='Lyra Vell'}
+ if(s==='P18_LEGACY_REWARD'){save.flags.legacy=true;save.legacy='不退転'}
+ if(s==='P19_ARCHIVE_UNLOCK')save.flags.chapter1=true;
+ goNext();
+}
+function back(){if(idx>0){idx--;save.state=states[idx];persist();render()}}
+function render(){
+ state.textContent=save.state;title.textContent=save.state==='P20_CHAPTER1_COMPLETE_HOME'?'HOME':save.state.replace(/^P\d+_/,'').replaceAll('_',' ');
+ view.innerHTML=screenHTML(save.state);primary.textContent=labels[save.state];primary.disabled=save.state==='P20_CHAPTER1_COMPLETE_HOME';secondary.style.display=idx>0?'block':'none';
+ if(save.state==='P09_PARTY_REBUILD')bindParty();if(save.state==='P11_FUSION_FLAME_WING')bindFusion();if(save.state==='P19_ARCHIVE_UNLOCK')bindArchive();persist();
+}
+primary.onclick=advance;secondary.onclick=back;
+document.getElementById('debug').onclick=()=>{document.getElementById('debugBody').innerHTML=`<div class="info"><b>STATE</b><p>${save.state}</p></div><div class="info"><b>PARTY</b><p>${save.party.join(' / ')}</p></div><div class="info"><b>OWNED</b><p>${save.owned.join(' / ')}</p></div><div class="info"><b>FLAGS</b><p>${JSON.stringify(save.flags)}</p></div><div class="info"><b>HERITAGE</b><p>${save.heritage.a} + ${save.heritage.b}</p></div><div class="info"><b>CONTRACT</b><p>${save.contract||'—'}</p></div><div class="info"><b>LEGACY</b><p>${save.legacy||'—'}</p></div><button class="secondary" onclick="resetAll()">RESET PROTOTYPE</button>`;document.getElementById('sheetback').classList.add('open')}
+function closeDebug(){document.getElementById('sheetback').classList.remove('open')}document.getElementById('sheetback').onclick=closeDebug;function resetAll(){localStorage.removeItem('ml_ch1_v04');location.reload()}
+render();
+</script>
+<script src="src/battle-context.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "version": "1.0",
+  "chapter": 1,
+  "species": [
+    {"speciesId":"goura","displayName":"ゴウラ","artLock":true,"role":["RECEIVE"]},
+    {"speciesId":"fire_lizard","displayName":"火トカゲ","artLock":true,"role":["BURST"]},
+    {"speciesId":"leaf_rabbit","displayName":"葉ウサギ","artLock":true,"role":["SUPPORT"]},
+    {"speciesId":"wind_bat","displayName":"風コウモリ","artLock":true,"role":["EVADE"],"joinable":true},
+    {"speciesId":"flame_wing_lizard","displayName":"炎翼リザル","artLock":true,"role":["BURST","EVADE"]},
+    {"speciesId":"thorn_boar","displayName":"荊棘の大猪","artLock":true,"role":["BOSS"]}
+  ],
+  "fusion": {
+    "ruleId": "fusion_special_fire_lizard_wind_bat",
+    "parents": ["fire_lizard","wind_bat"],
+    "result": "flame_wing_lizard",
+    "deterministic": true,
+    "consumeParents": true,
+    "returnEquipment": true,
+    "returnLegacyCore": true,
+    "saveLineage": true,
+    "heritage": {
+      "parentA": ["火炎適応","牙撃強化"],
+      "parentB": ["風読み","回避反応"]
+    }
+  },
+  "hunt": {
+    "target": "wind_bat",
+    "conditions": ["EVADE_SINGLE_NEXT","HP_LE_35","VOLTAGE_BELOW_RAGE"],
+    "resonateCommandCost": 1,
+    "successRate": 1.0,
+    "qualifiedLethal": "CLAMP_TO_1_HP_AND_READY",
+    "unqualifiedLethal": "FIELD_RESONANCE_LOST"
+  },
+  "contract": {
+    "firstGuaranteed": "lyra_vell",
+    "tutorialFree": true,
+    "occupiesMonsterPartySlot": false,
+    "supportSlots": 1
+  },
+  "legacy": {
+    "firstLegacy": "unyielding",
+    "displayName": "不退転",
+    "sourceBoss": "thorn_boar"
+  },
+  "progressionStates": [
+    "P00_TITLE","P01_PROLOGUE","P02_FIRST_BATTLE","P03_BOAR_FIRST_ENCOUNTER","P04_RETREAT_RESULT","P05_HOME_FIRST_ARRIVAL","P06_HUNT_BRIEF","P07_HUNT_WIND_BAT","P08_JOIN_RESULT","P09_PARTY_REBUILD","P10_FUSION_INTRO","P11_FUSION_FLAME_WING","P12_NEW_SPECIES_TEST","P13_SUMMON_UNLOCK","P14_SUMMON_TUTORIAL","P15_CONTRACT_EQUIP","P16_BOAR_REMATCH_BRIEF","P17_BOAR_MASTERY","P18_LEGACY_REWARD","P19_ARCHIVE_UNLOCK","P20_CHAPTER1_COMPLETE_HOME"
+  ]
+}
