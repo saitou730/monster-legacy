@@ -1,0 +1,65 @@
+schema_version: 1
+updated: 2026-09-09
+policy:
+  gameplay_loop: AREA -> DISCOVERY -> HUNT_JOIN -> PARTY -> FUSION -> AREA_BOSS -> LEGACY -> NEXT_AREA
+  priority: [CHAPTER_1, AREA, LINEAGE_FUSION, OFFLINE_ARENA, ANOMALY, SANCTUARY]
+  portrait_first: true
+  aspect_ratio: "9:16"
+  production_gate: "Ship at production-ready quality; fix minor issues in runtime QA instead of repeatedly regenerating near-identical art."
+  character_policy: "Never reinterpret existing Official Art Lock species."
+existing_character_art:
+  status: OFFICIAL_ART_LOCK_INHERITED
+  authority: canon/visual_source_map.yaml
+  species: [SP-001, SP-011, SP-018, SP-031, SP-044, SP-071, SP-191]
+chapter1_supply:
+  - id: CH1_ENV_001
+    asset: thorn_boundary_field
+    screens: [FIELD, HUNT, BOSS_REPLAY]
+    status: PRODUCTION_PASS_WITH_FIX
+    planned_path: assets/backgrounds/chapter1/thorn_boundary_field.jpg
+    direction: "desaturated thorn wilderness; open encounter lane; lower UI-safe zone; no faction symbols"
+    runtime_fix: "crop/grade to suppress distant ruin dominance; HUNT distinction via runtime wind/dust/vignette FX"
+    work_dependency: "Work integrates one shared base background; do not wait for another near-identical raster regeneration"
+  - id: CH1_ENV_002
+    asset: home
+    screens: [HOME, PARTY]
+    status: NEXT
+    planned_path: assets/backgrounds/chapter1/home.jpg
+    reuse_rule: "PARTY uses HOME base with UI treatment"
+  - id: CH1_ENV_003
+    asset: fusion_lab
+    screens: [FUSION, HERITAGE]
+    status: QUEUED
+    planned_path: assets/backgrounds/chapter1/fusion_lab.jpg
+  - id: CH1_FX_001
+    asset: join_fx
+    screens: [JOIN]
+    status: QUEUED
+    planned_path: assets/effects/join/
+    modular: true
+  - id: CH1_FX_002
+    asset: fusion_fx
+    screens: [FUSION]
+    status: QUEUED
+    planned_path: assets/effects/fusion/
+    modular: true
+  - id: CH1_FX_003
+    asset: contract_summon_fx
+    screens: [CONTRACT_SUMMON]
+    status: QUEUED
+    planned_path: assets/effects/contract/
+    modular: true
+  - id: CH1_FX_004
+    asset: legacy_fx
+    screens: [LEGACY]
+    status: QUEUED
+    planned_path: assets/effects/legacy/
+    modular: true
+notes:
+  - "TITLE/PROLOGUE should reuse an AREA/environment plate plus typography/grade unless runtime proves a dedicated raster necessary."
+  - "BOSS replay reuses FIELD base with encounter grade/FX; no dedicated background until runtime QA demonstrates need."
+  - "OFFICIAL ART LOCK requires final repository file, SHA-256, source comparison QA, and documented visual constraints."
+next_queue:
+  - CH1_ENV_002_HOME
+  - CH1_ENV_003_FUSION_LAB
+  - CH1_FX_001_JOIN
