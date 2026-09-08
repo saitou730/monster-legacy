@@ -3,17 +3,19 @@
 Owner: Work
 Branch: `work/ch1-join-fusion-test-binding`
 Base main: `05c8ee29def8fc82ebc0ac12a3fc3697528caeac`
-Status: in_progress
+Status: tested_merge_pending
 
 ## Assigned function
 Connect the existing canonical root HUNT, JOIN result acknowledgement, PARTY confirmation, fixed Fire Lizard + Wind Bat fusion, and real Flame Wing Lizard species test to the Chapter 1 controller. This slice targets controller states P05 through P13; Contract/SUMMON remains the next slice.
 
-## Planned files
+## Changed files
 - `index.html`
 - `src/app.js`
-- `src/chapter1/root-adapter.mjs` only if transaction projection needs correction
+- `src/chapter1/root-adapter.mjs`
+- `src/fusion.js`
+- `src/storage.js`
 - `tests/chapter1-growth-route.spec.js`
-- `tests/smoke.spec.js` only for route compatibility
+- `tests/smoke.spec.js`
 - `qa/CHAPTER1_ROOT.md`
 - `production/next_queue.yaml`
 
@@ -22,14 +24,13 @@ Connect the existing canonical root HUNT, JOIN result acknowledgement, PARTY con
 - Chat PR45 changes only `design/CHAPTER1_PLAYER_ROUTE_CONTRACT_v0.1.md`; no same-file conflict.
 - PR42 remains controller source; root copy on main is the executable contract.
 - No edits to `prototype/chapter1/`, `assets/art/`, or `assets/battle/`.
-- PR32 long-press help, click suppression, visible info and STANCE readability must remain intact.
+- PR32 long-press help, click suppression, visible info and STANCE readability remain intact.
 
-## Acceptance
-- Opening HUNT/PARTY/FUSION without the qualifying action does not advance.
-- HOME accepts the HUNT brief before the Wind Bat encounter starts.
-- Qualified RESONATE commits Wind Bat exactly once before JOIN success is shown; result acknowledgement is distinct.
-- PARTY advances only on explicit confirmation of exactly three active monsters including Wind Bat.
-- Fusion preview/cancel consumes nothing; confirmed fixed fusion commits one child, one lineage and one catalyst charge before success UI.
-- New-species test remains playable with exactly 2 COMMAND + 1 STANCE; victory commits once and reload resumes at P13.
-- Existing saves remain additive and playable.
-- Browser QA at 360x800, 390x844 and 430x932; Android manual reported separately.
+## Evidence
+- PR: https://github.com/saitou730/monster-legacy/pull/52
+- CI: https://github.com/saitou730/monster-legacy/actions/runs/34289713369
+- Result: 30/30 browser tests passed at 360x800, 390x844 and 430x932.
+- Android physical device: NOT RUN.
+
+## Remaining
+Contract/SUMMON, Lyra Support, Thorn Boar rematch, Unyielding, Archive and complete HOME remain outside this slice. v1.0 is not complete.
