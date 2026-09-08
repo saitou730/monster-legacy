@@ -1,0 +1,24 @@
+const {test,expect}=require('@playwright/test');
+test('intro persists; tap and long-press explain skills without selecting commands',async({page})=>{
+ const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+ await page.goto('/');await page.locator('#bootStart').tap();
+ await expect(page.locator('#journeyResultTitle')).toContainText('森の奥');
+ await page.locator('#journeyResultPrimary').tap();
+ await expect(page.locator('#story')).toHaveClass(/show/);
+ await page.reload();await page.locator('#bootStart').tap();
+ await expect(page.locator('#journeyResult')).not.toHaveClass(/show/);
+ await page.evaluate(()=>ML.go('boss'));
+ await page.locator('#bossParty .skillInfo[data-help-unit="goura"][data-help-kind="STANCE"]').tap();
+ await expect(page.locator('#sheetBody')).toContainText('45%');
+ await expect(page.locator('#sheetBody')).toContainText('残った1体');
+ await expect(page.locator('#bossQueue .ql')).toHaveCount(0);
+ await page.locator('#sheetBody .btn').tap();
+ const skill=page.locator('#bossParty .commandTile[data-help-unit="fire"][data-help-kind="CORE"]');
+ await skill.scrollIntoViewIfNeeded();const box=await skill.boundingBox();
+ await page.mouse.move(box.x+box.width/2,box.y+box.height/2);await page.mouse.down();await page.waitForTimeout(650);await page.mouse.up();
+ await expect(page.locator('#sheetBody')).toContainText('基礎31');
+ await expect(page.locator('#bossQueue .ql')).toHaveCount(0);
+ await page.locator('#sheetBody .btn').tap();
+ await skill.tap();await expect(page.locator('#bossQueue .ql')).toHaveCount(1);
+ expect(errors).toEqual([]);
+});
