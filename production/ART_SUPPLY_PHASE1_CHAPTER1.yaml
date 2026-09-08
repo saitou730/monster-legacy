@@ -1,0 +1,138 @@
+schema_version: 1
+status: IN_PROGRESS
+updated: 2026-09-09
+source_branch: main
+working_branch: work/art-phase1-chapter1-supply
+product_direction: "Local-complete monster RPG: AREA EXPLORE -> DISCOVER -> HUNT/JOIN -> PARTY -> FUSION -> AREA BOSS -> LEGACY -> NEXT AREA"
+
+art_rules:
+  orientation: "Portrait 9:16"
+  preserve_official_locks: true
+  no_evolution_system: true
+  fusion_result_rule: "independent fixed species design; parent influence via HERITAGE and small LINEAGE MARK only"
+  eye_rule: "avoid uniform round glossy/kira-kira mascot eyes"
+  background_rule: "support gameplay readability; do not overpower UI or obscure monster silhouettes"
+  production_rule: "supply assets in Work implementation order; do not mass-produce unplanned art"
+
+preserved_design_sources:
+  - {name: "ゴウラ", key: "SP-001", source: "assets/reference/熔岩守護獣ゴウラ_モンスターデザインシート.png", state: "EXISTING APPROVED SOURCE"}
+  - {name: "火トカゲ", key: "SP-011", source: "assets/reference/火トカゲ_モンスターデザインシート.png", state: "EXISTING APPROVED SOURCE"}
+  - {name: "葉ウサギ", key: "SP-071", source: "assets/reference/葉ウサギ_植物幻想モンスター設定画.png", state: "EXISTING APPROVED SOURCE"}
+  - {name: "風コウモリ", key: "SP-031", source: "assets/reference/風コウモリ公式モンスターデザインシート.png", state: "EXISTING APPROVED SOURCE"}
+  - {name: "炎翼リザル", key: "SP-018", source: "assets/reference/炎翼リザル_公式デザインシート.png", state: "OFFICIAL ART LOCK / inherited"}
+  - {name: "荊棘の大猪", key: "SP-191", source: "assets/reference/荊棘の大猪_モンスターデザイン画稿.png", state: "OFFICIAL ART LOCK / inherited"}
+  - {name: "雷フクロウ", key: "SP-044", source: "assets/reference/雷フクロウ_CHARACTER_DESIGN_BIBLE_ML-001_v1.1.png", state: "OFFICIAL ART LOCK / inherited"}
+  - {name: "裂空マンティコア", key: "SP-192", source: "assets/reference/裂空マンティコア_CHARACTER_DESIGN_SHEET_ML-002_v1.2.png", state: "OFFICIAL ART LOCK / inherited"}
+
+phase_1_chapter1_inventory:
+  - id: BG-TITLE-PROLOGUE
+    category: BACKGROUND
+    usage: "TITLE / PROLOGUE"
+    current_state: "MISSING_OR_NOT_BOUND"
+    lock_state: CONCEPT
+    planned_path: "assets/backgrounds/chapter1/title_prologue.jpg"
+    work_dependency: "first launch / chapter entry"
+    priority: P0
+  - id: BG-THORN-BOUNDARY-FIELD
+    category: BACKGROUND
+    usage: "荊棘の境界 FIELD / HUNT"
+    current_state: "MISSING_OR_NOT_BOUND"
+    lock_state: CONCEPT
+    planned_path: "assets/backgrounds/chapter1/thorn_boundary_field.jpg"
+    work_dependency: "AREA exploration and HUNT runtime"
+    priority: P0
+  - id: BG-HOME
+    category: BACKGROUND
+    usage: HOME
+    current_state: "MISSING_OR_NOT_BOUND"
+    lock_state: CONCEPT
+    planned_path: "assets/backgrounds/chapter1/home.jpg"
+    work_dependency: "return loop / roster access"
+    priority: P0
+  - id: BG-HUNT
+    category: BACKGROUND
+    usage: HUNT
+    current_state: "can reuse/derive from thorn boundary field if readability passes"
+    lock_state: CONCEPT
+    planned_path: "assets/backgrounds/chapter1/hunt.jpg"
+    work_dependency: "HUNT combat"
+    priority: P0
+  - id: BG-FUSION-LAB
+    category: BACKGROUND
+    usage: "FUSION LAB"
+    current_state: "MISSING_OR_NOT_BOUND"
+    lock_state: CONCEPT
+    planned_path: "assets/backgrounds/chapter1/fusion_lab.jpg"
+    work_dependency: "SPECIAL FUSION SP-011 + SP-031 -> SP-018"
+    priority: P0
+  - id: BG-CONTRACT-SIGNAL
+    category: BACKGROUND
+    usage: "CONTRACT SIGNAL"
+    current_state: "MISSING_OR_NOT_BOUND"
+    lock_state: CONCEPT
+    planned_path: "assets/backgrounds/chapter1/contract_signal.jpg"
+    work_dependency: "contract summon presentation; not random paid gacha"
+    priority: P1
+  - id: BG-BOSS-REPLAY
+    category: BACKGROUND
+    usage: "BOSS replay"
+    current_state: "PARTIAL: assets/art/owl_battle_backdrop.jpg and manticore_battle_backdrop.jpg exist; Chapter 1 boar-specific arena still needs inventory/decision"
+    lock_state: CONCEPT
+    planned_path: "assets/backgrounds/chapter1/boss_replay.jpg"
+    work_dependency: "area Boss and replay"
+    priority: P0
+  - id: FX-JOIN
+    category: FX_UI
+    usage: "JOIN success / resonance contract"
+    current_state: "MISSING_OR_NOT_BOUND"
+    lock_state: CONCEPT
+    planned_path: "assets/fx/join/"
+    work_dependency: "HUNT -> JOIN"
+    priority: P0
+  - id: FX-FUSION
+    category: FX_UI
+    usage: "FUSION convergence / HERITAGE / birth"
+    current_state: "MISSING_OR_NOT_BOUND"
+    lock_state: CONCEPT
+    planned_path: "assets/fx/fusion/"
+    work_dependency: "FUSION flagship loop"
+    priority: P0
+  - id: FX-CONTRACT-SUMMON
+    category: FX_UI
+    usage: "CONTRACT SUMMON presentation"
+    current_state: "MISSING_OR_NOT_BOUND"
+    lock_state: CONCEPT
+    planned_path: "assets/fx/contract_summon/"
+    work_dependency: "contract ownership presentation"
+    priority: P1
+  - id: FX-LEGACY
+    category: FX_UI
+    usage: "LEGACY acquisition"
+    current_state: "MISSING_OR_NOT_BOUND"
+    lock_state: CONCEPT
+    planned_path: "assets/fx/legacy/"
+    work_dependency: "Boss -> LEGACY -> next area"
+    priority: P0
+
+existing_runtime_derivatives_review:
+  note: "Before creating new character poses, reuse existing battle derivatives where available. visual_source_map lists attack/danger/hit/idle/stance for core Chapter 1 monsters. New pose art is blocked until a concrete runtime need is confirmed and source-referenced derivative QA is planned."
+
+current_art_task:
+  id: CH1-ENV-001
+  target: "荊棘の境界 field/HUNT environmental visual direction"
+  reason: "one environment can serve AREA discovery, HUNT readability and Chapter 1 visual identity; highest reuse per implementation hour"
+  output_state: "CONCEPT -> VISUAL DIRECTION LOCK candidate"
+  planned_path: "assets/backgrounds/chapter1/thorn_boundary_field.jpg"
+
+next_after_current:
+  - "TITLE / PROLOGUE background"
+  - "FUSION LAB background"
+  - "JOIN FX module"
+  - "FUSION convergence / birth FX module"
+  - "boar Boss replay arena decision using current backdrop assets where possible"
+
+report_state_labels:
+  - "制作中"
+  - "Visual Lock済み"
+  - "Official Art Lock済み"
+  - "ゲーム実装済み"
