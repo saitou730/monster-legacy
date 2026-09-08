@@ -64,8 +64,8 @@
     },
     {
       "id": "CH1-INTRO-RETREAT-001",
-      "evidence": "PR46 head 9b78a822786a09123da9127335d253a9d3afbcee; https://github.com/saitou730/monster-legacy/actions/runs/34261055183",
-      "result": "27/27 browser cases passed at 360x800, 390x844 and 430x932; real root UI now commits P00 START through P05 HOME_FIRST_ARRIVAL with retreat and reload coverage. Merge/publication pending at this record. Android NOT RUN."
+      "evidence": "PR46 merged as 86e8a60b7744539b42a6d08d24a7f8d2a6b724d0; https://github.com/saitou730/monster-legacy/actions/runs/34284029293",
+      "result": "27/27 browser cases passed at 360x800, 390x844 and 430x932; e2e and Pages deploy succeeded; public root app.js contains P00-P05 controller bindings and the explicit Thorn Boar retreat route. Android NOT RUN."
     }
   ],
   "current_task": {
@@ -89,5 +89,5 @@
   ],
   "resume_rule": "Read main and current_task; do not repeat completed inventory without concrete reason; blocked art never advances by generation.",
   "schema_version": 1,
-  "working_pr": 46
+  "working_pr": null
 }
