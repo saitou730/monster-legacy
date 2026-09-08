@@ -34,9 +34,15 @@ export function applyRootChapterEvent(root, event, payload = {}) {
       wind: 'wind_bat_001',
       flame: 'flame_wing_lizard_001'
     };
-    before.party.active = (root.party || [])
+    const active = (root.party || [])
       .map(id => instanceForRootId[id])
       .filter(id => before.roster[id]);
+    // The player-facing root formation is authoritative once it actually
+    // contains Wind Bat. Controller-only callers may already have projected
+    // an explicit active party into root.chapter1; do not overwrite that.
+    if (active.length === 3 && active.includes('wind_bat_001')) {
+      before.party.active = active;
+    }
   }
   const chapter = applyChapter1Event(before, event, payload);
   const next = structuredClone(root);
