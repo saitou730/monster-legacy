@@ -25,114 +25,55 @@ preserved_design_sources:
   - {name: "裂空マンティコア", key: "SP-192", source: "assets/reference/裂空マンティコア_CHARACTER_DESIGN_SHEET_ML-002_v1.2.png", state: "OFFICIAL ART LOCK / inherited"}
 
 phase_1_chapter1_inventory:
-  - id: BG-TITLE-PROLOGUE
-    category: BACKGROUND
-    usage: "TITLE / PROLOGUE"
-    current_state: "MISSING_OR_NOT_BOUND"
-    lock_state: CONCEPT
-    planned_path: "assets/backgrounds/chapter1/title_prologue.jpg"
-    work_dependency: "first launch / chapter entry"
-    priority: P0
+  - {id: BG-TITLE-PROLOGUE, category: BACKGROUND, usage: "TITLE / PROLOGUE", current_state: "MISSING_OR_NOT_BOUND", lock_state: CONCEPT, planned_path: "assets/backgrounds/chapter1/title_prologue.jpg", work_dependency: "first launch / chapter entry", priority: P0}
   - id: BG-THORN-BOUNDARY-FIELD
     category: BACKGROUND
     usage: "荊棘の境界 FIELD / HUNT"
-    current_state: "MISSING_OR_NOT_BOUND"
-    lock_state: CONCEPT
+    current_state: "VISUAL DIRECTION SPEC LOCKED; final raster pending"
+    lock_state: VISUAL_DIRECTION_LOCK
+    direction_doc: "docs/art/chapter1/THORN_BOUNDARY_FIELD_VISUAL_DIRECTION.md"
     planned_path: "assets/backgrounds/chapter1/thorn_boundary_field.jpg"
-    work_dependency: "AREA exploration and HUNT runtime"
+    work_dependency: "AREA exploration / DISCOVERY / HUNT runtime"
     priority: P0
-  - id: BG-HOME
-    category: BACKGROUND
-    usage: HOME
-    current_state: "MISSING_OR_NOT_BOUND"
-    lock_state: CONCEPT
-    planned_path: "assets/backgrounds/chapter1/home.jpg"
-    work_dependency: "return loop / roster access"
-    priority: P0
+  - {id: BG-HOME, category: BACKGROUND, usage: HOME, current_state: "MISSING_OR_NOT_BOUND", lock_state: CONCEPT, planned_path: "assets/backgrounds/chapter1/home.jpg", work_dependency: "return loop / roster access", priority: P0}
   - id: BG-HUNT
     category: BACKGROUND
     usage: HUNT
-    current_state: "can reuse/derive from thorn boundary field if readability passes"
-    lock_state: CONCEPT
-    planned_path: "assets/backgrounds/chapter1/hunt.jpg"
+    current_state: "REUSE BG-THORN-BOUNDARY-FIELD; separate raster deferred unless runtime readability fails"
+    lock_state: VISUAL_DIRECTION_LOCK
+    planned_path: "reuse assets/backgrounds/chapter1/thorn_boundary_field.jpg"
     work_dependency: "HUNT combat"
     priority: P0
-  - id: BG-FUSION-LAB
-    category: BACKGROUND
-    usage: "FUSION LAB"
-    current_state: "MISSING_OR_NOT_BOUND"
-    lock_state: CONCEPT
-    planned_path: "assets/backgrounds/chapter1/fusion_lab.jpg"
-    work_dependency: "SPECIAL FUSION SP-011 + SP-031 -> SP-018"
-    priority: P0
-  - id: BG-CONTRACT-SIGNAL
-    category: BACKGROUND
-    usage: "CONTRACT SIGNAL"
-    current_state: "MISSING_OR_NOT_BOUND"
-    lock_state: CONCEPT
-    planned_path: "assets/backgrounds/chapter1/contract_signal.jpg"
-    work_dependency: "contract summon presentation; not random paid gacha"
-    priority: P1
-  - id: BG-BOSS-REPLAY
-    category: BACKGROUND
-    usage: "BOSS replay"
-    current_state: "PARTIAL: assets/art/owl_battle_backdrop.jpg and manticore_battle_backdrop.jpg exist; Chapter 1 boar-specific arena still needs inventory/decision"
-    lock_state: CONCEPT
-    planned_path: "assets/backgrounds/chapter1/boss_replay.jpg"
-    work_dependency: "area Boss and replay"
-    priority: P0
-  - id: FX-JOIN
-    category: FX_UI
-    usage: "JOIN success / resonance contract"
-    current_state: "MISSING_OR_NOT_BOUND"
-    lock_state: CONCEPT
-    planned_path: "assets/fx/join/"
-    work_dependency: "HUNT -> JOIN"
-    priority: P0
-  - id: FX-FUSION
-    category: FX_UI
-    usage: "FUSION convergence / HERITAGE / birth"
-    current_state: "MISSING_OR_NOT_BOUND"
-    lock_state: CONCEPT
-    planned_path: "assets/fx/fusion/"
-    work_dependency: "FUSION flagship loop"
-    priority: P0
-  - id: FX-CONTRACT-SUMMON
-    category: FX_UI
-    usage: "CONTRACT SUMMON presentation"
-    current_state: "MISSING_OR_NOT_BOUND"
-    lock_state: CONCEPT
-    planned_path: "assets/fx/contract_summon/"
-    work_dependency: "contract ownership presentation"
-    priority: P1
-  - id: FX-LEGACY
-    category: FX_UI
-    usage: "LEGACY acquisition"
-    current_state: "MISSING_OR_NOT_BOUND"
-    lock_state: CONCEPT
-    planned_path: "assets/fx/legacy/"
-    work_dependency: "Boss -> LEGACY -> next area"
-    priority: P0
+  - {id: BG-FUSION-LAB, category: BACKGROUND, usage: "FUSION LAB", current_state: "MISSING_OR_NOT_BOUND", lock_state: CONCEPT, planned_path: "assets/backgrounds/chapter1/fusion_lab.jpg", work_dependency: "SPECIAL FUSION SP-011 + SP-031 -> SP-018", priority: P0}
+  - {id: BG-CONTRACT-SIGNAL, category: BACKGROUND, usage: "CONTRACT SIGNAL", current_state: "MISSING_OR_NOT_BOUND", lock_state: CONCEPT, planned_path: "assets/backgrounds/chapter1/contract_signal.jpg", work_dependency: "contract summon presentation; not random paid gacha", priority: P1}
+  - {id: BG-BOSS-REPLAY, category: BACKGROUND, usage: "BOSS replay", current_state: "PARTIAL: existing backdrop assets require Chapter 1 decision", lock_state: CONCEPT, planned_path: "assets/backgrounds/chapter1/boss_replay.jpg", work_dependency: "area Boss and replay", priority: P0}
+  - {id: FX-JOIN, category: FX_UI, usage: "JOIN success / resonance contract", current_state: "MISSING_OR_NOT_BOUND", lock_state: CONCEPT, planned_path: "assets/fx/join/", work_dependency: "HUNT -> JOIN", priority: P0}
+  - {id: FX-FUSION, category: FX_UI, usage: "FUSION convergence / HERITAGE / birth", current_state: "MISSING_OR_NOT_BOUND", lock_state: CONCEPT, planned_path: "assets/fx/fusion/", work_dependency: "FUSION flagship loop", priority: P0}
+  - {id: FX-CONTRACT-SUMMON, category: FX_UI, usage: "CONTRACT SUMMON presentation", current_state: "MISSING_OR_NOT_BOUND", lock_state: CONCEPT, planned_path: "assets/fx/contract_summon/", work_dependency: "contract ownership presentation", priority: P1}
+  - {id: FX-LEGACY, category: FX_UI, usage: "LEGACY acquisition", current_state: "MISSING_OR_NOT_BOUND", lock_state: CONCEPT, planned_path: "assets/fx/legacy/", work_dependency: "Boss -> LEGACY -> next area", priority: P0}
 
 existing_runtime_derivatives_review:
-  note: "Before creating new character poses, reuse existing battle derivatives where available. visual_source_map lists attack/danger/hit/idle/stance for core Chapter 1 monsters. New pose art is blocked until a concrete runtime need is confirmed and source-referenced derivative QA is planned."
+  note: "Reuse existing battle derivatives first. visual_source_map already binds attack/danger/hit/idle/stance for core Chapter 1 monsters. New pose art remains blocked until concrete runtime need and source-referenced derivative QA exist."
+
+completed_this_run:
+  - id: CH1-ENV-001-DIRECTION
+    result: PASS
+    state: VISUAL_DIRECTION_LOCK
+    evidence: "docs/art/chapter1/THORN_BOUNDARY_FIELD_VISUAL_DIRECTION.md"
+    production_decision: "FIELD and HUNT share one base environment; HUNT differentiation should be runtime FX/CSS first, reducing duplicate background production"
 
 current_art_task:
-  id: CH1-ENV-001
-  target: "荊棘の境界 field/HUNT environmental visual direction"
-  reason: "one environment can serve AREA discovery, HUNT readability and Chapter 1 visual identity; highest reuse per implementation hour"
-  output_state: "CONCEPT -> VISUAL DIRECTION LOCK candidate"
+  id: CH1-ENV-001-RASTER
+  target: "荊棘の境界 final raster + runtime crop/readability QA"
+  output_state: "VISUAL_DIRECTION_LOCK -> OFFICIAL ART LOCK candidate"
   planned_path: "assets/backgrounds/chapter1/thorn_boundary_field.jpg"
+  required_qa: "360x800 / 390x844 / 430x932 with existing SP-031 and SP-191 runtime derivatives"
 
 next_after_current:
-  - "TITLE / PROLOGUE background"
-  - "FUSION LAB background"
+  - "TITLE / PROLOGUE background direction"
+  - "FUSION LAB background direction"
   - "JOIN FX module"
   - "FUSION convergence / birth FX module"
-  - "boar Boss replay arena decision using current backdrop assets where possible"
+  - "boar Boss replay arena decision using existing backdrop assets where possible"
 
-report_state_labels:
-  - "制作中"
-  - "Visual Lock済み"
-  - "Official Art Lock済み"
-  - "ゲーム実装済み"
+report_state_labels: ["制作中", "Visual Lock済み", "Official Art Lock済み", "ゲーム実装済み"]
