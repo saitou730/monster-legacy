@@ -4,7 +4,7 @@ window.MLStorage = (() => {
     joinedBat:false,
     fused:false,
     testComplete:false,
-    fusion:{heritageA:"昂火牙",heritageB:"風影",growthEcho:0.6,lastRecipe:null,lineageHistory:[]},
+    fusion:{heritageA:"火炎適応",heritageB:"風読み",growthEcho:0.6,lastRecipe:null,lineageHistory:[]},
     lastScreen:"home",
     selectedBoss:"boar",
     storyStep:0,

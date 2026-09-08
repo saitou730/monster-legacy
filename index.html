@@ -116,24 +116,24 @@
    <div id="loadoutFocus" class="loadoutFocus"></div>
    <div class="eyebrow" style="margin-top:11px">Party Loadout Matrix</div><div id="loadoutList"></div>
  </div>
- <button class="btn primary" style="width:100%;margin-top:10px" onclick="ML.go('fusion')">編成を確定して進む ›</button>
+ <button id="partyConfirmBtn" class="btn primary" style="width:100%;margin-top:10px" onclick="ML.confirmParty()">編成を確定して進む ›</button>
 </div></section>
 
 <section id="fusion" class="screen"><div class="scroll">
  <div class="panel pad gold"><div class="eyebrow">Fusion Lab</div><h2 style="margin:4px 0">火トカゲ + 風コウモリ</h2><div class="small">親2体は戻らない。記録とHERITAGEは残る。</div></div>
  <div class="parents" style="margin-top:9px">
   <div class="panel pad"><b>🔥 火トカゲ「ヒノ」</b>
-   <button class="trait on" data-side="a" data-trait="昂火牙">昂火牙 — CORE VOL+2 / Damage+4%</button>
-   <button class="trait" data-side="a" data-trait="火走り">火走り — STANCE後の次攻撃+10%</button>
+   <button class="trait on" data-side="a" data-trait="火炎適応">火炎適応 — CORE VOL+2 / Damage+4%</button>
+   <button class="trait" data-side="a" data-trait="牙撃強化">牙撃強化 — STANCE後の次攻撃+10%</button>
   </div>
   <div class="panel pad"><b>🌪 風コウモリ「フィル」</b>
-   <button class="trait on" data-side="b" data-trait="風影">風影 — 回避成功で敵VOL-4</button>
-   <button class="trait" data-side="b" data-trait="滑空姿勢">滑空姿勢 — STANCE後回避補正+15%</button>
+   <button class="trait on" data-side="b" data-trait="風読み">風読み — 回避成功で敵VOL-4</button>
+   <button class="trait" data-side="b" data-trait="回避反応">回避反応 — STANCE後回避補正+15%</button>
   </div>
  </div>
  <div class="panel pad gold" style="margin-top:9px"><div class="eyebrow">Special Fusion</div><h1 style="margin:4px 0">炎翼リザル</h1>
   <img class="fusionArt" src="assets/art/flame_lizard.png">
-  <div class="small" style="margin-top:8px">HERITAGE: <b id="heritageText">昂火牙 ＋ 風影</b></div>
+  <div class="small" style="margin-top:8px">HERITAGE: <b id="heritageText">火炎適応 ＋ 風読み</b></div>
   <div class="lineage" style="margin-top:8px">火トカゲ「ヒノ」
    ┐
    ├─ 炎翼リザル
@@ -159,7 +159,7 @@
   <div id="testQueue" class="panel queue">2つのCOMMANDを選択</div>
   <div class="actionRail"><button id="testExec" class="btn primary" disabled>TURNを実行</button></div>
   <div id="testLog" class="log"></div>
-  <div id="testResult" class="panel pad gold testResult" hidden><div class="eyebrow">Species Test Complete</div><h3 style="margin:4px 0">炎翼リザルの戦い方を確認</h3><div class="small">新種を編成したまま、荊棘の大猪へ再挑戦できる。</div><button class="btn primary" style="width:100%;margin-top:9px" onclick="ML.advanceFromTest()">BOSS REPLAYへ</button></div>
+  <div id="testResult" class="panel pad gold testResult" hidden><div class="eyebrow">Species Test Complete</div><h3 style="margin:4px 0">炎翼リザルの戦い方を確認</h3><div class="small">新種の記録を保存。HOMEで次の契約信号を確認する。</div><button class="btn primary" style="width:100%;margin-top:9px" onclick="ML.advanceFromTest()">HOMEへ</button></div>
  </div>
 </div></section>
 

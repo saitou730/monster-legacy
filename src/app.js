@@ -12,7 +12,11 @@ window.ML = (() => {
   let resolvingBossTurn = false;
   let resolvingHuntTurn = false;
   let resolvingTestTurn = false;
-  const traits = {a:state.fusion?.heritageA || "昂火牙", b:state.fusion?.heritageB || "風影"};
+  const heritageAlias = {昂火牙:"火炎適応",火走り:"牙撃強化",風影:"風読み",滑空姿勢:"回避反応"};
+  const traits = {
+    a:heritageAlias[state.fusion?.heritageA] || state.fusion?.heritageA || "火炎適応",
+    b:heritageAlias[state.fusion?.heritageB] || state.fusion?.heritageB || "風読み"
+  };
   function safeLocalGet(key){ try{return window.localStorage?.getItem(key) ?? null;}catch(_){return null;} }
   function safeLocalSet(key,value){ try{window.localStorage?.setItem(key,value);return true;}catch(_){return false;} }
   let motionEnabled = safeLocalGet("mlMotion") !== "off";
@@ -161,6 +165,16 @@ window.ML = (() => {
     }
   }
 
+  async function chapterPhase(){
+    if(!window.MLChapter1){
+      await Promise.race([
+        new Promise(resolve=>window.addEventListener("mlchapter1ready",resolve,{once:true})),
+        new Promise((_,reject)=>setTimeout(()=>reject(new Error("Chapter 1 controller unavailable")),3000))
+      ]);
+    }
+    return MLChapter1.migrateRootChapter(state).progress.state;
+  }
+
   function toast(text){
     const el = $("toast");
     el.textContent = text;
@@ -168,7 +182,8 @@ window.ML = (() => {
     setTimeout(() => el.classList.remove("show"), 1450);
   }
 
-  function go(id){
+  function go(id,{chapterReady=false}={}){
+    if(id === "hunt" && !chapterReady){ void routeHunt(); return; }
     if(id === "test" && !state.fused) id = "fusion";
     if(window.MLPlaytest){ MLPlaytest.event("screen_view",{screen:id}); if(id==="boss") MLPlaytest.event("boss_open",{boss:state.selectedBoss}); }
     document.body.classList.toggle("bossMode", id === "boss");
@@ -190,6 +205,53 @@ window.ML = (() => {
     if(id === "test") renderTest();
     if(id === "boss") renderBoss();
     if(id === "archive") renderArchive();
+  }
+
+  async function routeHunt(){
+    let phase;
+    try{ phase=await chapterPhase(); }
+    catch(error){ console.error(error); toast("進行を読み込めませんでした。"); return; }
+    if(phase === "P05_HOME_FIRST_ARRIVAL"){
+      showJourneyResult({
+        eyebrow:"HUNT BRIEF / WIND TRACE",title:"力ではなく、開口を探す。",
+        body:"荊棘の大猪を崩すには、攻撃を受け流す仲間が必要だ。<br>風の痕跡を追い、風コウモリの戦い方を理解しよう。",
+        meta:"TARGET  風コウモリ\nJOIN  EVADE → HP35%以下 → RAGE未満 → RESONATE",
+        art:`<img src="${MLAsset('assets/battle/wind_bat/idle.png')}" alt="風コウモリ">`,
+        primary:"HUNTを受ける",onPrimary:async()=>{
+          if(!await chapterEvent("HUNT_BRIEF_ACCEPT")) return;
+          await routeHunt();
+        }
+      });
+      return;
+    }
+    if(phase === "P06_HUNT_BRIEF"){
+      if(!await chapterEvent("HUNT_START")) return;
+    }
+    go("hunt",{chapterReady:true});
+  }
+
+  function showJoinResult(){
+    showJourneyResult({
+      eyebrow:"RESONANCE / JOIN COMPLETE", title:"風コウモリが仲間になった",
+      body:"戦い方を理解したことで、風コウモリが自ら同行を選んだ。<br>次は3体編成へ加え、関係を戦い方に変える。",
+      meta:"JOIN METHOD  RESONATE\nROLE  EVADE / 風翼系\nNEXT  PARTY CONFIRM",
+      art:`<img src="${MLAsset('assets/battle/wind_bat/idle.png')}" alt="風コウモリ">`,
+      primary:"JOINを確認してPARTYへ", onPrimary:async()=>{
+        if(!await chapterEvent("JOIN_RESULT_ACK")) return;
+        go("party");
+      }
+    });
+  }
+
+  async function resumeChapterRoute(){
+    let phase;
+    try{ phase=await chapterPhase(); }catch(_){ go("home"); return; }
+    if(phase==="P06_HUNT_BRIEF" || phase==="P07_HUNT_WIND_BAT"){ await routeHunt(); return; }
+    if(phase==="P08_JOIN_RESULT"){ go("home"); showJoinResult(); return; }
+    if(phase==="P09_PARTY_REBUILD"){ go("party"); return; }
+    if(phase==="P10_FUSION_INTRO" || phase==="P11_FUSION_FLAME_WING"){ go("fusion"); return; }
+    if(phase==="P12_NEW_SPECIES_TEST"){ go("test"); return; }
+    go("home");
   }
 
   document.querySelectorAll(".nav button").forEach(b => b.onclick = () => go(b.dataset.go));
@@ -255,7 +317,7 @@ window.ML = (() => {
     bootStart.onclick=async()=>{
       await enableGameAudio();
       $("bootGate")?.classList.add("dismissed");
-      if(!state.introSeen && !state.storyStep && !state.storyComplete && !state.joinedBat && !state.fused){ showIntro(); } else { go("home"); }
+      if(!state.introSeen && !state.storyStep && !state.storyComplete && !state.joinedBat && !state.fused){ showIntro(); } else { await resumeChapterRoute(); }
       if(window.MLPlaytest) MLPlaytest.event("game_start",{entry:"home",progress:MLProgression.next(state).kind});
     };
   }
@@ -823,19 +885,18 @@ window.ML = (() => {
     },1120);
   };
 
-  $("joinBtn").onclick = () => {
-    state.joinedBat = true;
+  $("joinBtn").onclick = async () => {
+    if(!hunt?.ready) return;
+    const jb=$("joinBtn"); if(jb) jb.disabled=true;
+    if(!await chapterEvent("WIND_BAT_JOIN")){
+      if(jb) jb.disabled=false;
+      return;
+    }
     save();
     MLAudio.event("join"); toast("JOIN COMPLETE — 風コウモリ");
     if(window.MLMotion) MLMotion.joinCinematic("huntStage");
-    const jb=$("joinBtn"); if(jb){jb.disabled=true;jb.textContent="RESONANCE CONNECTED";}
-    setTimeout(()=>showJourneyResult({
-      eyebrow:"RESONANCE / JOIN COMPLETE", title:"風コウモリが仲間になった",
-      body:"戦い方を理解したことで、風コウモリが自ら同行を選んだ。<br>次は3体編成と持ち込む技を整える。",
-      meta:"JOIN METHOD  RESONATE\nROLE  EVADE / 風翼系\nLINEAGE  FUSION親候補として登録",
-      art:`<img src="${MLAsset('assets/battle/wind_bat/idle.png')}" alt="風コウモリ">`,
-      primary:"PARTYへ", onPrimary:()=>go("party")
-    }),900);
+    if(jb) jb.textContent="RESONANCE CONNECTED";
+    setTimeout(showJoinResult,900);
   };
 
   // ---------- PARTY / FUSION ----------
@@ -876,6 +937,17 @@ window.ML = (() => {
     if(new Set(ids).size<3) return;
     state.party=ids; save();
     toast(`${D.units[uid].name}をSLOT ${partyFocus+1}へ編成`);
+  }
+
+  async function confirmParty(){
+    const ids=normalizeParty();
+    if(ids.length!==3 || !ids.includes("wind")){
+      toast("風コウモリを含む3体を編成してください。");
+      return;
+    }
+    const phase=await chapterPhase().catch(()=>null);
+    if(phase==="P09_PARTY_REBUILD" && !await chapterEvent("PARTY_REBUILD_COMPLETE")) return;
+    go("fusion");
   }
 
   function formationSummary(){
@@ -936,13 +1008,14 @@ window.ML = (() => {
     b.disabled=true; b.textContent="TEST COMPLETE";
   }
 
-  $("fuseBtn").onclick = () => {
+  $("fuseBtn").onclick = async () => {
     if(!state.joinedBat) return;
     if(state.fused){ go("test"); return; }
     const preview=MLFusion.preview(traits.a,traits.b);
     if(!confirm(`火トカゲ「ヒノ」と風コウモリ「フィル」は戻りません。\nHERITAGE: ${preview.heritage.map(x=>x.name).join(" + ")}\nこの2体を継ぎますか？`)) return;
-    const result=MLFusion.execute(state,traits.a,traits.b);
-    if(!result.ok) return;
+    const phase=await chapterPhase().catch(()=>null);
+    if(phase==="P10_FUSION_INTRO" && !await chapterEvent("FUSION_INTRO_ACK")) return;
+    if(!await chapterEvent("FUSION_FLAME_WING_COMPLETE",{heritageA:traits.a,heritageB:traits.b})) return;
     save();
     MLAudio.setVoltage(100,true);
     const fusionArt=document.querySelector(".fusionArt");
@@ -1009,7 +1082,7 @@ window.ML = (() => {
     MLAudio.event(testBattle.queue.length===2?"stance":"select"); closeSheet(); haptic(10); renderTest();
   }
 
-  $("testExec").onclick=()=>{
+  $("testExec").onclick=async()=>{
     const t=testBattle; if(!t || t.queue.length!==2 || t.won || resolvingTestTurn) return;
     MLAudio.event("execute"); haptic(18);
     resolvingTestTurn=true; renderTest();
@@ -1054,17 +1127,20 @@ window.ML = (() => {
         t.party.forEach(u=>u.hp=Math.max(1,u.hp-(guard?Math.round(a.dmg*.7):a.dmg))); log.push(`${a.name} → 全体`);impactMiniField("testField",t.party,t.party.map(u=>u.id));
       }
     },650);
-    if(t.hp<=0 && t.coreUsed && t.evadeSucceeded){t.hp=0;t.won=true;state.testComplete=true;save();}
+    if(t.hp<=0 && t.coreUsed && t.evadeSucceeded){
+      if(await chapterEvent("NEW_SPECIES_TEST_COMPLETE")){t.hp=0;t.won=true;save();}
+      else t.hp=1;
+    }
     t.turn+=1;t.queue=[];t.lockedAction=MLTestBattle.actionFor(t.turn);
     setTimeout(()=>{
       if(t.won){
         toast("NEW SPECIES TEST COMPLETE");
         showJourneyResult({
           eyebrow:"SPECIES TEST COMPLETE", title:"戦い方を確認した",
-          body:"炎翼リザルのCOREと回避を実戦で確認。新種を含む3体編成で、Chapter 1のBoss Masteryへ進める。",
+          body:"炎翼リザルのCOREと回避を実戦で確認。新種を含む3体編成を記録し、HOMEに届いた契約信号を確認する。",
           meta:"CHECK  炎翼牙 ✓\nCHECK  EVADE ✓\nPARTY  ゴウラ / 炎翼リザル / 葉ウサギ",
           art:`<img src="${MLAsset('assets/art/flame_lizard.png')}" alt="炎翼リザル">`,
-          primary:"BOSSへ", onPrimary:()=>advanceFromTest()
+          primary:"HOMEへ", onPrimary:()=>advanceFromTest()
         });
       }
       $("testLog").innerHTML=log.concat($("testLog").innerHTML?[$("testLog").innerHTML]:[]).join("<br>");
@@ -1073,7 +1149,7 @@ window.ML = (() => {
   };
 
   function calloutTest(text){ addFx("testStage",text,"damagePop vol"); }
-  function advanceFromTest(){ state.selectedBoss="boar"; MLStorage.save(state); selectBoss("boar"); go("boss"); }
+  function advanceFromTest(){ go("home"); }
 
 
   // ---------- BOSS ----------
@@ -1669,5 +1745,5 @@ window.ML = (() => {
   go("home");
   if(window.MLPlaytest){ MLPlaytest.bind(); MLPlaytest.event("app_ready",{screen:state.lastScreen||"home"}); }
 
-  return {closeSkillHelp:closeSheet,skillHelp,showIntro,go,goJourney,storyNext,storyCmd,storyStance,storyVol,storyEquip,storyBoss,setEquipment,setPartyLegacy,setPartyFocus,assignParty,setLegacy,archiveTab,openHunt,pickHunt,removeHunt,openTest,pickTest,removeTest,advanceFromTest,selectBoss,openBossSelect,openBoss,pickBoss,removeBoss,resetBoss};
+  return {closeSkillHelp:closeSheet,skillHelp,showIntro,go,goJourney,storyNext,storyCmd,storyStance,storyVol,storyEquip,storyBoss,setEquipment,setPartyLegacy,setPartyFocus,assignParty,confirmParty,setLegacy,archiveTab,openHunt,pickHunt,removeHunt,openTest,pickTest,removeTest,advanceFromTest,selectBoss,openBossSelect,openBoss,pickBoss,removeBoss,resetBoss};
 })();
