@@ -3,7 +3,7 @@
 Owner: Work
 Branch: `work/ch1-join-fusion-test-binding`
 Base main: `05c8ee29def8fc82ebc0ac12a3fc3697528caeac`
-Status: tested_merge_pending
+Status: merged_published
 
 ## Assigned function
 Connect the existing canonical root HUNT, JOIN result acknowledgement, PARTY confirmation, fixed Fire Lizard + Wind Bat fusion, and real Flame Wing Lizard species test to the Chapter 1 controller. This slice targets controller states P05 through P13; Contract/SUMMON remains the next slice.
@@ -28,7 +28,8 @@ Connect the existing canonical root HUNT, JOIN result acknowledgement, PARTY con
 
 ## Evidence
 - PR: https://github.com/saitou730/monster-legacy/pull/52
-- CI: https://github.com/saitou730/monster-legacy/actions/runs/34289713369
+- Merge: `d4b64bae92cc558456ad38d0e017fe6ff6746dee`
+- CI / Pages: https://github.com/saitou730/monster-legacy/actions/runs/34290272886
 - Result: 30/30 browser tests passed at 360x800, 390x844 and 430x932.
 - Android physical device: NOT RUN.
 

@@ -69,8 +69,8 @@
     },
     {
       "id": "CH1-GROWTH-ROUTE-001",
-      "evidence": "PR52 head 6e9d49ca803ba6bfb2cc970692b59bed0f7600c2; https://github.com/saitou730/monster-legacy/actions/runs/34289713369",
-      "result": "30/30 browser cases passed at 360x800, 390x844 and 430x932; player gestures cover P05-P13 HUNT brief, qualified JOIN, result acknowledgement, PARTY confirmation, fixed FUSION, playable TEST and reload checkpoints. Merge/publication pending at this record. Android NOT RUN."
+      "evidence": "PR52 merged as d4b64bae92cc558456ad38d0e017fe6ff6746dee; https://github.com/saitou730/monster-legacy/actions/runs/34290272886",
+      "result": "30/30 browser cases passed at 360x800, 390x844 and 430x932; e2e and Pages deploy succeeded; public root app.js contains P05-P13 HUNT, JOIN, PARTY, fixed FUSION and playable TEST controller bindings. Android NOT RUN."
     }
   ],
   "current_task": {
@@ -94,5 +94,5 @@
   ],
   "resume_rule": "Read main and current_task; do not repeat completed inventory without concrete reason; blocked art never advances by generation.",
   "schema_version": 1,
-  "working_pr": 52
+  "working_pr": null
 }
