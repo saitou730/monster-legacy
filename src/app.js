@@ -139,6 +139,28 @@ window.ML = (() => {
     renderArchive();
   }
 
+  async function chapterEvent(event,payload={}){
+    try{
+      if(!window.MLChapter1){
+        await Promise.race([
+          new Promise(resolve=>window.addEventListener("mlchapter1ready",resolve,{once:true})),
+          new Promise((_,reject)=>setTimeout(()=>reject(new Error("Chapter 1 controller unavailable")),3000))
+        ]);
+      }
+      const chapter=MLChapter1.migrateRootChapter(state);
+      if(chapter.progress.receipts?.includes(event)) return true;
+      if(!MLChapter1.canApplyEvent(chapter,event)) throw new Error(`Chapter 1 event out of order: ${event}`);
+      const next=MLChapter1.applyRootChapterEvent(state,event,payload);
+      if(!MLStorage.save(next)) throw new Error("Chapter 1 save failed");
+      Object.assign(state,next);
+      return true;
+    }catch(error){
+      console.error(error);
+      toast("進行を保存できませんでした。もう一度お試しください。");
+      return false;
+    }
+  }
+
   function toast(text){
     const el = $("toast");
     el.textContent = text;
@@ -222,7 +244,10 @@ window.ML = (() => {
       body:"ゴウラ、火トカゲ、葉ウサギと、最初の探索へ。<br>敵の次の動きを読み、動かす2体と、支える1体を決めよう。",
       meta:"予告を知る → 風コウモリを仲間に → 炎翼リザルへ合体",
       art:`<img src="${MLAsset('assets/battle/goura/idle.png')}" alt="ゴウラ">`,
-      primary:"最初の探索へ",onPrimary:()=>{state.introSeen=true;save();go("story");}});
+      primary:"最初の探索へ",onPrimary:async()=>{
+        if(!await chapterEvent("START")) return;
+        state.introSeen=true;save();go("story");
+      }});
   }
 
   const bootStart=$("bootStart");
@@ -507,7 +532,7 @@ window.ML = (() => {
       "選ばなかった一体も戦っている。残る一体はSTANCEとして場を支える。",
       "力を上げるほど敵も危険になる。VOLTAGEは資源であり、脅威でもある。",
       "装備は数値ではない。次の戦いへ持ち込む、もう一つのCOMMANDだ。",
-      "荊棘の大猪。逃げずに100まで上げ、そのLEGACY ARTを受け切れ。"
+      "荊棘の大猪。今はまだ受け切れない。生きて戻り、戦い方を探せ。"
     ];
     if($("storyBeat")) $("storyBeat").innerHTML=`<span>MISSION ${String(step+1).padStart(2,"0")}</span><strong>${beats[step]}</strong>`;
 
@@ -527,14 +552,17 @@ window.ML = (() => {
     </div><div id="storyStanceMsg" class="storyDecision">残す1体で、ターンの意味が変わる。</div></div>`;
     const volBody = `<div class="storyBattleDemo"><div class="storyVoltage"><div><span>VOLTAGE</span><strong id="storyVolNumber">48</strong><em id="storyVolBand">HEAT</em></div><div class="volTutor formal"><i id="storyVolBar" style="width:48%"></i></div></div><div id="storyVolText" class="storyDecision">VOL 48 / HEAT。雷フクロウならRAGEへ入れない判断が必要。</div><div class="storyChoiceRow"><button onclick="ML.storyVol('attack')">火牙 <small>VOL +8</small></button><button onclick="ML.storyVol('calm')">鎮めの風 <small>VOL -12</small></button></div></div>`;
     const eqBody = `<div class="storyBattleDemo"><div class="storyRule"><b>EQUIPMENT</b><span>能力値ではなく“技”を持ち込む</span></div><div class="storyEquipChoice"><button onclick="ML.storyEquip('spear')"><span class="eqSigil">✦</span><b>追撃の槍</b><small>40 DMG / VOL +8</small></button><button onclick="ML.storyEquip('bell')"><span class="eqSigil">◉</span><b>鎮静の鈴</b><small>VOL -14 / 小回復</small></button></div><div id="storyEquipMsg" class="storyDecision">想定敵：雷フクロウ。RAGEを避けるなら、どちらを持ち込む？</div></div>`;
-    const bossBody = `<div class="storyBossReveal"><img src="assets/battle/boar/danger.png" alt="荊棘の大猪"><div class="storyBossCopy"><div class="eyebrow">CHAPTER BOSS / RAISE & RECEIVE</div><h3>荊棘の大猪</h3><p>NEXTを読み、2 COMMANDを選び、残る1体に受けさせる。<br>この敵には危険を受け切る準備が必要だ。まず風コウモリと出会い、合体で力を継ごう。</p><button class="btn primary storyPrimary" onclick="ML.storyBoss()">風コウモリを探しに行く</button></div></div>`;
+    const bossBody = `<div class="storyBossReveal"><img src="assets/battle/boar/danger.png" alt="荊棘の大猪"><div class="storyBossCopy"><div class="eyebrow">FIRST ENCOUNTER / RETREAT</div><h3>荊棘の大猪</h3><p>判断は間違っていない。それでも、今の力では受け切れない。<br>倒される前に自分で撤退し、HOMEで次の手掛かりを探そう。</p><button class="btn primary storyPrimary" onclick="ML.storyBoss()">撤退する</button></div></div>`;
     const bodies=[nextBody,cmdBody,stanceBody,volBody,eqBody,bossBody];
     $("storyLessons").innerHTML=storyLesson(step,lessons[step].title,bodies[step]);
   }
 
   let storyCmdSet=new Set();
   let storyVolValue=48;
-  function storyNext(){ completeStoryStep(0); }
+  async function storyNext(){
+    if(!await chapterEvent("PROLOGUE_COMPLETE")) return;
+    completeStoryStep(0);
+  }
   function storyCmd(btn){
     if(state.storyStep!==1) return;
     btn.classList.toggle("selected");
@@ -570,17 +598,29 @@ window.ML = (() => {
     const msg=$("storyEquipMsg");
     if(kind==="bell"){
       if(msg) msg.textContent="正解：鎮静の鈴。SUPPRESS戦では火力より帯域管理が価値になる。";
-      setTimeout(()=>completeStoryStep(4),500);
+      setTimeout(async()=>{
+        if(await chapterEvent("FIRST_BATTLE_COMPLETE")) completeStoryStep(4);
+      },500);
     }else{
       if(msg) msg.textContent="追撃の槍は強いがVOL+8。雷フクロウではRAGE突入を早める。";
     }
   }
-  function storyBoss(){
+  async function storyBoss(){
     if(state.storyStep===5){
+      if(!await chapterEvent("BOAR_RETREAT")) return;
       completeStoryStep(5);
       state.selectedBoss="boar";
       MLStorage.save(state);
-      go("hunt");
+      showJourneyResult({
+        eyebrow:"FIRST ENCOUNTER / RETREAT SUCCESS",title:"まだ、分からなかっただけ。",
+        body:"荊棘の大猪から距離を取り、3体とも無事に戻った。<br>HOMEで風裂谷の反応を確認し、戦い方を増やそう。",
+        meta:"NEXT  HOME → HUNT → 風コウモリ JOIN",
+        art:`<img src="${MLAsset('assets/battle/boar/idle.png')}" alt="荊棘の大猪">`,
+        primary:"HOMEへ戻る",onPrimary:async()=>{
+          if(!await chapterEvent("HOME_FIRST_ARRIVAL")) return;
+          go("home");
+        }
+      });
     }else if(state.storyComplete){
       state.selectedBoss="boar"; MLStorage.save(state); selectBoss("boar"); go("boss");
     }

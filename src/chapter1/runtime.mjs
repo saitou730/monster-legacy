@@ -7,3 +7,4 @@ window.MLChapter1 = Object.freeze({
   migrateRootChapter: adapter.migrateRootChapter,
   applyRootChapterEvent: adapter.applyRootChapterEvent
 });
+window.dispatchEvent(new Event('mlchapter1ready'));

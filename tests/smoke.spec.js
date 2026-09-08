@@ -14,6 +14,10 @@ test('START → HOME → HUNT: two actual touch commands and a resolved turn', a
   await page.locator('[onclick="ML.storyVol(\'calm\')"]').tap();
   await page.locator('[onclick="ML.storyEquip(\'bell\')"]').tap();
   await page.locator('[onclick="ML.storyBoss()"]').tap();
+  await expect(page.locator('#journeyResultTitle')).toContainText('分からなかった');
+  await page.locator('#journeyResultPrimary').tap();
+  await expect(page.locator('#home')).toHaveClass(/show/);
+  await page.locator('.nav [data-go="hunt"]').tap();
   await expect(page.locator('#hunt')).toHaveClass(/show/);
   await expect(page.locator('#huntStickyHpText')).toBeVisible();
   await expect(page.locator('#huntStickyVolText')).toBeVisible();

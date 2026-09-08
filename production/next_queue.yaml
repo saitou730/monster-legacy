@@ -56,15 +56,25 @@
       "id": "CH1-CONTEXT-001",
       "evidence": "https://github.com/saitou730/monster-legacy/actions/runs/34113144673",
       "result": "PR39 merged 772aa32; 12/12 browser cases passed, including help gestures/save neutrality at 360/390/430. Not Android manual PASS."
+    },
+    {
+      "id": "CH1-CONTROLLER-ROOT-001",
+      "evidence": "PR44 merged as 351752fd2e625469f28ad63d05d7ccded004d36a; https://github.com/saitou730/monster-legacy/actions/runs/34254607554",
+      "result": "24/24 browser cases passed at 360x800, 390x844 and 430x932; controller, old-save projection and replay-safe receipts are canonical root modules. Android NOT RUN."
+    },
+    {
+      "id": "CH1-INTRO-RETREAT-001",
+      "evidence": "PR46 head 9b78a822786a09123da9127335d253a9d3afbcee; https://github.com/saitou730/monster-legacy/actions/runs/34261055183",
+      "result": "27/27 browser cases passed at 360x800, 390x844 and 430x932; real root UI now commits P00 START through P05 HOME_FIRST_ARRIVAL with retreat and reload coverage. Merge/publication pending at this record. Android NOT RUN."
     }
   ],
   "current_task": {
-    "id": "BATTLE-CONTROLLER-INTEGRATION",
-    "title": "Connect actual battle behavior to Chapter 1 with separate Chat/Work ownership",
+    "id": "CH1-JOIN-FUSION-BINDING",
+    "title": "Bind qualified HUNT/JOIN, party confirmation, fixed fusion and new-species test to the root controller",
     "status": "pending",
     "ownership": "production/WORK_CHAT_OWNERSHIP.md",
-    "next_action": "Chat maintains progression; Work binds actual command and STANCE data to battle UX once controller integration is defined. Do not merge root-runtime introduction PRs blindly.",
-    "blocker": "Chapter 1 currently advances placeholder battle screens using completion buttons."
+    "next_action": "Work connects the existing root HUNT result, WIND_BAT_JOIN acknowledgement, party save, Fire Lizard + Wind Bat fixed fusion and test result to P06-P11 using one replay-safe commit path.",
+    "blocker": "After P05, legacy root handlers still mutate booleans and rewards independently of the Chapter 1 controller; those writes must be consolidated without resetting old saves."
   },
   "pending": [
     {
@@ -79,5 +89,5 @@
   ],
   "resume_rule": "Read main and current_task; do not repeat completed inventory without concrete reason; blocked art never advances by generation.",
   "schema_version": 1,
-  "working_pr": 39
+  "working_pr": 46
 }
