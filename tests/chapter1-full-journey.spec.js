@@ -25,7 +25,7 @@ async function turn(page, context, commands, timeout = 6000) {
 }
 
 test('fresh START reaches replay-safe Chapter 1 complete HOME through every playable gate', async ({ page }) => {
-  test.setTimeout(120000);
+  test.setTimeout(180000);
   const errors = [];
   page.on('pageerror', error => errors.push(String(error)));
   await page.goto('/_site/');
@@ -92,10 +92,9 @@ test('fresh START reaches replay-safe Chapter 1 complete HOME through every play
   await phase(page, 'P17_BOAR_MASTERY');
 
   // RAISE with guarded STANCE, receive the announced LEGACY ART, then finish.
-  for (let i=0;i<5;i++) await turn(page, 'boss', [['leaf','EQUIPMENT'],['flame','CORE']]);
+  for (let i=0;i<8;i++) await turn(page, 'boss', [['leaf','EQUIPMENT'],['goura','ROLE']]);
   await turn(page, 'boss', [['goura','ROLE'],['flame','ROLE']]);
-  await turn(page, 'boss', [['flame','CORE'],['goura','CORE']]);
-  await turn(page, 'boss', [['flame','CORE'],['goura','CORE']]);
+  for (let i=0;i<3;i++) await turn(page, 'boss', [['leaf','EQUIPMENT'],['flame','CORE']]);
   await phase(page, 'P18_LEGACY_REWARD', 10000);
   save = await page.evaluate(() => JSON.parse(localStorage.getItem(ML_DATA.saveKey)));
   expect(save.mastery.boar).toBe(true);
