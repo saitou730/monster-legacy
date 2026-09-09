@@ -549,7 +549,7 @@ window.ML = (() => {
     const stateLabel = stance ? "STANCE" : selected ? "COMMAND" : "READY";
     const spriteState = stance ? "stance" : "idle";
     return `<div class="panel unit ${selected} ${stance}">
-      <div class="unitTop">${u.battle ? `<img class="unitSprite" src="${MLAsset(`${u.battle}/${spriteState}.png`)}" alt="">` : ""}<b>${u.name}</b><span class="unitStateBadge">${stateLabel}</span></div>
+      <button type="button" class="unitTop unitInspect" onclick="ML.monsterDetail('${u.id}','${ctx.fn==="ML.openHunt"?"hunt":"test"}')" aria-label="${u.name}の能力と技を見る">${u.battle ? `<img class="unitSprite" src="${MLAsset(`${u.battle}/${spriteState}.png`)}" alt="">` : ""}<b>${u.name}</b><span class="unitStateBadge">${stateLabel}</span></button>
       <div class="small">${u.core} / ${u.role}</div>${helpButton(u.id,"STANCE",ctx.fn==="ML.openHunt"?"hunt":"test")}
       <div class="mini"><i style="width:${100*u.hp/u.maxHp}%"></i></div>
       <div class="small">${u.hp}/${u.maxHp}</div>
@@ -565,6 +565,24 @@ window.ML = (() => {
     if(uid==="wind") return "未選択で滑空姿勢を取り、次に自分が狙われる単体攻撃を回避します。全体攻撃には無効です。";
     return "未選択の1体として待機し、固有STANCEで場を支えます。";
   }
+  function monsterDetail(uid,context="boss"){
+    const party=context==="boss"?boss?.party:context==="hunt"?hunt?.party:testBattle?.party;
+    const u=party?.find(x=>x.id===uid)||D.units[uid]; if(!u)return;
+    const eq=equippedFor(uid);
+    const hp=Number.isFinite(u.hp)?`${u.hp} / ${u.maxHp}`:`${u.maxHp} / ${u.maxHp}`;
+    openSheet(`${u.name} / STATUS`,`<div class="monsterDetail">
+      <div class="monsterDetailHero">${u.battle?`<img src="${MLAsset(`${u.battle}/idle.png`)}" alt="${u.name}">`:""}<div><span>HP</span><b>${hp}</b><small>${u.roleType.toUpperCase()} / 3-MONSTER PARTY</small></div></div>
+      <div class="monsterDetailGrid">
+        <section><span>CORE</span><b>${u.core}</b><small>Damage ${u.coreDmg} / VOL +${u.coreVol}</small></section>
+        <section><span>ROLE</span><b>${u.role}</b><small>${roleText(u.roleType)}</small></section>
+        <section><span>EQUIPMENT</span><b>${eq.name}</b><small>${eq.desc}</small></section>
+        <section class="stance"><span>STANCE</span><b>${u.stance}</b><small>${stanceText(uid,context)}</small></section>
+      </div>
+      <p>詳細を開いてもCOMMANDは選択されません。</p>
+      <button class="btn primary" onclick="ML.closeSkillHelp()">戦闘へ戻る</button>
+    </div>`);
+  }
+
   function skillHelp(uid,kind,context="boss"){
     const u=D.units[uid];if(!u)return;
     const eq=equippedFor(uid);
@@ -586,7 +604,7 @@ window.ML = (() => {
     const disabled = stance || u.hp<=0 || boss.won || resolvingBossTurn;
     const tile=(kind,glyph,name)=>`<div class="skillWithHelp"><button data-help-unit="${u.id}" data-help-kind="${kind}" data-help-context="boss" class="commandTile ${queued?.kind===kind?"on":""}" ${disabled?"disabled":""} onclick="ML.pickBoss('${u.id}','${kind}')" aria-label="${u.name} ${name}"><span>${glyph}</span><b>${name}</b></button>${helpButton(u.id,kind,"boss")}</div>`;
     return `<div class="panel unit formalUnit ${selected?"active":""} ${stance?"stance":""} ${u.hp<=0?"ko":""}">
-      <div class="unitTop">${u.battle ? `<img class="unitSprite" src="${MLAsset(`${u.battle}/${spriteState}.png`)}" alt="">` : ""}<div class="unitIdentity"><b>${u.name}</b><span class="unitStateBadge">${stateLabel}</span></div></div>
+      <button type="button" class="unitTop unitInspect" onclick="ML.monsterDetail('${u.id}','boss')" aria-label="${u.name}の能力と技を見る">${u.battle ? `<img class="unitSprite" src="${MLAsset(`${u.battle}/${spriteState}.png`)}" alt="">` : ""}<div class="unitIdentity"><b>${u.name}</b><span class="unitStateBadge">${stateLabel}</span></div></button>
       ${helpButton(u.id,"STANCE","boss")}
       <div class="formalHp"><span>HP</span><div class="mini"><i style="width:${hpPct}%"></i></div><small>${u.hp}/${u.maxHp}</small></div>
       ${MLLegacy.equippedCore(D,state,u.id)?`<div class="equipmentTag legacyTag">LEGACY ${MLLegacy.equippedCore(D,state,u.id).name}</div>`:""}
@@ -1867,5 +1885,5 @@ window.ML = (() => {
   go("home");
   if(window.MLPlaytest){ MLPlaytest.bind(); MLPlaytest.event("app_ready",{screen:state.lastScreen||"home"}); }
 
-  return {closeSkillHelp:closeSheet,skillHelp,showIntro,showLegacyClaim,go,goJourney,storyNext,storyCmd,storyStance,storyVol,storyEquip,storyBoss,setEquipment,setPartyLegacy,setPartyFocus,assignParty,confirmParty,setLegacy,archiveTab,completeChapterArchive,openHunt,pickHunt,removeHunt,openTest,pickTest,removeTest,advanceFromTest,acknowledgeContract,summonLyra,equipLyra,selectBoss,openBossSelect,openBoss,pickBoss,removeBoss,resetBoss};
+  return {closeSkillHelp:closeSheet,skillHelp,monsterDetail,showIntro,showLegacyClaim,go,goJourney,storyNext,storyCmd,storyStance,storyVol,storyEquip,storyBoss,setEquipment,setPartyLegacy,setPartyFocus,assignParty,confirmParty,setLegacy,archiveTab,completeChapterArchive,openHunt,pickHunt,removeHunt,openTest,pickTest,removeTest,advanceFromTest,acknowledgeContract,summonLyra,equipLyra,selectBoss,openBossSelect,openBoss,pickBoss,removeBoss,resetBoss};
 })();
