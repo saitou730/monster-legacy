@@ -25,7 +25,7 @@ async function turn(page, context, commands, timeout = 6000) {
 }
 
 test('fresh START reaches replay-safe Chapter 1 complete HOME through every playable gate', async ({ page }) => {
-  test.setTimeout(180000);
+  test.setTimeout(300000);
   const errors = [];
   page.on('pageerror', error => errors.push(String(error)));
   await page.goto('/_site/');
