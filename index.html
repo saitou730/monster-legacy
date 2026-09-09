@@ -64,6 +64,17 @@
       <button class="homeQuick" onclick="ML.go('fusion')"><span>FUSION</span><b>世代を継ぐ</b><small>HERITAGEを選ぶ</small></button>
     </div>
 
+    <section id="chapterFeedbackPanel" class="panel pad playtestPanel chapterFeedbackPanel" hidden aria-labelledby="chapterFeedbackTitle">
+      <div class="eyebrow">CHAPTER 1 PLAYTEST</div>
+      <h3 id="chapterFeedbackTitle">旅を終えた感触を記録する</h3>
+      <p class="small">任意のローカル記録です。回答は送信されず、この端末に保存されます。</p>
+      <div class="chapterFeedbackActions">
+        <button id="playtestSurveyBtn" class="btn primary" type="button">感触を記録</button>
+        <button id="playtestExportBtn" class="btn" type="button">結果JSONを保存</button>
+      </div>
+      <div id="playtestSummary" class="chapterFeedbackSummary" aria-live="polite"></div>
+    </section>
+
     <div class="panel pad obj directorOnly">
       <div class="eyebrow">Adaptive BGM / Director</div>
       <div class="statline"><span>VOLTAGE</span><b id="homeV">18</b></div>
