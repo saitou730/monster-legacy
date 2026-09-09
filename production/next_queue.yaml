@@ -71,15 +71,20 @@
       "id": "CH1-GROWTH-ROUTE-001",
       "evidence": "PR52 merged as d4b64bae92cc558456ad38d0e017fe6ff6746dee; https://github.com/saitou730/monster-legacy/actions/runs/34290272886",
       "result": "30/30 browser cases passed at 360x800, 390x844 and 430x932; e2e and Pages deploy succeeded; public root app.js contains P05-P13 HUNT, JOIN, PARTY, fixed FUSION and playable TEST controller bindings. Android NOT RUN."
+    },
+    {
+      "id": "CH1-CONTRACT-SUPPORT-001",
+      "evidence": "PR53 merged as f10da34f7b39342277a545e67c1f1c7f49c0a578; branch Web QA https://github.com/saitou730/monster-legacy/actions/runs/34306276752",
+      "result": "33/33 browser cases passed at 360x800, 390x844 and 430x932; root P13-P16 signal, free guaranteed Lyra Contract and separate Support equip are replay-safe. Android NOT RUN."
     }
   ],
   "current_task": {
-    "id": "CH1-CONTRACT-SUPPORT-BINDING",
-    "title": "Bind the free guaranteed Lyra Contract summon and separate Support slot to the root controller",
+    "id": "CH1-BOAR-LEGACY-CLOSEOUT",
+    "title": "Bind Thorn Boar rematch, Unyielding LEGACY, Archive and Chapter 1 complete HOME",
     "status": "pending",
     "ownership": "production/WORK_CHAT_OWNERSHIP.md",
-    "next_action": "Work adds the P13-P16 tutorial Contract surface: explicit free guaranteed invocation, atomic Lyra ownership, acknowledgement and Support equip outside the three-monster party.",
-    "blocker": "The root runtime has no player-facing Contract/Support screen yet; use locked existing character assets only and keep the monster party at exactly three."
+    "next_action": "Work connects P16-P20 to the canonical root boss/result/archive surfaces, with Unyielding sourced only from Thorn Boar mastery.",
+    "blocker": "No blocking Art required; preserve the locked Thorn Boar asset and existing battle rules."
   },
   "pending": [
     {
