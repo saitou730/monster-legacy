@@ -81,21 +81,22 @@
       "id": "CH1-BOAR-LEGACY-CLOSEOUT",
       "evidence": "PR54; https://github.com/saitou730/monster-legacy/actions/runs/34310053715",
       "result": "36/36 browser cases passed at 360x800, 390x844 and 430x932; root P16-P20 rematch, mastery, explicit Unyielding claim, Archive acknowledgement and completed HOME are replay-safe. Android NOT RUN."
+    },
+    {
+      "id": "QA-CHAPTER1-FULL-JOURNEY",
+      "evidence": "PR55; https://github.com/saitou730/monster-legacy/actions/runs/34340000149",
+      "result": "39/39 browser cases passed at 360x800, 390x844 and 430x932; one fresh unseeded root journey reaches completed HOME and reloads without duplicate JOIN, FUSION, Contract or LEGACY. Android NOT RUN."
     }
   ],
   "current_task": {
-    "id": "QA-CHAPTER1-FULL-JOURNEY",
-    "title": "Verify one unseeded START-to-completed-HOME browser journey",
+    "id": "QA-ANDROID-AND-TEMPO",
+    "title": "Validate deployed Chapter 1 on a physical Android device and tune pacing from evidence",
     "status": "pending",
     "ownership": "production/WORK_CHAT_OWNERSHIP.md",
-    "next_action": "Work adds a deterministic full-journey E2E without bypassing playable battle gates, then performs Android manual QA separately.",
-    "blocker": "Android physical-device evidence requires a real device; browser journey is unblocked."
+    "next_action": "Work first merges the verified full-journey PR and confirms Pages, then records Android manual evidence separately before any score change.",
+    "blocker": "Android physical-device evidence requires a real device."
   },
   "pending": [
-    {
-      "id": "QA-FULL-LOOP",
-      "title": "extend browser coverage through JOIN/FUSION/TEST/ARCHIVE"
-    },
     {
       "id": "QA-ANDROID",
       "title": "Physical touch, TalkBack and save return on deployed Chapter 1",
