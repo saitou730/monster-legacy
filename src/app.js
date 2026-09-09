@@ -1811,7 +1811,8 @@ window.ML = (() => {
         primary:chapterBoar?"不退転を記録":"LEGACY ARCHIVE", onPrimary:()=>chapterBoar?showLegacyClaim():go("archive")
       }),760);
     }
-    if(window.MLPlaytest && boss.id==="boar") setTimeout(()=>MLPlaytest.showSurvey(),1700);
+    // Never cover the explicit LEGACY claim / Archive closeout during the canonical journey.
+    if(window.MLPlaytest && boss.id==="boar" && !chapterBoar) setTimeout(()=>MLPlaytest.showSurvey(),1700);
   }
 
   function resetBoss(){
