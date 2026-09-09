@@ -544,16 +544,19 @@ window.ML = (() => {
   }
 
   function unitHtml(u, ctx){
-    const selected = ctx.selected === u.id ? "active" : "";
+    const queued = ctx.queued || null;
+    const selected = queued ? "active" : "";
     const stance = ctx.stance === u.id ? "stance" : "";
     const stateLabel = stance ? "STANCE" : selected ? "COMMAND" : "READY";
     const spriteState = stance ? "stance" : "idle";
-    return `<div class="panel unit ${selected} ${stance}">
-      <button type="button" class="unitTop unitInspect" onclick="ML.monsterDetail('${u.id}','${ctx.fn==="ML.openHunt"?"hunt":"test"}')" aria-label="${u.name}の能力と技を見る">${u.battle ? `<img class="unitSprite" src="${MLAsset(`${u.battle}/${spriteState}.png`)}" alt="">` : ""}<b>${u.name}</b><span class="unitStateBadge">${stateLabel}</span></button>
-      <div class="small">${u.core} / ${u.role}</div>${helpButton(u.id,"STANCE",ctx.fn==="ML.openHunt"?"hunt":"test")}
-      <div class="mini"><i style="width:${100*u.hp/u.maxHp}%"></i></div>
-      <div class="small">${u.hp}/${u.maxHp}</div>
-      <button class="btn" style="width:100%;padding:7px;margin-top:6px" onclick="${ctx.fn}('${u.id}')">${stance ? "STANCE" : selected ? "SELECTED" : "COMMAND"}</button>
+    const eq=equippedFor(u.id);
+    const disabled=stance || u.hp<=0 || ctx.disabled;
+    const tile=(kind,glyph,name)=>`<button data-help-unit="${u.id}" data-help-kind="${kind}" data-help-context="${ctx.context}" class="commandTile ${queued?.kind===kind?"on":""}" ${disabled?"disabled":""} onclick="${ctx.pick}('${u.id}','${kind}')" aria-label="${u.name} ${name}"><span>${glyph}</span><b>${name}</b></button>`;
+    return `<div class="panel unit formalUnit ${selected} ${stance} ${u.hp<=0?"ko":""}">
+      <button type="button" class="unitTop unitInspect" onclick="ML.monsterDetail('${u.id}','${ctx.context}')" aria-label="${u.name}の能力と技を見る">${u.battle ? `<img class="unitSprite" src="${MLAsset(`${u.battle}/${spriteState}.png`)}" alt="">` : ""}<div class="unitIdentity"><b>${u.name}</b><span class="unitStateBadge">${stateLabel}</span></div></button>
+      ${helpButton(u.id,"STANCE",ctx.context)}
+      <div class="formalHp"><span>HP</span><div class="mini"><i style="width:${Math.max(0,100*u.hp/u.maxHp)}%"></i></div><small>${u.hp}/${u.maxHp}</small></div>
+      ${stance ? `<div class="stanceLock"><span>STANCE</span><b>${u.stance}</b></div>` : `<div class="commandTiles inlineCommandTiles">${tile("CORE","◆",u.core)}${tile("ROLE","◇",u.role)}${tile("EQUIPMENT","✦",eq.name)}</div>`}
     </div>`;
   }
 
@@ -826,8 +829,8 @@ window.ML = (() => {
 
     const st = stanceId(hunt.party, hunt.queue);
     $("huntParty").innerHTML = hunt.party.map(u => unitHtml(u,{
-      selected:hunt.queue.find(q => q.uid === u.id)?.uid,
-      stance:st, fn:"ML.openHunt"
+      queued:hunt.queue.find(q => q.uid === u.id) || null,
+      stance:st, pick:"ML.pickHunt", context:"hunt", disabled:resolvingHuntTurn
     })).join("");
     renderMiniFieldParty("huntFieldParty",hunt.party,hunt.queue,st,"huntField");
     if(window.MLMotion){ MLMotion.setBand("huntStage",MLBattle.band(hunt.vol)); MLMotion.ensureAtmosphere("huntStage"); if(!resolvingHuntTurn) MLMotion.telegraph({stageId:"huntStage",imgId:"huntEnemySprite",dir:"assets/battle/wind_bat",bossId:"wind",action:{type:"single"},band:MLBattle.band(hunt.vol)}); }
@@ -879,8 +882,15 @@ window.ML = (() => {
 
   function pickHunt(uid, kind){
     const u = hunt.party.find(x=>x.id===uid);
-    if(!u || hunt.queue.length>=2 || hunt.queue.some(q=>q.uid===uid)) return;
-    hunt.queue.push({uid,kind,name:u.name});
+    if(!u || resolvingHuntTurn) return;
+    const existing=hunt.queue.findIndex(q=>q.uid===uid);
+    if(existing>=0){
+      if(hunt.queue[existing].kind===kind) hunt.queue.splice(existing,1);
+      else hunt.queue[existing]={uid,kind,name:u.name};
+    }else{
+      if(hunt.queue.length>=2) return;
+      hunt.queue.push({uid,kind,name:u.name});
+    }
     MLAudio.event(hunt.queue.length===2 ? "stance" : "select");
     if(hunt.queue.length===2) setTimeout(()=>MLAudio.event("command"),70);
     closeSheet();
@@ -1151,7 +1161,7 @@ window.ML = (() => {
     $("testNextName").textContent=`${t.lockedAction.name}${t.lockedAction.type==="single"?" → 炎翼リザル":" → ALL"}`;
     $("testNextTag").textContent=t.lockedAction.tag;
     const st=stanceId(t.party,t.queue);
-    $("testParty").innerHTML=t.party.map(u=>unitHtml(u,{selected:t.queue.find(q=>q.uid===u.id)?.uid,stance:st,fn:"ML.openTest"})).join("");
+    $("testParty").innerHTML=t.party.map(u=>unitHtml(u,{queued:t.queue.find(q=>q.uid===u.id)||null,stance:st,pick:"ML.pickTest",context:"test",disabled:t.won||resolvingTestTurn})).join("");
     renderMiniFieldParty("testFieldParty",t.party,t.queue,st,"testField");
     if(window.MLMotion){ MLMotion.setBand("testStage",MLBattle.band(t.vol)); MLMotion.ensureAtmosphere("testStage"); }
     $("testQueue").innerHTML=t.queue.length?t.queue.map((q,i)=>`<div class="ql"><span>${i+1}. ${q.name}</span><span>${q.kind}</span><button class="removeCmd" onclick="ML.removeTest(${i})">取消</button></div>`).join(""):"2つのCOMMANDを選択";
@@ -1176,8 +1186,15 @@ window.ML = (() => {
   function removeTest(i){ testBattle.queue.splice(i,1); haptic(8); renderTest(); }
   function pickTest(uid,kind){
     const u=testBattle.party.find(x=>x.id===uid);
-    if(!u || testBattle.queue.length>=2 || testBattle.queue.some(q=>q.uid===uid)) return;
-    testBattle.queue.push({uid,kind,name:u.name});
+    if(!u || testBattle.won || resolvingTestTurn) return;
+    const existing=testBattle.queue.findIndex(q=>q.uid===uid);
+    if(existing>=0){
+      if(testBattle.queue[existing].kind===kind) testBattle.queue.splice(existing,1);
+      else testBattle.queue[existing]={uid,kind,name:u.name};
+    }else{
+      if(testBattle.queue.length>=2) return;
+      testBattle.queue.push({uid,kind,name:u.name});
+    }
     MLAudio.event(testBattle.queue.length===2?"stance":"select"); closeSheet(); haptic(10); renderTest();
   }
 
