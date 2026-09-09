@@ -93,7 +93,7 @@
     "title": "Validate deployed Chapter 1 on a physical Android device and tune pacing from evidence",
     "status": "pending",
     "ownership": "production/WORK_CHAT_OWNERSHIP.md",
-    "next_action": "Work first merges the verified full-journey PR and confirms Pages, then records Android manual evidence separately before any score change.",
+    "next_action": "Record Android physical-device evidence separately, then tune Chapter 1 pacing and battle feel without changing canon.",
     "blocker": "Android physical-device evidence requires a real device."
   },
   "pending": [
