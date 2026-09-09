@@ -5,7 +5,7 @@ async function phase(page, expected, timeout = 7000) {
 }
 
 async function choose(page, context, uid, kind) {
-  const command = page.locator(`#${context}Party [data-help-unit="${uid}"][data-help-kind="${kind}"]`);
+  const command = page.locator(`#${context}Party .commandTile[data-help-unit="${uid}"][data-help-kind="${kind}"]`);
   await expect(command, `${context}:${uid} ${kind} command`).toBeVisible();
   await command.tap();
 }
