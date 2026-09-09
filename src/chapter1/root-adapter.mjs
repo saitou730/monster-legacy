@@ -77,7 +77,13 @@ export function applyRootChapterEvent(root, event, payload = {}) {
   }
   if (event === 'NEW_SPECIES_TEST_COMPLETE') next.testComplete = true;
   if (event === 'SUMMON_TUTORIAL_COMPLETE') next.contracts = { ...(next.contracts || {}), lyra_vell: chapter.contracts.lyra_vell };
-  if (event === 'CONTRACT_EQUIP_COMPLETE') next.supportContract = 'lyra_vell';
+  if (event === 'CONTRACT_EQUIP_COMPLETE') {
+    next.supportContract = chapter.contracts.supportEquippedId;
+    next.contracts = {
+      ...(next.contracts || {}),
+      lyra_vell: { ...(next.contracts?.lyra_vell || {}), ...chapter.contracts.lyra_vell }
+    };
+  }
   if (event === 'LEGACY_CLAIM') next.legacyCores = { ...(next.legacyCores || {}), unyielding: true };
   return next;
 }
