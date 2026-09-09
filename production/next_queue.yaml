@@ -76,15 +76,20 @@
       "id": "CH1-CONTRACT-SUPPORT-001",
       "evidence": "PR53 merged as f10da34f7b39342277a545e67c1f1c7f49c0a578; branch Web QA https://github.com/saitou730/monster-legacy/actions/runs/34306276752",
       "result": "33/33 browser cases passed at 360x800, 390x844 and 430x932; root P13-P16 signal, free guaranteed Lyra Contract and separate Support equip are replay-safe. Android NOT RUN."
+    },
+    {
+      "id": "CH1-BOAR-LEGACY-CLOSEOUT",
+      "evidence": "PR54; https://github.com/saitou730/monster-legacy/actions/runs/34310053715",
+      "result": "36/36 browser cases passed at 360x800, 390x844 and 430x932; root P16-P20 rematch, mastery, explicit Unyielding claim, Archive acknowledgement and completed HOME are replay-safe. Android NOT RUN."
     }
   ],
   "current_task": {
-    "id": "CH1-BOAR-LEGACY-CLOSEOUT",
-    "title": "Bind Thorn Boar rematch, Unyielding LEGACY, Archive and Chapter 1 complete HOME",
+    "id": "QA-CHAPTER1-FULL-JOURNEY",
+    "title": "Verify one unseeded START-to-completed-HOME browser journey",
     "status": "pending",
     "ownership": "production/WORK_CHAT_OWNERSHIP.md",
-    "next_action": "Work connects P16-P20 to the canonical root boss/result/archive surfaces, with Unyielding sourced only from Thorn Boar mastery.",
-    "blocker": "No blocking Art required; preserve the locked Thorn Boar asset and existing battle rules."
+    "next_action": "Work adds a deterministic full-journey E2E without bypassing playable battle gates, then performs Android manual QA separately.",
+    "blocker": "Android physical-device evidence requires a real device; browser journey is unblocked."
   },
   "pending": [
     {
