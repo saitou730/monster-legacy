@@ -10,8 +10,7 @@ async function openFreshHunt(page){
 }
 
 async function choose(page, unitIndex, kind){
-  await page.locator('#huntParty .unit').nth(unitIndex).locator('.btn').tap();
-  await page.locator(`#sheetBody [data-kind="${kind}"]`).tap();
+  await page.locator('#huntParty .unit').nth(unitIndex).locator(`[data-help-kind="${kind}"]`).tap();
 }
 
 test('HUNT applies visible guard, heal and primed-core STANCE effects', async ({ page }) => {
