@@ -24,11 +24,9 @@ test('START → HOME → HUNT: two actual touch commands and a resolved turn', a
   await expect(page.locator('#huntStickyHpText')).toBeVisible();
   await expect(page.locator('#huntStickyVolText')).toBeVisible();
   const hp=await page.locator('#huntHpText').textContent();
-  await page.locator('#huntParty [onclick="ML.openHunt(\'fire\')"]').tap();
-  await page.locator('#sheetBody [data-uid="fire"][data-kind="CORE"]').tap();
+  await page.locator('#huntParty [data-help-unit="fire"][data-help-kind="CORE"]').tap();
   await expect(page.locator('#huntQueue .ql')).toHaveCount(1);
-  await page.locator('#huntParty [onclick="ML.openHunt(\'goura\')"]').tap();
-  await page.locator('#sheetBody [data-uid="goura"][data-kind="CORE"]').tap();
+  await page.locator('#huntParty [data-help-unit="goura"][data-help-kind="CORE"]').tap();
   await expect(page.locator('#huntQueue .ql')).toHaveCount(2);
   await expect(page.locator('#huntFieldParty .stance')).toHaveCount(1);
   await page.locator('#huntExec').tap();
