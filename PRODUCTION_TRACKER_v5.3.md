@@ -20,11 +20,12 @@ Canonical base: `main` at `feeb61ddbc37e824696fc008212f59d959432a55`
 | Dynamic portrait battle viewport | 48/48 Web QA PASS — COMMAND / STANCE / EXECUTE remain above fold with zero battle-scroll |
 | HUNT STANCE runtime effects | 51/51 Web QA PASS — guard, heal and primed CORE effects execute and write visible combat proof |
 | Unified battle monster details | 54/54 Web QA PASS — portrait/name opens HP, CORE, ROLE, EQUIPMENT and STANCE without selecting COMMAND |
+| Unified COMMAND selection | 54/54 Web QA PASS — HUNT / TEST / BOSS use direct CORE, ROLE and EQUIPMENT tiles with replace/cancel behavior |
 | Art Lock / root publish boundary | Preserved |
 | Android physical device | NOT RUN |
 | GitHub Pages | PASS — merged as `a7ffbebe0aa311c148dec4cf4c1776a0b9f596d0`; public root runtime verified |
 
-Evidence: PR #55, Web QA run `34340000149`; PR #57, run `34349283720`; PR #58, run `34355933486`; PR #59, run `34368173715`; PR #60, run `34374415303`; PR #61, run `34380362070`.  
+Evidence: PR #55, Web QA run `34340000149`; PR #57, run `34349283720`; PR #58, run `34355933486`; PR #59, run `34368173715`; PR #60, run `34374415303`; PR #61, run `34380362070`; PR #62, run `34392504907`.  
 Director Score: **82/100 HOLD**.
 
 ## Next priorities
