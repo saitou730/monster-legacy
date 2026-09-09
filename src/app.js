@@ -184,6 +184,7 @@ window.ML = (() => {
 
   function go(id,{chapterReady=false}={}){
     if(id === "hunt" && !chapterReady){ void routeHunt(); return; }
+    if(id === "boss" && !chapterReady && state.supportContract==="lyra_vell" && !state.mastery?.boar){ void routeChapterBoss(); return; }
     if(id === "test" && !state.fused) id = "fusion";
     if(window.MLPlaytest){ MLPlaytest.event("screen_view",{screen:id}); if(id==="boss") MLPlaytest.event("boss_open",{boss:state.selectedBoss}); }
     document.body.classList.toggle("bossMode", id === "boss");
@@ -253,7 +254,43 @@ window.ML = (() => {
     if(phase==="P10_FUSION_INTRO" || phase==="P11_FUSION_FLAME_WING"){ go("fusion"); return; }
     if(phase==="P12_NEW_SPECIES_TEST"){ go("test"); return; }
     if(phase==="P13_SUMMON_UNLOCK" || phase==="P14_SUMMON_TUTORIAL" || phase==="P15_CONTRACT_EQUIP"){ go("contract"); return; }
+    if(phase==="P16_BOAR_REMATCH_BRIEF" || phase==="P17_BOAR_MASTERY"){ await routeChapterBoss(); return; }
+    if(phase==="P18_LEGACY_REWARD"){ showLegacyClaim(); return; }
+    if(phase==="P19_ARCHIVE_UNLOCK"){ go("archive"); return; }
     go("home");
+  }
+
+  async function routeChapterBoss(){
+    const phase=await chapterPhase().catch(()=>null);
+    state.selectedBoss="boar";
+    boss=MLBattle.createBoss("boar",currentParty());
+    if(phase==="P16_BOAR_REMATCH_BRIEF"){
+      showJourneyResult({
+        eyebrow:"BOSS REMATCH / THORN BOAR",title:"退いた場所へ、勝ち筋を持ち帰る。",
+        body:"炎翼リザルの系譜とLyraの支援を携え、荊棘の大猪へ再び挑む。",
+        meta:"PARTY  3 MONSTERS\nSUPPORT  LYRA VELL\nGOAL  LEGACY ARTを耐えて撃破",
+        art:`<img src="${MLAsset(D.bosses.boar.art)}" alt="荊棘の大猪">`,
+        primary:"再戦を始める",onPrimary:async()=>{
+          if(!await chapterEvent("BOAR_REMATCH_ACCEPT")) return;
+          go("boss",{chapterReady:true});
+        }
+      });
+      return;
+    }
+    go("boss",{chapterReady:true});
+  }
+
+  function showLegacyClaim(){
+    showJourneyResult({
+      eyebrow:"LEGACY REWARD / THORN BOAR",title:"不退転",
+      body:"退かないことではない。退いた先で、勝ち筋を残す。<br>これは装備品ではなく、大猪との戦いから受け継いだ原則だ。",
+      meta:"SOURCE  荊棘の大猪\nTYPE  LEGACY\nSTATUS  CLAIM READY",
+      art:`<img src="${MLAsset(D.bosses.boar.art)}" alt="荊棘の大猪">`,
+      primary:"不退転を記録",onPrimary:async()=>{
+        if(!await chapterEvent("LEGACY_CLAIM")) return;
+        go("archive");
+      }
+    });
   }
 
   document.querySelectorAll(".nav button").forEach(b => b.onclick = () => go(b.dataset.go));
@@ -341,6 +378,7 @@ window.ML = (() => {
   };
 
   function renderHome(){
+    const chapterComplete=state.chapter1?.progress?.state==="P20_CHAPTER1_COMPLETE_HOME";
     const items = [
       ["STORY", state.storyComplete],
       ["JOIN", state.joinedBat],
@@ -356,8 +394,8 @@ window.ML = (() => {
     const n=MLProgression.next(state);
     $("homeObjective").textContent = n.label;
     $("homeObjectiveSub").textContent = n.sub;
-    $("journeyGoBtn").textContent = n.kind === "BOSS" ? "挑む ›" : n.kind === "ARCHIVE" ? "開く ›" : "進む ›";
-    $("continueBtn").textContent = n.kind === "ARCHIVE" ? "OPEN ARCHIVE" : "CONTINUE";
+    $("journeyGoBtn").textContent = chapterComplete ? "記録を見る ›" : n.kind === "BOSS" ? "挑む ›" : n.kind === "ARCHIVE" ? "開く ›" : "進む ›";
+    $("continueBtn").textContent = chapterComplete ? "CHAPTER COMPLETE" : n.kind === "ARCHIVE" ? "OPEN ARCHIVE" : "CONTINUE";
 
     const route = [
       {id:"story",label:"STORY",sub:"残響の獣",done:!!state.storyComplete, unlocked:true},
@@ -381,7 +419,9 @@ window.ML = (() => {
     if(hero){
       hero.querySelectorAll(".homeReturnNotice").forEach(x=>x.remove());
       if(state.storyComplete||state.joinedBat||state.fused||state.testComplete||Object.values(state.mastery||{}).some(Boolean)){
-        const note=document.createElement("div"); note.className="homeReturnNotice"; note.textContent=`進行記録を更新しました。次は「${n.label}」。`; hero.appendChild(note);
+        const note=document.createElement("div"); note.className="homeReturnNotice"; note.textContent=chapterComplete
+          ? "CHAPTER 1 COMPLETE — 仲間、系譜、契約、不退転の記録を保存しました。"
+          : `進行記録を更新しました。次は「${n.label}」。`; hero.appendChild(note);
       }
     }
 
@@ -394,7 +434,7 @@ window.ML = (() => {
       homeScreen.classList.toggle("homeHasJoin",!!state.joinedBat);
       homeScreen.classList.toggle("homeHasFusion",!!state.fused);
       homeScreen.classList.toggle("homeHasLegacy",legacyUnlocked.length>0);
-      homeScreen.classList.toggle("homeChapterComplete",mastered.length===3);
+      homeScreen.classList.toggle("homeChapterComplete",chapterComplete||mastered.length===3);
     }
     const legacyShelf=$("homeLegacyShelf");
     if(legacyShelf){
@@ -564,6 +604,17 @@ window.ML = (() => {
     const imgFor=id=> id==='wind'?MLAsset('assets/battle/wind_bat/idle.png'):id==='boar'?MLAsset(D.bosses.boar.art):id==='owl'?MLAsset(D.bosses.owl.art):id==='manticore'?MLAsset(D.bosses.manticore.art):MLAsset(`${D.units[id].battle}/idle.png`);
     const seen=id=> id==='wind'?state.joinedBat:id==='flame'?state.fused:(['boar','owl','manticore'].includes(id)?(state.clears[id]||state.mastery[id]):true);
     codex.innerHTML=`<div class="codexGrid">${codexEntries.map(([id,name,meta])=>`<div class="codexCard"><span class="codexTag">${seen(id)?'REGISTERED':'ENCOUNTER DATA'}</span><img src="${imgFor(id)}" alt=""><b>${name}</b><small>${meta}</small></div>`).join('')}</div>`;
+    void renderChapterArchiveGate();
+  }
+  async function renderChapterArchiveGate(){
+    const gate=$("chapterArchiveGate"); if(!gate) return;
+    const phase=await chapterPhase().catch(()=>null);
+    gate.hidden=phase!=="P19_ARCHIVE_UNLOCK";
+    if(!gate.hidden) gate.innerHTML=`<div class="eyebrow">CHAPTER 1 JOURNEY RECORD</div><h3>残響の獣 — COMPLETE RECORD</h3><p>風コウモリのJOIN、炎翼リザルの系譜、Lyraとの契約、荊棘の大猪から得たLEGACY「不退転」を記録した。</p><button class="btn primary" onclick="ML.completeChapterArchive()">記録を確認してHOMEへ</button>`;
+  }
+  async function completeChapterArchive(){
+    if(!await chapterEvent("ARCHIVE_COMPLETE")) return;
+    save(); go("home"); toast("CHAPTER 1 COMPLETE");
   }
   function archiveTab(mode){ archiveMode=mode; renderArchive(); }
 
@@ -1385,8 +1436,9 @@ window.ML = (() => {
     const allBossCleared = Object.values(state.clears).every(Boolean);
     const storedMastery=!!state.mastery?.[boss.id];
     const coreId=MLLegacy.coreIdForBoss(boss.id), core=coreId?D.legacyCores[coreId]:null;
+    const chapterClaim=boss.id==="boar" && state.chapter1?.progress?.state==="P18_LEGACY_REWARD" && !state.legacyCores?.unyielding;
     $("bossResult").innerHTML = boss.won
-      ? `<div class="bossReward"><div class="eyebrow">${boss.mastery||storedMastery?"MASTERY COMPLETE":"BOSS CLEAR"}</div><div class="rewardName">${boss.mastery||storedMastery?`LEGACY CORE「${core?.name||"—"}」`:"MASTERY未達"}</div><div class="small">${boss.mastery||storedMastery?(core?.theme||""):D.bosses[boss.id].mastery}</div>${allBossCleared?`<div class="coreClear">THREE BOSS CORE CLEAR<br><small>RAISE / SUPPRESS / CRASH の3戦術を突破</small></div>`:""}<div class="bossResultActions">${boss.mastery||storedMastery?'<button class="btn primary" onclick="ML.go(\'archive\')">残響を継ぐ</button>':'<button class="btn primary" onclick="ML.resetBoss()">MASTERY再戦</button>'}<button class="btn" onclick="ML.openBossSelect()">別Boss</button></div></div>`
+      ? `<div class="bossReward"><div class="eyebrow">${boss.mastery||storedMastery?"MASTERY COMPLETE":"BOSS CLEAR"}</div><div class="rewardName">${chapterClaim?'LEGACY「不退転」を受取可能':boss.mastery||storedMastery?`LEGACY CORE「${core?.name||"—"}」`:"MASTERY未達"}</div><div class="small">${boss.mastery||storedMastery?(core?.theme||""):D.bosses[boss.id].mastery}</div>${allBossCleared?`<div class="coreClear">THREE BOSS CORE CLEAR<br><small>RAISE / SUPPRESS / CRASH の3戦術を突破</small></div>`:""}<div class="bossResultActions">${chapterClaim?'<button class="btn primary" onclick="ML.showLegacyClaim()">不退転を受け取る</button>':boss.mastery||storedMastery?'<button class="btn primary" onclick="ML.go(\'archive\')">残響を継ぐ</button>':'<button class="btn primary" onclick="ML.resetBoss()">MASTERY再戦</button>'}<button class="btn" onclick="ML.openBossSelect()">別Boss</button></div></div>`
       : "";
     $("bossTelemetry").innerHTML = `<b>TURN ${boss.turn}</b> / VOL ${boss.vol} / CRASH ${boss.crashCount} / RAGE ${boss.enteredRage?"ENTERED":"AVOIDED"} / LEGACY ${boss.legacyTriggered?"TRIGGERED":"—"}`;
     $("bossStage").classList.toggle("dangerVignette",boss.vol>=90);
@@ -1645,8 +1697,8 @@ window.ML = (() => {
     setTimeout(()=>{syncBossImpactHud();addFx("bossStage",volDeltaText,"damagePop vol");},430);
 
     if(boss.hp <= 0){
-      setTimeout(()=>{
-        finishBoss(log);
+      setTimeout(async()=>{
+        await finishBoss(log);
         resolvingBossTurn = false;
         renderBoss();
       },760);
@@ -1655,7 +1707,7 @@ window.ML = (() => {
 
     // v1.3.2: clearly separate PLAYER RESOLVE -> ENEMY READ -> ENEMY IMPACT -> NEXT TURN.
     // Patch releases must not move the permanent UI layout; readability is temporal only.
-    setTimeout(()=>{
+    setTimeout(async()=>{
       const label = enemyWasSkipped ? "ENEMY ACTION — CRASH" : `ENEMY ACTION — ${enemyLocked.name||"NEXT"}`;
       callout(label, enemyWasSkipped ? "crash" : (enemyLocked.legacy ? "legacy" : "next"));
       if(window.MLMotion){
@@ -1698,7 +1750,7 @@ window.ML = (() => {
       }
     },2450);
 
-    setTimeout(()=>{
+    setTimeout(async()=>{
       const spec=D.bosses[boss.id];
       if(spec.battle && $("bossEnemySprite")){
         setSpriteState("bossStage","bossEnemySprite",spec.battle,boss.vol>=90 ? "danger" : "idle");
@@ -1713,7 +1765,7 @@ window.ML = (() => {
         return;
       }
 
-      if(boss.hp<=0){ finishBoss(log); resolvingBossTurn=false; renderBoss(); return; }
+      if(boss.hp<=0){ await finishBoss(log); resolvingBossTurn=false; renderBoss(); return; }
 
       // NEXT remains locked during player commands; recalculate only after current enemy action resolves.
       boss.turn += 1;
@@ -1726,13 +1778,19 @@ window.ML = (() => {
     },3850);
   };
 
-  function finishBoss(log){
+  async function finishBoss(log){
     boss.won = true;
     boss.mastery = MLBattle.masteryCheck(boss);
     if(window.MLPlaytest) MLPlaytest.event("boss_clear",{boss:boss.id,turn:boss.turn,vol:boss.vol,mastery:boss.mastery,legacySurvived:!!boss.legacySurvived,crashCount:boss.crashCount});
-    state.clears[boss.id] = true;
     let rewardUnlock=null;
-    if(boss.mastery){ state.mastery[boss.id] = true; rewardUnlock=MLLegacy.unlockForBoss(state,boss.id); }
+    const phase=await chapterPhase().catch(()=>null);
+    const chapterBoar=boss.id==="boar" && phase==="P17_BOAR_MASTERY";
+    if(boss.mastery && chapterBoar){
+      if(!await chapterEvent("BOAR_MASTERY_COMPLETE")){ boss.won=false; return; }
+    }else{
+      state.clears[boss.id] = true;
+      if(boss.mastery){ state.mastery[boss.id] = true; rewardUnlock=MLLegacy.unlockForBoss(state,boss.id); }
+    }
     save();
     log.push(`BOSS CLEAR${boss.mastery?" / MASTERY COMPLETE":""}`);
     $("bossLog").innerHTML = log.concat($("bossLog").innerHTML?[$("bossLog").innerHTML]:[]).join("<br>");
@@ -1740,16 +1798,17 @@ window.ML = (() => {
     const result=$('bossResult');
     if(result){
       const coreId=rewardUnlock?.id||MLLegacy.coreIdForBoss(boss.id), core=coreId?D.legacyCores[coreId]:null;
-      result.innerHTML=`<div class="bossReward"><div class="eyebrow">${boss.mastery?'MASTERY REWARD':'BATTLE RECORD'}</div><div class="rewardName">${boss.mastery&&core?`LEGACY CORE「${core.name}」`:'MASTERY条件を満たして再戦'}</div><div class="small">${boss.mastery&&core?core.theme:D.bosses[boss.id].mastery}</div><div class="bossResultActions">${boss.mastery?'<button class="btn primary" onclick="ML.go(\'archive\')">残響を継ぐ</button>':'<button class="btn primary" onclick="ML.resetBoss()">MASTERY再戦</button>'}<button class="btn" onclick="ML.openBossSelect()">別Boss</button></div></div>`;
+      const chapterClaim=chapterBoar&&boss.mastery;
+      result.innerHTML=`<div class="bossReward"><div class="eyebrow">${boss.mastery?'MASTERY COMPLETE':'BATTLE RECORD'}</div><div class="rewardName">${chapterClaim?'LEGACY「不退転」を受取可能':boss.mastery&&core?`LEGACY CORE「${core.name}」`:'MASTERY条件を満たして再戦'}</div><div class="small">${boss.mastery&&core?core.theme:D.bosses[boss.id].mastery}</div><div class="bossResultActions">${chapterClaim?'<button class="btn primary" onclick="ML.showLegacyClaim()">不退転を受け取る</button>':boss.mastery?'<button class="btn primary" onclick="ML.go(\'archive\')">残響を継ぐ</button>':'<button class="btn primary" onclick="ML.resetBoss()">MASTERY再戦</button>'}<button class="btn" onclick="ML.openBossSelect()">別Boss</button></div></div>`;
     }
     if(boss.mastery){
       const coreId=rewardUnlock?.id||MLLegacy.coreIdForBoss(boss.id), core=coreId?D.legacyCores[coreId]:null;
       setTimeout(()=>showJourneyResult({
-        eyebrow:"BOSS MASTERY / LEGACY ACQUIRED", title:core?`LEGACY CORE「${core.name}」`:"MASTERY COMPLETE",
-        body:core?`Bossの戦い方そのものを残響として獲得した。<br>${core.theme}`:"Mastery条件を達成した。",
-        meta:`BOSS  ${D.bosses[boss.id].name}\nMASTERy  COMPLETE\nNEXT  LEGACY ARCHIVE`,
+        eyebrow:chapterBoar?"BOSS MASTERY / CLAIM READY":"BOSS MASTERY / LEGACY ACQUIRED", title:chapterBoar?"荊棘を越えた。":"LEGACYを獲得した",
+        body:chapterBoar?"勝利は記録された。荊棘の大猪から得た戦い方を、LEGACY「不退転」として明示的に受け取ろう。":core?`Bossの戦い方そのものを残響として獲得した。<br>${core.theme}`:"Mastery条件を達成した。",
+        meta:`BOSS  ${D.bosses[boss.id].name}\nMASTERY  COMPLETE\nNEXT  ${chapterBoar?'LEGACY CLAIM':'LEGACY ARCHIVE'}`,
         art:`<img src="${MLAsset(D.bosses[boss.id].art)}" alt="${D.bosses[boss.id].name}">`,
-        primary:"LEGACY ARCHIVE", onPrimary:()=>go("archive")
+        primary:chapterBoar?"不退転を記録":"LEGACY ARCHIVE", onPrimary:()=>chapterBoar?showLegacyClaim():go("archive")
       }),760);
     }
     if(window.MLPlaytest && boss.id==="boar") setTimeout(()=>MLPlaytest.showSurvey(),1700);
@@ -1776,5 +1835,5 @@ window.ML = (() => {
   go("home");
   if(window.MLPlaytest){ MLPlaytest.bind(); MLPlaytest.event("app_ready",{screen:state.lastScreen||"home"}); }
 
-  return {closeSkillHelp:closeSheet,skillHelp,showIntro,go,goJourney,storyNext,storyCmd,storyStance,storyVol,storyEquip,storyBoss,setEquipment,setPartyLegacy,setPartyFocus,assignParty,confirmParty,setLegacy,archiveTab,openHunt,pickHunt,removeHunt,openTest,pickTest,removeTest,advanceFromTest,acknowledgeContract,summonLyra,equipLyra,selectBoss,openBossSelect,openBoss,pickBoss,removeBoss,resetBoss};
+  return {closeSkillHelp:closeSheet,skillHelp,showIntro,showLegacyClaim,go,goJourney,storyNext,storyCmd,storyStance,storyVol,storyEquip,storyBoss,setEquipment,setPartyLegacy,setPartyFocus,assignParty,confirmParty,setLegacy,archiveTab,completeChapterArchive,openHunt,pickHunt,removeHunt,openTest,pickTest,removeTest,advanceFromTest,acknowledgeContract,summonLyra,equipLyra,selectBoss,openBossSelect,openBoss,pickBoss,removeBoss,resetBoss};
 })();
