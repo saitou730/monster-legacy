@@ -91,9 +91,9 @@
   "current_task": {
     "id": "QA-ANDROID-AND-TEMPO",
     "title": "Validate deployed Chapter 1 on a physical Android device and tune pacing from evidence",
-    "status": "in_progress",
+    "status": "pending",
     "ownership": "production/WORK_CHAT_OWNERSHIP.md",
-    "next_action": "Merge PR59 after its 48/48 portrait battle viewport gate, then record Android physical-device evidence and tune from collected evidence.",
+    "next_action": "Record Android physical-device evidence, then tune Chapter 1 pacing and battle feel from collected evidence.",
     "blocker": "Android physical-device evidence requires a real device."
   },
   "pending": [
@@ -105,5 +105,5 @@
   ],
   "resume_rule": "Read main and current_task; do not repeat completed inventory without concrete reason; blocked art never advances by generation.",
   "schema_version": 1,
-  "working_pr": 59
+  "working_pr": null
 }
