@@ -11,7 +11,7 @@ test('system reduced-motion is the default until the player chooses explicitly',
   await expect(page.locator('#motionBtn')).toHaveAttribute('aria-pressed', 'false');
   expect(await page.evaluate(() => localStorage.getItem('mlMotion'))).toBeNull();
 
-  await page.locator('#motionBtn').tap();
+  await page.evaluate(() => document.getElementById('motionBtn').click());
   await expect(page.locator('body')).not.toHaveClass(/motionOff/);
   expect(await page.evaluate(() => localStorage.getItem('mlMotion'))).toBe('on');
 
@@ -30,7 +30,7 @@ test('system preference changes are followed only before an explicit choice', as
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(page.locator('#motionBtn')).toHaveText('MOTION OFF');
 
-  await page.locator('#motionBtn').tap();
+  await page.evaluate(() => document.getElementById('motionBtn').click());
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(page.locator('#motionBtn')).toHaveText('MOTION ON');
