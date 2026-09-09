@@ -26,8 +26,10 @@ test('HUNT applies visible guard, heal and primed-core STANCE effects', async ({
   await expect(page.locator('#huntStancePreview')).toContainText('ゴウラ');
   await page.locator('#huntExec').tap();
   await page.waitForTimeout(1250);
-  await expect(page.locator('#huntLog')).toContainText('STANCE ゴウラ');
-  await expect(page.locator('#huntLog')).toContainText('火トカゲ 10 (STANCE軽減)');
+  await expect(page.locator('#huntLog')).toContainText('STANCE発動｜ゴウラ');
+  await expect(page.locator('#huntLog')).toContainText('敵行動｜裂風急降下 → 火トカゲ 10（炉守で軽減）');
+  const guardLog = await page.locator('#huntLog').innerText();
+  expect(guardLog.indexOf('STANCE発動｜ゴウラ')).toBeLessThan(guardLog.indexOf('敵行動｜裂風急降下'));
 
   await page.reload();
   await page.locator('#bootStart').tap();
@@ -38,7 +40,7 @@ test('HUNT applies visible guard, heal and primed-core STANCE effects', async ({
   await expect(page.locator('#huntStancePreview')).toContainText('火トカゲ');
   await page.locator('#huntExec').tap();
   await page.waitForTimeout(1250);
-  await expect(page.locator('#huntLog')).toContainText('STANCE 火トカゲ');
+  await expect(page.locator('#huntLog')).toContainText('STANCE発動｜火トカゲ');
 
   await choose(page,1,'CORE');
   await choose(page,0,'CORE');
@@ -46,5 +48,5 @@ test('HUNT applies visible guard, heal and primed-core STANCE effects', async ({
   await page.locator('#huntExec').tap();
   await page.waitForTimeout(1250);
   await expect(page.locator('#huntLog')).toContainText('火トカゲ 火牙: 35 / VOL+10');
-  await expect(page.locator('#huntLog')).toContainText('STANCE 葉ウサギ');
+  await expect(page.locator('#huntLog')).toContainText('STANCE発動｜葉ウサギ');
 });
