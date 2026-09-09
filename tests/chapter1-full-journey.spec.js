@@ -111,6 +111,9 @@ test('fresh START reaches replay-safe Chapter 1 complete HOME through every play
   // Explicit claim → required Archive acknowledgement → completed HOME.
   await expect(page.locator('#journeyResultPrimary')).toContainText('不退転');
   await page.locator('#journeyResultPrimary').tap();
+  await expect(page.locator('#journeyResultTitle')).toHaveText('不退転');
+  await expect(page.locator('#journeyResultPrimary')).toHaveText('不退転を記録');
+  await page.locator('#journeyResultPrimary').tap();
   await phase(page, 'P19_ARCHIVE_UNLOCK');
   await expect(page.locator('#chapterArchiveGate')).toBeVisible();
   await page.locator('#chapterArchiveGate .btn').tap();
