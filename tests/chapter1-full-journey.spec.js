@@ -65,6 +65,9 @@ test('fresh START reaches replay-safe Chapter 1 complete HOME through every play
   page.once('dialog', dialog => dialog.accept());
   await page.locator('#fuseBtn').tap();
   await phase(page, 'P12_NEW_SPECIES_TEST');
+  await expect(page.locator('#journeyResultTitle')).toHaveText('炎翼リザル');
+  await page.locator('#journeyResultPrimary').tap();
+  await expect(page.locator('#test')).toHaveClass(/show/);
 
   // NEW SPECIES TEST proves CORE + EVADE using the real 2 COMMAND / 1 STANCE surface.
   await turn(page, 'test', [['flame','ROLE'],['goura','CORE']]);
