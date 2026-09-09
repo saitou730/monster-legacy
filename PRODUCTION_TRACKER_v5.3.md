@@ -1,7 +1,7 @@
 # Production Tracker v5.3 — Chapter 1 Full Journey
 
 Date: 2026-09-09  
-Canonical base: `main` at `4fe1ee0f244eba54cb74c90738ef36deb06447e3`
+Canonical base: `main` at `feeb61ddbc37e824696fc008212f59d959432a55`
 
 | Work item | Status |
 | --- | --- |
@@ -17,11 +17,12 @@ Canonical base: `main` at `4fe1ee0f244eba54cb74c90738ef36deb06447e3`
 | Chapter closeout survey interception | Fixed / browser PASS |
 | Completed-HOME feedback entry | Browser PASS — hidden before P20 and never auto-opens |
 | OS reduced-motion default | Browser PASS — explicit in-game choice remains authoritative |
+| Dynamic portrait battle viewport | 48/48 Web QA PASS — COMMAND / STANCE / EXECUTE remain above fold with zero battle-scroll |
 | Art Lock / root publish boundary | Preserved |
 | Android physical device | NOT RUN |
 | GitHub Pages | PASS — merged as `a7ffbebe0aa311c148dec4cf4c1776a0b9f596d0`; public root runtime verified |
 
-Evidence: PR #55, Web QA run `34340000149`; PR #57, run `34349283720`; PR #58, run `34355933486`.  
+Evidence: PR #55, Web QA run `34340000149`; PR #57, run `34349283720`; PR #58, run `34355933486`; PR #59, run `34368173715`.  
 Director Score: **82/100 HOLD**.
 
 ## Next priorities
