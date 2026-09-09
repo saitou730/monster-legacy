@@ -17,13 +17,13 @@ Canonical base: `main` at `4fe1ee0f244eba54cb74c90738ef36deb06447e3`
 | Chapter closeout survey interception | Fixed / browser PASS |
 | Art Lock / root publish boundary | Preserved |
 | Android physical device | NOT RUN |
-| GitHub Pages | Pending merge and deploy |
+| GitHub Pages | PASS — merged as `a7ffbebe0aa311c148dec4cf4c1776a0b9f596d0`; public root runtime verified |
 
 Evidence: PR #55; Web QA run `34340000149`.  
 Director Score: **82/100 HOLD**.
 
 ## Next priorities
 
-1. Merge verified PR #55 and confirm root GitHub Pages deployment.
-2. Perform Android physical-device touch, layout, sound, and Save/Continue QA.
-3. Tune Chapter 1 pacing and battle feel from measured full-journey playtest evidence.
+1. Perform Android physical-device touch, layout, sound, and Save/Continue QA.
+2. Tune Chapter 1 pacing and battle feel from measured full-journey playtest evidence.
+3. Begin the v1.1 WORLD / AREA implementation only after the v1.0 device gate is recorded.
