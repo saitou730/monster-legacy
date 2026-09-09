@@ -99,8 +99,8 @@ window.MLPlaytest = (() => {
   function renderHomeSummary(){
     const el=document.getElementById('playtestSummary');
     if(el) el.textContent=summaryText();
-    const btn=document.getElementById('playtestStartBtn');
-    if(btn) btn.textContent=session.submitted?'NEW PLAYTEST SESSION':'PLAYTEST SESSION';
+    const btn=document.getElementById('playtestSurveyBtn');
+    if(btn){ btn.textContent=session.submitted?'回答済み':'感触を記録'; btn.disabled=!!session.submitted; }
   }
   function showSurvey(){
     const modal=document.getElementById('playtestModal');
@@ -112,7 +112,11 @@ window.MLPlaytest = (() => {
     const start=document.getElementById('playtestStartBtn');
     if(start) start.addEventListener('click',()=>{restart('manual'); renderHomeSummary(); event('playtest_ready');});
     const exportBtn=document.getElementById('playtestExportBtn'); if(exportBtn) exportBtn.addEventListener('click',download);
+    const surveyBtn=document.getElementById('playtestSurveyBtn'); if(surveyBtn) surveyBtn.addEventListener('click',showSurvey);
     const close=document.getElementById('playtestClose'); if(close) close.addEventListener('click',hideSurvey);
+    const modal=document.getElementById('playtestModal');
+    if(modal) modal.addEventListener('click',e=>{ if(e.target===modal) hideSurvey(); });
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') hideSurvey(); });
     const form=document.getElementById('playtestForm');
     if(form) form.addEventListener('submit',e=>{
       e.preventDefault(); const fd=new FormData(form); const v=Object.fromEntries(fd.entries());
