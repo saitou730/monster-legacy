@@ -1,0 +1,29 @@
+# Production Tracker v5.3 — Chapter 1 Full Journey
+
+Date: 2026-09-09  
+Canonical base: `main` at `4fe1ee0f244eba54cb74c90738ef36deb06447e3`
+
+| Work item | Status |
+| --- | --- |
+| Fresh localStorage TITLE → P20 completed HOME | Browser PASS |
+| FIRST BATTLE / first Boar retreat / HOME | Browser PASS |
+| HUNT / Wind Bat JOIN / PARTY | Browser PASS |
+| fixed FUSION / Flame Wing Lizard TEST | Browser PASS |
+| guaranteed Lyra Contract / Support outside party | Browser PASS |
+| real Boar MASTERY / explicit Unyielding / Archive | Browser PASS |
+| Final reload and duplicate reward prevention | Browser PASS |
+| Portrait 360x800 / 390x844 / 430x932 | 39/39 Web QA PASS |
+| Hidden toast touch interception | Fixed / browser PASS |
+| Chapter closeout survey interception | Fixed / browser PASS |
+| Art Lock / root publish boundary | Preserved |
+| Android physical device | NOT RUN |
+| GitHub Pages | Pending merge and deploy |
+
+Evidence: PR #55; Web QA run `34340000149`.  
+Director Score: **82/100 HOLD**.
+
+## Next priorities
+
+1. Merge verified PR #55 and confirm root GitHub Pages deployment.
+2. Perform Android physical-device touch, layout, sound, and Save/Continue QA.
+3. Tune Chapter 1 pacing and battle feel from measured full-journey playtest evidence.
