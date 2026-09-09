@@ -904,13 +904,13 @@ window.ML = (() => {
     const queueSnapshot=hunt.queue.map(q=>({...q}));
     const stanceSnapshot=stanceId(hunt.party,hunt.queue);
     hunt.guard=false;
-    if(stanceSnapshot==="goura"){ hunt.guard=true; log.push("STANCE ゴウラ: 炉守 / 被ダメージ45%軽減"); }
+    if(stanceSnapshot==="goura"){ hunt.guard=true; log.push("STANCE発動｜ゴウラ「炉守」 → 単体被ダメージ45%軽減"); }
     if(stanceSnapshot==="leaf"){
       const leaf=hunt.party.find(x=>x.id==="leaf");
       const before=leaf.hp; leaf.hp=Math.min(leaf.maxHp,leaf.hp+6);
-      log.push(`STANCE 葉ウサギ: 芽息 / HEAL ${leaf.hp-before}`);
+      log.push(`STANCE発動｜葉ウサギ「芽息」 → HP ${leaf.hp-before}回復`);
     }
-    if(stanceSnapshot==="fire"){ hunt.stanceCoreReady=true; log.push("STANCE 火トカゲ: 火溜め / 次の火牙を強化"); }
+    if(stanceSnapshot==="fire"){ hunt.stanceCoreReady=true; log.push("STANCE発動｜火トカゲ「火溜め」 → 次の火牙を強化"); }
     resolvingHuntTurn=true;
     renderHunt();
     haptic(16);
@@ -953,14 +953,14 @@ window.ML = (() => {
       if(hunt.evadeReady){
         hunt.evaded = true;
         hunt.evadeReady = false;
-        log.push("裂風急降下 → 回避成功！");
+        log.push("敵行動｜裂風急降下 → 回避成功");
         if(window.MLMotion) MLMotion.burst("huntStage","crash",50,64);
         haptic([18,24]);
       }else{
         const fire = hunt.party.find(x=>x.id==="fire");
         const damage=hunt.guard?Math.round(18*.55):18;
         fire.hp = Math.max(1,fire.hp-damage);
-        log.push(`裂風急降下 → 火トカゲ ${damage}${hunt.guard?" (STANCE軽減)":""}`);
+        log.push(`敵行動｜裂風急降下 → 火トカゲ ${damage}${hunt.guard?"（炉守で軽減）":""}`);
         impactMiniField("huntField",hunt.party,["fire"]);
       }
     },650);
@@ -1207,12 +1207,12 @@ window.ML = (() => {
     let guard=false,evade=false,boost=false,total=0;
     const st=stanceId(t.party,t.queue);
     const log=[];
-    if(st==="goura"){ guard=true; log.push("STANCE ゴウラ: 炉守 / 被ダメージ軽減"); }
-    if(st==="flame"){ boost=true; log.push("STANCE 炎翼リザル: 滑空炎 / 次の炎翼牙を強化"); }
+    if(st==="goura"){ guard=true; log.push("STANCE発動｜ゴウラ「炉守」 → 被ダメージ軽減"); }
+    if(st==="flame"){ boost=true; log.push("STANCE発動｜炎翼リザル「滑空炎」 → 次の炎翼牙を強化"); }
     if(st==="leaf"){
       const leaf=t.party.find(x=>x.id==="leaf"),before=leaf.hp;
       leaf.hp=Math.min(leaf.maxHp,leaf.hp+6);
-      log.push(`STANCE 葉ウサギ: 芽息 / HEAL ${leaf.hp-before}`);
+      log.push(`STANCE発動｜葉ウサギ「芽息」 → HP ${leaf.hp-before}回復`);
     }
     for(const q of t.queue){
       const u=t.party.find(x=>x.id===q.uid);
@@ -1575,15 +1575,15 @@ window.ML = (() => {
     boss.reflect = false;
 
     const st = stanceId(boss.party,boss.queue);
-    if(st === "goura"){ boss.guard = true; log.push("STANCE ゴウラ: 炉守"); }
+    if(st === "goura"){ boss.guard = true; log.push("STANCE発動｜ゴウラ「炉守」 → 単体45%／全体30%軽減"); }
     if(st === "leaf"){
       const leaf = boss.party.find(x=>x.id==="leaf");
       const lm=MLLegacy.modifier(D,state,"leaf",{hp:leaf.hp,maxHp:leaf.maxHp,anyAllyLow:boss.party.some(x=>x.hp/x.maxHp<=.5),crash:boss.crash});
       const heal=6+lm.stanceHealBonus;
       leaf.hp = Math.min(leaf.maxHp,leaf.hp+heal);
-      log.push(`STANCE 葉ウサギ: 芽息 HEAL ${heal}${lm.stanceHealBonus?" / LEGACY":""}`);
+      log.push(`STANCE発動｜葉ウサギ「芽息」 → HP ${heal}回復${lm.stanceHealBonus?"（LEGACY補正）":""}`);
     }
-    if(st === "flame"){ const f=boss.party.find(u=>u.id==="flame"); if(f) f.stanceCoreReady=true; log.push("STANCE 炎翼リザル: 滑空炎"); }
+    if(st === "flame"){ const f=boss.party.find(u=>u.id==="flame"); if(f) f.stanceCoreReady=true; log.push("STANCE発動｜炎翼リザル「滑空炎」 → 次の炎翼牙を強化"); }
 
     for(const q of boss.queue){
       const u = boss.party.find(x=>x.id===q.uid);
