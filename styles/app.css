@@ -1116,3 +1116,24 @@ body.bossMode .directorDetails{display:none}
 .contractSigil:before,.contractSigil i{content:"";position:absolute;inset:14px;border:1px solid rgba(147,231,235,.28);transform:rotate(45deg)}
 .contractSigil i{inset:29px;transform:rotate(15deg)}.contractSigil span{font-size:42px;color:#bffcff;text-shadow:0 0 18px #44bac5}.contractSigil b{position:absolute;bottom:22px;font-size:10px;letter-spacing:.22em;color:#9cecf0}
 .contractStep{position:relative;margin-top:10px}.contractStep .btn{width:100%;margin-top:8px;min-height:48px}
+
+/* v1.8.5 — Dynamic portrait battle viewport.
+   Keep the decision tray and EXECUTE reachable without scrolling when mobile
+   browser chrome changes the visual viewport height. */
+body.bossMode #boss .bossScroll{
+  height:100%;min-height:0;overflow:hidden;
+  display:grid;grid-template-rows:auto auto minmax(0,1fr) auto;
+  align-content:stretch;padding:6px 8px max(8px,var(--safeB))
+}
+body.bossMode .bossScroll>.bossPrelude,
+body.bossMode .bossScroll>.bossHudGrid,
+body.bossMode .bossScroll>.battleViewport,
+body.bossMode .bossScroll>.combatTray{min-height:0}
+body.bossMode .bossScroll>.battleViewport{height:100%;overflow:hidden;margin:0}
+body.bossMode .bossScroll .combatStage.lockedStage{
+  height:100%;min-height:0;max-height:none;margin:0
+}
+body.bossMode .bossScroll>.combatTray{margin-top:-1px}
+@media(max-width:380px), (max-height:760px){
+  body.bossMode .bossScroll .combatStage.lockedStage{height:100%;min-height:0}
+}
