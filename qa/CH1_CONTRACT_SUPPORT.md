@@ -2,7 +2,7 @@
 
 Owner: Work
 Branch: work/ch1-contract-support-save
-Status: implementation complete; GitHub browser gate pending; not published
+Status: merged; main publication verification pending
 
 The root Support ID previously changed while the root Lyra ownership record
 retained supportEquipped=false. Equip now projects the controller record while
@@ -13,7 +13,8 @@ retroactively repair previously inconsistent saves.
 Validation: node --test tests/contract-support-save.test.mjs — 2/2 PASS.
 Covers input immutability, reload/replay, single acquisition, party preservation,
 and persistence failure. Local Browser E2E could not start because the executor's
-http-server failed at uv_interface_addresses; GitHub Web QA is the release gate.
+http-server failed at uv_interface_addresses. GitHub Web QA passed 33/33 at
+360x800, 390x844 and 430x932: https://github.com/saitou730/monster-legacy/actions/runs/34306276752.
 Android physical: NOT RUN.
 
 The canonical root now also exposes the explicit P13 signal acknowledgement,
