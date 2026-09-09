@@ -17,7 +17,7 @@ Base: `4fe1ee0f244eba54cb74c90738ef36deb06447e3`
 - PASS: invisible toast no longer intercepts portrait touch controls.
 - PASS: the playtest survey does not cover the canonical Chapter 1 LEGACY/Archive closeout.
 - PASS: completed HOME exposes an explicit optional feedback entry; it stays hidden before P20 and does not auto-open.
-- CI PENDING: first load respects OS reduced-motion; a player's explicit MOTION choice persists and overrides later OS changes.
+- PASS: first load respects OS reduced-motion; a player's explicit MOTION choice persists and overrides later OS changes.
 - PASS: root Art Lock assets and `prototype/chapter1/` were not changed.
 
 ## Verification
@@ -25,7 +25,7 @@ Base: `4fe1ee0f244eba54cb74c90738ef36deb06447e3`
 | Check | Result |
 | --- | --- |
 | Asset verification / Node regression | PASS |
-| Browser E2E 360x800 / 390x844 / 430x932 | PASS — 39/39, run 34340000149 |
+| Browser E2E 360x800 / 390x844 / 430x932 | PASS — 45/45, run 34355933486 |
 | Fresh START-to-P20 journey | PASS on all three browser projects |
 | Final Save/Continue and duplicate receipts | PASS |
 | Android physical device | NOT RUN |
