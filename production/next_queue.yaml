@@ -96,6 +96,11 @@
       "id": "QA-BATTLE-LOG-CLARITY",
       "evidence": "PR64; https://github.com/saitou730/monster-legacy/actions/runs/34398679230",
       "result": "54/54 browser cases passed at 360x800, 390x844 and 430x932; STANCE activation, concrete effect and enemy resolution are readable in order. Android NOT RUN."
+    },
+    {
+      "id": "QA-ANDROID-GATE-DEFINITION",
+      "evidence": "PR65; qa/ANDROID_PHYSICAL_GATE_v1.0.md",
+      "result": "12 required physical-device checks and evidence rules defined. All checks remain NOT RUN; no Android PASS claimed."
     }
   ],
   "current_task": {
@@ -103,7 +108,7 @@
     "title": "Validate deployed Chapter 1 on a physical Android device and tune pacing from evidence",
     "status": "pending",
     "ownership": "production/WORK_CHAT_OWNERSHIP.md",
-    "next_action": "Record Android physical-device evidence, then tune Chapter 1 pacing and battle feel from collected evidence.",
+    "next_action": "Run AND-01 through AND-12 from qa/ANDROID_PHYSICAL_GATE_v1.0.md on a physical Android device, attach evidence, then fix any failures before pacing work.",
     "blocker": "Android physical-device evidence requires a real device."
   },
   "pending": [
@@ -115,5 +120,5 @@
   ],
   "resume_rule": "Read main and current_task; do not repeat completed inventory without concrete reason; blocked art never advances by generation.",
   "schema_version": 1,
-  "working_pr": null
+  "working_pr": 66
 }
