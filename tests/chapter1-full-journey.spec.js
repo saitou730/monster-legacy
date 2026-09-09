@@ -120,6 +120,12 @@ test('fresh START reaches replay-safe Chapter 1 complete HOME through every play
   await phase(page, 'P20_CHAPTER1_COMPLETE_HOME');
   await expect(page.locator('#home')).toHaveClass(/show/);
   await expect(page.locator('#homeObjective')).toHaveText('CHAPTER 1 COMPLETE');
+  await expect(page.locator('#chapterFeedbackPanel')).toBeVisible();
+  await expect(page.locator('#playtestModal')).not.toHaveClass(/show/);
+  await page.locator('#playtestSurveyBtn').tap();
+  await expect(page.locator('#playtestModal')).toHaveClass(/show/);
+  await page.locator('#playtestClose').tap();
+  await expect(page.locator('#playtestModal')).not.toHaveClass(/show/);
 
   // Reload from the final save: no duplicate JOIN/FUSION/SUMMON/LEGACY.
   const completed = await page.evaluate(() => localStorage.getItem(ML_DATA.saveKey));
