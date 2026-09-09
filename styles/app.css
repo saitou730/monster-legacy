@@ -1103,3 +1103,13 @@ body.bossMode .directorDetails{display:none}
 
 /* A closing sheet must stop intercepting touches immediately. */
 .sheet:not(.show), .sheet:not(.show) *{pointer-events:none!important}
+
+.contractScene{position:absolute;inset:0;background:radial-gradient(circle at 50% 28%,rgba(94,181,199,.22),transparent 34%),linear-gradient(180deg,#14222d,#070b10 70%)}
+.contractScroll{position:relative;padding-top:max(16px,env(safe-area-inset-top))}
+.contractHero h2,.contractStep h2,.contractStep h3{margin:5px 0 8px}.contractHero p,.contractStep p{color:#c6d0d7;line-height:1.55}
+.contractStatus,.contractPartyProof{border:1px solid rgba(125,222,230,.35);background:rgba(7,22,29,.72);padding:9px 11px;color:#9cecf0;font-size:12px;letter-spacing:.1em}
+.contractPartyProof{margin-top:10px;color:#d5e8e9;letter-spacing:.04em}
+.contractSigil{width:148px;height:148px;margin:16px auto;display:grid;place-items:center;border:1px solid rgba(147,231,235,.55);border-radius:50%;position:relative;box-shadow:0 0 34px rgba(76,204,214,.18)}
+.contractSigil:before,.contractSigil i{content:"";position:absolute;inset:14px;border:1px solid rgba(147,231,235,.28);transform:rotate(45deg)}
+.contractSigil i{inset:29px;transform:rotate(15deg)}.contractSigil span{font-size:42px;color:#bffcff;text-shadow:0 0 18px #44bac5}.contractSigil b{position:absolute;bottom:22px;font-size:10px;letter-spacing:.22em;color:#9cecf0}
+.contractStep{position:relative;margin-top:10px}.contractStep .btn{width:100%;margin-top:8px;min-height:48px}
