@@ -716,6 +716,9 @@ body.storyMode #story{background:#030507}
 /* v0.6.7 — External Playtest Harness */
 .playtestPanel{margin-top:10px;border-color:#394b60;background:linear-gradient(180deg,#101824,#0b111a)}
 .playtestPanel .row{align-items:center}.playtestPanel .small{line-height:1.5}
+.chapterFeedbackPanel[hidden]{display:none}.chapterFeedbackPanel h3{margin:4px 0 6px;font:700 18px Georgia,"Yu Mincho",serif}.chapterFeedbackPanel p{margin:0;color:#abb8c7}
+.chapterFeedbackActions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px}.chapterFeedbackActions .btn{min-height:48px}.chapterFeedbackSummary{min-height:16px;margin-top:8px;color:#b9d9ff;font-size:9px;line-height:1.45}
+@media (max-width:359px){.chapterFeedbackActions{grid-template-columns:1fr}}
 .playtestModal{position:fixed;inset:0;z-index:120;display:none;align-items:flex-end;justify-content:center;background:#02050bdc;padding:12px}
 .playtestModal.show{display:flex}
 .playtestCard{width:min(520px,100%);max-height:88vh;overflow:auto;border:1px solid #6e5b38;border-radius:18px;background:#0b1119;padding:16px;box-shadow:0 24px 70px #000b}

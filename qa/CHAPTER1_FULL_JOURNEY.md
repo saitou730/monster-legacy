@@ -16,6 +16,7 @@ Base: `4fe1ee0f244eba54cb74c90738ef36deb06447e3`
 - PASS: reload preserves P20 and does not duplicate JOIN, lineage, Contract, or LEGACY currency.
 - PASS: invisible toast no longer intercepts portrait touch controls.
 - PASS: the playtest survey does not cover the canonical Chapter 1 LEGACY/Archive closeout.
+- PASS: completed HOME exposes an explicit optional feedback entry; it stays hidden before P20 and does not auto-open.
 - PASS: root Art Lock assets and `prototype/chapter1/` were not changed.
 
 ## Verification

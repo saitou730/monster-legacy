@@ -436,6 +436,8 @@ window.ML = (() => {
       homeScreen.classList.toggle("homeHasLegacy",legacyUnlocked.length>0);
       homeScreen.classList.toggle("homeChapterComplete",chapterComplete||mastered.length===3);
     }
+    const feedbackPanel=$("chapterFeedbackPanel");
+    if(feedbackPanel) feedbackPanel.hidden=!chapterComplete;
     const legacyShelf=$("homeLegacyShelf");
     if(legacyShelf){
       const order=["unyielding","quiet_thunder","falling_wind"];
