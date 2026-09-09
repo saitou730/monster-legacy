@@ -86,15 +86,20 @@
       "id": "QA-CHAPTER1-FULL-JOURNEY",
       "evidence": "PR55; https://github.com/saitou730/monster-legacy/actions/runs/34340000149",
       "result": "39/39 browser cases passed at 360x800, 390x844 and 430x932; one fresh unseeded root journey reaches completed HOME and reloads without duplicate JOIN, FUSION, Contract or LEGACY. Android NOT RUN."
+    },
+    {
+      "id": "UI-UNIFIED-COMMAND-001",
+      "evidence": "PR62; https://github.com/saitou730/monster-legacy/actions/runs/34392504907",
+      "result": "54/54 browser cases passed at 360x800, 390x844 and 430x932; HUNT, TEST and BOSS share direct CORE/ROLE/EQUIPMENT selection with replace/cancel behavior. Android NOT RUN."
     }
   ],
   "current_task": {
-    "id": "QA-ANDROID-AND-TEMPO",
-    "title": "Validate deployed Chapter 1 on a physical Android device and tune pacing from evidence",
+    "id": "QA-BATTLE-LOG-CLARITY",
+    "title": "Clarify STANCE activation and result in the battle log",
     "status": "pending",
     "ownership": "production/WORK_CHAT_OWNERSHIP.md",
-    "next_action": "Record Android physical-device evidence, then tune Chapter 1 pacing and battle feel from collected evidence.",
-    "blocker": "Android physical-device evidence requires a real device."
+    "next_action": "Audit HUNT, TEST and BOSS log sequencing and make STANCE activation/result readable without changing battle calculations.",
+    "blocker": null
   },
   "pending": [
     {
@@ -105,5 +110,5 @@
   ],
   "resume_rule": "Read main and current_task; do not repeat completed inventory without concrete reason; blocked art never advances by generation.",
   "schema_version": 1,
-  "working_pr": null
+  "working_pr": 62
 }

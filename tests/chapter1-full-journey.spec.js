@@ -5,16 +5,9 @@ async function phase(page, expected, timeout = 7000) {
 }
 
 async function choose(page, context, uid, kind) {
-  if (context === 'boss') {
-    await page.locator(`#bossParty .commandTile[data-help-unit="${uid}"][data-help-kind="${kind}"]`).tap({ timeout: 5000 });
-    return;
-  }
-  const unit = page.locator(`#${context}Party [onclick="ML.open${context[0].toUpperCase()+context.slice(1)}('${uid}')"]`);
-  await expect(unit, `${context}:${uid} party card`).toBeVisible({ timeout: 5000 });
-  await unit.tap({ timeout: 5000 });
-  const command = page.locator(`#sheetBody [data-uid="${uid}"][data-kind="${kind}"]`);
-  await expect(command, `${context}:${uid}:${kind} command`).toBeVisible({ timeout: 5000 });
-  await command.tap({ timeout: 5000 });
+  const command = page.locator(`#${context}Party .commandTile[data-help-unit="${uid}"][data-help-kind="${kind}"]`);
+  await expect(command, `${context}:${uid} ${kind} command`).toBeVisible();
+  await command.tap();
 }
 
 async function turn(page, context, commands, timeout = 6000) {
