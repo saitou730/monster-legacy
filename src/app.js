@@ -558,11 +558,12 @@ window.ML = (() => {
   }
 
   function stanceText(uid,context="boss"){
-    if(uid==="goura") return context==="boss"?"未選択で発動。このターンの味方への単体ダメージを45%、全体・連続攻撃を30%軽減。ROLEの炉守と重複しません。":"現在のHUNTでは固有の軽減効果は未実装です。";
-    if(uid==="leaf") return context==="boss"?"未選択で発動。このターン、自分のHPを6回復。装備したLEGACYで回復量が増える場合があります。":"現在のHUNTでは固有の回復効果は未実装です。";
-    if(uid==="flame" && context!=="boss") return "この練習戦では固有STANCE効果は未実装です。BOSSでは次の炎翼牙を強化します。";
+    if(uid==="goura") return "未選択で発動。このターンの味方への単体ダメージを45%、全体・連続攻撃を30%軽減。ROLEの炉守と重複しません。";
+    if(uid==="leaf") return "未選択で発動。このターン、自分のHPを6回復。装備したLEGACYで回復量が増える場合があります。";
+    if(uid==="fire") return "未選択で火を溜め、次に使う火牙のダメージ+12%、VOLTAGE上昇+2。重複蓄積しません。";
     if(uid==="flame") return "未選択で次のCOREを準備。次に使う炎翼牙のダメージ+12%、VOLTAGE上昇+2。重複蓄積しません。";
-    return "未選択の1体として待機します。この個体の固有STANCE効果は現行ビルドでは未実装です。";
+    if(uid==="wind") return "未選択で滑空姿勢を取り、次に自分が狙われる単体攻撃を回避します。全体攻撃には無効です。";
+    return "未選択の1体として待機し、固有STANCEで場を支えます。";
   }
   function skillHelp(uid,kind,context="boss"){
     const u=D.units[uid];if(!u)return;
@@ -788,7 +789,7 @@ window.ML = (() => {
     return {
       hp:120, maxHp:120, vol:18, queue:[],
       party:[cloneUnit("goura"), cloneUnit("fire"), cloneUnit("leaf")],
-      evadeReady:false, evaded:false, ready:false
+      evadeReady:false, evaded:false, guard:false, stanceCoreReady:false, ready:false
     };
   }
 
@@ -874,6 +875,14 @@ window.ML = (() => {
     const log = [];
     const queueSnapshot=hunt.queue.map(q=>({...q}));
     const stanceSnapshot=stanceId(hunt.party,hunt.queue);
+    hunt.guard=false;
+    if(stanceSnapshot==="goura"){ hunt.guard=true; log.push("STANCE ゴウラ: 炉守 / 被ダメージ45%軽減"); }
+    if(stanceSnapshot==="leaf"){
+      const leaf=hunt.party.find(x=>x.id==="leaf");
+      const before=leaf.hp; leaf.hp=Math.min(leaf.maxHp,leaf.hp+6);
+      log.push(`STANCE 葉ウサギ: 芽息 / HEAL ${leaf.hp-before}`);
+    }
+    if(stanceSnapshot==="fire"){ hunt.stanceCoreReady=true; log.push("STANCE 火トカゲ: 火溜め / 次の火牙を強化"); }
     resolvingHuntTurn=true;
     renderHunt();
     haptic(16);
@@ -883,9 +892,11 @@ window.ML = (() => {
     for(const q of hunt.queue){
       const u = hunt.party.find(x=>x.id===q.uid);
       if(q.kind === "CORE"){
-        hunt.hp = Math.max(0, hunt.hp-u.coreDmg);
-        hunt.vol = Math.min(100, hunt.vol+u.coreVol);
-        log.push(`${u.name} ${u.core}: ${u.coreDmg} / VOL+${u.coreVol}`);
+        let damage=u.coreDmg, voltage=u.coreVol;
+        if(u.id==="fire" && hunt.stanceCoreReady){ damage=Math.round(damage*1.12); voltage+=2; hunt.stanceCoreReady=false; }
+        hunt.hp = Math.max(0, hunt.hp-damage);
+        hunt.vol = Math.min(100, hunt.vol+voltage);
+        log.push(`${u.name} ${u.core}: ${damage} / VOL+${voltage}`);
       }else if(q.kind==="EQUIPMENT"){
         const eq=equippedFor(u.id);
         MLAudio.event("equipment");
@@ -919,8 +930,9 @@ window.ML = (() => {
         haptic([18,24]);
       }else{
         const fire = hunt.party.find(x=>x.id==="fire");
-        fire.hp = Math.max(1,fire.hp-18);
-        log.push("裂風急降下 → 火トカゲ 18");
+        const damage=hunt.guard?Math.round(18*.55):18;
+        fire.hp = Math.max(1,fire.hp-damage);
+        log.push(`裂風急降下 → 火トカゲ ${damage}${hunt.guard?" (STANCE軽減)":""}`);
         impactMiniField("huntField",hunt.party,["fire"]);
       }
     },650);
@@ -1159,10 +1171,14 @@ window.ML = (() => {
     animateMiniFieldCommands("testField",t.party,queueSnapshot);
     let guard=false,evade=false,boost=false,total=0;
     const st=stanceId(t.party,t.queue);
-    if(st==="goura") guard=true;
-    if(st==="flame") boost=true;
-    if(st==="leaf"){ const leaf=t.party.find(x=>x.id==="leaf"); leaf.hp=Math.min(leaf.maxHp,leaf.hp+6); }
     const log=[];
+    if(st==="goura"){ guard=true; log.push("STANCE ゴウラ: 炉守 / 被ダメージ軽減"); }
+    if(st==="flame"){ boost=true; log.push("STANCE 炎翼リザル: 滑空炎 / 次の炎翼牙を強化"); }
+    if(st==="leaf"){
+      const leaf=t.party.find(x=>x.id==="leaf"),before=leaf.hp;
+      leaf.hp=Math.min(leaf.maxHp,leaf.hp+6);
+      log.push(`STANCE 葉ウサギ: 芽息 / HEAL ${leaf.hp-before}`);
+    }
     for(const q of t.queue){
       const u=t.party.find(x=>x.id===q.uid);
       if(q.kind==="CORE"){
