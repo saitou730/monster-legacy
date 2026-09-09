@@ -46,7 +46,7 @@ h1,h2,h3{font-family:Georgia,"Yu Mincho",serif}.title{font-size:30px;line-height
 .skill,.trait{width:100%;text-align:left;border:1px solid #46556c;background:#172131;color:#eef3fb;border-radius:10px;padding:10px;margin-top:7px;min-height:50px}.trait.on{border-color:#d2ad5e;background:#392e1c}
 .fusionArt{width:100%;border-radius:12px;border:1px solid #6b552d;display:block}.parents{display:grid;gap:9px}.lineage{white-space:pre;font-family:monospace;background:#090d14;border:1px solid #354258;border-radius:10px;padding:10px;font-size:11px}
 .layers{display:flex;flex-wrap:wrap;gap:5px}.chip{font-size:9px;border:1px solid #44536a;color:#758399;border-radius:999px;padding:4px 6px}.chip.live{color:#ffe6a5;border-color:#d4b061;background:#352b1a}
-.toast{position:fixed;left:50%;bottom:calc(82px + var(--safeB));transform:translateX(-50%);background:#101722;border:1px solid var(--gold);color:#fff0bf;border-radius:10px;padding:10px 13px;opacity:0;transition:.2s;z-index:90;white-space:normal;text-align:center;max-width:calc(100vw - 24px);width:max-content}.toast.show{opacity:1}
+.toast{position:fixed;left:50%;bottom:calc(82px + var(--safeB));transform:translateX(-50%);background:#101722;border:1px solid var(--gold);color:#fff0bf;border-radius:10px;padding:10px 13px;opacity:0;transition:.2s;z-index:90;white-space:normal;text-align:center;max-width:calc(100vw - 24px);width:max-content;pointer-events:none}.toast.show{opacity:1}
 
 /* v0.2 Director pass */
 .progressStrip{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
