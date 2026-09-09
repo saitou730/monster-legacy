@@ -15,8 +15,7 @@ async function reachFirstHome(page) {
 }
 
 async function chooseHunt(page, uid, kind) {
-  await page.locator(`#huntParty [onclick="ML.openHunt('${uid}')"]`).tap();
-  await page.locator(`#sheetBody [data-uid="${uid}"][data-kind="${kind}"]`).tap();
+  await page.locator(`#huntParty [data-help-unit="${uid}"][data-help-kind="${kind}"]`).tap();
 }
 
 async function executeHuntTurn(page, first, second) {
@@ -29,8 +28,7 @@ async function executeHuntTurn(page, first, second) {
 }
 
 async function chooseTest(page, uid, kind) {
-  await page.locator(`#testParty [onclick="ML.openTest('${uid}')"]`).tap();
-  await page.locator(`#sheetBody [data-uid="${uid}"][data-kind="${kind}"]`).tap();
+  await page.locator(`#testParty [data-help-unit="${uid}"][data-help-kind="${kind}"]`).tap();
 }
 
 async function executeTestTurn(page, first, second) {
