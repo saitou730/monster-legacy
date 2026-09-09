@@ -84,6 +84,10 @@ export function applyRootChapterEvent(root, event, payload = {}) {
       lyra_vell: { ...(next.contracts?.lyra_vell || {}), ...chapter.contracts.lyra_vell }
     };
   }
+  if (event === 'BOAR_MASTERY_COMPLETE') {
+    next.clears = { ...(next.clears || {}), boar: true };
+    next.mastery = { ...(next.mastery || {}), boar: true };
+  }
   if (event === 'LEGACY_CLAIM') next.legacyCores = { ...(next.legacyCores || {}), unyielding: true };
   return next;
 }
