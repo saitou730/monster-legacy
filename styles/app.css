@@ -1137,3 +1137,12 @@ body.bossMode .bossScroll>.combatTray{margin-top:-1px}
 @media(max-width:380px), (max-height:760px){
   body.bossMode .bossScroll .combatStage.lockedStage{height:100%;min-height:0}
 }
+
+
+/* v1.8.7 — Unified tap-to-inspect battle monster details. */
+.unitInspect{appearance:none;width:100%;border:0;background:transparent;color:inherit;padding:0;text-align:left;min-height:44px;cursor:pointer;touch-action:manipulation}
+.unitInspect:focus-visible{outline:2px solid #f0cf82;outline-offset:3px;border-radius:8px}
+.monsterDetail{padding:2px 2px 8px}.monsterDetailHero{display:grid;grid-template-columns:92px 1fr;gap:12px;align-items:center;padding:10px;border:1px solid #705a31;border-radius:13px;background:linear-gradient(135deg,#2c2417,#0a111a)}
+.monsterDetailHero img{width:92px;height:96px;object-fit:contain;filter:drop-shadow(0 9px 10px #000)}.monsterDetailHero span,.monsterDetailGrid span{display:block;font-size:8px;letter-spacing:.14em;color:#d8b56a}.monsterDetailHero b{display:block;font-size:20px;margin-top:3px}.monsterDetailHero small{display:block;color:#8fa0b2;font-size:8px;margin-top:4px}
+.monsterDetailGrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}.monsterDetailGrid section{min-height:79px;padding:9px;border:1px solid #37475b;border-radius:10px;background:#0b121c}.monsterDetailGrid section.stance{grid-column:1/-1;border-color:#5279a0;background:linear-gradient(90deg,#102237,#0b141f)}.monsterDetailGrid b{display:block;font-size:12px;margin-top:5px}.monsterDetailGrid small{display:block;font-size:9px;line-height:1.45;color:#a9b7c6;margin-top:4px}.monsterDetail>p{font-size:10px;color:#8796a6;margin:9px 2px}.monsterDetail>.btn{width:100%;min-height:48px}
+@media(max-width:380px){.monsterDetailHero{grid-template-columns:74px 1fr}.monsterDetailHero img{width:74px;height:80px}.monsterDetailGrid{grid-template-columns:1fr}.monsterDetailGrid section.stance{grid-column:auto}}
