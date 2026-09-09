@@ -163,6 +163,32 @@
  </div>
 </div></section>
 
+<section id="contract" class="screen"><div class="contractScene"></div><div class="scroll contractScroll">
+ <div class="panel pad gold contractHero">
+  <div class="eyebrow">SUPPORT CONTRACT / TUTORIAL</div><h2>遠くの意思と、戦いを結ぶ。</h2>
+  <div id="contractStatus" class="contractStatus">SIGNAL DETECTED</div>
+  <div class="contractSigil" aria-hidden="true"><span>✦</span><i></i><b>CONTRACT</b></div>
+  <p>契約者はモンスターではない。3体の編成枠には入らず、戦術を支えるSUPPORTとして同行する。</p>
+  <div id="contractPartyProof" class="contractPartyProof">MONSTER PARTY 3 / 3 — 契約者は編成外</div>
+ </div>
+ <div id="contractUnlock" class="panel pad contractStep">
+  <div class="eyebrow">01 / SIGNAL</div><h3>契約信号を受信</h3><p>NEW SPECIES TESTの残響に、ひとつの応答が重なった。</p>
+  <button class="btn primary" onclick="ML.acknowledgeContract()">契約召喚を解放</button>
+ </div>
+ <div id="contractSummon" class="panel pad contractStep" hidden>
+  <div class="eyebrow">02 / GUARANTEED SUMMON</div><h3>初回契約 — 無料・確定</h3><p>消費なし。結果はLyraに固定され、再実行しても重複取得しない。</p>
+  <button class="btn primary" onclick="ML.summonLyra()">契約を結ぶ</button>
+ </div>
+ <div id="contractEquip" class="panel pad gold contractStep" hidden>
+  <div class="eyebrow">CONTRACT ACQUIRED / SR</div><h2>Lyra Vell</h2><p>戦場の外から判断を補助する契約者。モンスター3体の枠は変更しない。</p>
+  <button class="btn primary" onclick="ML.equipLyra()">SUPPORTへ設定</button>
+ </div>
+ <div id="contractComplete" class="panel pad gold contractStep" hidden>
+  <div class="eyebrow">SUPPORT READY</div><h2>Lyra Vell — EQUIPPED</h2><p>契約を保存した。次は荊棘の大猪との再戦へ。</p>
+  <button class="btn primary" onclick="ML.go('boss')">大猪との再戦へ</button>
+ </div>
+</div></section>
+
 <section id="archive" class="screen"><div class="archiveBackdrop"></div><div class="scroll archiveScroll">
  <div class="panel pad gold archiveHero"><div class="eyebrow">LEGACY ARCHIVE / CODEX</div><h2 style="margin:4px 0">受け継いだものを、次の戦いへ。</h2><div class="small">Boss MASTERYで得た残響は、同じ名前でも継承先によって効果が変わる。</div></div>
  <div class="archiveTabs"><button class="on" data-archive-tab="legacy" onclick="ML.archiveTab('legacy')">LEGACY</button><button data-archive-tab="codex" onclick="ML.archiveTab('codex')">CODEX</button></div>

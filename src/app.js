@@ -203,6 +203,7 @@ window.ML = (() => {
     if(id === "party"){ renderOwned(); renderLoadout(); }
     if(id === "fusion") lockFuse();
     if(id === "test") renderTest();
+    if(id === "contract") void renderContract();
     if(id === "boss") renderBoss();
     if(id === "archive") renderArchive();
   }
@@ -251,6 +252,7 @@ window.ML = (() => {
     if(phase==="P09_PARTY_REBUILD"){ go("party"); return; }
     if(phase==="P10_FUSION_INTRO" || phase==="P11_FUSION_FLAME_WING"){ go("fusion"); return; }
     if(phase==="P12_NEW_SPECIES_TEST"){ go("test"); return; }
+    if(phase==="P13_SUMMON_UNLOCK" || phase==="P14_SUMMON_TUTORIAL" || phase==="P15_CONTRACT_EQUIP"){ go("contract"); return; }
     go("home");
   }
 
@@ -363,6 +365,7 @@ window.ML = (() => {
       {id:"party",label:"PARTY",sub:"編成",done:!!state.joinedBat, unlocked:!!state.storyComplete},
       {id:"fusion",label:"FUSION",sub:"炎翼リザル",done:!!state.fused, unlocked:!!state.joinedBat},
       {id:"test",label:"TEST",sub:"新種試験",done:!!state.testComplete, unlocked:!!state.fused},
+      {id:"contract",label:"CONTRACT",sub:"Lyra Support",done:state.supportContract==="lyra_vell", unlocked:!!state.testComplete},
       {id:"boss",label:"BOSS",sub:"残響継承",done:!!state.mastery?.boar, unlocked:!!state.testComplete}
     ];
     const nextId = n.screen;
@@ -1149,7 +1152,35 @@ window.ML = (() => {
   };
 
   function calloutTest(text){ addFx("testStage",text,"damagePop vol"); }
-  function advanceFromTest(){ go("home"); }
+  function advanceFromTest(){ go("contract"); }
+
+  async function renderContract(){
+    const phase=await chapterPhase().catch(()=>null);
+    const owned=!!state.contracts?.lyra_vell;
+    const equipped=state.supportContract==="lyra_vell";
+    $("contractUnlock").hidden=phase!=="P13_SUMMON_UNLOCK";
+    $("contractSummon").hidden=phase!=="P14_SUMMON_TUTORIAL";
+    $("contractEquip").hidden=!owned || equipped;
+    $("contractComplete").hidden=!equipped;
+    $("contractStatus").textContent=equipped?"SUPPORT EQUIPPED":owned?"CONTRACT ACQUIRED":"SIGNAL DETECTED";
+    $("contractPartyProof").textContent=`MONSTER PARTY ${normalizeParty().length} / 3 — 契約者は編成外`;
+  }
+
+  async function acknowledgeContract(){
+    if(await chapterEvent("SUMMON_UNLOCK_ACK")){ haptic(12); await renderContract(); }
+  }
+
+  async function summonLyra(){
+    if(!await chapterEvent("SUMMON_TUTORIAL_COMPLETE")) return;
+    haptic(24); MLAudio.event("legacy"); await renderContract();
+    toast("CONTRACT ACQUIRED — LYRA");
+  }
+
+  async function equipLyra(){
+    if(!await chapterEvent("CONTRACT_EQUIP_COMPLETE")) return;
+    haptic(18); save(); await renderContract();
+    toast("LYRAをSUPPORTへ設定");
+  }
 
 
   // ---------- BOSS ----------
@@ -1745,5 +1776,5 @@ window.ML = (() => {
   go("home");
   if(window.MLPlaytest){ MLPlaytest.bind(); MLPlaytest.event("app_ready",{screen:state.lastScreen||"home"}); }
 
-  return {closeSkillHelp:closeSheet,skillHelp,showIntro,go,goJourney,storyNext,storyCmd,storyStance,storyVol,storyEquip,storyBoss,setEquipment,setPartyLegacy,setPartyFocus,assignParty,confirmParty,setLegacy,archiveTab,openHunt,pickHunt,removeHunt,openTest,pickTest,removeTest,advanceFromTest,selectBoss,openBossSelect,openBoss,pickBoss,removeBoss,resetBoss};
+  return {closeSkillHelp:closeSheet,skillHelp,showIntro,go,goJourney,storyNext,storyCmd,storyStance,storyVol,storyEquip,storyBoss,setEquipment,setPartyLegacy,setPartyFocus,assignParty,confirmParty,setLegacy,archiveTab,openHunt,pickHunt,removeHunt,openTest,pickTest,removeTest,advanceFromTest,acknowledgeContract,summonLyra,equipLyra,selectBoss,openBossSelect,openBoss,pickBoss,removeBoss,resetBoss};
 })();
