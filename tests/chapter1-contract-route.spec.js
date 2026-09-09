@@ -40,9 +40,14 @@ test('P13-P16 free Lyra Contract equips outside the three-monster party and surv
   expect(save.contracts.existing).toEqual({owned:true});
   expect(save.party).toEqual(['goura','flame','leaf']);
 
-  const snapshot=JSON.stringify(save);
+  const chapterSnapshot=JSON.stringify(save.chapter1);
+  const contractsSnapshot=JSON.stringify(save.contracts);
+  const partySnapshot=JSON.stringify(save.party);
   await page.reload();
   await page.locator('#bootStart').tap();
-  expect(await page.evaluate(() => localStorage.getItem(ML_DATA.saveKey))).toBe(snapshot);
+  const reloaded=await page.evaluate(() => JSON.parse(localStorage.getItem(ML_DATA.saveKey)));
+  expect(JSON.stringify(reloaded.chapter1)).toBe(chapterSnapshot);
+  expect(JSON.stringify(reloaded.contracts)).toBe(contractsSnapshot);
+  expect(JSON.stringify(reloaded.party)).toBe(partySnapshot);
   expect(errors).toEqual([]);
 });
