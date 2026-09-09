@@ -93,7 +93,7 @@
     "title": "Validate deployed Chapter 1 on a physical Android device and tune pacing from evidence",
     "status": "in_progress",
     "ownership": "production/WORK_CHAT_OWNERSHIP.md",
-    "next_action": "Validate system reduced-motion behavior in CI, then record Android physical-device evidence and tune from collected evidence.",
+    "next_action": "Record Android physical-device evidence, then tune Chapter 1 pacing and battle feel from collected evidence.",
     "blocker": "Android physical-device evidence requires a real device."
   },
   "pending": [
@@ -107,7 +107,7 @@
   "schema_version": 1,
   "working_pr": {
     "branch": "work/reduced-motion-default",
-    "status": "implementation_complete_ci_pending",
+    "status": "ci_pass_merge_pending",
     "scope": "OS reduced-motion default with explicit player override"
   }
 }
