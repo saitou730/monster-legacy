@@ -16,11 +16,12 @@ Canonical base: `main` at `4fe1ee0f244eba54cb74c90738ef36deb06447e3`
 | Hidden toast touch interception | Fixed / browser PASS |
 | Chapter closeout survey interception | Fixed / browser PASS |
 | Completed-HOME feedback entry | Browser PASS — hidden before P20 and never auto-opens |
+| OS reduced-motion default | Browser PASS — explicit in-game choice remains authoritative |
 | Art Lock / root publish boundary | Preserved |
 | Android physical device | NOT RUN |
 | GitHub Pages | PASS — merged as `a7ffbebe0aa311c148dec4cf4c1776a0b9f596d0`; public root runtime verified |
 
-Evidence: PR #55, Web QA run `34340000149`; PR #57, Web QA run `34349283720`.  
+Evidence: PR #55, Web QA run `34340000149`; PR #57, run `34349283720`; PR #58, run `34355933486`.  
 Director Score: **82/100 HOLD**.
 
 ## Next priorities

@@ -91,9 +91,9 @@
   "current_task": {
     "id": "QA-ANDROID-AND-TEMPO",
     "title": "Validate deployed Chapter 1 on a physical Android device and tune pacing from evidence",
-    "status": "pending",
+    "status": "in_progress",
     "ownership": "production/WORK_CHAT_OWNERSHIP.md",
-    "next_action": "Record Android physical-device evidence separately, then tune Chapter 1 pacing and battle feel from collected evidence without changing canon.",
+    "next_action": "Record Android physical-device evidence, then tune Chapter 1 pacing and battle feel from collected evidence.",
     "blocker": "Android physical-device evidence requires a real device."
   },
   "pending": [
@@ -105,5 +105,9 @@
   ],
   "resume_rule": "Read main and current_task; do not repeat completed inventory without concrete reason; blocked art never advances by generation.",
   "schema_version": 1,
-  "working_pr": null
+  "working_pr": {
+    "branch": "work/reduced-motion-default",
+    "status": "ci_pass_merge_pending",
+    "scope": "OS reduced-motion default with explicit player override"
+  }
 }

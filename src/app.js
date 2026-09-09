@@ -19,7 +19,9 @@ window.ML = (() => {
   };
   function safeLocalGet(key){ try{return window.localStorage?.getItem(key) ?? null;}catch(_){return null;} }
   function safeLocalSet(key,value){ try{window.localStorage?.setItem(key,value);return true;}catch(_){return false;} }
-  let motionEnabled = safeLocalGet("mlMotion") !== "off";
+  let motionSetting = safeLocalGet("mlMotion");
+  const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)");
+  let motionEnabled = motionSetting ? motionSetting !== "off" : !reducedMotion?.matches;
 
   function haptic(ms=18){
     if(motionEnabled && navigator.vibrate) navigator.vibrate(ms);
@@ -59,6 +61,16 @@ window.ML = (() => {
       if(motionEnabled && !el.classList.contains("placeholder")) el.classList.add("anim-idle");
       else el.classList.remove("anim-idle","anim-danger");
     });
+  }
+
+  if(reducedMotion){
+    const followSystemMotion = event => {
+      if(motionSetting) return;
+      motionEnabled=!event.matches;
+      setMotionUI();
+    };
+    if(reducedMotion.addEventListener) reducedMotion.addEventListener("change",followSystemMotion);
+    else if(reducedMotion.addListener) reducedMotion.addListener(followSystemMotion);
   }
 
 
@@ -363,7 +375,8 @@ window.ML = (() => {
 
   $("motionBtn").onclick = () => {
     motionEnabled = !motionEnabled;
-    safeLocalSet("mlMotion", motionEnabled ? "on" : "off");
+    motionSetting = motionEnabled ? "on" : "off";
+    safeLocalSet("mlMotion", motionSetting);
     setMotionUI();
     haptic(12);
   };
