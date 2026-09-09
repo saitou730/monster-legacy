@@ -93,7 +93,7 @@
     "title": "Validate deployed Chapter 1 on a physical Android device and tune pacing from evidence",
     "status": "in_progress",
     "ownership": "production/WORK_CHAT_OWNERSHIP.md",
-    "next_action": "Validate the non-blocking P20 feedback entry in CI, then record Android physical-device evidence separately and tune from collected evidence.",
+    "next_action": "Record Android physical-device evidence separately, then tune Chapter 1 pacing and battle feel from collected evidence without changing canon.",
     "blocker": "Android physical-device evidence requires a real device."
   },
   "pending": [
@@ -107,7 +107,7 @@
   "schema_version": 1,
   "working_pr": {
     "branch": "work/ch1-complete-feedback-entry",
-    "status": "implementation_complete_ci_pending",
+    "status": "ci_pass_merge_pending",
     "scope": "P20 completed-HOME optional local feedback entry"
   }
 }
