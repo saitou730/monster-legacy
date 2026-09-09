@@ -91,9 +91,9 @@
   "current_task": {
     "id": "QA-ANDROID-AND-TEMPO",
     "title": "Validate deployed Chapter 1 on a physical Android device and tune pacing from evidence",
-    "status": "pending",
+    "status": "in_progress",
     "ownership": "production/WORK_CHAT_OWNERSHIP.md",
-    "next_action": "Record Android physical-device evidence separately, then tune Chapter 1 pacing and battle feel without changing canon.",
+    "next_action": "Validate the non-blocking P20 feedback entry in CI, then record Android physical-device evidence separately and tune from collected evidence.",
     "blocker": "Android physical-device evidence requires a real device."
   },
   "pending": [
@@ -105,5 +105,9 @@
   ],
   "resume_rule": "Read main and current_task; do not repeat completed inventory without concrete reason; blocked art never advances by generation.",
   "schema_version": 1,
-  "working_pr": null
+  "working_pr": {
+    "branch": "work/ch1-complete-feedback-entry",
+    "status": "implementation_complete_ci_pending",
+    "scope": "P20 completed-HOME optional local feedback entry"
+  }
 }
