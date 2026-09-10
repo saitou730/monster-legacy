@@ -1,0 +1,46 @@
+schema_version: 1
+date: 2026-09-11
+status: ART_DIRECTOR_QA_HOLD
+issue: 77
+scope: AREA02_RIFT_MANTICORE_CANONICAL_BINDING_RECOVERY
+species:
+  name: 裂空マンティコア
+  art_lock: INHERITED_OFFICIAL_LOCK
+  species_id: HOLD_UNVERIFIED
+purpose: "Recover canonical repository binding for the existing Official Art Lock only. Do not reinterpret, redesign, regenerate, or infer missing identity metadata."
+main_reviewed: 47d468b61c70893a6b0cec7982213e36fadc8807
+inventory:
+  repository_name_search: "no default-branch code hit for 裂空マンティコア"
+  canonical_path: HOLD_NOT_FOUND
+  source_filename: HOLD_NOT_FOUND
+  source_sha256: HOLD_NOT_FOUND
+  required_views: HOLD_NOT_RECOVERED
+  runtime_idle: HOLD_NOT_FOUND
+  runtime_attack: HOLD_NOT_FOUND
+  runtime_hit: HOLD_NOT_FOUND
+  runtime_danger: HOLD_NOT_FOUND
+  runtime_stance: HOLD_NOT_FOUND
+  runtime_icon: HOLD_NOT_FOUND
+qa:
+  verdict: HOLD
+  reason: "Official Art Lock is known, but current main does not provide enough repository evidence to bind filename/path/SHA-256/views/runtime derivatives without invention."
+  pass_condition:
+    - canonical governing source is located in repository or an authoritative manifest
+    - exact repository path and filename are verified
+    - SHA-256 is verified
+    - required views, colors, body, eyes, silhouette and prohibitions are documented or linked to an authoritative lock
+    - runtime derivative paths are inventoried before any new production
+forbidden:
+  - infer_species_id
+  - infer_filename_or_path
+  - regenerate_character
+  - reinterpret_character
+  - create_same_purpose_runtime_art
+  - overwrite_assets_art
+  - overwrite_assets_battle
+  - modify_root_runtime
+  - modify_publication_workflow
+work_handoff:
+  state: BLOCK_ART_BINDING
+  rule: "Work may retain AREA CHALLENGE semantics, but must not invent or substitute a Rift Manticore visual binding while this recovery remains HOLD."
+fallback_progression: "Continue governed Chapter 1 production and other existing Official-Lock runtime work; do not let this HOLD create an empty Art run."
