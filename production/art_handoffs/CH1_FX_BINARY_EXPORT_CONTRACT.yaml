@@ -1,0 +1,62 @@
+schema_version: 1
+updated: 2026-09-11
+status: ART_DIRECTOR_QA_PASS_EXPORT_CONTRACT_READY
+issue: 78
+scope: CHAPTER_1_MODULAR_FX_BINARY_EXPORT
+purpose: "Remove filename, frame-order, timing and anchor ambiguity before Work creates runtime binaries; preserve all Official Art Lock character art unchanged."
+authority:
+  packet: production/art_handoffs/CH1_FX_MODULAR_WORK_PACKET.yaml
+  source_handoffs:
+    - production/art_handoffs/CH1_FX_001_JOIN.yaml
+    - production/art_handoffs/CH1_FX_002_FUSION.yaml
+    - production/art_handoffs/CH1_FX_003_CONTRACT_SUMMON.yaml
+    - production/art_handoffs/CH1_FX_004_LEGACY.yaml
+export_policy:
+  format: PNG_RGBA_transparent
+  frame_canvas: "same canvas dimensions and anchor for every frame within one FX sequence; Work chooses the smallest runtime-safe canvas after 360x800/390x844/430x932 overlay test"
+  alpha: "straight alpha; transparent pixels must not contain character silhouettes or readable UI"
+  naming: "zero-padded sequential frames; timing lives in runtime metadata/handoff, not filename"
+  destructive_replace: false
+  official_art_lock: NOT_DECLARED
+sequences:
+  CH1_FX_001:
+    destination: assets/effects/join/
+    files: [join_00.png, join_01.png, join_02.png, join_03.png, join_04.png]
+    durations_ms: [90, 110, 130, 160, 260]
+    loop: false
+    anchor: monster_stage_center
+    reduced_motion_file: join_reduced.png
+  CH1_FX_002:
+    destination: assets/effects/fusion/
+    files: [fusion_00.png, fusion_01.png, fusion_02.png, fusion_03.png, fusion_04.png, fusion_05.png]
+    durations_ms: [100, 120, 140, 120, 170, 260]
+    loop: false
+    anchor: fusion_stage_center
+    reduced_motion_file: fusion_reduced.png
+  CH1_FX_003:
+    destination: assets/effects/contract/
+    files: [contract_00.png, contract_01.png, contract_02.png, contract_03.png, contract_04.png, contract_05.png]
+    durations_ms: [110, 130, 150, 140, 170, 220]
+    loop: false
+    anchor: contract_stage_center
+    reduced_motion_file: contract_reduced.png
+  CH1_FX_004:
+    destination: assets/effects/legacy/
+    files: [legacy_00.png, legacy_01.png, legacy_02.png, legacy_03.png, legacy_04.png, legacy_05.png]
+    durations_ms: [100, 120, 140, 150, 160, 190]
+    loop: false
+    anchor: legacy_reward_stage_center
+    reduced_motion_file: legacy_reduced.png
+qa_gate:
+  - "Frame count, order, duration, loop and anchor match this contract exactly."
+  - "All three canonical portrait viewports pass without obscuring primary controls or monster silhouettes."
+  - "Reduced-motion path is static/non-looping and does not depend on omitted frames."
+  - "No character anatomy, Lyra design, Rift Manticore design, readable text, UI controls or invented faction/Legacy symbols are baked into FX."
+  - "Before/after hashes confirm governing Official Art Lock character files are unchanged."
+  - "Record SHA-256 for every final PNG before any Official Art Lock claim."
+art_director_qa:
+  verdict: PASS
+  rationale: "The export contract is a derivative of already locked runtime directions and adds no new character or world design. It prevents Work-side filename/timing drift and duplicate Art generation."
+work_handoff:
+  next: CH1_FX_001_JOIN_WORK_BINARY
+  order: [CH1_FX_001, CH1_FX_002, CH1_FX_003, CH1_FX_004]
