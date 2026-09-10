@@ -104,7 +104,7 @@
     },
     {
       "id": "UI-DIALOG-FOCUS-001",
-      "evidence": "PR71; https://github.com/saitou730/monster-legacy/actions/runs/34432241484",
+      "evidence": "PR71 merged as 555f0c35cd3a81025d6bb31e06e4e040dcf9867d; PR Web QA https://github.com/saitou730/monster-legacy/actions/runs/34432606437; main Web QA/Pages https://github.com/saitou730/monster-legacy/actions/runs/34432980367",
       "result": "60/60 browser cases passed at 360x800, 390x844 and 430x932; battle/help and completed-HOME dialogs expose modal semantics, move focus on open, and restore the invoking control on close. Physical Android/TalkBack remains NOT RUN."
     }
   ],
@@ -125,9 +125,5 @@
   ],
   "resume_rule": "Read main and current_task; do not repeat completed inventory without concrete reason; blocked art never advances by generation.",
   "schema_version": 1,
-  "working_pr": {
-    "number": 71,
-    "branch": "work/accessibility-dialog-focus",
-    "status": "web_qa_pass_pending_merge"
-  }
+  "working_pr": null
 }
