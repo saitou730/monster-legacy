@@ -1,0 +1,48 @@
+schema_version: 1
+asset_id: CH1_ENV_003
+asset: fusion_lab
+updated: 2026-09-10
+status: DIRECTION_SPECIFIED_HOLD_GENERATION
+screens: [FUSION, HERITAGE]
+planned_path: assets/backgrounds/chapter1/fusion_lab.jpg
+preflight:
+  canonical_branch: main
+  work_current_task: QA-ANDROID-AND-TEMPO
+  work_dependency: "None for direction specification; final raster integration follows Chapter 1 HOME repository promotion."
+  art_lock_state: NOT_OFFICIAL
+  governing_runtime:
+    - src/fusion.js
+    - src/legacy.js
+    - src/app.js
+  architecture_source: docs/ARCHITECTURE_v1.0.md
+inventory_result:
+  dedicated_repository_raster_found: false
+  dedicated_governing_visual_source_found: false
+  action: "Do not generate or invent a dedicated lab identity until a governing visual source or approved concept establishes it."
+functional_direction_lock:
+  aspect_ratio: "9:16"
+  role: "Shared neutral environment plate supporting deterministic FUSION and HERITAGE UI without encoding game logic into scenery."
+  ui_safe_zone: "central and lower field must remain low-detail for parent selection, result/heritage information, and confirmation controls"
+  required_readability:
+    - "two-parent selection remains visually legible"
+    - "fusion result reveal has a clean focal region"
+    - "heritage information can reuse the same plate without implying a separate location"
+  forbidden:
+    - readable text baked into raster
+    - faction symbols or logos
+    - monster silhouettes that could imply canonical lineage
+    - species-specific anatomy or fusion-result foreshadowing
+    - UI controls baked into raster
+    - scenery that visually determines Fusion or Heritage outcomes
+  runtime_rule: "Presentation may layer approved FX and motion, but scenery must not encode deterministic Fusion/Heritage rules."
+production_decision:
+  art_director_qa: PASS_FUNCTIONAL_DIRECTION
+  generation_gate: HOLD
+  reason: "Functional requirements are grounded by runtime architecture, but no dedicated governing visual source establishes the lab's architecture, materials, device language, or world-specific silhouette."
+  unblock_when:
+    - "a governing concept/source for Fusion Lab visual identity is committed or explicitly approved"
+    - "or existing approved environment art is designated as the source to derive from"
+next_safe_work:
+  - "complete CH1_ENV_002 HOME repository promotion when its approved raster binary is available"
+  - "otherwise advance CH1_FX_001 JOIN specification, provided its runtime/governing sources establish behavior without inventing character identity"
+art_lock: NOT_OFFICIAL
