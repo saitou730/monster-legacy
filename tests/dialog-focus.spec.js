@@ -14,7 +14,7 @@ test('battle detail sheet exposes dialog semantics and restores focus', async ({
   await expect(page.locator('#sheet')).toHaveAttribute('aria-hidden','false');
   await expect(page.getByRole('button', { name: '戦闘へ戻る' })).toBeFocused();
   await page.keyboard.press('Escape');
-  await expect(dialog).not.toBeVisible();
+  await expect(page.locator('#sheet')).not.toHaveClass(/show/);
   await expect(page.locator('#sheet')).toHaveAttribute('aria-hidden','true');
   await expect(opener).toBeFocused();
 });
