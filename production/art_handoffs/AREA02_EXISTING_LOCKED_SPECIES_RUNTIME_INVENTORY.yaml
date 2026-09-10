@@ -1,0 +1,47 @@
+schema_version: 1
+date: 2026-09-11
+status: QA_PASS_WITH_HOLD
+scope: AREA02_EXISTING_LOCKED_SPECIES_RUNTIME_INVENTORY
+authority:
+  - canon/visual_source_map.yaml
+  - production/ART_SUPPLY_PHASE1_CHAPTER1.yaml
+  - production/next_queue.yaml
+inventory:
+  - species_id: SP-044
+    name: 雷フクロウ
+    art_lock: INHERITED_OFFICIAL_LOCK
+    governing_source: assets/reference/雷フクロウ_CHARACTER_DESIGN_BIBLE_ML-001_v1.1.png
+    governing_sha256: 6e3cacaf83b8541d85560d9bf4358029c0be484af976125a399a7df14e72fedc
+    runtime_path: assets/battle/owl/
+    derivatives:
+      idle: {path: assets/battle/owl/idle.png, sha256: e2bbe8ae445014d613b4349a5e57cb95219b86a599343c667fcfb5e24fd17492}
+      attack_prep: {path: assets/battle/owl/attack_prep.png, sha256: 48b10fc51bf90922f87e02f6721ff4a8b66811a7a03c8db473ce5940a918d199}
+      attack: {path: assets/battle/owl/attack.png, sha256: edb1ce15e24879141ecb10cade15006db867f3a0feda7ee91200fdf28d99bc69}
+      hit: {path: assets/battle/owl/hit.png, sha256: 0feda8711ca6b999ca70d475460b8a5ded67cfc0addb7f68a5d80681e5a12ccb}
+      danger: {path: assets/battle/owl/danger.png, sha256: f281ffa31b4d7a19f5501aed9399b9cd241d2b7efa8ca3d205cce7967b284550}
+      stance: {path: assets/battle/owl/stance.png, sha256: 48b10fc51bf90922f87e02f6721ff4a8b66811a7a03c8db473ce5940a918d199}
+      icon: {path: assets/battle/owl/icon_portrait.png, sha256: 2c3c71185d2a2f916bead8977dc93a29918865763c3a55105cb8d6bc32c7dc55}
+    runtime_animation_direction:
+      note: "Existing derivatives are single-state rasters, not a newly authored multi-frame animation. Preserve them; do not fabricate frame sequences."
+      anchor: monster_stage_center
+      loop: runtime_owned
+    qa: PASS_EXISTING_RUNTIME_SET_COMPLETE_FOR_REQUIRED_STATES
+    next: "Work may map existing states to AREA02 DISCOVERY/HUNT/JOIN without new character art; animation timing remains runtime-owned until a governed motion spec exists."
+  - species_id: UNRESOLVED
+    name: 裂空マンティコア
+    art_lock: USER_DECLARED_OFFICIAL_LOCK
+    governing_source: NOT_FOUND_IN_CURRENT_CANONICAL_VISUAL_SOURCE_MAP_SEARCH
+    runtime_path: NOT_VERIFIED
+    derivatives: NOT_VERIFIED
+    qa: HOLD
+    reason: "No canonical repository binding was found in the inspected visual source map/search. Do not infer design, path, species ID, or derivatives."
+    next: "Recover/verify governing source binding and exact repository paths before any runtime derivative work."
+art_director_qa:
+  result: PASS_WITH_HOLD
+  pass: "SP-044 inventory is canonically bound and already has idle/attack/hit/danger/stance/icon plus attack_prep; no regeneration is justified."
+  hold: "裂空マンティコア repository source/runtime binding remains unresolved in current canonical evidence."
+prohibited:
+  - reinterpret_locked_species
+  - regenerate_SP044_for_same_runtime_states
+  - invent_manticore_source_or_species_id
+  - overwrite_assets_art_or_assets_battle
