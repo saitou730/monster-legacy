@@ -37,33 +37,37 @@ chapter1_supply:
   - id: CH1_FX_001
     asset: join_fx
     screens: [JOIN]
-    status: RUNTIME_DIRECTION_LOCKED
+    status: SPEC_READY_FOR_WORK_BINARY
     planned_path: assets/effects/join/
     handoff: production/art_handoffs/CH1_FX_001_JOIN.yaml
+    work_packet: production/art_handoffs/CH1_FX_MODULAR_WORK_PACKET.yaml
     modular: true
     production_gate: "Produce character-neutral transparent resonance overlay only; preserve SP-031 locked art; record viewport/reduced-motion QA and final SHA-256 before Official Art Lock."
   - id: CH1_FX_002
     asset: fusion_fx
     screens: [FUSION]
-    status: RUNTIME_DIRECTION_LOCKED
+    status: SPEC_READY_FOR_WORK_BINARY
     planned_path: assets/effects/fusion/
     handoff: production/art_handoffs/CH1_FX_002_FUSION.yaml
+    work_packet: production/art_handoffs/CH1_FX_MODULAR_WORK_PACKET.yaml
     modular: true
     production_gate: "Produce character-neutral transparent convergence/reveal overlay only; preserve SP-011/SP-031/SP-044 locked art; never create intermediate hybrid anatomy; record viewport/reduced-motion QA and final SHA-256 before Official Art Lock."
   - id: CH1_FX_003
     asset: contract_summon_fx
     screens: [CONTRACT_SUMMON]
-    status: RUNTIME_DIRECTION_LOCKED
+    status: SPEC_READY_FOR_WORK_BINARY
     planned_path: assets/effects/contract/
     handoff: production/art_handoffs/CH1_FX_003_CONTRACT_SUMMON.yaml
+    work_packet: production/art_handoffs/CH1_FX_MODULAR_WORK_PACKET.yaml
     modular: true
     production_gate: "Produce character-neutral transparent signal/convergence overlay only; runtime owns guaranteed Lyra result and later support-equip state; never infer Lyra design; record viewport/reduced-motion QA and final SHA-256 before Official Art Lock."
   - id: CH1_FX_004
     asset: legacy_fx
     screens: [LEGACY]
-    status: RUNTIME_DIRECTION_LOCKED
+    status: SPEC_READY_FOR_WORK_BINARY
     planned_path: assets/effects/legacy/
     handoff: production/art_handoffs/CH1_FX_004_LEGACY.yaml
+    work_packet: production/art_handoffs/CH1_FX_MODULAR_WORK_PACKET.yaml
     modular: true
     production_gate: "Produce symbol-neutral transparent mastery/confirmation overlay only; preserve SP-191 locked art; runtime owns 不退転 grant/rank/archive state; record viewport/reduced-motion QA and final SHA-256 before Official Art Lock."
 area02_supply:
@@ -84,12 +88,13 @@ notes:
   - "TITLE/PROLOGUE should reuse an AREA/environment plate plus typography/grade unless runtime proves a dedicated raster necessary."
   - "BOSS replay reuses FIELD base with encounter grade/FX; no dedicated background until runtime QA demonstrates need."
   - "OFFICIAL ART LOCK requires final repository file, SHA-256, source comparison QA, and documented visual constraints."
+  - "Issue #78 and CH1_FX_MODULAR_WORK_PACKET.yaml consolidate the four governed FX into one Work implementation packet; do not regenerate character art."
 next_queue:
   - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
-  - CH1_FX_001_JOIN_MODULAR_PRODUCTION
-  - CH1_FX_002_FUSION_MODULAR_PRODUCTION
-  - CH1_FX_003_CONTRACT_MODULAR_PRODUCTION
-  - CH1_FX_004_LEGACY_MODULAR_PRODUCTION
+  - CH1_FX_001_JOIN_WORK_BINARY
+  - CH1_FX_002_FUSION_WORK_BINARY
+  - CH1_FX_003_CONTRACT_WORK_BINARY
+  - CH1_FX_004_LEGACY_WORK_BINARY
   - CH1_ENV_003_FUSION_LAB_GOVERNING_SOURCE
-  - AREA02_RIFT_MANTICORE_CANONICAL_BINDING_RECOVERY
+  - AREA02_RIFT_MANTICORE_CANONICAL_BINDING_RECOVERY_HOLD
   - AREA02_SP044_RUNTIME_MOTION_WORK_HANDOFF
