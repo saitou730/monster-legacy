@@ -1,4 +1,4 @@
-# AREA-01 Locked Species Placement v1.1
+# AREA-01 Locked Species Placement v1.2
 
 Canonical base: main c719735f37997383e53336b79e4bb739e4a677fc
 Owner: Chat / Issue #38
@@ -29,6 +29,26 @@ The first owl HUNT uses a two-step behavioral condition:
 On the first successful JOIN, write AREA01_OWL_JOINED exactly once. A failed hunt preserves AREA01_OWL_DISCOVERED but not AREA01_OWL_JOINED, and the next attempt begins at the hunt boundary. After first JOIN, repeat owl hunts are ordinary repeat encounters and never replay discovery or first-JOIN progression.
 
 Narrative intent: Chapter 1 taught **how to make a bond**; AREA-01 teaches **how to read an ecosystem before choosing the moment to engage**. The owl should feel watchful and territorial, not hostile by default. No dialogue, new species lore, fusion relation, or visual trait is canonized beyond existing locked sources.
+
+## 雷フクロウ JOIN -> 裂空マンティコア challenge causality
+The manticore challenge must be a consequence of what the player learned in AREA-01, not a disconnected next-boss unlock.
+
+After AREA01_OWL_JOINED is durable, the player's completed observation route is treated as enough field knowledge to identify a previously unreadable disturbance pattern at the AREA boundary. The game may frame this as the same trace network becoming legible from a new perspective, but must not canonize a new visual trait, species relationship, dialogue, or asset beyond locked sources.
+
+This establishes the narrative cause: the owl does not summon, evolve into, fuse with, or directly lead the party to 裂空マンティコア. Instead, learning to read one territorial creature gives the player the ecological literacy required to recognize that a stronger presence is controlling access deeper into the AREA. That recognition writes AREA01_CHALLENGE_UNLOCKED exactly once and exposes the existing 裂空マンティコア AREA CHALLENGE.
+
+Challenge unlock predicates are therefore:
+- CH1_CLEAR is durable.
+- AREA01_UNLOCKED is durable.
+- AREA01_OWL_DISCOVERED is durable.
+- AREA01_OWL_JOINED is durable.
+- AREA01_CHALLENGE_UNLOCKED is not yet durable.
+
+PARTY/FUSION remains free preparation between owl JOIN and challenge entry. 雷フクロウ is never mandatory in the active three-monster party for the challenge; ownership/progression knowledge, not party composition, is the gate. This preserves exactly three battle monsters and avoids turning the ecology lesson into a forced-character tutorial.
+
+Defeat against 裂空マンティコア preserves AREA01_CHALLENGE_UNLOCKED and all earlier AREA milestones. Retry begins at the challenge boundary. First victory writes AREA01_CHALLENGE_CLEARED exactly once; AREA01_CLEAR may then resolve as the AREA completion receipt without replaying owl discovery/JOIN.
+
+Narrative intent: **observe -> understand -> recognize the larger pattern -> choose to challenge it**. Chapter 1 closes by returning to a threat the player once fled; AREA-01 advances that theme by making knowledge itself the reason a previously hidden challenge becomes actionable.
 
 ## Durable milestone semantics
 AREA01_UNLOCKED, AREA01_OWL_DISCOVERED, AREA01_OWL_JOINED, AREA01_CHALLENGE_UNLOCKED, AREA01_CHALLENGE_CLEARED, AREA01_CLEAR.
