@@ -1,0 +1,45 @@
+schema_version: 1
+asset_id: CH1_ENV_002
+asset: home
+updated: 2026-09-10
+status: VISUAL_LOCKED_AWAITING_REPOSITORY_RASTER
+screens: [HOME, PARTY]
+planned_path: assets/backgrounds/chapter1/home.jpg
+source_status: "approved portrait production candidate exists in Art Director run history; binary is not yet present in repository"
+visual_direction_lock:
+  aspect_ratio: "9:16"
+  composition: "elevated safe sanctuary terrace with broad neutral stone plaza and distant AREA vista"
+  lighting: "bright warm daylight; readable silhouettes and UI over background"
+  ui_safe_zone: "central and lower field kept low-detail for HOME/PARTY controls"
+  palette: "warm stone, restrained greenery, pale blue atmospheric distance"
+  forbidden:
+    - faction symbols
+    - logos
+    - readable text
+    - characters
+    - monsters
+    - decorative emblems that can read as faction marks
+    - strong compass/star floor symbols
+reuse:
+  PARTY: "reuse HOME base; differentiation is runtime UI treatment only"
+runtime_qa:
+  viewports:
+    - "360x800"
+    - "390x844"
+    - "430x932"
+  checks:
+    - "primary HOME controls remain readable without destructive crop"
+    - "PARTY overlay remains readable using same base"
+    - "no symbol-like decoration enters focal/UI-safe region"
+    - "distant architecture does not dominate navigation controls"
+promotion_gate:
+  - "export exactly one approved candidate to assets/backgrounds/chapter1/home.jpg"
+  - "do not regenerate a near-identical HOME plate"
+  - "run viewport overlay QA at all three canonical sizes"
+  - "compute SHA-256 from final repository raster"
+  - "record SHA-256 and final file path before any Official Art Lock claim"
+  - "hand final raster to Work for runtime integration"
+art_director_qa: PASS_VISUAL_DIRECTION
+art_lock: NOT_OFFICIAL
+work_dependency: "Work may prepare HOME/PARTY runtime binding, but final raster integration waits for repository binary + SHA-256"
+next_after_promotion: CH1_ENV_003_FUSION_LAB
