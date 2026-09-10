@@ -1,0 +1,20 @@
+schema_version: 1
+date: 2026-09-11
+branch: main
+status: IN_PROGRESS
+target: AREA02 existing Official Art Lock species runtime inventory
+purpose: "Advance the next safe art task without regenerating Chapter 1 assets or reinterpreting locked species."
+planned_changes:
+  - production/art_handoffs/AREA02_EXISTING_LOCKED_SPECIES_RUNTIME_INVENTORY.yaml
+  - production/ART_SUPPLY_PHASE1_CHAPTER1.yaml
+art_lock_state:
+  SP-044: INHERITED_OFFICIAL_LOCK
+  rift_manticore: "USER_DECLARED_OFFICIAL_LOCK; canonical repository binding must be verified before any derivative production"
+planned_paths:
+  SP-044_runtime: assets/battle/owl/
+  rift_manticore_runtime: HOLD_UNTIL_CANONICAL_PATH_VERIFIED
+work_dependency: "Work should consume existing locked derivatives only after runtime role/asset mapping is explicit. No root runtime or workflow changes in this task."
+constraints:
+  - "Do not modify or replace assets/art/* or assets/battle/* binaries."
+  - "Do not redesign SP-044 or Rift Manticore."
+  - "Do not generate a missing governing source from memory or name alone."
