@@ -1,0 +1,74 @@
+schema_version: 1
+asset_id: CH1_FX_001
+asset: join_fx
+updated: 2026-09-10
+status: RUNTIME_DIRECTION_LOCKED
+screens: [HUNT, JOIN]
+planned_path: assets/effects/join/
+preflight:
+  canonical_branch: main
+  work_current_task: QA-ANDROID-AND-TEMPO
+  work_dependency: "No root code dependency for specification. Work integration follows existing Chapter 1 RESONATE/JOIN flow."
+  art_lock_state: NOT_OFFICIAL
+  governing_runtime:
+    - src/app.js
+  governing_character_source:
+    species: SP-031
+    authority: canon/visual_source_map.yaml
+    rule: "Use existing Official Art Lock wind-bat derivatives only; never redraw or reinterpret the species for this FX."
+inventory_result:
+  dedicated_join_fx_found: false
+  existing_join_presentation: "JOIN result reuses assets/battle/wind_bat/idle.png in a Journey Result card after deterministic RESONATE success."
+  action: "Specify modular overlay FX only. Do not replace battle art or bake character anatomy into FX."
+runtime_direction_lock:
+  narrative_read: "Understanding -> resonance -> voluntary JOIN; not capture, damage, summoning, or forced restraint."
+  trigger: "After RESONATE succeeds and before/through JOIN COMPLETE presentation."
+  composition:
+    - "FX remains a transparent modular overlay around the existing SP-031 runtime art."
+    - "Keep face, wing silhouette, role text, JOIN confirmation, and PARTY CTA unobscured."
+    - "No cage, chain, projectile, impact burst, contract seal, or fusion motif."
+  motion_sequence:
+    - frame: 1
+      duration_ms: 90
+      event: "small peripheral wind motes appear outside the monster silhouette"
+      anchor: "monster stage center"
+    - frame: 2
+      duration_ms: 110
+      event: "motes arc inward without crossing the face or body contour"
+      anchor: "monster stage center"
+    - frame: 3
+      duration_ms: 130
+      event: "single soft resonance ring expands from behind the silhouette"
+      anchor: "monster stage center"
+    - frame: 4
+      duration_ms: 160
+      event: "ring fades while a short upward wind lift resolves the beat"
+      anchor: "monster stage center"
+    - frame: 5
+      duration_ms: 260
+      event: "residual motes dissipate to clean JOIN COMPLETE state"
+      anchor: "monster stage center"
+  loop: false
+  total_nominal_duration_ms: 750
+  reduced_motion: "Replace sequence with one low-intensity static halo/fade; no pulsing loop."
+  forbidden:
+    - character redraw or silhouette alteration
+    - species-specific anatomy inside FX raster
+    - capture-ball or imprisonment language
+    - fusion, contract, boss, or damage visual language
+    - readable text baked into FX
+    - persistent loop after JOIN COMPLETE
+production_decision:
+  art_director_qa: PASS_RUNTIME_DIRECTION
+  generation_gate: READY_FOR_MODULAR_FX_PRODUCTION
+  reason: "Runtime establishes deterministic RESONATE -> voluntary JOIN semantics and the governing SP-031 source is already locked; a character-neutral transparent overlay can therefore be produced without inventing canon."
+  official_lock_gate: "Do not declare Official Art Lock until final repository files, SHA-256 values, viewport QA, and reduced-motion QA are recorded."
+qa_required:
+  - "360x800, 390x844, 430x932: monster silhouette and JOIN CTA remain unobscured"
+  - "normal motion: sequence reads as resonance/acceptance, not capture or damage"
+  - "reduced motion: static/fade alternative is legible and non-looping"
+  - "SP-031 governing art bytes remain unchanged"
+next_safe_work:
+  - "produce the transparent JOIN overlay frames from this locked motion spec"
+  - "if binary production is unavailable, advance CH1_FX_002 only after runtime semantics are inventoried"
+art_lock: NOT_OFFICIAL
