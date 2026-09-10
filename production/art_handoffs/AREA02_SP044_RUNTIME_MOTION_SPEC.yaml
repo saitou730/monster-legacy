@@ -1,0 +1,80 @@
+schema_version: 1
+date: 2026-09-11
+status: ART_DIRECTOR_QA_PASS
+issue: 75
+scope: AREA02_SP044_RUNTIME_MOTION_SPEC
+species:
+  id: SP-044
+  name: 雷フクロウ
+  art_lock: INHERITED_OFFICIAL_LOCK
+  governing_source:
+    path: assets/reference/雷フクロウ_CHARACTER_DESIGN_BIBLE_ML-001_v1.1.png
+    sha256: 6e3cacaf83b8541d85560d9bf4358029c0be484af976125a399a7df14e72fedc
+purpose: "AREA DISCOVERY -> HUNT/JOIN runtime motion handoff using only existing verified rasters. No new character art."
+anchor:
+  name: monster_stage_center
+  rule: "All state swaps preserve the same runtime stage center; Work must not re-crop or independently reposition individual state rasters."
+verified_frames:
+  idle: {path: assets/battle/owl/idle.png, sha256: e2bbe8ae445014d613b4349a5e57cb95219b86a599343c667fcfb5e24fd17492}
+  attack_prep: {path: assets/battle/owl/attack_prep.png, sha256: 48b10fc51bf90922f87e02f6721ff4a8b66811a7a03c8db473ce5940a918d199}
+  attack: {path: assets/battle/owl/attack.png, sha256: edb1ce15e24879141ecb10cade15006db867f3a0feda7ee91200fdf28d99bc69}
+  hit: {path: assets/battle/owl/hit.png, sha256: 0feda8711ca6b999ca70d475460b8a5ded67cfc0addb7f68a5d80681e5a12ccb}
+  danger: {path: assets/battle/owl/danger.png, sha256: f281ffa31b4d7a19f5501aed9399b9cd241d2b7efa8ca3d205cce7967b284550}
+  stance: {path: assets/battle/owl/stance.png, sha256: 48b10fc51bf90922f87e02f6721ff4a8b66811a7a03c8db473ce5940a918d199}
+  icon: {path: assets/battle/owl/icon_portrait.png, sha256: 2c3c71185d2a2f916bead8977dc93a29918865763c3a55105cb8d6bc32c7dc55}
+sequences:
+  idle_hold:
+    loop: true
+    frames:
+      - {frame: idle, duration_ms: 900}
+    note: "Single governed raster; runtime may repeat the hold but must not synthesize anatomy-changing in-betweens."
+  attack_action:
+    loop: false
+    frames:
+      - {frame: attack_prep, duration_ms: 180}
+      - {frame: attack, duration_ms: 140}
+      - {frame: idle, duration_ms: 220}
+    total_ms: 540
+  hit_reaction:
+    loop: false
+    frames:
+      - {frame: hit, duration_ms: 160}
+      - {frame: idle, duration_ms: 240}
+    total_ms: 400
+  danger_hold:
+    loop: true
+    frames:
+      - {frame: danger, duration_ms: 700}
+    note: "Remain on governed danger raster while danger state is active."
+  stance_action:
+    loop: false
+    frames:
+      - {frame: stance, duration_ms: 220}
+      - {frame: idle, duration_ms: 260}
+    total_ms: 480
+  discovery_presence:
+    loop: true
+    frames:
+      - {frame: idle, duration_ms: 1000}
+    note: "Discovery may reveal the existing idle raster only after the progression layer chooses to show SP-044; no new silhouette or trace art is authorized here."
+reduced_motion:
+  rule: "Use the terminal governed state without transform animation: attack=attack then idle after resolution; hit=hit then idle; stance=stance then idle. No flashing, shaking, zooming or synthesized frame interpolation."
+work_handoff:
+  allowed: "Bind these existing rasters and timings to the AREA owl encounter if/when Work implements PR #74 semantics."
+  runtime_owned:
+    - battle event timing synchronization
+    - state selection
+    - accessibility preference detection
+    - UI and input
+  forbidden:
+    - redesign_SP044
+    - generate_same_purpose_character_frames
+    - morph_between_rasters
+    - alter_source_colors_or_silhouette
+    - overwrite_assets_battle
+    - infer_new_species_lore_from_motion
+art_director_qa:
+  result: PASS
+  reason: "Every visual frame is already canonically bound with SHA-256; this handoff adds timing/order/loop/anchor only and creates no new visual interpretation."
+  official_art_lock_change: NONE
+  implementation_status: SPEC_READY_FOR_WORK
