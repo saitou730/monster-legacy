@@ -1,0 +1,82 @@
+schema_version: 1
+asset_id: CH1_FX_002
+asset: fusion_fx
+updated: 2026-09-10
+status: RUNTIME_DIRECTION_LOCKED
+screens: [FUSION]
+planned_path: assets/effects/fusion/
+preflight:
+  canonical_branch: main
+  work_current_task: QA-ANDROID-AND-TEMPO
+  work_dependency: "No root code dependency for specification. Work integration follows the existing deterministic Chapter 1 Fusion flow."
+  art_lock_state: NOT_OFFICIAL
+  governing_runtime:
+    - src/fusion.js
+    - src/app.js
+  governing_character_source:
+    parents: [SP-011, SP-031]
+    result: SP-044
+    authority: canon/visual_source_map.yaml
+    rule: "Use existing Official Art Lock derivatives only; FX must never redraw, morph, or reinterpret 火トカゲ, 風コウモリ, or 炎翼リザル anatomy."
+inventory_result:
+  dedicated_fusion_fx_found: false
+  deterministic_recipe: "火トカゲ + 風コウモリ -> 炎翼リザル (special_fire_wind_001)"
+  result_random: false
+  action: "Specify a character-neutral transition overlay only. Parent/result art remains separate locked runtime art."
+runtime_direction_lock:
+  narrative_read: "two inherited lineages converge -> transition beat -> locked result reveal; not random summoning, capture, damage, or anatomical morphing"
+  trigger: "After Fusion confirmation and before the 炎翼リザル result card/reveal settles."
+  composition:
+    - "FX is a transparent modular overlay layered around existing parent/result art."
+    - "Keep parent silhouettes readable before convergence and the result silhouette fully readable at reveal."
+    - "Do not depict intermediate monster anatomy or an invented hybrid silhouette."
+    - "No readable text, recipe labels, trait names, or UI controls baked into FX."
+  motion_sequence:
+    - frame: 1
+      duration_ms: 100
+      event: "two low-intensity peripheral energy traces appear beside the parent presentation without covering faces or body contours"
+      anchor: "fusion stage center"
+    - frame: 2
+      duration_ms: 120
+      event: "the two traces curve toward center while remaining visually distinct; parent silhouettes stay readable"
+      anchor: "fusion stage center"
+    - frame: 3
+      duration_ms: 140
+      event: "traces meet in one compact neutral convergence ring; no creature silhouette appears inside it"
+      anchor: "fusion stage center"
+    - frame: 4
+      duration_ms: 120
+      event: "brief clean luminance veil masks the asset swap without implying explosion or damage"
+      anchor: "fusion stage center"
+    - frame: 5
+      duration_ms: 170
+      event: "veil opens outward and the existing locked 炎翼リザル result art is revealed unobscured"
+      anchor: "fusion stage center"
+    - frame: 6
+      duration_ms: 260
+      event: "residual particles dissipate and leave a clean result/heritage UI state"
+      anchor: "fusion stage center"
+  loop: false
+  total_nominal_duration_ms: 910
+  reduced_motion: "Replace convergence motion with a short neutral cross-fade/halo between locked parent and result art; no pulsing or repeated flash."
+  forbidden:
+    - parent or result character redraw
+    - intermediate hybrid anatomy or morph frames
+    - random-gacha, contract, capture, boss, or damage visual language
+    - species-specific anatomy baked into FX raster
+    - readable text or UI baked into FX
+    - persistent loop after result reveal
+production_decision:
+  art_director_qa: PASS_RUNTIME_DIRECTION
+  generation_gate: READY_FOR_MODULAR_FX_PRODUCTION
+  reason: "src/fusion.js fixes the Chapter 1 recipe, parents, result, heritage behavior, and resultRandom=false. This is sufficient to lock transition semantics while keeping all species identity in existing Official Art Lock assets."
+  official_lock_gate: "Do not declare Official Art Lock until final repository files, SHA-256 values, viewport QA, reduced-motion QA, and source-preservation QA are recorded."
+qa_required:
+  - "360x800, 390x844, 430x932: parent/result silhouettes and Fusion/Heritage controls remain unobscured"
+  - "normal motion reads as deterministic lineage convergence, not random summon or damage"
+  - "reduced motion is legible, non-looping, and avoids repeated flashes"
+  - "SP-011, SP-031, and SP-044 governing/runtime art bytes remain unchanged"
+next_safe_work:
+  - "produce transparent Fusion overlay frames from this locked motion spec"
+  - "inventory CH1_FX_003 Contract Summon runtime semantics before specifying its visual language"
+art_lock: NOT_OFFICIAL
