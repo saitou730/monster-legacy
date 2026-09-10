@@ -1,7 +1,7 @@
 # Production Tracker v5.3 — Chapter 1 Full Journey
 
 Date: 2026-09-09  
-Canonical base: `main` at `feeb61ddbc37e824696fc008212f59d959432a55`
+Canonical base: `main` at `555f0c35cd3a81025d6bb31e06e4e040dcf9867d`
 
 | Work item | Status |
 | --- | --- |
@@ -25,9 +25,9 @@ Canonical base: `main` at `feeb61ddbc37e824696fc008212f59d959432a55`
 | Accessible overlay focus | 60/60 Web QA PASS — battle/help and completed-HOME dialogs move focus on open and restore the invoking control on close; Android/TalkBack NOT RUN |
 | Art Lock / root publish boundary | Preserved |
 | Android physical-device gate | 12-item evidence protocol committed in PR #65; all items remain NOT RUN |
-| GitHub Pages | PASS — merged as `a7ffbebe0aa311c148dec4cf4c1776a0b9f596d0`; public root runtime verified |
+| GitHub Pages | PASS — PR #71 merged as `555f0c35cd3a81025d6bb31e06e4e040dcf9867d`; main Web QA and deploy succeeded |
 
-Evidence: PR #55, Web QA run `34340000149`; PR #57, run `34349283720`; PR #58, run `34355933486`; PR #59, run `34368173715`; PR #60, run `34374415303`; PR #61, run `34380362070`; PR #62, run `34392504907`; PR #64, run `34398679230`; PR #65, Android gate definition (NOT RUN); PR #71, run `34432241484`.  
+Evidence: PR #55, Web QA run `34340000149`; PR #57, run `34349283720`; PR #58, run `34355933486`; PR #59, run `34368173715`; PR #60, run `34374415303`; PR #61, run `34380362070`; PR #62, run `34392504907`; PR #64, run `34398679230`; PR #65, Android gate definition (NOT RUN); PR #71, PR run `34432606437`, main run `34432980367`.  
 Director Score: **82/100 HOLD**.
 
 ## Next priorities
