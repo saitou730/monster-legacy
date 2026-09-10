@@ -1,0 +1,51 @@
+schema_version: 1
+asset_id: CH1_FX_002
+asset: fusion_fx_binary_acceptance
+updated: 2026-09-11
+status: ACCEPTANCE_GATE_READY
+branch: main
+purpose: "Give Work an unambiguous PASS/HOLD/REJECT gate for the governed Fusion FX binary without regenerating or modifying locked monster art."
+preflight:
+  canonical_branch: main
+  governing_direction: production/art_handoffs/CH1_FX_002_FUSION.yaml
+  governing_manifest: production/ART_SUPPLY_PHASE1_CHAPTER1.yaml
+  governing_visual_map: canon/visual_source_map.yaml
+  work_current_task: QA-ANDROID-AND-TEMPO
+  art_lock_state: NOT_OFFICIAL
+  locked_species_preserved: [SP-011, SP-031, SP-018]
+  planned_path: assets/effects/fusion/
+  root_code_change: false
+  workflow_change: false
+  destructive_asset_replace: false
+inventory:
+  dedicated_binary_confirmed_in_manifest: false
+  action: "Do not regenerate character art. Accept only character-neutral transparent transition FX matching the locked direction."
+required_binary_contract:
+  frames:
+    - {order: 1, duration_ms: 100, anchor: fusion_stage_center}
+    - {order: 2, duration_ms: 120, anchor: fusion_stage_center}
+    - {order: 3, duration_ms: 140, anchor: fusion_stage_center}
+    - {order: 4, duration_ms: 120, anchor: fusion_stage_center}
+    - {order: 5, duration_ms: 170, anchor: fusion_stage_center}
+    - {order: 6, duration_ms: 260, anchor: fusion_stage_center}
+  total_nominal_duration_ms: 910
+  loop: false
+  reduced_motion: "single neutral cross-fade/halo; non-looping; no repeated flash"
+acceptance_qa:
+  required_viewports: ["360x800", "390x844", "430x932"]
+  pass_conditions:
+    - "All six normal-motion binaries exist at the governed assets/effects/fusion/ path and their SHA-256 values are recorded."
+    - "Reduced-motion binary exists and its SHA-256 is recorded."
+    - "Parent silhouettes remain readable before convergence and locked SP-018 result is unobscured on reveal."
+    - "FX contains no intermediate creature anatomy, hybrid silhouette, readable text, recipe label, UI control, random-gacha language, damage language, or persistent loop."
+    - "SP-011, SP-031, and SP-018 governing/runtime art hashes remain unchanged from canon/visual_source_map.yaml."
+    - "Fusion and Heritage controls remain readable and tappable at all required viewports."
+  verdict_rules:
+    PASS: "All pass_conditions satisfied; record hashes and viewport evidence, then mark binary QA PASS for Work runtime binding."
+    HOLD: "Binary/evidence incomplete or source-integrity cannot be verified; do not promote or bind."
+    REJECT: "Character redraw/morph, source hash drift, UI obstruction, wrong semantic language, or looping/repeated-flash behavior is present."
+official_art_lock_gate:
+  allowed_now: false
+  requires: [final_repository_files, sha256, required_views, color_constraints, silhouette_constraints, forbidden_constraints, viewport_qa, reduced_motion_qa, source_preservation_qa]
+art_director_qa: PASS_ACCEPTANCE_SPEC
+next_safe_work: "Produce governed Fusion transparent binaries, run this acceptance gate, then hand PASS evidence to Work for runtime binding."
