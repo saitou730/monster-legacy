@@ -1,4 +1,4 @@
-# AREA-01 Locked Species Placement v1.2
+# AREA-01 Locked Species Placement v1.3
 
 Canonical base: main c719735f37997383e53336b79e4bb739e4a677fc
 Owner: Chat / Issue #38
@@ -49,6 +49,27 @@ PARTY/FUSION remains free preparation between owl JOIN and challenge entry. 雷�
 Defeat against 裂空マンティコア preserves AREA01_CHALLENGE_UNLOCKED and all earlier AREA milestones. Retry begins at the challenge boundary. First victory writes AREA01_CHALLENGE_CLEARED exactly once; AREA01_CLEAR may then resolve as the AREA completion receipt without replaying owl discovery/JOIN.
 
 Narrative intent: **observe -> understand -> recognize the larger pattern -> choose to challenge it**. Chapter 1 closes by returning to a threat the player once fled; AREA-01 advances that theme by making knowledge itself the reason a previously hidden challenge becomes actionable.
+
+## 裂空マンティコア clear -> AREA01_CLEAR -> next-area boundary
+AREA-01 completion must resolve the ecology lesson rather than treat the challenge victory as a generic boss-clear flag.
+
+On the first durable AREA01_CHALLENGE_CLEARED, the player is considered to have proven that the AREA can be navigated by reading its inhabitants and boundary patterns rather than merely overpowering encounters. AREA01_CLEAR is therefore a separate completion receipt written only after challenge victory has already persisted. It does not award a new species, fusion recipe, visual form, command, or battle modifier.
+
+Resolution order is strict and idempotent:
+1. Persist AREA01_CHALLENGE_CLEARED exactly once after the existing challenge victory resolves.
+2. Resolve the AREA-01 completion beat from that durable receipt; do not replay 雷フクロウ discovery/JOIN or require 雷フクロウ in the active party.
+3. Persist AREA01_CLEAR exactly once.
+4. Expose a **next-area boundary** as progression availability only. Do not name, populate, visually define, or unlock a specific next AREA until a separate canonical Chat/Art handoff exists.
+
+The completion beat should communicate a change in player competence, not a change in the ecosystem: traces that once looked like noise are now readable as routes, territories, and warning boundaries. This is narrative framing only and must reuse existing presentation capabilities; it does not authorize new environmental Art Lock or UI work.
+
+Resume semantics:
+- If the app closes after challenge victory but before AREA01_CLEAR persists, resume from AREA-01 completion resolution, never from the manticore battle.
+- If AREA01_CLEAR is durable, HOME/reload/re-entry treats AREA-01 as cleared and never replays first-clear resolution.
+- Repeat manticore encounters, if Work/runtime later exposes them, cannot revoke or duplicate AREA01_CLEAR.
+- No Chapter 1 receipt is rewritten, consumed, or downgraded by AREA-01 completion.
+
+Narrative intent: **the player entered AREA-01 seeing encounters; the player leaves it seeing an ecosystem.** The next-area boundary is the reward: the world becomes legible enough to go farther, without prematurely canonizing content that does not yet have locked design/art support.
 
 ## Durable milestone semantics
 AREA01_UNLOCKED, AREA01_OWL_DISCOVERED, AREA01_OWL_JOINED, AREA01_CHALLENGE_UNLOCKED, AREA01_CHALLENGE_CLEARED, AREA01_CLEAR.
