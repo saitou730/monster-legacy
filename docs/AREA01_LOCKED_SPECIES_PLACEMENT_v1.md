@@ -1,6 +1,6 @@
-# AREA-01 Locked Species Placement v1.3
+# AREA-01 Locked Species Placement v1.4
 
-Canonical base: main c719735f37997383e53336b79e4bb739e4a677fc
+Canonical base reviewed: main c22953518cb63922303308a88cc1eb491f9684c4
 Owner: Chat / Issue #38
 
 This is a design/progression handoff only. Runtime UI QA merge and publication remain Work-owned.
@@ -70,6 +70,32 @@ Resume semantics:
 - No Chapter 1 receipt is rewritten, consumed, or downgraded by AREA-01 completion.
 
 Narrative intent: **the player entered AREA-01 seeing encounters; the player leaves it seeing an ecosystem.** The next-area boundary is the reward: the world becomes legible enough to go farther, without prematurely canonizing content that does not yet have locked design/art support.
+
+## AREA-01 end-to-end handoff / first-incomplete resolver
+Work may bind these milestones to runtime using additive/default-safe save fields. The resolver is semantic, not a mandate for a specific implementation shape.
+
+Canonical monotonic order:
+1. CH1_CLEAR (existing Chapter 1 receipt; prerequisite only)
+2. AREA01_UNLOCKED
+3. AREA01_OWL_DISCOVERED
+4. AREA01_OWL_JOINED
+5. AREA01_CHALLENGE_UNLOCKED
+6. AREA01_CHALLENGE_CLEARED
+7. AREA01_CLEAR
+
+Resume target is always the first incomplete AREA-01 milestone whose prerequisites are durable:
+- CH1_CLEAR absent -> AREA-01 remains unavailable; do not synthesize Chapter 1 completion.
+- CH1_CLEAR present, AREA01_UNLOCKED absent -> resolve AREA-01 unlock once.
+- unlocked, owl discovery absent -> resume at field trace/discovery boundary.
+- discovered, owl JOIN absent -> resume at owl HUNT boundary; discovery does not replay.
+- owl joined, challenge unlock absent -> resolve ecological recognition/challenge unlock once.
+- challenge unlocked, challenge clear absent -> resume at manticore challenge boundary.
+- challenge cleared, AREA01_CLEAR absent -> resume at AREA completion beat; do not replay battle.
+- AREA01_CLEAR present -> normal cleared-area state; first-clear beats never replay.
+
+Invalid/legacy partial combinations must heal forward without deleting durable ownership. If a later milestone is already durable, Work should treat all logically required earlier AREA-01 progression as satisfied for routing purposes rather than resetting the player or duplicating rewards. This is a compatibility rule, not permission to fabricate inventory entries. Existing monster ownership remains authoritative.
+
+No AREA-01 milestone consumes or mutates Chapter 1 receipts. No AREA-01 milestone grants duplicate monsters, new fusion recipes, currencies, or Contract rewards. This handoff therefore adds progression knowledge only and leaves reward implementation to separately canonicalized content.
 
 ## Durable milestone semantics
 AREA01_UNLOCKED, AREA01_OWL_DISCOVERED, AREA01_OWL_JOINED, AREA01_CHALLENGE_UNLOCKED, AREA01_CHALLENGE_CLEARED, AREA01_CLEAR.
