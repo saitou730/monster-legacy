@@ -31,14 +31,17 @@ chapter1_supply:
   - id: CH1_ENV_003
     asset: fusion_lab
     screens: [FUSION, HERITAGE]
-    status: QUEUED
+    status: DIRECTION_SPECIFIED_HOLD_GENERATION
     planned_path: assets/backgrounds/chapter1/fusion_lab.jpg
+    handoff: production/art_handoffs/CH1_ENV_003_FUSION_LAB.yaml
   - id: CH1_FX_001
     asset: join_fx
     screens: [JOIN]
-    status: QUEUED
+    status: RUNTIME_DIRECTION_LOCKED
     planned_path: assets/effects/join/
+    handoff: production/art_handoffs/CH1_FX_001_JOIN.yaml
     modular: true
+    production_gate: "Produce character-neutral transparent resonance overlay only; preserve SP-031 locked art; record viewport/reduced-motion QA and final SHA-256 before Official Art Lock."
   - id: CH1_FX_002
     asset: fusion_fx
     screens: [FUSION]
@@ -63,5 +66,6 @@ notes:
   - "OFFICIAL ART LOCK requires final repository file, SHA-256, source comparison QA, and documented visual constraints."
 next_queue:
   - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
-  - CH1_ENV_003_FUSION_LAB
-  - CH1_FX_001_JOIN
+  - CH1_FX_001_JOIN_MODULAR_PRODUCTION
+  - CH1_ENV_003_FUSION_LAB_GOVERNING_SOURCE
+  - CH1_FX_002_FUSION_RUNTIME_INVENTORY
