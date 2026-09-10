@@ -102,12 +102,20 @@ window.MLPlaytest = (() => {
     const btn=document.getElementById('playtestSurveyBtn');
     if(btn){ btn.textContent=session.submitted?'回答済み':'感触を記録'; btn.disabled=!!session.submitted; }
   }
+  let surveyReturnFocus=null;
   function showSurvey(){
     const modal=document.getElementById('playtestModal');
     if(!modal || session.submitted) return;
+    surveyReturnFocus=document.activeElement instanceof HTMLElement?document.activeElement:null;
     modal.classList.add('show'); modal.setAttribute('aria-hidden','false');
+    requestAnimationFrame(()=>document.getElementById('playtestClose')?.focus({preventScroll:true}));
   }
-  function hideSurvey(){ const modal=document.getElementById('playtestModal'); if(modal){modal.classList.remove('show');modal.setAttribute('aria-hidden','true');} }
+  function hideSurvey(){
+    const modal=document.getElementById('playtestModal');
+    if(modal){modal.classList.remove('show');modal.setAttribute('aria-hidden','true');}
+    const target=surveyReturnFocus; surveyReturnFocus=null;
+    if(target?.isConnected) requestAnimationFrame(()=>target.focus({preventScroll:true}));
+  }
   function bind(){
     const start=document.getElementById('playtestStartBtn');
     if(start) start.addEventListener('click',()=>{restart('manual'); renderHomeSummary(); event('playtest_ready');});
