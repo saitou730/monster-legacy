@@ -1,0 +1,57 @@
+schema_version: 1
+updated: 2026-09-11
+status: ART_DIRECTOR_QA_PASS_ACCEPTANCE_READY
+scope: CH1_FX_001_JOIN_BINARY
+purpose: "Give Work a deterministic acceptance checklist for the first Chapter 1 modular FX binary without regenerating or altering SP-031 Official Art Lock character art."
+authority:
+  manifest: production/ART_SUPPLY_PHASE1_CHAPTER1.yaml
+  direction: production/art_handoffs/CH1_FX_001_JOIN.yaml
+  packet: production/art_handoffs/CH1_FX_MODULAR_WORK_PACKET.yaml
+  export_contract: production/art_handoffs/CH1_FX_BINARY_EXPORT_CONTRACT.yaml
+art_lock:
+  character: SP-031
+  state: OFFICIAL_ART_LOCK_INHERITED
+  reinterpretation: forbidden
+binary_contract:
+  destination: assets/effects/join/
+  frames:
+    - {file: join_00.png, duration_ms: 90, order: 0}
+    - {file: join_01.png, duration_ms: 110, order: 1}
+    - {file: join_02.png, duration_ms: 130, order: 2}
+    - {file: join_03.png, duration_ms: 160, order: 3}
+    - {file: join_04.png, duration_ms: 260, order: 4}
+  total_ms: 750
+  loop: false
+  anchor: monster_stage_center
+  reduced_motion_file: join_reduced.png
+acceptance_gate:
+  repository:
+    - "Exactly five sequential RGBA transparent frame PNGs plus join_reduced.png exist at the governed destination."
+    - "No existing assets/art/* or assets/battle/* file is replaced or modified."
+    - "SHA-256 is recorded for all six final PNGs."
+  visual:
+    - "FX remains character-neutral resonance/confirmation energy; no anatomy, capture device, cage, chain, readable text, faction mark or invented symbol."
+    - "SP-031 silhouette, palette, eyes and proportions remain wholly owned by the existing locked character raster."
+    - "The FX clears enough negative space that the monster remains readable throughout the 750ms sequence."
+  viewport:
+    - "PASS overlay at 360x800 without covering primary command controls."
+    - "PASS overlay at 390x844 without covering primary command controls."
+    - "PASS overlay at 430x932 without covering primary command controls."
+  motion:
+    - "Runtime order and durations are exactly 90/110/130/160/260ms and do not loop."
+    - "Anchor remains monster_stage_center for every frame; no per-frame positional drift."
+    - "Reduced-motion path uses join_reduced.png as a static/non-looping confirmation treatment."
+  preservation:
+    - "Before/after hashes of governing SP-031 character assets are unchanged."
+qa_outcomes:
+  PASS: "All acceptance gates pass; record hashes/evidence and mark CH1_FX_001 binary READY_FOR_RUNTIME_BINDING."
+  HOLD: "Binary is incomplete or evidence is missing; do not declare Official Art Lock."
+  REJECT: "Character reinterpretation, destructive replacement, baked UI/text, wrong timing/anchor, or viewport obstruction is present."
+official_art_lock:
+  declared: false
+  requirement: "Only after final repository files, SHA-256, viewport/reduced-motion evidence and source-preservation checks exist."
+work_dependency:
+  next: "Create/export the six governed JOIN FX PNGs, run this acceptance gate, then bind only after PASS."
+art_director_qa:
+  verdict: PASS
+  rationale: "This acceptance spec advances the highest-priority Work-ready Chapter 1 Art item without duplicating imagery or changing any locked species design."
