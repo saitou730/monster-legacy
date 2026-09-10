@@ -101,6 +101,11 @@
       "id": "QA-ANDROID-GATE-DEFINITION",
       "evidence": "PR65; qa/ANDROID_PHYSICAL_GATE_v1.0.md",
       "result": "12 required physical-device checks and evidence rules defined. All checks remain NOT RUN; no Android PASS claimed."
+    },
+    {
+      "id": "UI-DIALOG-FOCUS-001",
+      "evidence": "PR71; https://github.com/saitou730/monster-legacy/actions/runs/34432241484",
+      "result": "60/60 browser cases passed at 360x800, 390x844 and 430x932; battle/help and completed-HOME dialogs expose modal semantics, move focus on open, and restore the invoking control on close. Physical Android/TalkBack remains NOT RUN."
     }
   ],
   "current_task": {
@@ -120,5 +125,9 @@
   ],
   "resume_rule": "Read main and current_task; do not repeat completed inventory without concrete reason; blocked art never advances by generation.",
   "schema_version": 1,
-  "working_pr": null
+  "working_pr": {
+    "number": 71,
+    "branch": "work/accessibility-dialog-focus",
+    "status": "web_qa_pass_pending_merge"
+  }
 }

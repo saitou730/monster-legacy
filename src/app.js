@@ -491,17 +491,36 @@ window.ML = (() => {
     go(id);
   }
 
+  let sheetReturnFocus=null;
+  function focusOverlay(root, preferred){
+    requestAnimationFrame(()=>{
+      const target=preferred?.() || root.querySelector('button:not([disabled]), [href], input:not([disabled]), [tabindex]:not([tabindex="-1"])') || root.querySelector('[role="dialog"]');
+      target?.focus({preventScroll:true});
+    });
+  }
+  function restoreOverlayFocus(target){
+    if(target?.isConnected) requestAnimationFrame(()=>target.focus({preventScroll:true}));
+  }
   function openSheet(title, html){
+    sheetReturnFocus=document.activeElement instanceof HTMLElement?document.activeElement:null;
     $("sheetTitle").textContent = title;
     $("sheetBody").innerHTML = html;
     $("mask").classList.add("show");
     $("sheet").classList.add("show");
+    $("sheet").setAttribute("aria-hidden","false");
+    focusOverlay($("sheet"),()=>$("sheetBody").querySelector('button:not([disabled])'));
   }
   function closeSheet(){
     $("mask").classList.remove("show");
     $("sheet").classList.remove("show");
+    $("sheet").setAttribute("aria-hidden","true");
+    const target=sheetReturnFocus; sheetReturnFocus=null;
+    restoreOverlayFocus(target);
   }
   $("mask").onclick = closeSheet;
+  document.addEventListener("keydown",e=>{
+    if(e.key==="Escape" && $("sheet").classList.contains("show")){e.preventDefault();closeSheet();}
+  });
   // v1.8.2 — mobile-safe delegated sheet controls. Inline onclick was unreliable on some Android content:// viewers.
   $("sheetBody").addEventListener("click", (e) => {
     const b=e.target.closest("[data-sheet-action]");
@@ -516,6 +535,7 @@ window.ML = (() => {
 
   // v1.5 — every major activity now resolves into an explicit result beat.
   let resultPrimaryAction=null;
+  let resultReturnFocus=null;
   function showJourneyResult({eyebrow="JOURNEY COMPLETE",title,body,meta="",art="",primary="CONTINUE",onPrimary=null}){
     const root=$("journeyResult"); if(!root) return;
     $("journeyResultEyebrow").textContent=eyebrow;
@@ -527,12 +547,16 @@ window.ML = (() => {
     $("journeyResultArt").style.display=art?"grid":"none";
     $("journeyResultPrimary").textContent=primary;
     resultPrimaryAction=onPrimary;
+    resultReturnFocus=document.activeElement instanceof HTMLElement?document.activeElement:null;
     root.classList.add("show"); root.setAttribute("aria-hidden","false");
+    focusOverlay(root,()=>$("journeyResultPrimary"));
     haptic([12,20]);
   }
   function closeJourneyResult(){
     const root=$("journeyResult"); if(!root) return;
     root.classList.remove("show"); root.setAttribute("aria-hidden","true"); resultPrimaryAction=null;
+    const target=resultReturnFocus; resultReturnFocus=null;
+    restoreOverlayFocus(target);
   }
   if($("journeyResultPrimary")) $("journeyResultPrimary").onclick=()=>{const fn=resultPrimaryAction;closeJourneyResult();if(fn)fn();};
   if($("journeyResultHome")) $("journeyResultHome").onclick=()=>{closeJourneyResult();go("home");};
