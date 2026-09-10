@@ -1,5 +1,5 @@
 schema_version: 1
-updated: 2026-09-10
+updated: 2026-09-11
 policy:
   gameplay_loop: AREA -> DISCOVERY -> HUNT_JOIN -> PARTY -> FUSION -> AREA_BOSS -> LEGACY -> NEXT_AREA
   priority: [CHAPTER_1, AREA, LINEAGE_FUSION, OFFLINE_ARENA, ANOMALY, SANCTUARY]
@@ -66,6 +66,13 @@ chapter1_supply:
     handoff: production/art_handoffs/CH1_FX_004_LEGACY.yaml
     modular: true
     production_gate: "Produce symbol-neutral transparent mastery/confirmation overlay only; preserve SP-191 locked art; runtime owns 不退転 grant/rank/archive state; record viewport/reduced-motion QA and final SHA-256 before Official Art Lock."
+area02_supply:
+  - id: AREA02_RUNTIME_001
+    asset: existing_locked_species_runtime_inventory
+    status: PASS_WITH_HOLD
+    handoff: production/art_handoffs/AREA02_EXISTING_LOCKED_SPECIES_RUNTIME_INVENTORY.yaml
+    pass: "SP-044 雷フクロウ has canonical source plus idle/attack/hit/danger/stance/icon and attack_prep derivatives; no same-purpose regeneration."
+    hold: "裂空マンティコア is user-declared Official Art Lock but canonical repository source/runtime binding was not found in current visual_source_map search; do not infer or generate."
 notes:
   - "TITLE/PROLOGUE should reuse an AREA/environment plate plus typography/grade unless runtime proves a dedicated raster necessary."
   - "BOSS replay reuses FIELD base with encounter grade/FX; no dedicated background until runtime QA demonstrates need."
@@ -77,4 +84,5 @@ next_queue:
   - CH1_FX_003_CONTRACT_MODULAR_PRODUCTION
   - CH1_FX_004_LEGACY_MODULAR_PRODUCTION
   - CH1_ENV_003_FUSION_LAB_GOVERNING_SOURCE
-  - AREA02_EXISTING_LOCKED_SPECIES_RUNTIME_INVENTORY
+  - AREA02_RIFT_MANTICORE_CANONICAL_BINDING_RECOVERY
+  - AREA02_SP044_RUNTIME_MOTION_SPEC_IF_WORK_REQUIRES
