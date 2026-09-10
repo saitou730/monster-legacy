@@ -1,7 +1,7 @@
 # Chapter 1 — Thorn Boar Rematch Resolution Contract v1
 
 Owner: Chat (Issue #38)
-Base: main `05ba2839a84580d3c651ea2e5a24daad7beb7fbb`
+Base: main `706a7e1b840a0873d8da9953b1cd38256b42fd4f` (canonical re-audit 2026-09-10)
 Status: Chat-owned scenario/progression handoff only; no root runtime/UI/QA/deploy changes.
 
 ## Purpose
@@ -17,6 +17,26 @@ Start conditions:
 - no Chapter 1 clear receipt exists.
 
 On reload, enter the earliest incomplete step. Never revoke or duplicate prior JOIN, FUSION, Contract, or Support receipts.
+
+## Full-journey resume invariants
+The Chapter 1 route is monotonic. A durable receipt may move the player forward, but no later failure, reload, HOME visit, or rematch retry may erase an earlier durable milestone.
+
+Canonical semantic order:
+`INTRO → FIRST BATTLE → THORN BOAR RETREAT → HOME/HUNT → JOIN → PARTY → FUSION → NEW SPECIES TEST → CONTRACT SUMMON → SUPPORT ACCEPTED → BOAR REMATCH → LEGACY → ARCHIVE → CH1_CLEAR`.
+
+Resume rule: resolve the earliest incomplete semantic milestone whose prerequisites are durable. Never infer completion from the currently visible screen alone.
+
+Cross-boundary invariants:
+- after JOIN is durable, reload must not return to a pre-JOIN capture/resonance requirement;
+- after PARTY reformation is durable, reload must preserve the accepted three-monster formation subject to canonical normalization;
+- after FUSION is durable, neither ingredient ownership nor the fusion reward may be granted a second time;
+- after NEW SPECIES TEST is durable, reload must not require the test again to unlock Contract;
+- after CONTRACT SUMMON is durable, the free deterministic first Contract cannot be claimed again;
+- after Support acceptance is durable, reload advances to rematch readiness rather than replaying Contract reward ownership;
+- after rematch victory is durable, reload advances to the first incomplete LEGACY/ARCHIVE/clear step and never respawns the mandatory rematch as uncleared;
+- after `CH1_CLEAR`, returning play enters normal HOME and never re-enters the fresh-start Chapter 1 route.
+
+This is a semantic/save handoff only. It does not prescribe Work-owned schema names or migration code. Runtime binding must remain additive/default-safe for older saves.
 
 ## Beat 1 — Return
 The field framing deliberately echoes the first encounter, but the protagonist does not get forced forward by a tutorial prompt. The narrative objective is simply: return to the place that previously required retreat.
@@ -67,3 +87,4 @@ Receipts:
 5. Victory, LEGACY, Archive, and Chapter clear rewards are idempotent.
 6. `prototype/chapter1` remains an integration workspace and is not made the public deployment target.
 7. Existing saves remain compatible; new receipts must be additive/default-safe when Work binds them to runtime.
+8. Full-journey resume follows the monotonic semantic order above; screen state alone is never authoritative over durable progression.
