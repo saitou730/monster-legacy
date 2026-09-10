@@ -45,9 +45,11 @@ chapter1_supply:
   - id: CH1_FX_002
     asset: fusion_fx
     screens: [FUSION]
-    status: QUEUED
+    status: RUNTIME_DIRECTION_LOCKED
     planned_path: assets/effects/fusion/
+    handoff: production/art_handoffs/CH1_FX_002_FUSION.yaml
     modular: true
+    production_gate: "Produce character-neutral transparent convergence/reveal overlay only; preserve SP-011/SP-031/SP-044 locked art; never create intermediate hybrid anatomy; record viewport/reduced-motion QA and final SHA-256 before Official Art Lock."
   - id: CH1_FX_003
     asset: contract_summon_fx
     screens: [CONTRACT_SUMMON]
@@ -67,5 +69,6 @@ notes:
 next_queue:
   - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
   - CH1_FX_001_JOIN_MODULAR_PRODUCTION
+  - CH1_FX_002_FUSION_MODULAR_PRODUCTION
   - CH1_ENV_003_FUSION_LAB_GOVERNING_SOURCE
-  - CH1_FX_002_FUSION_RUNTIME_INVENTORY
+  - CH1_FX_003_CONTRACT_RUNTIME_INVENTORY
