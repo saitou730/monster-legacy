@@ -1,5 +1,5 @@
 schema_version: 1
-updated: 2026-09-09
+updated: 2026-09-10
 policy:
   gameplay_loop: AREA -> DISCOVERY -> HUNT_JOIN -> PARTY -> FUSION -> AREA_BOSS -> LEGACY -> NEXT_AREA
   priority: [CHAPTER_1, AREA, LINEAGE_FUSION, OFFLINE_ARENA, ANOMALY, SANCTUARY]
@@ -23,9 +23,11 @@ chapter1_supply:
   - id: CH1_ENV_002
     asset: home
     screens: [HOME, PARTY]
-    status: NEXT
+    status: VISUAL_LOCKED_AWAITING_REPOSITORY_RASTER
     planned_path: assets/backgrounds/chapter1/home.jpg
+    handoff: production/art_handoffs/CH1_ENV_002_HOME.yaml
     reuse_rule: "PARTY uses HOME base with UI treatment"
+    promotion_gate: "No more near-identical regeneration. Export approved portrait candidate once, run 360x800 / 390x844 / 430x932 overlay QA, compute final SHA-256, then hand to Work."
   - id: CH1_ENV_003
     asset: fusion_lab
     screens: [FUSION, HERITAGE]
@@ -60,6 +62,6 @@ notes:
   - "BOSS replay reuses FIELD base with encounter grade/FX; no dedicated background until runtime QA demonstrates need."
   - "OFFICIAL ART LOCK requires final repository file, SHA-256, source comparison QA, and documented visual constraints."
 next_queue:
-  - CH1_ENV_002_HOME
+  - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
   - CH1_ENV_003_FUSION_LAB
   - CH1_FX_001_JOIN
