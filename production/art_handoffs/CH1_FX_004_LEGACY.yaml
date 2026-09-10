@@ -1,0 +1,69 @@
+schema_version: 1
+updated: 2026-09-10
+id: CH1_FX_004
+asset: legacy_fx
+status: RUNTIME_DIRECTION_LOCKED
+art_lock_status: NOT_OFFICIAL_ART_LOCK
+branch: main
+purpose: "Chapter 1 P17-P19 boss mastery -> LEGACY reward -> Archive transition; reward-neutral modular FX only."
+work_dependency: "Work owns replay-safe P17 BOAR_MASTERY -> P18 LEGACY_REWARD -> P19 ARCHIVE_UNLOCK. FX must not grant, rename, rank, or equip LEGACY and must not alter progression."
+governing_runtime:
+  - src/chapter1/progression.mjs
+runtime_facts:
+  source_boss: thorn_boar
+  source_species: SP-191
+  mastery_state: P17_BOAR_MASTERY
+  reward_state: P18_LEGACY_REWARD
+  archive_state: P19_ARCHIVE_UNLOCK
+  legacy_id: unyielding
+  display_name: "不退転"
+  rank: 1
+  result_authority: runtime
+  grant_is_idempotent: true
+visual_direction:
+  format: transparent_modular_overlay
+  aspect_policy: "Portrait First 9:16; reusable at 360x800, 390x844, 430x932."
+  character_policy: "Preserve SP-191 Official Art Lock. Do not redraw, morph, silhouette-reinterpret, or derive new Thorn Boar anatomy."
+  sequence: "mastery residue settles -> compact neutral core condenses -> restrained confirmation ring -> clear for runtime-owned LEGACY card/archive UI"
+  palette_policy: "Use neutral low-saturation energy/particle treatment; do not encode a new canonical LEGACY emblem, element, rarity, or faction identity."
+  ui_safe: "Keep reward-card center readable; no baked text, buttons, rank labels, reward amounts, archive frame, or LEGACY name."
+  forbidden:
+    - "new Thorn Boar anatomy, silhouette, face, horns, armor, vines, or markings"
+    - "invented 不退転 crest/rune/emblem without governing source"
+    - "LEGACY name, rank, reward amount, or ownership state baked into raster"
+    - "equipment/equip implication; claim and later loadout are runtime state"
+    - "loot-box, random rarity, roulette, or gacha language"
+    - "screen-filling flash or rapid strobe"
+animation:
+  anchor: legacy_reward_stage_center
+  loop: false
+  total_ms: 860
+  frames:
+    - {frame: 1, duration_ms: 100, role: "sparse mastery residue; low opacity"}
+    - {frame: 2, duration_ms: 120, role: "residue drifts inward toward neutral center"}
+    - {frame: 3, duration_ms: 140, role: "compact core condensation; no emblem or text"}
+    - {frame: 4, duration_ms: 150, role: "single restrained confirmation ring"}
+    - {frame: 5, duration_ms: 160, role: "ring dissipates; preserve card-safe center"}
+    - {frame: 6, duration_ms: 190, role: "fade clear for runtime-owned LEGACY reward/archive UI"}
+  reduced_motion: "single static soft core + opacity fade <= 240ms; no scale burst, shake, or flash sequence"
+planned_path: assets/effects/legacy/
+planned_files:
+  - legacy_01.png
+  - legacy_02.png
+  - legacy_03.png
+  - legacy_04.png
+  - legacy_05.png
+  - legacy_06.png
+qa:
+  art_director: PASS_RUNTIME_DIRECTION
+  binary_production: PENDING
+  official_art_lock: HOLD
+  hold_reason: "No final repository binaries/SHA-256. No canonical LEGACY emblem source exists in this handoff, so FX remains symbol-neutral."
+  required_checks:
+    - "360x800 overlay preserves P18 reward controls/card readability"
+    - "390x844 overlay preserves P18 reward controls/card readability"
+    - "430x932 overlay preserves P18 reward controls/card readability"
+    - "reduced-motion fallback communicates confirmation without flashing"
+    - "SP-191 remains untouched and recognizable only through existing runtime art"
+    - "FX does not author ownership, rank, equip state, reward quantity, or Archive completion"
+next_action: "Produce only six transparent symbol-neutral FX frames, QA all three viewports plus reduced motion, compute SHA-256 for each final binary, then hand to Work."
