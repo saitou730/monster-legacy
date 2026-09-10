@@ -1,0 +1,92 @@
+schema_version: 1
+updated: 2026-09-11
+status: ART_DIRECTOR_QA_PASS_SPEC_READY_FOR_WORK
+issue: 78
+main_reviewed: 102bc35e8c2fc97c351de8d2d5d7cf195101b370
+scope: CHAPTER_1_MODULAR_FX_PRODUCTION_PACKET
+purpose: "Give Work one implementation-ready packet for the four already-governed Chapter 1 FX without regenerating or altering Official Art Lock characters."
+source_handoffs:
+  - production/art_handoffs/CH1_FX_001_JOIN.yaml
+  - production/art_handoffs/CH1_FX_002_FUSION.yaml
+  - production/art_handoffs/CH1_FX_003_CONTRACT_SUMMON.yaml
+  - production/art_handoffs/CH1_FX_004_LEGACY.yaml
+production_order:
+  - CH1_FX_001
+  - CH1_FX_002
+  - CH1_FX_003
+  - CH1_FX_004
+assets:
+  CH1_FX_001:
+    destination: assets/effects/join/
+    format: transparent_runtime_overlay
+    frames: [90, 110, 130, 160, 260]
+    total_ms: 750
+    loop: false
+    anchor: monster_stage_center
+    semantic: voluntary_resonance_join
+    reduced_motion: static_low_intensity_halo_fade
+  CH1_FX_002:
+    destination: assets/effects/fusion/
+    format: transparent_runtime_overlay
+    frames: [100, 120, 140, 120, 170, 260]
+    total_ms: 910
+    loop: false
+    anchor: fusion_stage_center
+    semantic: deterministic_lineage_convergence_and_locked_result_reveal
+    reduced_motion: neutral_crossfade_halo
+  CH1_FX_003:
+    destination: assets/effects/contract/
+    format: transparent_runtime_overlay
+    frames: [110, 130, 150, 140, 170, 220]
+    total_ms: 920
+    loop: false
+    anchor: contract_stage_center
+    semantic: signal_acquisition_neutral_convergence_confirmation
+    reduced_motion: static_confirmation_halo_fade
+  CH1_FX_004:
+    destination: assets/effects/legacy/
+    format: transparent_runtime_overlay
+    frames: [100, 120, 140, 150, 160, 190]
+    total_ms: 860
+    loop: false
+    anchor: legacy_reward_stage_center
+    semantic: mastery_confirmation_without_invented_symbol
+    reduced_motion: static_mastery_confirmation_fade
+shared_constraints:
+  - "Character-neutral transparent FX only."
+  - "Do not redraw, morph, recolor, reinterpret, or bake anatomy from any Official Art Lock species into FX."
+  - "Do not infer Lyra Vell design or Rift Manticore identity/art."
+  - "No readable text or UI controls baked into FX."
+  - "No persistent loop after completion state."
+  - "Do not overwrite assets/art/* or assets/battle/*."
+  - "Do not modify root game code or publication workflow from Art supply."
+work_integration:
+  owner: Work
+  responsibilities:
+    - create/export runtime binaries from the locked motion directions
+    - bind FX to existing runtime events without changing game-result ownership
+    - preserve UI and character silhouette readability
+    - detect reduced-motion preference and select the defined alternative
+    - run viewport and runtime QA before publication
+  viewport_qa: [360x800, 390x844, 430x932]
+  source_preservation_qa: "Verify governing Official Art Lock character bytes remain unchanged."
+  flash_safety: "No repeated high-intensity flash; reduced-motion alternatives are non-looping."
+art_director_qa:
+  verdict: PASS_SPEC_READY_FOR_WORK
+  rationale: "All four FX already have runtime-governed semantics and locked frame timing. Consolidation removes ambiguity and prevents duplicate character/art generation while allowing Work to implement binaries in priority order."
+  official_art_lock: NOT_DECLARED
+  official_lock_gate:
+    - final repository binary filenames and paths recorded
+    - SHA-256 recorded for every final binary
+    - required viewport QA passed
+    - reduced-motion QA passed
+    - source-preservation QA passed
+next_queue_after_packet:
+  - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
+  - CH1_FX_001_JOIN_WORK_BINARY
+  - CH1_FX_002_FUSION_WORK_BINARY
+  - CH1_FX_003_CONTRACT_WORK_BINARY
+  - CH1_FX_004_LEGACY_WORK_BINARY
+  - CH1_ENV_003_FUSION_LAB_GOVERNING_SOURCE
+  - AREA02_RIFT_MANTICORE_CANONICAL_BINDING_RECOVERY_HOLD
+  - AREA02_SP044_RUNTIME_MOTION_WORK_HANDOFF
