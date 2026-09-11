@@ -1,0 +1,60 @@
+schema_version: 1
+updated: 2026-09-12
+asset_id: AREA01_RUNTIME_SP011
+species_id: SP-011
+species_name: 火トカゲ
+status: WAITING_FOR_WORK_BINDING
+art_director_qa: PASS
+purpose: "Promote the already governed SP-011 motion specification into an explicit Work handoff without regenerating, reinterpreting, or replacing character art."
+preflight:
+  canonical_branch: main
+  governing_source: canon/visual_source_map.yaml
+  art_manifest: production/ART_SUPPLY_PHASE1_CHAPTER1.yaml
+  work_queue: production/next_queue.yaml
+  motion_spec: production/art_handoffs/AREA01_SP011_RUNTIME_MOTION_SPEC.yaml
+  art_lock_state: OFFICIAL_ART_LOCK_INHERITED
+  work_priority_preserved: QA-ANDROID-AND-TEMPO
+  note: "This handoff does not supersede physical Android QA and does not modify root runtime or publication workflow."
+source:
+  path: assets/reference/火トカゲ_モンスターデザインシート.png
+  sha256: 446462af2a05f3ed5e6975deea6ea40246dc6faebce646804d234f6adb313df2
+runtime_assets:
+  idle: {path: assets/battle/fire/idle.png, sha256: 7bb51274e6445fe3f44494eea00ebd1471df721d588e975a924a9bf54c9b0fd8}
+  attack: {path: assets/battle/fire/attack.png, sha256: f9457765f268989c9eebb3efbbf7988bb346162f7e83196da7bce219bf7635b8}
+  hit: {path: assets/battle/fire/hit.png, sha256: 7bb51274e6445fe3f44494eea00ebd1471df721d588e975a924a9bf54c9b0fd8}
+  danger: {path: assets/battle/fire/danger.png, sha256: 9bca23fbdb2b0059ded00050cf70f36bbf3bbf810cee45b9a7dcf43c2b96638a}
+  stance: {path: assets/battle/fire/stance.png, sha256: 6b6f690f84dca979aa244b8d705062c906ea79d517c0639896c736b58251ee99}
+motion_contract:
+  anchor: monster_stage_center
+  idle: {frames: [idle], durations_ms: [840], loop: true}
+  attack: {frames: [idle, attack, idle], durations_ms: [140, 170, 250], loop: false}
+  hit: {frames: [hit, idle], durations_ms: [160, 250], loop: false}
+  danger: {frames: [danger], durations_ms: [680], loop: true}
+  stance: {frames: [stance, idle], durations_ms: [240, 280], loop: false}
+reduced_motion:
+  idle: static_idle
+  attack: attack_210ms_then_idle
+  hit: hit_170ms_then_idle
+  danger: static_danger_no_pulse
+  stance: stance_240ms_then_idle
+work_acceptance:
+  - "Verify every source/runtime SHA-256 before binding."
+  - "Use runtime transforms only; do not synthesize anatomy or create new SP-011 raster frames."
+  - "Verify battle composition at 360x800, 390x844 and 430x932."
+  - "COMMAND, STANCE and NEXT ACTION must remain visible/tappable without scroll regression."
+  - "Reduced-motion path must contain no continuous transform animation."
+  - "Motion/FX presentation must not create or mutate durable JOIN, PARTY, FUSION or progression receipts."
+forbidden:
+  - character regeneration
+  - reinterpretation
+  - recolor
+  - silhouette change
+  - eye redesign
+  - body proportion change
+  - destructive replacement of assets/art or assets/battle
+  - root runtime changes by Art
+  - publication workflow changes by Art
+qa:
+  result: PASS
+  rationale: "Existing canonical assets and the previously QA-PASS motion spec are sufficient; this run advances integration readiness rather than producing duplicate art."
+next: WORK_BIND_AREA01_SP011_RUNTIME_MOTION
