@@ -1,0 +1,66 @@
+schema_version: 1
+date: 2026-09-11
+status: ART_DIRECTOR_QA_PASS
+issue: 85
+scope: CH1_SP191_RUNTIME_MOTION_SPEC
+species:
+  id: SP-191
+  name: 荊棘の大猪
+  art_lock: INHERITED_OFFICIAL_LOCK
+  governing_source:
+    path: assets/reference/荊棘の大猪_モンスターデザイン画稿.png
+    sha256: 3fcbec67740d77f1bbc63c48b423269865fcc26e00d217e0139758a8afcaa88a
+purpose: "Chapter 1 first encounter/rematch boss runtime motion handoff using only existing canonical rasters. No new character art."
+anchor:
+  name: monster_stage_center
+  rule: "All state swaps preserve one stage center; Work must not re-crop or independently reposition individual state rasters."
+verified_frames:
+  attack: {path: assets/battle/boar/attack.png, sha256: 6846faa742f8a2b8d79f24c1bed8c95793125584b7fb1025af9b3170acb37aac}
+  danger: {path: assets/battle/boar/danger.png, sha256: e9aba3aacb263a89cd9c9454f265bb5847cb903ab0c598a9d80c5ba8b94b87bc}
+  hit: {path: assets/battle/boar/hit.png, sha256: 8adf3660fed9efbc5982f5e4965cfe0663dd0317398d315ff57d299772069357}
+  idle: {path: assets/battle/boar/idle.png, sha256: 8adf3660fed9efbc5982f5e4965cfe0663dd0317398d315ff57d299772069357}
+  stance: {path: assets/battle/boar/stance.png, sha256: 8adf3660fed9efbc5982f5e4965cfe0663dd0317398d315ff57d299772069357}
+sequences:
+  idle_hold:
+    loop: true
+    frames:
+      - {frame: idle, duration_ms: 920}
+  attack_action:
+    loop: false
+    frames:
+      - {frame: idle, duration_ms: 160}
+      - {frame: attack, duration_ms: 220}
+      - {frame: idle, duration_ms: 300}
+    total_ms: 680
+  hit_reaction:
+    loop: false
+    frames:
+      - {frame: hit, duration_ms: 180}
+      - {frame: idle, duration_ms: 280}
+    total_ms: 460
+  danger_hold:
+    loop: true
+    frames:
+      - {frame: danger, duration_ms: 760}
+  stance_action:
+    loop: false
+    frames:
+      - {frame: stance, duration_ms: 280}
+      - {frame: idle, duration_ms: 320}
+    total_ms: 600
+  first_encounter_presence:
+    loop: true
+    frames:
+      - {frame: idle, duration_ms: 1000}
+    note: "The retreat encounter may hold the governed idle raster; progression/controller owns retreat timing."
+reduced_motion:
+  rule: "Use governed state rasters without shake, zoom, flash or interpolated anatomy. Resolve attack/hit/stance directly to idle after the gameplay event."
+work_handoff:
+  allowed: "Bind these existing rasters/timings to the Chapter 1 first Thorn Boar encounter and rematch."
+  runtime_owned: [battle_event_sync, state_selection, retreat_and_rematch_progression, accessibility_preference_detection, UI_input, Android_QA]
+  forbidden: [redesign_SP191, generate_same_purpose_character_frames, morph_between_rasters, alter_source_colors_or_silhouette, overwrite_assets_battle]
+art_director_qa:
+  result: PASS
+  reason: "Canonical source and all five required runtime states are already governed with SHA-256; this specification adds only timing/order/loop/anchor and creates no new visual interpretation."
+  official_art_lock_change: NONE
+  implementation_status: SPEC_READY_FOR_WORK
