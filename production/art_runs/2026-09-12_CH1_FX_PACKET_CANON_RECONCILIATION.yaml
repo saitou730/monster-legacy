@@ -1,0 +1,36 @@
+schema_version: 1
+date: 2026-09-12
+status: ART_DIRECTOR_QA_PASS
+base_main: 6e660c5306f0405f2aeefc678a8c4a3b8eb6e284
+target: production/art_handoffs/CH1_FX_MODULAR_WORK_PACKET.yaml
+purpose: "Remove obsolete canonical references from the consolidated Chapter 1 FX packet before Work consumes the batch."
+preflight:
+  active_manifest: production/ART_SUPPLY_PHASE1_CHAPTER1.yaml
+  canon: canon/visual_source_map.yaml
+  work_current_task: QA-ANDROID-AND-TEMPO
+  work_status: blocked_on_physical_device
+  official_art_lock_change: false
+inventory_findings:
+  - "Current manifest marks SP-192 canonical binding recovered and QA PASS."
+  - "Current manifest batches all four Chapter 1 FX as SPEC_READY_FOR_WORK_BINARY."
+  - "The older modular packet still contains an obsolete AREA02_RIFT_MANTICORE_CANONICAL_BINDING_RECOVERY_HOLD next-queue item."
+  - "Leaving that stale HOLD risks Work repeating already-completed recovery instead of implementing visible FX binaries."
+decision:
+  - "Reconcile the packet to current canon; do not regenerate character art or FX imagery in this Art cycle."
+  - "Keep all four locked FX timing/anchor/reduced-motion definitions unchanged."
+  - "Replace obsolete SP-192 recovery HOLD with the consolidated locked-runtime-motion batch and Work runtime validation lane."
+planned_files:
+  - production/art_handoffs/CH1_FX_MODULAR_WORK_PACKET.yaml
+  - production/art_runs/2026-09-12_CH1_FX_PACKET_CANON_RECONCILIATION.yaml
+branch: art/fx-packet-reconcile-20260912
+art_lock_state: OFFICIAL_ART_LOCK_INHERITED_NO_CHANGE
+work_dependency: "Work creates/exports binaries, binds runtime events, performs reduced-motion and 360x800/390x844/430x932 QA, and publishes."
+qa:
+  verdict: PASS
+  reason: "Canonical queue correction removes a false blocker while preserving all governed visual and timing constraints."
+next_queue:
+  - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
+  - CH1_FX_BINARY_BATCH
+  - LOCKED_RUNTIME_MOTION_BATCH
+  - WORK_VALIDATE_OWL_MANTICORE_MANIFEST_BINDING
+  - CH1_ENV_003_FUSION_LAB_GOVERNING_SOURCE
