@@ -1,0 +1,43 @@
+schema_version: 1
+date: 2026-09-12
+status: ART_DIRECTOR_QA_PASS_READY_FOR_WORK
+task: POST-CH1-AREA01-PLAYABLE
+species: SP-044 雷フクロウ
+art_lock: INHERITED_OFFICIAL_LOCK
+governing_source: assets/reference/雷フクロウ_CHARACTER_DESIGN_BIBLE_ML-001_v1.1.png
+governing_sha256: 6e3cacaf83b8541d85560d9bf4358029c0be484af976125a399a7df14e72fedc
+purpose: "Complete source-governed visual packet for depart -> discovery -> encounter -> HUNT/JOIN -> return."
+assets:
+  discovery: assets/battle/owl/idle.png
+  idle: assets/battle/owl/idle.png
+  prep: assets/battle/owl/attack_prep.png
+  action: assets/battle/owl/attack.png
+  hit: assets/battle/owl/hit.png
+  danger: assets/battle/owl/danger.png
+  stance: assets/battle/owl/stance.png
+  icon: assets/battle/owl/icon_portrait.png
+sequence:
+  discovery: "idle 1000ms loop; anchor monster_stage_center"
+  idle: "idle 900ms loop; anchor monster_stage_center"
+  action: "prep 180ms -> action 140ms -> idle 220ms; no loop; anchor monster_stage_center"
+  hit: "hit 160ms -> idle 240ms; no loop; anchor monster_stage_center"
+  danger: "danger 700ms loop; anchor monster_stage_center"
+  stance: "stance 220ms -> idle 260ms; no loop; anchor monster_stage_center"
+presentation:
+  - "Use one continuous canonical owl identity from discovery through HUNT/JOIN."
+  - "Do not create alternate silhouettes, forms, recolors or anatomy."
+  - "P0 does not require a bespoke new area raster. Reuse a neutral existing field/environment treatment without new lore or faction implications."
+  - "Only commission a dedicated area background later if runtime evidence shows the reuse harms readability or area identity."
+reduced_motion: "Static governed states only; no shake, flash, zoom or interpolation."
+acceptance:
+  - source_and_runtime_bytes_unchanged
+  - owl_manifest_identity_used_through_discovery_and_join
+  - no_SP192_substitution
+  - viewport_QA_360x800_390x844_430x932
+  - controls_unobstructed
+  - art_animation_never_creates_progression_receipts
+work_owns: [root_runtime, progression, save, area_navigation, event_sync, accessibility, tests, merge, Pages]
+art_director_qa: PASS
+official_art_lock_change: NONE
+implementation_status: READY_FOR_WORK
+next_queue: [WORK_BIND_SP044_DISCOVERY_HUNT_JOIN, RUNTIME_VIEWPORT_QA_SP044]
