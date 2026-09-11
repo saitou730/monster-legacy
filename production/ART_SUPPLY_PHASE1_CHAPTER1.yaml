@@ -78,6 +78,13 @@ area01_supply:
     source_policy: "Existing visual_source_map-governed SP-001 rasters only; no character regeneration or synthesized in-between anatomy."
     timing: "idle 900ms loop; attack 160/180/260ms; hit 170/260ms; danger 720ms loop; stance 260/300ms; anchor monster_stage_center."
     work_dependency: "Work owns event synchronization, runtime transforms, accessibility preference detection, UI regression QA and publication."
+  - id: AREA01_RUNTIME_SP011
+    asset: SP011_governed_runtime_motion
+    status: SPEC_READY_FOR_WORK
+    handoff: production/art_handoffs/AREA01_SP011_RUNTIME_MOTION_SPEC.yaml
+    source_policy: "Existing visual_source_map-governed SP-011 rasters only; no character regeneration or synthesized in-between anatomy."
+    timing: "idle 840ms loop; attack 140/170/250ms; hit 160/250ms; danger 680ms loop; stance 240/280ms; anchor monster_stage_center."
+    work_dependency: "Work owns event synchronization, runtime transforms, accessibility preference detection, UI regression QA and publication."
 area02_supply:
   - id: AREA02_RUNTIME_001
     asset: existing_locked_species_runtime_inventory
@@ -98,6 +105,7 @@ notes:
   - "OFFICIAL ART LOCK requires final repository file, SHA-256, source comparison QA, and documented visual constraints."
   - "Issue #78 and CH1_FX_MODULAR_WORK_PACKET.yaml consolidate the four governed FX into one Work implementation packet; do not regenerate character art."
   - "Issue #79 governs SP-001 runtime motion specification using existing verified rasters only."
+  - "Issue #80 governs SP-011 runtime motion specification for the Chapter 1 growth/fusion route using existing verified rasters only."
 next_queue:
   - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
   - CH1_FX_001_JOIN_WORK_BINARY
@@ -105,6 +113,7 @@ next_queue:
   - CH1_FX_003_CONTRACT_WORK_BINARY
   - CH1_FX_004_LEGACY_WORK_BINARY
   - AREA01_SP001_RUNTIME_MOTION_WORK_HANDOFF
+  - AREA01_SP011_RUNTIME_MOTION_WORK_HANDOFF
   - CH1_ENV_003_FUSION_LAB_GOVERNING_SOURCE
   - AREA02_RIFT_MANTICORE_CANONICAL_BINDING_RECOVERY_HOLD
   - AREA02_SP044_RUNTIME_MOTION_WORK_HANDOFF
