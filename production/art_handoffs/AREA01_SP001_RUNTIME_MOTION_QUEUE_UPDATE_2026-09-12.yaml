@@ -1,0 +1,45 @@
+schema_version: 1
+updated: 2026-09-12
+asset_id: AREA01_RUNTIME_SP001
+species_id: SP-001
+species_name: ゴウラ
+status: WAITING_FOR_WORK_BINDING
+art_director_qa: PASS
+purpose: "Close the Art-side queue gap for governed SP-001 runtime motion without regenerating or mutating locked character art."
+preflight:
+  canonical_branch: main
+  manifest: production/ART_SUPPLY_PHASE1_CHAPTER1.yaml
+  visual_authority: canon/visual_source_map.yaml
+  motion_spec: production/art_handoffs/AREA01_SP001_RUNTIME_MOTION_SPEC.yaml
+  work_queue: production/next_queue.yaml
+  work_current_task: QA-ANDROID-AND-TEMPO
+  art_lock: INHERITED_OFFICIAL_LOCK
+  branch: main
+  planned_changes:
+    - production/art_handoffs/AREA01_SP001_RUNTIME_MOTION_QUEUE_UPDATE_2026-09-12.yaml
+  untouched:
+    - root runtime code
+    - public workflow
+    - assets/art/*
+    - assets/battle/*
+governing_source:
+  path: assets/reference/熔岩守護獣ゴウラ_モンスターデザインシート.png
+  sha256: 7089b6b62cd5da9e77b644650891953403c20d2079051a0e39df6e437ef5bff5
+runtime_contract:
+  source: production/art_handoffs/AREA01_SP001_RUNTIME_MOTION_SPEC.yaml
+  anchor: monster_stage_center
+  idle: {frames: [idle], durations_ms: [900], loop: true}
+  attack: {frames: [idle, attack, idle], durations_ms: [160, 180, 260], loop: false}
+  hit: {frames: [hit, idle], durations_ms: [170, 260], loop: false}
+  danger: {frames: [danger], durations_ms: [720], loop: true}
+  stance: {frames: [stance, idle], durations_ms: [260, 300], loop: false}
+  reduced_motion: "Use the static/short-path behavior defined in AREA01_SP001_RUNTIME_MOTION_SPEC.yaml; no continuous transform animation."
+qa:
+  result: PASS
+  checks:
+    - "Existing governed source and runtime rasters only; no new character pixels."
+    - "Frame order, timing, loop behavior and anchor are explicit in the canonical motion spec."
+    - "No destructive replacement of locked art."
+    - "Work physical Android QA remains the global current task and is not overwritten by this Art handoff."
+work_dependency: "After the physical Android gate or when Work schedules Art binding, bind SP-001 motion semantics to the existing governed rasters, verify hashes, viewport composition, STANCE/NEXT ACTION visibility and reduced-motion behavior."
+next: AREA01_SP001_RUNTIME_MOTION_WORK_HANDOFF
