@@ -1,0 +1,57 @@
+schema_version: 1
+updated: 2026-09-11
+id: AREA02_SP192_CANONICAL_BINDING_RECOVERY
+species: SP-192
+name: 裂空マンティコア
+purpose: Reconcile the stale AREA02 canonical-binding HOLD with the current governed repository source and runtime derivatives.
+status: CANONICAL_BINDING_RECOVERED_READY_FOR_WORK_MOTION_SPEC
+art_director_qa: PASS
+issue: 83
+art_lock:
+  status: OFFICIAL_ART_LOCK_INHERITED
+  governing_source: assets/reference/裂空マンティコア_CHARACTER_DESIGN_SHEET_ML-002_v1.2.png
+  governing_sha256: 0b1b8a4a9148cccd7342aa42e0a2d314d1dc09734b3137f064569777e40a1777
+  source_scope: dedicated source sheet
+  policy: Existing governed source and derivatives only. No reinterpretation, redesign, regeneration, or synthesized anatomy.
+runtime_sources:
+  idle:
+    path: assets/battle/manticore/idle.png
+    sha256: 579a8680176e2a4038cc00adfcbf41e4bd8d987c0492f8dec36298d3ac79dafa
+  attack_prep:
+    path: assets/battle/manticore/attack_prep.png
+    sha256: 7499717c0b803251b5033c2a8eb4775469205080b1147e380f01e08b4547f44c
+  attack:
+    path: assets/battle/manticore/attack.png
+    sha256: 38413bbd83088189ca5b1a4f6a51bbe7d8e476433aad64a2efbbf07ee998a1e6
+  hit:
+    path: assets/battle/manticore/hit.png
+    sha256: 579a8680176e2a4038cc00adfcbf41e4bd8d987c0492f8dec36298d3ac79dafa
+  danger:
+    path: assets/battle/manticore/danger.png
+    sha256: d7696dc21e26af752bbcb328f84ea5aabd2dc438f20393ef3373db5f09e2f595
+  stance:
+    path: assets/battle/manticore/stance.png
+    sha256: 7499717c0b803251b5033c2a8eb4775469205080b1147e380f01e08b4547f44c
+  icon:
+    path: assets/battle/manticore/icon_portrait.png
+    sha256: dd89b38375476fbc4833ed1916116b38588b7e07d017da7d4b90833c57089a31
+qa:
+  governing_source_present_in_visual_source_map: PASS
+  runtime_state_set_present: PASS
+  icon_present: PASS
+  attack_prep_present: PASS
+  same_purpose_regeneration: FORBIDDEN
+  stale_hold_resolution: PASS
+resolution:
+  previous_hold: AREA02_RIFT_MANTICORE_CANONICAL_BINDING_RECOVERY_HOLD
+  result: HOLD_CLEARED_BY_CURRENT_CANON_EVIDENCE
+  note: This does not create a new Official Art Lock; it inherits the existing lock and binds current canonical repository evidence.
+next_queue:
+  - AREA02_SP192_RUNTIME_MOTION_SPEC
+work_dependency: Work remains owner of runtime event synchronization, accessibility preference detection, UI regression QA and publication after motion specification.
+forbidden_changes:
+  - root game code
+  - public workflow
+  - destructive replacement of assets/art/*
+  - destructive replacement of assets/battle/*
+  - alternate SP-192 interpretation
