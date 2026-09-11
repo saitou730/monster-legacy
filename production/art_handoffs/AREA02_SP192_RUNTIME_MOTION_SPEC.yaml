@@ -1,0 +1,57 @@
+schema_version: 1
+updated: 2026-09-11
+id: AREA02_SP192_RUNTIME_MOTION_SPEC
+species: SP-192
+name: 裂空マンティコア
+status: SPEC_READY_FOR_WORK
+issue: 84
+art_director_qa: PASS
+art_lock:
+  status: OFFICIAL_ART_LOCK_INHERITED
+  governing_source: assets/reference/裂空マンティコア_CHARACTER_DESIGN_SHEET_ML-002_v1.2.png
+  governing_sha256: 0b1b8a4a9148cccd7342aa42e0a2d314d1dc09734b3137f064569777e40a1777
+  policy: Existing governed rasters only; no reinterpretation, regeneration, morphing, or synthesized in-between anatomy.
+anchor: monster_stage_center
+motions:
+  idle:
+    frames:
+      - {path: assets/battle/manticore/idle.png, sha256: 579a8680176e2a4038cc00adfcbf41e4bd8d987c0492f8dec36298d3ac79dafa, duration_ms: 860}
+    loop: true
+  attack:
+    frames:
+      - {path: assets/battle/manticore/attack_prep.png, sha256: 7499717c0b803251b5033c2a8eb4775469205080b1147e380f01e08b4547f44c, duration_ms: 150}
+      - {path: assets/battle/manticore/attack.png, sha256: 38413bbd83088189ca5b1a4f6a51bbe7d8e476433aad64a2efbbf07ee998a1e6, duration_ms: 180}
+      - {path: assets/battle/manticore/idle.png, sha256: 579a8680176e2a4038cc00adfcbf41e4bd8d987c0492f8dec36298d3ac79dafa, duration_ms: 250}
+    loop: false
+  hit:
+    frames:
+      - {path: assets/battle/manticore/hit.png, sha256: 579a8680176e2a4038cc00adfcbf41e4bd8d987c0492f8dec36298d3ac79dafa, duration_ms: 160}
+      - {path: assets/battle/manticore/idle.png, sha256: 579a8680176e2a4038cc00adfcbf41e4bd8d987c0492f8dec36298d3ac79dafa, duration_ms: 240}
+    loop: false
+  danger:
+    frames:
+      - {path: assets/battle/manticore/danger.png, sha256: d7696dc21e26af752bbcb328f84ea5aabd2dc438f20393ef3373db5f09e2f595, duration_ms: 680}
+    loop: true
+  stance:
+    frames:
+      - {path: assets/battle/manticore/stance.png, sha256: 7499717c0b803251b5033c2a8eb4775469205080b1147e380f01e08b4547f44c, duration_ms: 230}
+      - {path: assets/battle/manticore/idle.png, sha256: 579a8680176e2a4038cc00adfcbf41e4bd8d987c0492f8dec36298d3ac79dafa, duration_ms: 270}
+    loop: false
+reduced_motion:
+  policy: Disable runtime transforms and temporal emphasis; show the corresponding canonical state raster statically. Do not generate reduced-motion character variants.
+qa:
+  canonical_hashes_preserved: PASS
+  deterministic_frame_order: PASS
+  per_frame_duration_documented: PASS
+  loop_behavior_documented: PASS
+  anchor_documented: PASS
+  reduced_motion_documented: PASS
+  same_purpose_generation: FORBIDDEN
+work_dependency: Work owns runtime event synchronization, transforms, accessibility preference detection, UI regression QA and publication.
+forbidden_changes:
+  - root game code
+  - public workflow
+  - assets/art/* replacement
+  - assets/battle/* replacement
+  - alternate SP-192 interpretation
+next: AREA02_SP192_RUNTIME_MOTION_WORK_HANDOFF
