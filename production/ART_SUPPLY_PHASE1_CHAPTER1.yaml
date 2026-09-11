@@ -71,6 +71,7 @@ area01_supply:
   - {id: AREA01_RUNTIME_SP011, status: SPEC_READY_FOR_WORK, handoff: production/art_handoffs/AREA01_SP011_RUNTIME_MOTION_SPEC.yaml}
   - {id: AREA01_RUNTIME_SP018, status: SPEC_READY_FOR_WORK, handoff: production/art_handoffs/AREA01_SP018_RUNTIME_MOTION_SPEC.yaml}
   - {id: AREA01_RUNTIME_SP031, status: SPEC_READY_FOR_WORK, handoff: production/art_handoffs/AREA01_SP031_RUNTIME_MOTION_SPEC.yaml}
+  - {id: AREA01_RUNTIME_SP071, status: SPEC_READY_FOR_WORK, handoff: production/art_handoffs/AREA01_SP071_RUNTIME_MOTION_SPEC.yaml}
 area02_supply:
   - id: AREA02_RUNTIME_001
     asset: existing_locked_species_runtime_inventory
@@ -93,6 +94,7 @@ notes:
   - "BOSS replay reuses FIELD base with encounter grade/FX; no dedicated background until runtime QA demonstrates need."
   - "OFFICIAL ART LOCK requires final repository file, SHA-256, source comparison QA, and documented visual constraints."
   - "SP-192 canonical binding is recovered and QA PASS; do not retain the obsolete recovery HOLD in active queues."
+  - "SP-071 governed runtime motion is QA PASS and reconciled into active AREA01 supply; do not regenerate its battle art."
 next_queue:
   - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
   - CH1_FX_001_JOIN_WORK_BINARY
@@ -103,6 +105,7 @@ next_queue:
   - AREA01_SP011_RUNTIME_MOTION_WORK_HANDOFF
   - AREA01_SP018_RUNTIME_MOTION_WORK_HANDOFF
   - AREA01_SP031_RUNTIME_MOTION_WORK_HANDOFF
+  - AREA01_SP071_RUNTIME_MOTION_WORK_HANDOFF
   - CH1_ENV_003_FUSION_LAB_GOVERNING_SOURCE
   - AREA02_SP044_RUNTIME_MOTION_WORK_HANDOFF
   - AREA02_SP192_RUNTIME_MOTION_WORK_HANDOFF
