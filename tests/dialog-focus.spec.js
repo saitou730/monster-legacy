@@ -12,7 +12,12 @@ test('battle detail sheet exposes dialog semantics and restores focus', async ({
   const dialog=page.locator('#sheet [role="dialog"]');
   await expect(dialog).toBeVisible();
   await expect(page.locator('#sheet')).toHaveAttribute('aria-hidden','false');
-  await expect(page.getByRole('button', { name: '戦闘へ戻る' })).toBeFocused();
+  const close=page.getByRole('button', { name: '戦闘へ戻る' });
+  await expect(close).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(close).toBeFocused();
+  await page.keyboard.press('Shift+Tab');
+  await expect(close).toBeFocused();
   await page.keyboard.press('Escape');
   await expect(page.locator('#sheet')).not.toHaveClass(/show/);
   await expect(page.locator('#sheet')).toHaveAttribute('aria-hidden','true');
@@ -38,7 +43,13 @@ test('optional playtest dialog focuses close and returns to its opener', async (
     element.click();
   });
   await expect(page.locator('#playtestModal')).toHaveAttribute('aria-hidden','false');
-  await expect(page.locator('#playtestClose')).toBeFocused();
+  const close=page.locator('#playtestClose');
+  const submit=page.getByRole('button', { name: 'PLAYTEST RESULTを保存' });
+  await expect(close).toBeFocused();
+  await page.keyboard.press('Shift+Tab');
+  await expect(submit).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(close).toBeFocused();
   await page.keyboard.press('Escape');
   await expect(page.locator('#playtestModal')).toHaveAttribute('aria-hidden','true');
   await expect(opener).toBeFocused();

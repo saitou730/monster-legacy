@@ -501,6 +501,17 @@ window.ML = (() => {
   function restoreOverlayFocus(target){
     if(target?.isConnected) requestAnimationFrame(()=>target.focus({preventScroll:true}));
   }
+  function trapOverlayFocus(event, root){
+    if(event.key!=="Tab") return;
+    const selector='button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const controls=[...root.querySelectorAll(selector)].filter(el=>el.getClientRects().length && el.getAttribute("aria-hidden")!=="true");
+    if(!controls.length){ event.preventDefault(); root.querySelector('[role="dialog"]')?.focus({preventScroll:true}); return; }
+    const first=controls[0], last=controls[controls.length-1], active=document.activeElement;
+    if(!root.contains(active) || (event.shiftKey && active===first) || (!event.shiftKey && active===last)){
+      event.preventDefault();
+      (event.shiftKey?last:first).focus({preventScroll:true});
+    }
+  }
   function openSheet(title, html){
     sheetReturnFocus=document.activeElement instanceof HTMLElement?document.activeElement:null;
     $("sheetTitle").textContent = title;
@@ -519,7 +530,12 @@ window.ML = (() => {
   }
   $("mask").onclick = closeSheet;
   document.addEventListener("keydown",e=>{
-    if(e.key==="Escape" && $("sheet").classList.contains("show")){e.preventDefault();closeSheet();}
+    if($("sheet").classList.contains("show")){
+      if(e.key==="Escape"){e.preventDefault();closeSheet();}
+      else trapOverlayFocus(e,$("sheet"));
+      return;
+    }
+    if($("journeyResult")?.classList.contains("show")) trapOverlayFocus(e,$("journeyResult"));
   });
   // v1.8.2 — mobile-safe delegated sheet controls. Inline onclick was unreliable on some Android content:// viewers.
   $("sheetBody").addEventListener("click", (e) => {
