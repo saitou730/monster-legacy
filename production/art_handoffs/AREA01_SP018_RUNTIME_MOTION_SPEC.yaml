@@ -1,0 +1,72 @@
+schema_version: 1
+updated: 2026-09-11
+id: AREA01_RUNTIME_SP018
+species: SP-018
+name: 炎翼リザル
+purpose: Chapter 1 fixed FUSION result and TEST route runtime motion
+status: SPEC_READY_FOR_WORK
+art_director_qa: PASS
+issue: 82
+art_lock:
+  status: OFFICIAL_ART_LOCK_INHERITED
+  governing_source: assets/reference/炎翼リザル_公式デザインシート.png
+  governing_sha256: e4093ba78b5967b9019b62c5ebe879277bd6b01a077568127ecab4b96dc55105
+  policy: Existing governed rasters only. No reinterpretation, redesign, synthesized in-between anatomy, or replacement of locked binaries.
+runtime_sources:
+  idle:
+    path: assets/battle/flame/idle.png
+    sha256: 62edf235a15c09edfed17c893e74a5e75287f76d2ee3c938c9ce06a101bbaeff
+  attack:
+    path: assets/battle/flame/attack.png
+    sha256: a4f7a13e4c150545548834a1b1a964de0f0c33dbb9f45f8701af3a76de0eb213
+  hit:
+    path: assets/battle/flame/hit.png
+    sha256: 62edf235a15c09edfed17c893e74a5e75287f76d2ee3c938c9ce06a101bbaeff
+  danger:
+    path: assets/battle/flame/danger.png
+    sha256: 4b12b37d89322eb338b20e05777d025178a9482f3a0cc709cd0ab5cd07a485fb
+  stance:
+    path: assets/battle/flame/stance.png
+    sha256: e3be4427118c46847f019ad4edf7a17d7f166de6a6e2f8a0b2046d045dc8d475
+anchor: monster_stage_center
+motion:
+  idle:
+    frame_order: [idle]
+    frame_ms: [820]
+    loop: true
+    runtime_transform: gentle vertical lift and wing-breath only; preserve silhouette
+  attack:
+    frame_order: [idle, attack, idle]
+    frame_ms: [130, 180, 250]
+    loop: false
+    runtime_transform: short forward emphasis only; no generated intermediate anatomy
+  hit:
+    frame_order: [hit, idle]
+    frame_ms: [150, 240]
+    loop: false
+    runtime_transform: brief recoil only
+  danger:
+    frame_order: [danger]
+    frame_ms: [660]
+    loop: true
+    runtime_transform: restrained low-amplitude pulse; no hue redesign
+  stance:
+    frame_order: [stance, idle]
+    frame_ms: [230, 270]
+    loop: false
+    runtime_transform: hold/readability emphasis only
+reduced_motion:
+  rule: Disable runtime translation/scale/pulse and show the corresponding governed raster statically for the state duration.
+qa:
+  source_integrity: PASS_BY_REGISTERED_SHA256
+  same_purpose_regeneration: FORBIDDEN
+  required_viewports: [360x800, 390x844, 430x932]
+  runtime_ui_regression: WORK_REQUIRED
+  accessibility_runtime_check: WORK_REQUIRED
+work_dependency: Work owns event synchronization, runtime transforms, accessibility preference detection, UI regression QA and publication.
+forbidden_changes:
+  - root game code
+  - public workflow
+  - destructive replacement of assets/art/*
+  - destructive replacement of assets/battle/*
+  - new character anatomy or alternate SP-018 interpretation
