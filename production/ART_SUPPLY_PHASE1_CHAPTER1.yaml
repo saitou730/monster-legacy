@@ -1,5 +1,5 @@
 schema_version: 1
-updated: 2026-09-11
+updated: 2026-09-12
 policy:
   gameplay_loop: AREA -> DISCOVERY -> HUNT_JOIN -> PARTY -> FUSION -> AREA_BOSS -> LEGACY -> NEXT_AREA
   priority: [CHAPTER_1, AREA, LINEAGE_FUSION, OFFLINE_ARENA, ANOMALY, SANCTUARY]
@@ -7,6 +7,7 @@ policy:
   aspect_ratio: "9:16"
   production_gate: "Ship at production-ready quality; fix minor issues in runtime QA instead of repeatedly regenerating near-identical art."
   character_policy: "Never reinterpret existing Official Art Lock species."
+  throughput_rule: "Batch same-kind governed work. One-species-per-cycle administration is prohibited unless runtime QA identifies a species-specific defect."
 existing_character_art:
   status: OFFICIAL_ART_LOCK_INHERITED
   authority: canon/visual_source_map.yaml
@@ -89,6 +90,12 @@ area02_supply:
     source_policy: "Existing governed SP-192 rasters only; no reinterpretation, regeneration, morphing, or synthesized in-between anatomy."
     timing: "idle 860ms loop; attack 150/180/250ms; hit 160/240ms; danger 680ms loop; stance 230/270ms; anchor monster_stage_center."
     work_dependency: "Work owns runtime event synchronization, transforms, accessibility preference detection, UI regression QA and publication."
+batch_supply:
+  handoff: production/art_handoffs/FAST_ART_RUNTIME_BATCH_WORK_HANDOFF_2026-09-12.yaml
+  status: ART_DIRECTOR_QA_PASS_BATCH_READY_FOR_WORK
+  chapter1_fx: [CH1_FX_001, CH1_FX_002, CH1_FX_003, CH1_FX_004]
+  runtime_species: [SP-001, SP-011, SP-018, SP-031, SP-071, SP-044, SP-192]
+  rule: "Work consumes these as batch lanes; Art does not create additional per-item queue administration unless defect evidence requires it."
 notes:
   - "TITLE/PROLOGUE should reuse an AREA/environment plate plus typography/grade unless runtime proves a dedicated raster necessary."
   - "BOSS replay reuses FIELD base with encounter grade/FX; no dedicated background until runtime QA demonstrates need."
@@ -97,15 +104,6 @@ notes:
   - "SP-071 governed runtime motion is QA PASS and reconciled into active AREA01 supply; do not regenerate its battle art."
 next_queue:
   - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
-  - CH1_FX_001_JOIN_WORK_BINARY
-  - CH1_FX_002_FUSION_WORK_BINARY
-  - CH1_FX_003_CONTRACT_WORK_BINARY
-  - CH1_FX_004_LEGACY_WORK_BINARY
-  - AREA01_SP001_RUNTIME_MOTION_WORK_HANDOFF
-  - AREA01_SP011_RUNTIME_MOTION_WORK_HANDOFF
-  - AREA01_SP018_RUNTIME_MOTION_WORK_HANDOFF
-  - AREA01_SP031_RUNTIME_MOTION_WORK_HANDOFF
-  - AREA01_SP071_RUNTIME_MOTION_WORK_HANDOFF
+  - CH1_FX_BINARY_BATCH
+  - LOCKED_RUNTIME_MOTION_BATCH
   - CH1_ENV_003_FUSION_LAB_GOVERNING_SOURCE
-  - AREA02_SP044_RUNTIME_MOTION_WORK_HANDOFF
-  - AREA02_SP192_RUNTIME_MOTION_WORK_HANDOFF

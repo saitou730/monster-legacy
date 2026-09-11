@@ -1,0 +1,61 @@
+schema_version: 1
+date: 2026-09-12
+status: ART_DIRECTOR_QA_PASS_BATCH_READY_FOR_WORK
+base_main: 86f2a369590e35a2526e31f1aac3d94175998e9e
+run_record: production/art_runs/2026-09-12_FAST_ART_SUPPLY_BATCH_001.yaml
+purpose: "Replace one-monster-per-cycle administration with one consolidated Work handoff for all currently governed motion lanes plus the four Chapter 1 FX lanes."
+priority_order:
+  - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
+  - CH1_FX_BINARY_BATCH
+  - AREA01_LOCKED_MOTION_BATCH
+  - AREA02_LOCKED_MOTION_BATCH
+chapter1_fx_batch:
+  source_packet: production/art_handoffs/CH1_FX_MODULAR_WORK_PACKET.yaml
+  status: SPEC_READY_FOR_WORK_BINARY
+  items:
+    - {id: CH1_FX_001, frames_ms: [90,110,130,160,260], loop: false, anchor: monster_stage_center}
+    - {id: CH1_FX_002, frames_ms: [100,120,140,120,170,260], loop: false, anchor: fusion_stage_center}
+    - {id: CH1_FX_003, frames_ms: [110,130,150,140,170,220], loop: false, anchor: contract_stage_center}
+    - {id: CH1_FX_004, frames_ms: [100,120,140,150,160,190], loop: false, anchor: legacy_reward_stage_center}
+  shared_acceptance:
+    - transparent_character_neutral_overlays_only
+    - no_anatomy_redraw_morph_recolor_or_reinterpretation
+    - no_baked_text_or_controls
+    - non_looping_completion
+    - reduced_motion_variant_required
+    - viewport_QA_360x800_390x844_430x932
+    - governing_source_bytes_unchanged
+locked_motion_batch:
+  area01:
+    - {species: SP-001, source_spec: production/art_handoffs/AREA01_SP001_RUNTIME_MOTION_SPEC.yaml}
+    - {species: SP-011, source_spec: production/art_handoffs/AREA01_SP011_RUNTIME_MOTION_SPEC.yaml}
+    - {species: SP-018, source_spec: production/art_handoffs/AREA01_SP018_RUNTIME_MOTION_SPEC.yaml}
+    - {species: SP-031, source_spec: production/art_handoffs/AREA01_SP031_RUNTIME_MOTION_SPEC.yaml}
+    - {species: SP-071, source_spec: production/art_handoffs/AREA01_SP071_RUNTIME_MOTION_SPEC.yaml}
+  area02:
+    - {species: SP-044, source_spec: production/art_handoffs/AREA02_SP044_RUNTIME_MOTION_SPEC.yaml}
+    - {species: SP-192, source_spec: production/art_handoffs/AREA02_SP192_RUNTIME_MOTION_SPEC.yaml}
+  execution_rule: "Work may bind these governed specs as one implementation batch; do not require separate Art administration cycles per species."
+  preservation_rule: "Use only existing canonical runtime derivatives recorded in canon/visual_source_map.yaml. No regeneration, synthesized anatomy, or destructive replacement."
+home_lane:
+  status: REVIEW_WAITING_FOR_EXISTING_APPROVED_RASTER
+  action: "Promote/export the already-approved portrait candidate only; no further near-identical generation."
+  acceptance: [repository_path, sha256, overlay_QA_360x800, overlay_QA_390x844, overlay_QA_430x932]
+holds:
+  - {id: ART-GRAUSEN-PALETTE, action: HOLD_SOURCE_RECOVERY_ONLY}
+  - {id: ART-BULK-DIFFERENTIATION, action: HOLD_MISSING_SOURCE}
+  - {id: ART-NOCTA-SOURCE, action: HOLD_MISSING_DEDICATED_SOURCE}
+  - {id: ART-LUCIA, action: HOLD_MISSING_DEDICATED_SOURCE}
+  - {id: ART-PHIL, action: HOLD_MISSING_UNIQUE_SOURCE}
+work_boundary:
+  root_runtime_changes: WORK_ONLY
+  publication_workflow_changes: WORK_ONLY
+  physical_android_QA: WORK_OR_USER_DEVICE
+  current_work_blocker: physical_device_required
+art_director_qa:
+  verdict: PASS
+  official_art_lock_new: false
+  reason: "All batched lanes already have governing sources/specs; consolidation increases throughput without changing locked design DNA."
+next_art_decision:
+  - "Do not create more per-species queue-only files for these seven motion lanes unless runtime QA finds a species-specific defect."
+  - "After HOME/FX binary acceptance, move Art capacity to visible AREA ecology gaps or runtime polish supported by governing sources."
