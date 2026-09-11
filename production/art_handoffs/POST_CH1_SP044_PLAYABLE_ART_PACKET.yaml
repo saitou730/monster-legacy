@@ -8,6 +8,8 @@ governing_source: assets/reference/雷フクロウ_CHARACTER_DESIGN_BIBLE_ML-001
 governing_sha256: 6e3cacaf83b8541d85560d9bf4358029c0be484af976125a399a7df14e72fedc
 purpose: "Complete source-governed visual packet for depart -> discovery -> encounter -> HUNT/JOIN -> return."
 assets:
+  backdrop: assets/art/owl_battle_backdrop.jpg
+  backdrop_github_blob_sha: 153de291f20abc99f99fea28a0f039fd571eb28f
   discovery: assets/battle/owl/idle.png
   idle: assets/battle/owl/idle.png
   prep: assets/battle/owl/attack_prep.png
@@ -25,19 +27,23 @@ sequence:
   stance: "stance 220ms -> idle 260ms; no loop; anchor monster_stage_center"
 presentation:
   - "Use one continuous canonical owl identity from discovery through HUNT/JOIN."
+  - "Use the existing assets/art/owl_battle_backdrop.jpg continuously for discovery, encounter and HUNT/JOIN unless runtime QA proves a readability defect."
   - "Do not create alternate silhouettes, forms, recolors or anatomy."
-  - "P0 does not require a bespoke new area raster. Reuse a neutral existing field/environment treatment without new lore or faction implications."
-  - "Only commission a dedicated area background later if runtime evidence shows the reuse harms readability or area identity."
-reduced_motion: "Static governed states only; no shake, flash, zoom or interpolation."
+  - "Do not generate a replacement same-purpose owl/area background for P0."
+  - "Backdrop source bytes remain unchanged; responsive positioning/contrast treatment belongs to Work."
+  - "Only commission dedicated area polish later if runtime evidence shows the existing backdrop harms readability or area identity."
+reduced_motion: "Static governed monster states only; backdrop is static; no shake, flash, zoom, parallax or interpolation required."
 acceptance:
   - source_and_runtime_bytes_unchanged
+  - owl_backdrop_source_bytes_unchanged
   - owl_manifest_identity_used_through_discovery_and_join
   - no_SP192_substitution
   - viewport_QA_360x800_390x844_430x932
   - controls_unobstructed
+  - next_action_and_stance_readable_over_backdrop
   - art_animation_never_creates_progression_receipts
-work_owns: [root_runtime, progression, save, area_navigation, event_sync, accessibility, tests, merge, Pages]
+work_owns: [root_runtime, progression, save, area_navigation, event_sync, responsive_backdrop_positioning, contrast_overlay_if_needed, accessibility, tests, merge, Pages]
 art_director_qa: PASS
 official_art_lock_change: NONE
-implementation_status: READY_FOR_WORK
-next_queue: [WORK_BIND_SP044_DISCOVERY_HUNT_JOIN, RUNTIME_VIEWPORT_QA_SP044]
+implementation_status: READY_FOR_WORK_WITH_EXISTING_BACKDROP
+next_queue: [WORK_BIND_SP044_DISCOVERY_HUNT_JOIN_WITH_EXISTING_OWL_BACKDROP, RUNTIME_VIEWPORT_QA_SP044]
