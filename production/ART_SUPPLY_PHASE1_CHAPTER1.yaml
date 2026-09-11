@@ -70,6 +70,14 @@ chapter1_supply:
     work_packet: production/art_handoffs/CH1_FX_MODULAR_WORK_PACKET.yaml
     modular: true
     production_gate: "Produce symbol-neutral transparent mastery/confirmation overlay only; preserve SP-191 locked art; runtime owns 不退転 grant/rank/archive state; record viewport/reduced-motion QA and final SHA-256 before Official Art Lock."
+area01_supply:
+  - id: AREA01_RUNTIME_SP001
+    asset: SP001_governed_runtime_motion
+    status: SPEC_READY_FOR_WORK
+    handoff: production/art_handoffs/AREA01_SP001_RUNTIME_MOTION_SPEC.yaml
+    source_policy: "Existing visual_source_map-governed SP-001 rasters only; no character regeneration or synthesized in-between anatomy."
+    timing: "idle 900ms loop; attack 160/180/260ms; hit 170/260ms; danger 720ms loop; stance 260/300ms; anchor monster_stage_center."
+    work_dependency: "Work owns event synchronization, runtime transforms, accessibility preference detection, UI regression QA and publication."
 area02_supply:
   - id: AREA02_RUNTIME_001
     asset: existing_locked_species_runtime_inventory
@@ -89,12 +97,14 @@ notes:
   - "BOSS replay reuses FIELD base with encounter grade/FX; no dedicated background until runtime QA demonstrates need."
   - "OFFICIAL ART LOCK requires final repository file, SHA-256, source comparison QA, and documented visual constraints."
   - "Issue #78 and CH1_FX_MODULAR_WORK_PACKET.yaml consolidate the four governed FX into one Work implementation packet; do not regenerate character art."
+  - "Issue #79 governs SP-001 runtime motion specification using existing verified rasters only."
 next_queue:
   - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
   - CH1_FX_001_JOIN_WORK_BINARY
   - CH1_FX_002_FUSION_WORK_BINARY
   - CH1_FX_003_CONTRACT_WORK_BINARY
   - CH1_FX_004_LEGACY_WORK_BINARY
+  - AREA01_SP001_RUNTIME_MOTION_WORK_HANDOFF
   - CH1_ENV_003_FUSION_LAB_GOVERNING_SOURCE
   - AREA02_RIFT_MANTICORE_CANONICAL_BINDING_RECOVERY_HOLD
   - AREA02_SP044_RUNTIME_MOTION_WORK_HANDOFF
