@@ -1,0 +1,29 @@
+schema_version: 1
+date: 2026-09-12
+status: ART_DIRECTOR_QA_PASS
+base_main: ead54d9308cd27dbc8e3bc6486ff07d3657f533a
+target: assets/battle/manifest.json
+purpose: "Reconcile existing Official Art Lock runtime assets with the runtime battle manifest; no new raster generation."
+inventory:
+  directories_present: [boar, fire, flame, goura, leaf, manticore, owl, wind_bat]
+  manifest_entries_before: [flame, wind_bat, boar, goura, fire, leaf]
+  gap: [owl, manticore]
+decision:
+  - "Do not regenerate SP-044 or SP-192. Their governed runtime directories already exist."
+  - "Add owl and manticore manifest bindings only after confirming required filenames exist."
+  - "Do not modify or replace assets/battle/* rasters."
+  - "Keep Work ownership of root runtime consumption, accessibility, QA, merge and publication."
+planned_files:
+  - assets/battle/manifest.json
+branch: art/battle-manifest-reconcile-20260912
+art_lock_state: OFFICIAL_ART_LOCK_INHERITED_NO_CHANGE
+work_dependency: "Work validates root runtime consumption and three portrait viewports; physical Android remains separate."
+qa:
+  verdict: PASS
+  reason: "This closes a concrete discoverability/binding gap using existing governed assets rather than producing duplicate art."
+next_queue:
+  - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
+  - CH1_FX_BINARY_BATCH
+  - LOCKED_RUNTIME_MOTION_BATCH
+  - WORK_VALIDATE_OWL_MANTICORE_MANIFEST_BINDING
+  - CH1_ENV_003_FUSION_LAB_GOVERNING_SOURCE

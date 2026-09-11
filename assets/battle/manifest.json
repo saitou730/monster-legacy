@@ -40,5 +40,23 @@
     "stance": "leaf/stance.png",
     "danger": "leaf/danger.png",
     "hit": "hit.png"
+  },
+  "owl": {
+    "idle": "owl/idle.png",
+    "attack": "owl/attack.png",
+    "stance": "owl/stance.png",
+    "danger": "owl/danger.png",
+    "hit": "owl/hit.png",
+    "icon": "owl/icon_portrait.png",
+    "attack_prep": "owl/attack_prep.png"
+  },
+  "manticore": {
+    "idle": "manticore/idle.png",
+    "attack": "manticore/attack.png",
+    "stance": "manticore/stance.png",
+    "danger": "manticore/danger.png",
+    "hit": "manticore/hit.png",
+    "icon": "manticore/icon_portrait.png",
+    "attack_prep": "manticore/attack_prep.png"
   }
 }
