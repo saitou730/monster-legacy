@@ -1,0 +1,29 @@
+schema_version: 1
+recorded: 2026-09-11
+target: SP-071
+name: 葉ウサギ
+area: AREA01
+purpose: "Close an existing Official Art Lock runtime-motion gap without regenerating character art."
+branch: main
+status: PREFLIGHT_RECORDED
+art_lock: OFFICIAL_ART_LOCK_INHERITED
+planned_changes:
+  - production/art_handoffs/AREA01_SP071_RUNTIME_MOTION_SPEC.yaml
+  - production/ART_SUPPLY_PHASE1_CHAPTER1.yaml
+planned_asset_writes: []
+source:
+  governing_path: assets/reference/葉ウサギ_植物幻想モンスター設定画.png
+  governing_sha256: a004ac016ad98cd0c66ca3d511c95a4a2e8f964f48dd8328c0a6bf68d7e8861b
+existing_runtime:
+  - assets/battle/leaf/idle.png
+  - assets/battle/leaf/attack.png
+  - assets/battle/leaf/hit.png
+  - assets/battle/leaf/danger.png
+  - assets/battle/leaf/stance.png
+work_dependency: "Work owns event synchronization, runtime transforms, reduced-motion preference detection, UI regression QA and publication."
+constraints:
+  - "Do not reinterpret or regenerate SP-071."
+  - "Do not modify root runtime or publishing workflows."
+  - "Do not overwrite assets/art/* or assets/battle/* binaries."
+  - "Use only visual_source_map-governed rasters."
+reason_selected: "Chapter 1 HOME/FX are already waiting on Work binary/export steps; SP-071 has a canonical governing source and complete core battle rasters but no dedicated motion handoff, so this run advances an implementation-ready existing species instead of duplicating art."
