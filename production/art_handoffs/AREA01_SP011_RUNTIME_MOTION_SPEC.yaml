@@ -1,0 +1,86 @@
+schema_version: 1
+asset_id: AREA01_RUNTIME_SP011
+species_id: SP-011
+species_name: 火トカゲ
+updated: 2026-09-11
+status: SPEC_READY_FOR_WORK
+art_director_qa: PASS
+issue: 80
+purpose: "Bind motion semantics to existing governed SP-011 rasters for the Chapter 1 growth/fusion route without regenerating or reinterpreting character art."
+governing_source:
+  path: assets/reference/火トカゲ_モンスターデザインシート.png
+  sha256: 446462af2a05f3ed5e6975deea6ea40246dc6faebce646804d234f6adb313df2
+  authority: canon/visual_source_map.yaml
+  lock_policy: "Inherited approved dedicated source. Preserve palette, body proportions, eyes and silhouette; no redesign, recolor, anatomy synthesis or new in-between character frames."
+existing_runtime:
+  idle:
+    path: assets/battle/fire/idle.png
+    sha256: 7bb51274e6445fe3f44494eea00ebd1471df721d588e975a924a9bf54c9b0fd8
+  attack:
+    path: assets/battle/fire/attack.png
+    sha256: f9457765f268989c9eebb3efbbf7988bb346162f7e83196da7bce219bf7635b8
+  hit:
+    path: assets/battle/fire/hit.png
+    sha256: 7bb51274e6445fe3f44494eea00ebd1471df721d588e975a924a9bf54c9b0fd8
+  danger:
+    path: assets/battle/fire/danger.png
+    sha256: 9bca23fbdb2b0059ded00050cf70f36bbf3bbf810cee45b9a7dcf43c2b96638a
+  stance:
+    path: assets/battle/fire/stance.png
+    sha256: 6b6f690f84dca979aa244b8d705062c906ea79d517c0639896c736b58251ee99
+motion:
+  anchor: monster_stage_center
+  idle:
+    frames: [idle]
+    durations_ms: [840]
+    loop: true
+    runtime_motion: "subtle 2px-equivalent breathe/bob transform only; preserve source pixels"
+  attack:
+    frames: [idle, attack, idle]
+    durations_ms: [140, 170, 250]
+    loop: false
+    runtime_motion: "quick forward impulse and settle; no synthesized anatomy or intermediate raster"
+  hit:
+    frames: [hit, idle]
+    durations_ms: [160, 250]
+    loop: false
+    runtime_motion: "brief recoil transform only"
+  danger:
+    frames: [danger]
+    durations_ms: [680]
+    loop: true
+    runtime_motion: "low-amplitude pulse/scale transform; no flashing"
+  stance:
+    frames: [stance, idle]
+    durations_ms: [240, 280]
+    loop: false
+    runtime_motion: "brace emphasis then settle; character raster unchanged"
+reduced_motion:
+  idle: "static idle"
+  attack: "attack 210ms then idle"
+  hit: "hit 170ms then idle"
+  danger: "static danger; no pulse"
+  stance: "stance 240ms then idle"
+qa:
+  result: PASS
+  rationale:
+    - "All character pixels are existing visual_source_map-governed SP-011 rasters."
+    - "Frame order, per-frame duration, loop behavior and anchor are explicit."
+    - "No assets/art/* or assets/battle/* file is created, replaced or mutated."
+    - "Motion supports the Chapter 1 fire-lizard-to-fusion route without adding character-specific FX that could conflict with modular Fusion FX."
+  work_checks:
+    - "Verify governing/runtime hashes before binding."
+    - "Verify 360x800, 390x844 and 430x932 battle composition."
+    - "Verify COMMAND, STANCE and NEXT ACTION remain unobscured and tappable without scroll regression."
+    - "Verify reduced-motion path has no continuous transform animation."
+work_dependency: "Work owns event synchronization, CSS/runtime transforms, accessibility preference detection, regression QA and publication."
+forbidden:
+  - character regeneration
+  - recolor
+  - silhouette change
+  - eye redesign
+  - body proportion change
+  - synthesized in-between anatomy
+  - destructive replacement of existing runtime rasters
+  - embedding Fusion result or intermediate hybrid anatomy into SP-011 motion
+next: AREA01_SP011_RUNTIME_MOTION_WORK_HANDOFF
