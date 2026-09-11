@@ -70,7 +70,7 @@
     {
       "id": "CH1-GROWTH-ROUTE-001",
       "evidence": "PR52 merged as d4b64bae92cc558456ad38d0e017fe6ff6746dee; https://github.com/saitou730/monster-legacy/actions/runs/34290272886",
-      "result": "30/30 browser cases passed at 360x800, 390x844 and 430x932; e2e and Pages deploy succeeded; public root app.js contains P05-P13 HUNT, JOIN, PARTY, fixed FUSION and playable TEST controller bindings. Android NOT RUN."
+      "result": "30/30 browser cases passed at 360x800, 390x844 and 430x932; e2e and Pages deploy succeeded; public root P05-P13 HUNT/JOIN/PARTY/FUSION/TEST route is canonical. Android NOT RUN."
     },
     {
       "id": "CH1-CONTRACT-SUPPORT-001",
@@ -106,15 +106,25 @@
       "id": "UI-DIALOG-FOCUS-001",
       "evidence": "PR71 merged as 555f0c35cd3a81025d6bb31e06e4e040dcf9867d; PR Web QA https://github.com/saitou730/monster-legacy/actions/runs/34432606437; main Web QA/Pages https://github.com/saitou730/monster-legacy/actions/runs/34432980367",
       "result": "60/60 browser cases passed at 360x800, 390x844 and 430x932; battle/help and completed-HOME dialogs expose modal semantics, move focus on open, and restore the invoking control on close. Physical Android/TalkBack remains NOT RUN."
+    },
+    {
+      "id": "ANDROID-BOAR-MASTERY-HOTFIX-001",
+      "evidence": "PR87 merged as d5c6038d0f682abc620917026303b7fa94b1506b; PR Web QA https://github.com/saitou730/monster-legacy/actions/runs/34618755379; main Web QA/Pages https://github.com/saitou730/monster-legacy/actions/runs/34619305688",
+      "result": "Browser regression and deployed Pages PASS: Thorn Boar DANGER mastery window prevents premature KO before LEGACY ART, same-command VOL90 edge is covered, mastery authority remains legacyTriggered && legacySurvived, and compact boss STANCE prose no longer overflows inline. Physical Android re-test remains required."
+    },
+    {
+      "id": "UI-MODAL-FOCUS-CONTAINMENT-001",
+      "evidence": "PR73 rebased head fa433f0864b235326c6ed6c200b8d22153f73a89 with Web QA https://github.com/saitou730/monster-legacy/actions/runs/34619902978; merged as 77a236b00ec0b4b35efae860a96a869c44497823; main Web QA/Pages https://github.com/saitou730/monster-legacy/actions/runs/34620536610",
+      "result": "Browser QA and deployed Pages PASS: Tab/Shift+Tab remain contained inside root modal overlays and Escape/close restores the invoking control. Physical Android/TalkBack remains NOT RUN."
     }
   ],
   "current_task": {
     "id": "QA-ANDROID-AND-TEMPO",
     "title": "Validate deployed Chapter 1 on a physical Android device and tune pacing from evidence",
-    "status": "pending",
+    "status": "blocked_on_physical_device",
     "ownership": "production/WORK_CHAT_OWNERSHIP.md",
-    "next_action": "Run AND-01 through AND-12 from qa/ANDROID_PHYSICAL_GATE_v1.0.md on a physical Android device, attach evidence, then fix any failures before pacing work.",
-    "blocker": "Android physical-device evidence requires a real device."
+    "next_action": "Run AND-01 through AND-12 from qa/ANDROID_PHYSICAL_GATE_v1.0.md on a physical Android device against the deployed root build after PR87 and PR73, attach evidence, then fix any remaining failures before pacing work.",
+    "blocker": "Android physical-device evidence requires a real device; browser CI and Pages deployment are complete for the known Android hotfix and modal-focus backlog."
   },
   "pending": [
     {
