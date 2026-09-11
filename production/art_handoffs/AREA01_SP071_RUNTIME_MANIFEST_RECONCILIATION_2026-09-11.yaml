@@ -1,0 +1,26 @@
+schema_version: 1
+id: AREA01_SP071_RUNTIME_MANIFEST_RECONCILIATION
+recorded: 2026-09-11
+branch: main
+status: IN_PROGRESS
+species_id: SP-071
+name: 葉ウサギ
+purpose: "Reconcile an already QA-PASS governed runtime motion spec into the active Art Supply manifest so Work can discover it without regenerating art."
+art_lock: OFFICIAL_ART_LOCK_INHERITED
+source_policy: "Use only canon/visual_source_map.yaml governed SP-071 source and existing battle rasters; no reinterpretation, redraw, recolor, regeneration, or binary overwrite."
+planned_changes:
+  - production/ART_SUPPLY_PHASE1_CHAPTER1.yaml
+  - production/art_handoffs/AREA01_SP071_RUNTIME_MANIFEST_RECONCILIATION_2026-09-11.yaml
+preserved:
+  - root runtime
+  - publishing workflow
+  - assets/art/*
+  - assets/battle/*
+work_dependency: "Work binds AREA01_SP071_RUNTIME_MOTION_SPEC after higher-priority physical Android gate work; no new art binary is required."
+evidence:
+  motion_spec: production/art_handoffs/AREA01_SP071_RUNTIME_MOTION_SPEC.yaml
+  motion_spec_status: SPEC_READY_FOR_WORK
+  motion_spec_art_director_qa: PASS
+  governing_source: assets/reference/葉ウサギ_植物幻想モンスター設定画.png
+  governing_source_sha256: a004ac016ad98cd0c66ca3d511c95a4a2e8f964f48dd8328c0a6bf68d7e8861b
+qa_gate: PENDING_MANIFEST_UPDATE
