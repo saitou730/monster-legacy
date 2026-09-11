@@ -1,0 +1,27 @@
+schema_version: 1
+date: 2026-09-11
+status: ART_DIRECTOR_QA_PASS
+scope: CH1_SP191_RUNTIME_MOTION_WORK_HANDOFF
+species_id: SP-191
+species_name: 荊棘の大猪
+art_lock: INHERITED_OFFICIAL_LOCK
+source:
+  path: assets/reference/荊棘の大猪_モンスターデザイン画稿.png
+  sha256: 3fcbec67740d77f1bbc63c48b423269865fcc26e00d217e0139758a8afcaa88a
+motion_spec: production/art_handoffs/CH1_SP191_RUNTIME_MOTION_SPEC.yaml
+motion_spec_status: SPEC_READY_FOR_WORK
+queue_decision:
+  priority_class: CHAPTER_1_ART
+  action: "Work may bind the existing governed SP-191 states to the first encounter and rematch when its physical Android gate permits implementation work."
+  does_not_displace_work_current_task: true
+  work_current_task: QA-ANDROID-AND-TEMPO
+  reason: "production/next_queue.yaml keeps physical Android evidence as the Work current task; this Art queue record supplies an implementation-ready dependency without rewriting Work ownership."
+art_director_qa:
+  result: PASS
+  checks:
+    - "Existing canonical source SHA-256 is recorded."
+    - "Existing motion spec already defines frame order, timing, loop behavior, anchor and reduced-motion behavior."
+    - "No character binary was generated, replaced or reinterpreted."
+    - "No root runtime or publication workflow was changed."
+implementation_status: WAITING_FOR_WORK_BINDING
+next: WORK_BIND_CH1_SP191_RUNTIME_MOTION
