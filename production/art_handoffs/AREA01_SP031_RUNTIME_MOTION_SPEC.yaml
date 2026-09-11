@@ -1,0 +1,81 @@
+schema_version: 1
+updated: 2026-09-11
+id: AREA01_RUNTIME_SP031
+species_id: SP-031
+species_name: 風コウモリ
+purpose: "Chapter 1 HUNT/JOIN -> PARTY route and reusable battle presentation"
+status: SPEC_READY_FOR_WORK
+art_director_qa: PASS
+issue: 81
+art_lock:
+  status: INHERITED_EXISTING_APPROVED_SHEET
+  governing_source:
+    path: assets/reference/風コウモリ公式モンスターデザインシート.png
+    sha256: eaad2dc29f26e8ce82f28cc408bb5943eb2d3054e2977e07652f8aac876e5ec3
+  rule: "Do not reinterpret, redesign, regenerate, recolor, or synthesize in-between anatomy."
+runtime_sources:
+  idle:
+    path: assets/battle/wind_bat/idle.png
+    sha256: 8d523d30d4e931e9c44998d34e93bd68b8c1a78eeb7d1b80808a4c4d5a09660d
+  attack:
+    path: assets/battle/wind_bat/attack.png
+    sha256: b02169688336eafbc690b2260572ee44b60ea80e76a317bdb7cef93166ac528c
+  hit:
+    path: assets/battle/wind_bat/hit.png
+    sha256: 8d523d30d4e931e9c44998d34e93bd68b8c1a78eeb7d1b80808a4c4d5a09660d
+  danger:
+    path: assets/battle/wind_bat/danger.png
+    sha256: 81f5b2811c187a9e3ec45e0b9eaf5e267cea0a18ac20355448a0773c445cc217
+  stance:
+    path: assets/battle/wind_bat/stance.png
+    sha256: 397312b5398b1c0e388f8d89e74c1544426840b91be4f075c40b1a264ad20590
+motion:
+  anchor: monster_stage_center
+  idle:
+    frames: [idle]
+    durations_ms: [760]
+    loop: true
+    runtime_transform: "subtle vertical hover only; no deformation"
+  attack:
+    frames: [idle, attack, idle]
+    durations_ms: [120, 150, 230]
+    loop: false
+    runtime_transform: "short forward/upward impulse; return to anchor"
+  hit:
+    frames: [hit, idle]
+    durations_ms: [150, 230]
+    loop: false
+    runtime_transform: "small recoil only; no squash/stretch anatomy"
+  danger:
+    frames: [danger]
+    durations_ms: [620]
+    loop: true
+    runtime_transform: "reduced hover amplitude; no flashing"
+  stance:
+    frames: [stance, idle]
+    durations_ms: [220, 260]
+    loop: false
+    runtime_transform: "brief lift/settle; preserve silhouette"
+reduced_motion:
+  enabled_behavior: "Use the first listed raster for each state as a static pose; disable hover/impulse/recoil transforms."
+work_dependency:
+  owner: Work
+  responsibilities:
+    - event synchronization
+    - runtime transforms
+    - accessibility preference detection
+    - portrait UI regression QA
+    - publication
+qa:
+  source_preservation: PASS
+  frame_order_explicit: PASS
+  frame_duration_explicit: PASS
+  loop_state_explicit: PASS
+  anchor_explicit: PASS
+  reduced_motion_explicit: PASS
+  viewport_runtime_qa: WORK_PENDING
+protected_scope:
+  - root runtime code
+  - publication workflow
+  - assets/art/*
+  - assets/battle/*
