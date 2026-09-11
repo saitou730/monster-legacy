@@ -1,8 +1,6 @@
 schema_version: 1
-updated: 2026-09-11
+updated: 2026-09-12
 status: ART_DIRECTOR_QA_PASS_SPEC_READY_FOR_WORK
-issue: 78
-main_reviewed: 102bc35e8c2fc97c351de8d2d5d7cf195101b370
 scope: CHAPTER_1_MODULAR_FX_PRODUCTION_PACKET
 purpose: "Give Work one implementation-ready packet for the four already-governed Chapter 1 FX without regenerating or altering Official Art Lock characters."
 source_handoffs:
@@ -10,11 +8,7 @@ source_handoffs:
   - production/art_handoffs/CH1_FX_002_FUSION.yaml
   - production/art_handoffs/CH1_FX_003_CONTRACT_SUMMON.yaml
   - production/art_handoffs/CH1_FX_004_LEGACY.yaml
-production_order:
-  - CH1_FX_001
-  - CH1_FX_002
-  - CH1_FX_003
-  - CH1_FX_004
+production_order: [CH1_FX_001, CH1_FX_002, CH1_FX_003, CH1_FX_004]
 assets:
   CH1_FX_001:
     destination: assets/effects/join/
@@ -55,7 +49,7 @@ assets:
 shared_constraints:
   - "Character-neutral transparent FX only."
   - "Do not redraw, morph, recolor, reinterpret, or bake anatomy from any Official Art Lock species into FX."
-  - "Do not infer Lyra Vell design or Rift Manticore identity/art."
+  - "Do not infer missing named-character identity from generic species art."
   - "No readable text or UI controls baked into FX."
   - "No persistent loop after completion state."
   - "Do not overwrite assets/art/* or assets/battle/*."
@@ -71,9 +65,13 @@ work_integration:
   viewport_qa: [360x800, 390x844, 430x932]
   source_preservation_qa: "Verify governing Official Art Lock character bytes remain unchanged."
   flash_safety: "No repeated high-intensity flash; reduced-motion alternatives are non-looping."
+canon_reconciliation:
+  current_manifest: production/ART_SUPPLY_PHASE1_CHAPTER1.yaml
+  sp192_status: "canonical binding recovered; runtime motion QA PASS; obsolete recovery HOLD removed"
+  owl_manticore_manifest: "assets/battle/manifest.json now exposes governed owl and manticore runtime directories on main"
 art_director_qa:
   verdict: PASS_SPEC_READY_FOR_WORK
-  rationale: "All four FX already have runtime-governed semantics and locked frame timing. Consolidation removes ambiguity and prevents duplicate character/art generation while allowing Work to implement binaries in priority order."
+  rationale: "All four FX have runtime-governed semantics and locked frame timing. Current canon has no SP-192 recovery blocker; Work should spend the next implementation lane on visible binaries/runtime binding rather than repeat source recovery."
   official_art_lock: NOT_DECLARED
   official_lock_gate:
     - final repository binary filenames and paths recorded
@@ -83,10 +81,7 @@ art_director_qa:
     - source-preservation QA passed
 next_queue_after_packet:
   - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
-  - CH1_FX_001_JOIN_WORK_BINARY
-  - CH1_FX_002_FUSION_WORK_BINARY
-  - CH1_FX_003_CONTRACT_WORK_BINARY
-  - CH1_FX_004_LEGACY_WORK_BINARY
+  - CH1_FX_BINARY_BATCH
+  - LOCKED_RUNTIME_MOTION_BATCH
+  - WORK_VALIDATE_OWL_MANTICORE_MANIFEST_BINDING
   - CH1_ENV_003_FUSION_LAB_GOVERNING_SOURCE
-  - AREA02_RIFT_MANTICORE_CANONICAL_BINDING_RECOVERY_HOLD
-  - AREA02_SP044_RUNTIME_MOTION_WORK_HANDOFF
