@@ -1,0 +1,32 @@
+schema_version: 1
+date: 2026-09-12
+status: IN_PROGRESS
+base_main: ea3d87e1d9d2efbb18fb16162ca015a33cd6e511
+branch: art/post-ch1-owl-playable-supply-20260912
+current_product_task: POST-CH1-AREA01-PLAYABLE
+target: SP-044 雷フクロウ post-Chapter-1 DISCOVERY -> HUNT/JOIN playable slice
+art_lock_state: INHERITED_OFFICIAL_LOCK_NO_CHANGE
+governing_source:
+  path: assets/reference/雷フクロウ_CHARACTER_DESIGN_BIBLE_ML-001_v1.1.png
+  sha256: 6e3cacaf83b8541d85560d9bf4358029c0be484af976125a399a7df14e72fedc
+planned_files:
+  - production/art_handoffs/POST_CH1_SP044_PLAYABLE_ART_PACKET.yaml
+planned_runtime_paths:
+  - assets/battle/owl/idle.png
+  - assets/battle/owl/attack_prep.png
+  - assets/battle/owl/attack.png
+  - assets/battle/owl/hit.png
+  - assets/battle/owl/danger.png
+  - assets/battle/owl/stance.png
+  - assets/battle/owl/icon_portrait.png
+inventory_decision:
+  new_character_generation: FORBIDDEN_NOT_NEEDED
+  new_background_generation: NOT_REQUIRED_FOR_P0
+  reason: "The P0 slice can ship using the already governed SP-044 battle set and an existing neutral field/environment treatment. Optional bespoke area polish must not block playable content."
+work_dependency: "Work owns root runtime, area navigation/progression, battle binding, UI, save compatibility, tests, merge and Pages publication."
+boundaries:
+  - do_not_modify_root_runtime
+  - do_not_modify_public_workflow
+  - do_not_replace_assets_art_or_assets_battle
+  - do_not_infer_new_species_lore
+  - do_not_substitute_SP192_for_unresolved_identity
