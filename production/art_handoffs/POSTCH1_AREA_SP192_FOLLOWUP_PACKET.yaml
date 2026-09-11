@@ -1,0 +1,54 @@
+schema_version: 1
+date: 2026-09-12
+status: ART_READY_AFTER_P0_PROGRESSION_PLACEMENT
+species_id: SP-192
+species_name: 裂空マンティコア
+priority: P1_AFTER_POST_CH1_THUNDER_OWL_SLICE
+art_lock: OFFICIAL_ART_LOCK_INHERITED_NO_CHANGE
+source_policy: "Existing canonical SP-192 source/runtime derivatives only. No regeneration, redesign, recolor, morphing, or synthesized anatomy."
+governing_motion_spec: production/art_handoffs/AREA02_SP192_RUNTIME_MOTION_SPEC.yaml
+runtime_states:
+  idle:
+    order: [idle]
+    duration_ms: [860]
+    loop: true
+    anchor: monster_stage_center
+  attack:
+    order: [attack_prep, attack, idle]
+    duration_ms: [150, 180, 250]
+    loop: false
+    anchor: monster_stage_center
+  hit:
+    order: [hit, idle]
+    duration_ms: [160, 240]
+    loop: false
+    anchor: monster_stage_center
+  danger:
+    order: [danger]
+    duration_ms: [680]
+    loop: true
+    anchor: monster_stage_center
+  stance:
+    order: [stance, idle]
+    duration_ms: [230, 270]
+    loop: false
+    anchor: monster_stage_center
+placement_guard:
+  p0_first_area_route: "SP-044 Thunder Owl only for the required discovery/hunt/join proof."
+  sp192_use: "Ecology/challenge expansion after P0 only when Game Director/Work progression data explicitly places SP-192."
+  prohibited:
+    - substitute_for_SP044
+    - generic_fauna_without_progression_evidence
+    - unlock_from_animation_completion
+    - new_official_lock_declaration
+work_acceptance:
+  - "Bind only after durable progression semantics identify SP-192 encounter/challenge placement."
+  - "Motion completion is presentation only and cannot create discovery/join/reward receipts."
+  - "Preserve Portrait 9:16, three-monster party, two COMMAND plus one STANCE, and turn-start NEXT lock."
+  - "Run 360x800, 390x844 and 430x932 visual/input regression when bound."
+  - "Reduced-motion handling is Work-owned and must not change progression outcome."
+art_director_qa:
+  verdict: PASS
+  new_binary_required: false
+  official_art_lock_new: false
+  reason: "All required runtime states already have governed assets/specification; follow-up placement can proceed without duplicate generation once progression authority exists."
