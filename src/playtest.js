@@ -103,6 +103,17 @@ window.MLPlaytest = (() => {
     if(btn){ btn.textContent=session.submitted?'回答済み':'感触を記録'; btn.disabled=!!session.submitted; }
   }
   let surveyReturnFocus=null;
+  function trapSurveyFocus(event, modal){
+    if(event.key!=='Tab') return;
+    const selector='button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const controls=[...modal.querySelectorAll(selector)].filter(el=>el.getClientRects().length && el.getAttribute('aria-hidden')!=='true');
+    if(!controls.length) return;
+    const first=controls[0], last=controls[controls.length-1], active=document.activeElement;
+    if(!modal.contains(active) || (event.shiftKey && active===first) || (!event.shiftKey && active===last)){
+      event.preventDefault();
+      (event.shiftKey?last:first).focus({preventScroll:true});
+    }
+  }
   function showSurvey(){
     const modal=document.getElementById('playtestModal');
     if(!modal || session.submitted) return;
@@ -124,7 +135,11 @@ window.MLPlaytest = (() => {
     const close=document.getElementById('playtestClose'); if(close) close.addEventListener('click',hideSurvey);
     const modal=document.getElementById('playtestModal');
     if(modal) modal.addEventListener('click',e=>{ if(e.target===modal) hideSurvey(); });
-    document.addEventListener('keydown',e=>{ if(e.key==='Escape') hideSurvey(); });
+    document.addEventListener('keydown',e=>{
+      if(!modal?.classList.contains('show')) return;
+      if(e.key==='Escape'){ e.preventDefault(); hideSurvey(); }
+      else trapSurveyFocus(e,modal);
+    });
     const form=document.getElementById('playtestForm');
     if(form) form.addEventListener('submit',e=>{
       e.preventDefault(); const fd=new FormData(form); const v=Object.fromEntries(fd.entries());
