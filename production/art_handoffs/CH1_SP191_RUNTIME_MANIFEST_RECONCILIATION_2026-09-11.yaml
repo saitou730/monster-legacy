@@ -1,0 +1,31 @@
+schema_version: 1
+date: 2026-09-11
+status: IN_PROGRESS
+scope: CH1_SP191_RUNTIME_MANIFEST_RECONCILIATION
+target:
+  species_id: SP-191
+  species_name: 荊棘の大猪
+  purpose: "Reconcile the already QA-passed Chapter 1 boss runtime motion specification into the active Art Supply manifest and Work handoff queue."
+branch: main
+art_lock: INHERITED_OFFICIAL_LOCK
+planned_changes:
+  - production/ART_SUPPLY_PHASE1_CHAPTER1.yaml
+  - production/art_handoffs/CH1_SP191_RUNTIME_MANIFEST_RECONCILIATION_2026-09-11.yaml
+preserve:
+  - assets/art/*
+  - assets/battle/*
+  - root runtime
+  - public workflow
+governing_source:
+  path: assets/reference/荊棘の大猪_モンスターデザイン画稿.png
+  sha256: 3fcbec67740d77f1bbc63c48b423269865fcc26e00d217e0139758a8afcaa88a
+existing_spec:
+  path: production/art_handoffs/CH1_SP191_RUNTIME_MOTION_SPEC.yaml
+  status: ART_DIRECTOR_QA_PASS
+  implementation_status: SPEC_READY_FOR_WORK
+work_dependency: "Work owns runtime event synchronization, retreat/rematch progression, accessibility handling, Android QA and publication."
+qa_plan:
+  - "Confirm SP-191 remains inherited Official Art Lock with no new visual generation."
+  - "Confirm active manifest points to the existing QA-passed motion spec."
+  - "Confirm next_queue exposes one Work handoff without displacing physical Android QA."
+next: UPDATE_ART_SUPPLY_MANIFEST
