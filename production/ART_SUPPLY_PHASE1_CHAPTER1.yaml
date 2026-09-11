@@ -10,7 +10,7 @@ policy:
 existing_character_art:
   status: OFFICIAL_ART_LOCK_INHERITED
   authority: canon/visual_source_map.yaml
-  species: [SP-001, SP-011, SP-018, SP-031, SP-044, SP-071, SP-191]
+  species: [SP-001, SP-011, SP-018, SP-031, SP-044, SP-071, SP-191, SP-192]
 chapter1_supply:
   - id: CH1_ENV_001
     asset: thorn_boundary_field
@@ -42,7 +42,6 @@ chapter1_supply:
     handoff: production/art_handoffs/CH1_FX_001_JOIN.yaml
     work_packet: production/art_handoffs/CH1_FX_MODULAR_WORK_PACKET.yaml
     modular: true
-    production_gate: "Produce character-neutral transparent resonance overlay only; preserve SP-031 locked art; record viewport/reduced-motion QA and final SHA-256 before Official Art Lock."
   - id: CH1_FX_002
     asset: fusion_fx
     screens: [FUSION]
@@ -51,7 +50,6 @@ chapter1_supply:
     handoff: production/art_handoffs/CH1_FX_002_FUSION.yaml
     work_packet: production/art_handoffs/CH1_FX_MODULAR_WORK_PACKET.yaml
     modular: true
-    production_gate: "Produce character-neutral transparent convergence/reveal overlay only; preserve SP-011/SP-031/SP-044 locked art; never create intermediate hybrid anatomy; record viewport/reduced-motion QA and final SHA-256 before Official Art Lock."
   - id: CH1_FX_003
     asset: contract_summon_fx
     screens: [CONTRACT_SUMMON]
@@ -60,7 +58,6 @@ chapter1_supply:
     handoff: production/art_handoffs/CH1_FX_003_CONTRACT_SUMMON.yaml
     work_packet: production/art_handoffs/CH1_FX_MODULAR_WORK_PACKET.yaml
     modular: true
-    production_gate: "Produce character-neutral transparent signal/convergence overlay only; runtime owns guaranteed Lyra result and later support-equip state; never infer Lyra design; record viewport/reduced-motion QA and final SHA-256 before Official Art Lock."
   - id: CH1_FX_004
     asset: legacy_fx
     screens: [LEGACY]
@@ -69,51 +66,32 @@ chapter1_supply:
     handoff: production/art_handoffs/CH1_FX_004_LEGACY.yaml
     work_packet: production/art_handoffs/CH1_FX_MODULAR_WORK_PACKET.yaml
     modular: true
-    production_gate: "Produce symbol-neutral transparent mastery/confirmation overlay only; preserve SP-191 locked art; runtime owns 不退転 grant/rank/archive state; record viewport/reduced-motion QA and final SHA-256 before Official Art Lock."
 area01_supply:
-  - id: AREA01_RUNTIME_SP001
-    asset: SP001_governed_runtime_motion
-    status: SPEC_READY_FOR_WORK
-    handoff: production/art_handoffs/AREA01_SP001_RUNTIME_MOTION_SPEC.yaml
-    source_policy: "Existing visual_source_map-governed SP-001 rasters only; no character regeneration or synthesized in-between anatomy."
-    timing: "idle 900ms loop; attack 160/180/260ms; hit 170/260ms; danger 720ms loop; stance 260/300ms; anchor monster_stage_center."
-    work_dependency: "Work owns event synchronization, runtime transforms, accessibility preference detection, UI regression QA and publication."
-  - id: AREA01_RUNTIME_SP011
-    asset: SP011_governed_runtime_motion
-    status: SPEC_READY_FOR_WORK
-    handoff: production/art_handoffs/AREA01_SP011_RUNTIME_MOTION_SPEC.yaml
-    source_policy: "Existing visual_source_map-governed SP-011 rasters only; no character regeneration or synthesized in-between anatomy."
-    timing: "idle 840ms loop; attack 140/170/250ms; hit 160/250ms; danger 680ms loop; stance 240/280ms; anchor monster_stage_center."
-    work_dependency: "Work owns event synchronization, runtime transforms, accessibility preference detection, UI regression QA and publication."
-  - id: AREA01_RUNTIME_SP031
-    asset: SP031_governed_runtime_motion
-    status: SPEC_READY_FOR_WORK
-    handoff: production/art_handoffs/AREA01_SP031_RUNTIME_MOTION_SPEC.yaml
-    source_policy: "Existing visual_source_map-governed SP-031 rasters only; no character regeneration or synthesized in-between anatomy."
-    timing: "idle 760ms loop; attack 120/150/230ms; hit 150/230ms; danger 620ms loop; stance 220/260ms; anchor monster_stage_center."
-    work_dependency: "Work owns event synchronization, runtime transforms, accessibility preference detection, UI regression QA and publication."
+  - {id: AREA01_RUNTIME_SP001, status: SPEC_READY_FOR_WORK, handoff: production/art_handoffs/AREA01_SP001_RUNTIME_MOTION_SPEC.yaml}
+  - {id: AREA01_RUNTIME_SP011, status: SPEC_READY_FOR_WORK, handoff: production/art_handoffs/AREA01_SP011_RUNTIME_MOTION_SPEC.yaml}
+  - {id: AREA01_RUNTIME_SP031, status: SPEC_READY_FOR_WORK, handoff: production/art_handoffs/AREA01_SP031_RUNTIME_MOTION_SPEC.yaml}
 area02_supply:
   - id: AREA02_RUNTIME_001
     asset: existing_locked_species_runtime_inventory
-    status: PASS_WITH_HOLD
+    status: PASS
     handoff: production/art_handoffs/AREA02_EXISTING_LOCKED_SPECIES_RUNTIME_INVENTORY.yaml
-    pass: "SP-044 雷フクロウ has canonical source plus idle/attack/hit/danger/stance/icon and attack_prep derivatives; no same-purpose regeneration."
-    hold: "裂空マンティコア is user-declared Official Art Lock but canonical repository source/runtime binding was not found in current visual_source_map search; do not infer or generate."
+    reconciliation: "2026-09-11: prior SP-192 HOLD is obsolete; current canon contains dedicated governing source/runtime derivatives and AREA02_SP192_RUNTIME_MOTION_SPEC is QA PASS."
   - id: AREA02_RUNTIME_002
     asset: SP044_governed_runtime_motion
     status: SPEC_READY_FOR_WORK
     handoff: production/art_handoffs/AREA02_SP044_RUNTIME_MOTION_SPEC.yaml
-    source_policy: "Existing verified SP-044 rasters only; no new character art or synthesized in-between anatomy."
-    timing: "idle 900ms loop; attack 180/140/220ms; hit 160/240ms; danger 700ms loop; stance 220/260ms; anchor monster_stage_center."
-    work_dependency: "PR #74 AREA owl runtime binding; Work owns event synchronization, accessibility preference detection, UI, QA and publication."
+  - id: AREA02_RUNTIME_SP192
+    asset: SP192_governed_runtime_motion
+    status: SPEC_READY_FOR_WORK
+    handoff: production/art_handoffs/AREA02_SP192_RUNTIME_MOTION_SPEC.yaml
+    source_policy: "Existing governed SP-192 rasters only; no reinterpretation, regeneration, morphing, or synthesized in-between anatomy."
+    timing: "idle 860ms loop; attack 150/180/250ms; hit 160/240ms; danger 680ms loop; stance 230/270ms; anchor monster_stage_center."
+    work_dependency: "Work owns runtime event synchronization, transforms, accessibility preference detection, UI regression QA and publication."
 notes:
   - "TITLE/PROLOGUE should reuse an AREA/environment plate plus typography/grade unless runtime proves a dedicated raster necessary."
   - "BOSS replay reuses FIELD base with encounter grade/FX; no dedicated background until runtime QA demonstrates need."
   - "OFFICIAL ART LOCK requires final repository file, SHA-256, source comparison QA, and documented visual constraints."
-  - "Issue #78 and CH1_FX_MODULAR_WORK_PACKET.yaml consolidate the four governed FX into one Work implementation packet; do not regenerate character art."
-  - "Issue #79 governs SP-001 runtime motion specification using existing verified rasters only."
-  - "Issue #80 governs SP-011 runtime motion specification for the Chapter 1 growth/fusion route using existing verified rasters only."
-  - "Issue #81 governs SP-031 runtime motion specification for the Chapter 1 HUNT/JOIN -> PARTY route using existing verified rasters only."
+  - "SP-192 canonical binding is recovered and QA PASS; do not retain the obsolete recovery HOLD in active queues."
 next_queue:
   - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
   - CH1_FX_001_JOIN_WORK_BINARY
@@ -124,5 +102,5 @@ next_queue:
   - AREA01_SP011_RUNTIME_MOTION_WORK_HANDOFF
   - AREA01_SP031_RUNTIME_MOTION_WORK_HANDOFF
   - CH1_ENV_003_FUSION_LAB_GOVERNING_SOURCE
-  - AREA02_RIFT_MANTICORE_CANONICAL_BINDING_RECOVERY_HOLD
   - AREA02_SP044_RUNTIME_MOTION_WORK_HANDOFF
+  - AREA02_SP192_RUNTIME_MOTION_WORK_HANDOFF
