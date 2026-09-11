@@ -1,0 +1,44 @@
+schema_version: 1
+updated: 2026-09-11
+id: CH1_FX_004_BINARY_ACCEPTANCE
+asset: legacy_fx
+status: ACCEPTANCE_GATE_READY
+art_lock_status: NOT_OFFICIAL_ART_LOCK
+branch: main
+purpose: "Binary acceptance gate for the Chapter 1 P18 LEGACY confirmation FX. Preserve SP-191 and runtime-owned 不退転 state; do not author new canonical symbols."
+source_handoff: production/art_handoffs/CH1_FX_004_LEGACY.yaml
+planned_path: assets/effects/legacy/
+work_dependency: "Work exports/binds final transparent binaries; Art Director accepts only after viewport, reduced-motion, source-preservation and SHA-256 checks pass."
+animation_contract:
+  anchor: legacy_reward_stage_center
+  loop: false
+  total_ms: 860
+  frames:
+    - {file: legacy_01.png, duration_ms: 100, role: "sparse mastery residue; low opacity"}
+    - {file: legacy_02.png, duration_ms: 120, role: "residue drifts inward toward neutral center"}
+    - {file: legacy_03.png, duration_ms: 140, role: "compact core condensation; no emblem or text"}
+    - {file: legacy_04.png, duration_ms: 150, role: "single restrained confirmation ring"}
+    - {file: legacy_05.png, duration_ms: 160, role: "ring dissipates; preserve card-safe center"}
+    - {file: legacy_06.png, duration_ms: 190, role: "fade clear for runtime-owned LEGACY reward/archive UI"}
+  reduced_motion_file: legacy_reduced.png
+  reduced_motion: "single static soft core + opacity fade <= 240ms; no scale burst, shake, strobe, or flash sequence"
+acceptance:
+  required_viewports: ["360x800", "390x844", "430x932"]
+  required_files: [legacy_01.png, legacy_02.png, legacy_03.png, legacy_04.png, legacy_05.png, legacy_06.png, legacy_reduced.png]
+  sha256_required_for_every_file: true
+  source_preservation:
+    - "SP-191 existing Official Art Lock assets remain byte-identical; no redraw, recolor, morph, silhouette edit, or replacement."
+    - "FX is transparent and symbol-neutral; no invented 不退転 crest/rune/emblem, faction mark, rarity language, or element identity."
+  ui_checks:
+    - "P18 reward card center and controls remain readable at every required viewport."
+    - "No baked LEGACY name, rank, ownership, reward amount, equip state, Archive completion, buttons, or labels."
+    - "No screen-filling flash or rapid strobe."
+  runtime_boundary:
+    - "FX never grants, renames, ranks, equips, or persists LEGACY."
+    - "P17 BOAR_MASTERY -> P18 LEGACY_REWARD -> P19 ARCHIVE_UNLOCK remains runtime authority."
+qa_decision:
+  PASS: "All seven binaries exist, hashes recorded, three viewport checks pass, reduced-motion passes, SP-191/source preservation passes, and runtime boundary is respected."
+  HOLD: "Any binary/hash/viewport evidence is missing, or Work binding is not yet available for visual verification."
+  REJECT: "Any SP-191 reinterpretation, invented emblem/symbol, baked runtime state/text, UI obstruction, strobe, or progression-authoring behavior is present."
+official_art_lock_gate: "Do not declare Official Art Lock until final repository paths, SHA-256 values, required views, palette/shape constraints and forbidden rules are all recorded and QA is PASS."
+next_action: "Work produces the seven governed binaries; Art Director records hashes and viewport/reduced-motion evidence, then issues PASS/HOLD/REJECT before runtime binding publication."
