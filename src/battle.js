@@ -34,9 +34,36 @@ window.MLBattle = (() => {
     return {name:"翼圧", type:"aoe", dmg:18, tag:"CALM"};
   }
 
+  function protectBoarMasteryWindow(boss){
+    if(boss.id !== "boar") return boss;
+    return new Proxy(boss, {
+      set(target, prop, value){
+        if(prop === "hp"){
+          const next = Number(value);
+          if(next <= 0 && target.vol >= 90 && !target.legacyTriggered){
+            target.hp = 1;
+            target.masteryWindowProtected = true;
+            return true;
+          }
+        }
+        if(prop === "vol"){
+          const next = Math.max(0, Math.min(100, Number(value)));
+          target.vol = next;
+          if(next >= 90 && target.hp <= 0 && !target.legacyTriggered){
+            target.hp = 1;
+            target.masteryWindowProtected = true;
+          }
+          return true;
+        }
+        target[prop] = value;
+        return true;
+      }
+    });
+  }
+
   function createBoss(bossId, party){
     const spec = D.bosses[bossId];
-    return {
+    const boss = {
       id:bossId,
       hp:spec.maxHp,
       maxHp:spec.maxHp,
@@ -54,9 +81,11 @@ window.MLBattle = (() => {
       enteredRage:false,
       legacyTriggered:false,
       legacySurvived:false,
+      masteryWindowProtected:false,
       won:false,
       mastery:false
     };
+    return protectBoarMasteryWindow(boss);
   }
 
   function masteryCheck(b){
