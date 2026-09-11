@@ -1,0 +1,84 @@
+schema_version: 1
+asset_id: AREA01_RUNTIME_SP001
+species_id: SP-001
+species_name: ゴウラ
+updated: 2026-09-11
+status: SPEC_READY_FOR_WORK
+art_director_qa: PASS
+issue: 79
+purpose: "Bind motion semantics to existing governed SP-001 rasters without regenerating or reinterpreting character art."
+governing_source:
+  path: assets/reference/熔岩守護獣ゴウラ_モンスターデザインシート.png
+  sha256: 7089b6b62cd5da9e77b644650891953403c20d2079051a0e39df6e437ef5bff5
+  authority: canon/visual_source_map.yaml
+  lock_policy: "Inherited approved source. Preserve color, body proportions, eyes and silhouette; no redesign, recolor, anatomy synthesis or new in-between character frames."
+existing_runtime:
+  idle:
+    path: assets/battle/goura/idle.png
+    sha256: 902b1c4e37ef72f1b5c945be211c4817d34c5000e0273ae7e53e7439635e494a
+  attack:
+    path: assets/battle/goura/attack.png
+    sha256: c5068449d7d0c2914fd93eeef83325947477b771432e32fcd82e26903eb7b465
+  hit:
+    path: assets/battle/goura/hit.png
+    sha256: 902b1c4e37ef72f1b5c945be211c4817d34c5000e0273ae7e53e7439635e494a
+  danger:
+    path: assets/battle/goura/danger.png
+    sha256: d5c77599fcd19debce46246613cd547993a273830892f82b30cfd5889c75a2c8
+  stance:
+    path: assets/battle/goura/stance.png
+    sha256: 89107e4b8cb56aa59857bd8045cf91caea4fa9afbf7895cd608c84ebb13596d7
+motion:
+  anchor: monster_stage_center
+  idle:
+    frames: [idle]
+    durations_ms: [900]
+    loop: true
+    runtime_motion: "subtle 2px-equivalent vertical breathe/bob via transform only; source raster remains unchanged"
+  attack:
+    frames: [idle, attack, idle]
+    durations_ms: [160, 180, 260]
+    loop: false
+    runtime_motion: "short forward impulse then settle; no synthesized anatomy"
+  hit:
+    frames: [hit, idle]
+    durations_ms: [170, 260]
+    loop: false
+    runtime_motion: "brief recoil transform only"
+  danger:
+    frames: [danger]
+    durations_ms: [720]
+    loop: true
+    runtime_motion: "very low-amplitude pulse/scale transform; avoid flashing"
+  stance:
+    frames: [stance, idle]
+    durations_ms: [260, 300]
+    loop: false
+    runtime_motion: "brace emphasis then return; no extra VFX required by this handoff"
+reduced_motion:
+  idle: "static idle"
+  attack: "attack 220ms then idle"
+  hit: "hit 180ms then idle"
+  danger: "static danger; no pulse"
+  stance: "stance 260ms then idle"
+qa:
+  result: PASS
+  rationale:
+    - "All character pixels come from existing visual_source_map-governed rasters."
+    - "Frame order, timing, loop behavior and anchor are explicit."
+    - "No assets/art/* or assets/battle/* file is created, replaced or mutated."
+  work_checks:
+    - "Verify hashes before binding."
+    - "Verify 360x800, 390x844 and 430x932 battle composition."
+    - "Verify command/STANCE/NEXT ACTION UI remains unobscured."
+    - "Verify reduced-motion path does not animate transforms continuously."
+work_dependency: "Work owns event synchronization, CSS/runtime transforms, accessibility preference detection, regression QA and publication."
+forbidden:
+  - character regeneration
+  - recolor
+  - silhouette change
+  - eye redesign
+  - body proportion change
+  - synthesized in-between anatomy
+  - destructive replacement of existing runtime rasters
+next: AREA01_SP001_RUNTIME_MOTION_WORK_HANDOFF
