@@ -1,0 +1,38 @@
+schema_version: 1
+date: 2026-09-12
+status: ART_DIRECTOR_QA_PASS
+base_main: 0ab0c1d1a35a43b49d5c2deadcbb41ea5e6a3bf2
+branch: art/postch1-manticore-boundary-20260912
+target: post_ch1_first_playable_area
+purpose: "Prevent optional SP-192 content from blocking or contaminating the P0 Thunder Owl playable slice while preserving recovered canonical manticore assets for the next ecology step."
+authority:
+  - production/next_queue.yaml
+  - production/ART_SUPPLY_PHASE1_CHAPTER1.yaml
+  - canon/visual_source_map.yaml
+  - production/art_handoffs/AREA02_SP192_RUNTIME_MOTION_SPEC.yaml
+inventory:
+  p0_species: SP-044
+  p0_route: [DEPART, DISCOVERY, THUNDER_OWL_ENCOUNTER, HUNT, JOIN, RETURN]
+  sp192_status: OFFICIAL_ART_LOCK_INHERITED_RUNTIME_SPEC_READY
+  sp192_required_for_p0: false
+  duplicate_generation_required: false
+decision:
+  - "Keep SP-192 out of the first P0 playable route unless Work has explicit progression data requiring it."
+  - "Do not substitute SP-192 for Thunder Owl or generic fauna."
+  - "Do not regenerate SP-192; existing governed rasters and motion spec remain authoritative."
+  - "After the Thunder Owl slice ships, SP-192 is the preferred existing-Art candidate for an AREA ecology/challenge expansion when progression semantics support it."
+planned_files:
+  - production/art_handoffs/POSTCH1_AREA_SP192_FOLLOWUP_PACKET.yaml
+saved_paths:
+  - production/art_runs/2026-09-12_POSTCH1_MANTICORE_BOUNDARY.yaml
+  - production/art_handoffs/POSTCH1_AREA_SP192_FOLLOWUP_PACKET.yaml
+art_lock_state: OFFICIAL_ART_LOCK_INHERITED_NO_CHANGE
+work_dependency: "Work owns progression placement, runtime binding, battle synchronization, save compatibility, 9:16 viewport QA and publication."
+qa:
+  verdict: PASS
+  reason: "This preserves the P0 route and converts recovered SP-192 art into a ready follow-up lane without generating duplicate art."
+next_queue:
+  - POST_CH1_P0_SP044_RUNTIME_BINDING
+  - POST_CH1_SP192_ECOLOGY_PLACEMENT_AFTER_P0
+  - CH1_FX_BINARY_BATCH
+  - LOCKED_RUNTIME_MOTION_BATCH
