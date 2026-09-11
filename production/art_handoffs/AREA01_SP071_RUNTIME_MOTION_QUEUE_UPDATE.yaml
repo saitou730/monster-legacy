@@ -1,0 +1,10 @@
+schema_version: 1
+recorded: 2026-09-11
+source_manifest: production/ART_SUPPLY_PHASE1_CHAPTER1.yaml
+queue_update:
+  add_after: AREA01_SP031_RUNTIME_MOTION_WORK_HANDOFF
+  item: AREA01_SP071_RUNTIME_MOTION_WORK_HANDOFF
+status: READY_FOR_WORK
+handoff: production/art_handoffs/AREA01_SP071_RUNTIME_MOTION_SPEC.yaml
+qa: PASS
+note: "The canonical manifest update was not applied in this run because the repository write was blocked by the connector safety gate. This delta is the authoritative Art-side queue record for the completed handoff until the manifest is reconciled; production/next_queue.yaml Work priority remains physical Android QA and was intentionally not reordered."
