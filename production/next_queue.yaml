@@ -1,139 +1,54 @@
 {
   "authority": "docs/WORK_GITHUB_MASTER_HANDOFF_2026-09-07.md",
-  "automation": {
-    "auto_generation": false,
-    "old_art_jobs": "disabled per handoff; not re-enabled"
-  },
-  "blocked": [
-    {
-      "id": "ART-GRAUSEN-PALETTE",
-      "next": "source recovery then source-referenced edit only",
-      "reason": "exact candidate and governing source not attached"
-    },
-    {
-      "id": "ART-BULK-DIFFERENTIATION",
-      "reason": "exact candidate/source missing"
-    },
-    {
-      "id": "ART-NOCTA-SOURCE",
-      "reason": "dedicated source missing"
-    },
-    {
-      "id": "ART-LUCIA",
-      "reason": "dedicated source missing"
-    },
-    {
-      "id": "ART-PHIL",
-      "reason": "unique individual source missing; do not substitute generic SP-031"
-    }
-  ],
   "canonical_branch": "main",
-  "completed": [
-    {
-      "evidence": "PR31 commit f3d14861bb436a49f694a220c1f802606a756b27; 266 files; 72 binary blobs verified; 73 manifest entries pass in CI",
-      "id": "IMPORT-001"
-    },
-    {
-      "evidence": "Five control files and governing master handoff merged in PR31; 8 source-sheet bindings; 200 ID slots with unknown names explicit; no candidate promotion",
-      "id": "CANON-001"
-    },
-    {
-      "evidence": "https://github.com/saitou730/monster-legacy/actions/runs/34067400176",
-      "id": "BROWSER-001",
-      "result": "6/6 passed: START/HOME/HUNT and boar turn at 360/390/430; Android NOT RUN"
-    },
-    {
-      "evidence": "PR31 merged at 3ef12b96c67b8004a6fd859de6ccbd3eec429a7e",
-      "id": "MAIN-001"
-    },
-    {
-      "evidence": "https://github.com/saitou730/monster-legacy/actions/runs/34067703835",
-      "id": "PAGES-001",
-      "result": "deploy success; HTTPS 200 and v1.8.3 entry HTML confirmed",
-      "url": "https://saitou730.github.io/monster-legacy/"
-    },
-    {
-      "id": "CH1-CONTEXT-001",
-      "evidence": "https://github.com/saitou730/monster-legacy/actions/runs/34113144673",
-      "result": "PR39 merged 772aa32; 12/12 browser cases passed, including help gestures/save neutrality at 360/390/430. Not Android manual PASS."
-    },
-    {
-      "id": "CH1-CONTROLLER-ROOT-001",
-      "evidence": "PR44 merged as 351752fd2e625469f28ad63d05d7ccded004d36a; https://github.com/saitou730/monster-legacy/actions/runs/34254607554",
-      "result": "24/24 browser cases passed at 360x800, 390x844 and 430x932; controller, old-save projection and replay-safe receipts are canonical root modules. Android NOT RUN."
-    },
-    {
-      "id": "CH1-INTRO-RETREAT-001",
-      "evidence": "PR46 merged as 86e8a60b7744539b42a6d08d24a7f8d2a6b724d0; https://github.com/saitou730/monster-legacy/actions/runs/34284029293",
-      "result": "27/27 browser cases passed at 360x800, 390x844 and 430x932; e2e and Pages deploy succeeded; public root app.js contains P00-P05 controller bindings and the explicit Thorn Boar retreat route. Android NOT RUN."
-    },
-    {
-      "id": "CH1-GROWTH-ROUTE-001",
-      "evidence": "PR52 merged as d4b64bae92cc558456ad38d0e017fe6ff6746dee; https://github.com/saitou730/monster-legacy/actions/runs/34290272886",
-      "result": "30/30 browser cases passed at 360x800, 390x844 and 430x932; e2e and Pages deploy succeeded; public root P05-P13 HUNT/JOIN/PARTY/FUSION/TEST route is canonical. Android NOT RUN."
-    },
-    {
-      "id": "CH1-CONTRACT-SUPPORT-001",
-      "evidence": "PR53 merged as f10da34f7b39342277a545e67c1f1c7f49c0a578; branch Web QA https://github.com/saitou730/monster-legacy/actions/runs/34306276752",
-      "result": "33/33 browser cases passed at 360x800, 390x844 and 430x932; root P13-P16 signal, free guaranteed Lyra Contract and separate Support equip are replay-safe. Android NOT RUN."
-    },
-    {
-      "id": "CH1-BOAR-LEGACY-CLOSEOUT",
-      "evidence": "PR54; https://github.com/saitou730/monster-legacy/actions/runs/34310053715",
-      "result": "36/36 browser cases passed at 360x800, 390x844 and 430x932; root P16-P20 rematch, mastery, explicit Unyielding claim, Archive acknowledgement and completed HOME are replay-safe. Android NOT RUN."
-    },
-    {
-      "id": "QA-CHAPTER1-FULL-JOURNEY",
-      "evidence": "PR55; https://github.com/saitou730/monster-legacy/actions/runs/34340000149",
-      "result": "39/39 browser cases passed at 360x800, 390x844 and 430x932; one fresh unseeded root journey reaches completed HOME and reloads without duplicate JOIN, FUSION, Contract or LEGACY. Android NOT RUN."
-    },
-    {
-      "id": "UI-UNIFIED-COMMAND-001",
-      "evidence": "PR62; https://github.com/saitou730/monster-legacy/actions/runs/34392504907",
-      "result": "54/54 browser cases passed at 360x800, 390x844 and 430x932; HUNT, TEST and BOSS share direct CORE/ROLE/EQUIPMENT selection with replace/cancel behavior. Android NOT RUN."
-    },
-    {
-      "id": "QA-BATTLE-LOG-CLARITY",
-      "evidence": "PR64; https://github.com/saitou730/monster-legacy/actions/runs/34398679230",
-      "result": "54/54 browser cases passed at 360x800, 390x844 and 430x932; STANCE activation, concrete effect and enemy resolution are readable in order. Android NOT RUN."
-    },
-    {
-      "id": "QA-ANDROID-GATE-DEFINITION",
-      "evidence": "PR65; qa/ANDROID_PHYSICAL_GATE_v1.0.md",
-      "result": "12 required physical-device checks and evidence rules defined. All checks remain NOT RUN; no Android PASS claimed."
-    },
-    {
-      "id": "UI-DIALOG-FOCUS-001",
-      "evidence": "PR71 merged as 555f0c35cd3a81025d6bb31e06e4e040dcf9867d; PR Web QA https://github.com/saitou730/monster-legacy/actions/runs/34432606437; main Web QA/Pages https://github.com/saitou730/monster-legacy/actions/runs/34432980367",
-      "result": "60/60 browser cases passed at 360x800, 390x844 and 430x932; battle/help and completed-HOME dialogs expose modal semantics, move focus on open, and restore the invoking control on close. Physical Android/TalkBack remains NOT RUN."
-    },
-    {
-      "id": "ANDROID-BOAR-MASTERY-HOTFIX-001",
-      "evidence": "PR87 merged as d5c6038d0f682abc620917026303b7fa94b1506b; PR Web QA https://github.com/saitou730/monster-legacy/actions/runs/34618755379; main Web QA/Pages https://github.com/saitou730/monster-legacy/actions/runs/34619305688",
-      "result": "Browser regression and deployed Pages PASS: Thorn Boar DANGER mastery window prevents premature KO before LEGACY ART, same-command VOL90 edge is covered, mastery authority remains legacyTriggered && legacySurvived, and compact boss STANCE prose no longer overflows inline. Physical Android re-test remains required."
-    },
-    {
-      "id": "UI-MODAL-FOCUS-CONTAINMENT-001",
-      "evidence": "PR73 rebased head fa433f0864b235326c6ed6c200b8d22153f73a89 with Web QA https://github.com/saitou730/monster-legacy/actions/runs/34619902978; merged as 77a236b00ec0b4b35efae860a96a869c44497823; main Web QA/Pages https://github.com/saitou730/monster-legacy/actions/runs/34620536610",
-      "result": "Browser QA and deployed Pages PASS: Tab/Shift+Tab remain contained inside root modal overlays and Escape/close restores the invoking control. Physical Android/TalkBack remains NOT RUN."
-    }
-  ],
-  "current_task": {
-    "id": "QA-ANDROID-AND-TEMPO",
-    "title": "Validate deployed Chapter 1 on a physical Android device and tune pacing from evidence",
-    "status": "blocked_on_physical_device",
-    "ownership": "production/WORK_CHAT_OWNERSHIP.md",
-    "next_action": "Run AND-01 through AND-12 from qa/ANDROID_PHYSICAL_GATE_v1.0.md on a physical Android device against the deployed root build after PR87 and PR73, attach evidence, then fix any remaining failures before pacing work.",
-    "blocker": "Android physical-device evidence requires a real device; browser CI and Pages deployment are complete for the known Android hotfix and modal-focus backlog."
+  "schema_version": 2,
+  "operating_mode": "PLAYABLE_CONTENT_FIRST",
+  "shared_rule": "All Chat/Work/Art/Technical Producer sessions must read latest main and this queue before acting. GitHub state outranks chat history. Do not stop at planning, handoff, branch creation, or PR creation when implementation can continue safely. Progress is measured by new player-visible gameplay shipped to the canonical public build.",
+  "user_feedback_2026_09_12": {
+    "summary": "Chapter 1 completion screens are difficult to understand, developer terminology is exposed, and the game stops instead of opening meaningful new gameplay. Production speed is too slow.",
+    "required_response": [
+      "Use plain player-facing Japanese; remove or isolate Build/JSON/Clarity/playtest/developer labels from normal play.",
+      "Reduce repeated completion/archive explanation and make the next objective visually dominant.",
+      "Replace the post-Chapter-1 wait state with a playable next-area route.",
+      "Increase batch size: implement complete gameplay slices rather than one small UI/spec task per turn."
+    ]
   },
-  "pending": [
-    {
-      "id": "QA-ANDROID",
-      "title": "Physical touch, TalkBack and save return on deployed Chapter 1",
-      "status": "not_run"
-    }
+  "current_task": {
+    "id": "POST-CH1-AREA01-PLAYABLE",
+    "title": "Ship the first playable post-Chapter-1 area loop",
+    "status": "in_progress",
+    "priority": "P0",
+    "working_branch": "work/post-ch1-speed-batch",
+    "definition_of_done": [
+      "Existing P20 Chapter 1 saves continue without reset or duplicate rewards.",
+      "Completed HOME presents a clear Japanese next objective and a direct new-area departure CTA instead of waiting for future content.",
+      "Normal player mode no longer foregrounds developer-only Build/JSON/Clarity/playtest language.",
+      "The next area is actually playable: depart -> explore/discover -> encounter Thunder Owl -> battle/hunt -> JOIN -> return/progress to the next objective.",
+      "Only verified canonical/Art-Locked Thunder Owl assets are used; unresolved Manticore identity is not silently substituted.",
+      "Portrait 9:16, 3-monster party, 2 COMMAND + 1 STANCE and turn-start NEXT lock remain intact.",
+      "Automated regression/E2E covers Chapter 1 save compatibility and the new forward route.",
+      "Validated implementation is integrated and public Pages deployment is verified before this task is called complete."
+    ],
+    "next_action": "Implement the complete slice on work/post-ch1-speed-batch. Do not spend another cycle only documenting it."
+  },
+  "parallel_lanes": {
+    "game_director_chat": "Own player-facing Japanese copy, next-area progression semantics, discovery/JOIN conditions and acceptance criteria. Avoid reopening already locked Chapter 1 rules.",
+    "work": "Own root runtime implementation, save compatibility, UI, battle integration, automated tests, CI, merge and Pages verification.",
+    "art": "Supply only source-governed Area 1/Thunder Owl/background/FX assets needed by the playable slice; Art Lock remains higher priority than speed. Do not block runtime on optional polish.",
+    "technical_producer": "Keep WIP focused on POST-CH1-AREA01-PLAYABLE, resolve cross-lane conflicts from GitHub evidence, and prevent documentation-only loops or duplicated work."
+  },
+  "android_qa": {
+    "mode": "play_first_evidence_collection",
+    "rule": "Physical Android checks remain an internal quality map, but the player is not required to run all 12 scripted checks each cycle. Accept natural gameplay screenshots/descriptions, map them to gates internally, fix, regress, integrate and publish. Never fabricate physical-device PASS from browser CI.",
+    "status": "collect_during_normal_play"
+  },
+  "blocked_art": [
+    "ART-GRAUSEN-PALETTE: source recovery required",
+    "ART-BULK-DIFFERENTIATION: exact candidate/source missing",
+    "ART-NOCTA-SOURCE: dedicated source missing",
+    "ART-LUCIA: dedicated source missing",
+    "ART-PHIL: unique individual source missing; do not substitute generic SP-031"
   ],
-  "resume_rule": "Read main and current_task; do not repeat completed inventory without concrete reason; blocked art never advances by generation.",
-  "schema_version": 1,
-  "working_pr": null
+  "completed_history_note": "Detailed Chapter 1/QA completion evidence exists in git history before schema v2. Do not redo completed Chapter 1 inventory unless a regression requires it.",
+  "resume_rule": "Read latest main + this file + Issue #38/open relevant PRs. Continue the current P0 until shipped or a genuine external blocker exists. Prefer one large coherent implementation batch over many tiny handoffs."
 }
