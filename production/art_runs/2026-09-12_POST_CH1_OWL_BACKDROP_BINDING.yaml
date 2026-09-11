@@ -1,0 +1,43 @@
+schema_version: 1
+date: 2026-09-12
+status: ART_DIRECTOR_QA_PASS_READY_FOR_WORK
+base_main: 4be76f09191a931748c8d3261b988796e5eccfed
+branch: art/post-ch1-owl-backdrop-bind-20260912
+current_product_task: POST-CH1-AREA01-PLAYABLE
+target: existing Thunder Owl encounter backdrop
+purpose: "Bind an existing repository backdrop to the post-Chapter-1 Thunder Owl playable slice instead of generating another same-purpose background."
+inventory:
+  existing_asset: assets/art/owl_battle_backdrop.jpg
+  github_blob_sha: 153de291f20abc99f99fea28a0f039fd571eb28f
+  dedicated_background_directory_present: false
+  decision: REUSE_EXISTING_NO_GENERATION
+art_lock_state: INHERITED_OFFICIAL_LOCK_NO_CHANGE
+usage:
+  discovery: allowed
+  encounter: allowed
+  hunt_battle: allowed
+  join_result: allowed_as_subdued_continuity_backdrop
+  home: forbidden
+  manticore: forbidden
+presentation_rules:
+  - "Keep the owl backdrop visually subordinate to SP-044 and battle/UI readability."
+  - "Do not recolor, repaint, crop-destructively, add faction symbols, architecture, baked text, or lore elements."
+  - "If runtime needs responsive cover positioning, Work may use CSS/object-position only; source bytes remain unchanged."
+  - "Use the same backdrop through discovery -> encounter -> HUNT/JOIN to reinforce one continuous place and avoid asset churn."
+  - "Normal player controls and NEXT/ACTION/STANCE information must remain unobstructed."
+viewport_acceptance:
+  - 360x800
+  - 390x844
+  - 430x932
+reduced_motion: "Backdrop remains static. No parallax, zoom, shake or flashing required for P0."
+work_dependency: "Work owns root runtime binding, responsive positioning, UI contrast overlay if required, tests, merge and Pages publication."
+qa:
+  verdict: PASS
+  reason: "A dedicated owl battle backdrop already exists in the repository, so generating a replacement would violate inventory-first and speed rules. Existing source can unblock the P0 playable route without changing Official Art Lock."
+planned_changed_files:
+  - production/art_runs/2026-09-12_POST_CH1_OWL_BACKDROP_BINDING.yaml
+  - production/art_handoffs/POST_CH1_SP044_PLAYABLE_ART_PACKET.yaml
+next_queue:
+  - WORK_BIND_SP044_DISCOVERY_HUNT_JOIN_WITH_EXISTING_OWL_BACKDROP
+  - RUNTIME_VIEWPORT_QA_SP044
+  - ONLY_AFTER_RUNTIME_EVIDENCE_CONSIDER_DEDICATED_AREA_POLISH
