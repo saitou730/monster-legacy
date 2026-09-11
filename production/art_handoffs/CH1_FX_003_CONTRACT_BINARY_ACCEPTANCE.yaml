@@ -1,0 +1,46 @@
+schema_version: 1
+updated: 2026-09-11
+id: CH1_FX_003_CONTRACT_BINARY_ACCEPTANCE
+asset: contract_summon_fx
+status: ACCEPTANCE_GATE_READY
+art_lock_status: NOT_OFFICIAL_ART_LOCK
+branch: main
+purpose: "Binary acceptance gate for the Chapter 1 character-neutral Contract summon FX."
+source_handoff: production/art_handoffs/CH1_FX_003_CONTRACT_SUMMON.yaml
+planned_path: assets/effects/contract/
+work_dependency: "Work owns P13-P15 progression, guaranteed Lyra result, Support equip, runtime binding, accessibility preference detection and publication."
+source_preservation:
+  character_art_generation: forbidden
+  lyra_design_inference: forbidden
+  runtime_result_authority: preserved
+animation_contract:
+  anchor: contract_stage_center
+  loop: false
+  total_ms: 920
+  frames:
+    - {file: contract_01.png, duration_ms: 110, role: faint_signal}
+    - {file: contract_02.png, duration_ms: 130, role: neutral_resonance_expand}
+    - {file: contract_03.png, duration_ms: 150, role: inward_convergence}
+    - {file: contract_04.png, duration_ms: 140, role: confirmation_pulse}
+    - {file: contract_05.png, duration_ms: 170, role: outward_release}
+    - {file: contract_06.png, duration_ms: 220, role: fade_clear}
+  reduced_motion: "Static neutral halo with opacity fade <=240ms; no scale burst or flash sequence."
+acceptance:
+  required_viewports: ["360x800", "390x844", "430x932"]
+  required_checks:
+    - "All six PNGs are transparent modular overlays and preserve the runtime result-card area."
+    - "No Lyra anatomy, portrait, costume, silhouette or inferred design appears."
+    - "No SR text, rarity color coding, roulette, capsule, loot-box, faction mark or unsupported lore symbol appears."
+    - "FX does not imply Support is equipped during P14; Support equip remains P15 runtime state."
+    - "Frame order, durations, non-loop behavior and contract_stage_center anchor match the governing handoff."
+    - "Reduced-motion fallback communicates confirmation without flashing."
+    - "Final SHA-256 is recorded for every accepted binary before Official Art Lock."
+  pass_result: READY_FOR_WORK_RUNTIME_BINDING
+  hold_result: HOLD_FOR_BINARY_OR_QA_EVIDENCE
+  reject_result: REJECT_IF_CHARACTER_OR_RUNTIME_STATE_IS_AUTHORED_BY_FX
+qa:
+  art_director: PASS_ACCEPTANCE_SPEC
+  binary_production: PENDING
+  official_art_lock: HOLD
+  hold_reason: "Final repository binaries, viewport evidence and SHA-256 are not yet present."
+next_action: "Produce/receive governed contract binaries, run this acceptance gate, record SHA-256 and only then promote for Work runtime binding."
