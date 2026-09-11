@@ -1,5 +1,11 @@
 // Long press is optional; visible info buttons and keyboard activation expose the same text.
 (()=>{
+  // Boss cards are intentionally compact. Full STANCE prose belongs in the explicit help sheet,
+  // not inside the 3-column party card where Android text scaling can cause overflow.
+  const compactStyle=document.createElement('style');
+  compactStyle.textContent='body.bossMode .stanceLock small{display:none!important}';
+  document.head.appendChild(compactStyle);
+
   let timer=null,origin=null,suppressClick=false;
   const clear=()=>{clearTimeout(timer);timer=null;};
   const read=el=>el.dataset.helpUnit?{uid:el.dataset.helpUnit,kind:el.dataset.helpKind,context:el.dataset.helpContext||'boss'}:
