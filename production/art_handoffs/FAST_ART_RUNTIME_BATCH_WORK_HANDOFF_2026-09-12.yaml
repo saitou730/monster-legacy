@@ -1,10 +1,11 @@
 schema_version: 1
-date: 2026-09-12
+date: 2026-09-13
 status: ART_DIRECTOR_QA_PASS_BATCH_READY_FOR_WORK
-base_main: 86f2a369590e35a2526e31f1aac3d94175998e9e
+base_main: 7c1b3f50b235a79958018fe7fe596039ebfdefc0
 run_record: production/art_runs/2026-09-12_FAST_ART_SUPPLY_BATCH_001.yaml
 purpose: "Replace one-monster-per-cycle administration with one consolidated Work handoff for all currently governed motion lanes plus the four Chapter 1 FX lanes."
 priority_order:
+  - POST_CH1_SP044_RUNTIME_VIEWPORT_QA
   - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
   - CH1_FX_BINARY_BATCH
   - AREA01_LOCKED_MOTION_BATCH
@@ -32,11 +33,13 @@ locked_motion_batch:
     - {species: SP-018, source_spec: production/art_handoffs/AREA01_SP018_RUNTIME_MOTION_SPEC.yaml}
     - {species: SP-031, source_spec: production/art_handoffs/AREA01_SP031_RUNTIME_MOTION_SPEC.yaml}
     - {species: SP-071, source_spec: production/art_handoffs/AREA01_SP071_RUNTIME_MOTION_SPEC.yaml}
+    - {species: SP-191, source_spec: production/art_handoffs/AREA01_SP191_RUNTIME_MOTION_SPEC.yaml}
   area02:
     - {species: SP-044, source_spec: production/art_handoffs/AREA02_SP044_RUNTIME_MOTION_SPEC.yaml}
     - {species: SP-192, source_spec: production/art_handoffs/AREA02_SP192_RUNTIME_MOTION_SPEC.yaml}
   execution_rule: "Work may bind these governed specs as one implementation batch; do not require separate Art administration cycles per species."
   preservation_rule: "Use only existing canonical runtime derivatives recorded in canon/visual_source_map.yaml. No regeneration, synthesized anatomy, or destructive replacement."
+  sp191_reconciliation: "2026-09-13: SP-191 was already QA PASS and present in the canonical Art manifest/batch supply; added here to remove stale Work-handoff omission. Existing boar rasters only."
 home_lane:
   status: REVIEW_WAITING_FOR_EXISTING_APPROVED_RASTER
   action: "Promote/export the already-approved portrait candidate only; no further near-identical generation."
@@ -51,11 +54,12 @@ work_boundary:
   root_runtime_changes: WORK_ONLY
   publication_workflow_changes: WORK_ONLY
   physical_android_QA: WORK_OR_USER_DEVICE
-  current_work_blocker: physical_device_required
+  current_p0_art_gate: "SP-044 canonical runtime + backdrop viewport QA at 360x800 / 390x844 / 430x932; do not block P0 on optional Art polish."
 art_director_qa:
   verdict: PASS
   official_art_lock_new: false
-  reason: "All batched lanes already have governing sources/specs; consolidation increases throughput without changing locked design DNA."
+  reason: "All batched lanes already have governing sources/specs; SP-191 reconciliation removes a stale handoff omission without changing locked design DNA."
 next_art_decision:
-  - "Do not create more per-species queue-only files for these seven motion lanes unless runtime QA finds a species-specific defect."
-  - "After HOME/FX binary acceptance, move Art capacity to visible AREA ecology gaps or runtime polish supported by governing sources."
+  - "Do not create more per-species queue-only files for these eight motion lanes unless runtime QA finds a species-specific defect."
+  - "Keep SP-044 runtime viewport QA ahead of HOME/FX/motion polish while POST-CH1-AREA01-PLAYABLE remains P0."
+  - "After P0 runtime evidence, consume the consolidated locked motion batch; reopen Art only for evidenced defects or source-governed visible ecology gaps."
