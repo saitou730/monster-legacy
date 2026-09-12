@@ -1,9 +1,9 @@
 schema_version: 1
 run_id: FAST_ART_SUPPLY_BATCH_001
-date: 2026-09-12
+date: 2026-09-13
 branch: art/fast-supply-batch-20260912
-base_main: 86f2a369590e35a2526e31f1aac3d94175998e9e
-status: IN_PROGRESS
+base_main: 96bc47acb6bbeaab95a4e200445b9b0c1fe4e616
+status: ART_DIRECTOR_QA_PASS_BATCH_READY_FOR_WORK
 authority:
   - docs/WORK_GITHUB_MASTER_HANDOFF_2026-09-07.md
   - canon/visual_source_map.yaml
@@ -17,14 +17,16 @@ rules:
   - do_not_modify_root_runtime_or_public_workflow
   - do_not_destructively_replace_assets_art_or_assets_battle
 inventory_decision:
-  work_current_task: QA-ANDROID-AND-TEMPO
-  work_current_status: blocked_on_physical_device
+  work_current_task: POST-CH1-AREA01-PLAYABLE
+  work_current_status: in_progress
+  p0_art_status: ART_SUPPLIED_AWAITING_RUNTIME_QA
+  p0_art_gate: SP044_PLUS_EXISTING_BACKDROP_VIEWPORT_QA_360x800_390x844_430x932
   chapter1_visible_art_priority:
+    - POST_CH1_SP044_RUNTIME_VIEWPORT_QA
     - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
-    - CH1_FX_001_JOIN_WORK_BINARY
-    - CH1_FX_002_FUSION_WORK_BINARY
-    - CH1_FX_003_CONTRACT_WORK_BINARY
-    - CH1_FX_004_LEGACY_WORK_BINARY
+    - CH1_FX_BINARY_BATCH
+    - AREA01_LOCKED_MOTION_BATCH
+    - AREA02_LOCKED_MOTION_BATCH
   chapter1_generation_decision: DO_NOT_REGENERATE_NEAR_IDENTICAL_ART
   blocked_named_art: [ART-GRAUSEN-PALETTE, ART-BULK-DIFFERENTIATION, ART-NOCTA-SOURCE, ART-LUCIA, ART-PHIL]
   blocked_named_art_action: HOLD_NO_GENERATION
@@ -35,6 +37,7 @@ batch_scope:
     - SP-018
     - SP-031
     - SP-071
+    - SP-191
     - SP-044
     - SP-192
   chapter1_binary_packet:
@@ -45,6 +48,16 @@ batch_scope:
   home:
     action: PROMOTE_EXISTING_APPROVED_CANDIDATE_ONLY
     gate: repository_raster_plus_360x800_390x844_430x932_overlay_QA_plus_SHA256
-work_dependency: Work owns runtime binding, accessibility preference detection, physical Android QA, merge and publication.
+work_dependency: "Work owns SP-044 runtime binding/viewport QA first, then accessibility preference detection, consolidated FX/locked-motion binding, physical Android QA, merge and publication."
 art_lock_state: INHERITED_NO_NEW_OFFICIAL_LOCK
-qa_target: PASS_OR_HOLD_PER_LANE
+art_director_qa:
+  verdict: PASS
+  official_art_lock_new: false
+  duplicate_generation: false
+  reason: "Reconciled stale run metadata to latest canonical P0 and added already-governed SP-191 to the recorded batch; no raster/source/runtime code changed."
+next_queue:
+  - POST_CH1_SP044_RUNTIME_VIEWPORT_QA
+  - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
+  - CH1_FX_BINARY_BATCH
+  - LOCKED_RUNTIME_MOTION_BATCH
+reconciliation_note: "2026-09-13: supersedes stale QA-ANDROID-AND-TEMPO / IN_PROGRESS metadata in this run record. Canonical P0 is POST-CH1-AREA01-PLAYABLE; SP-191 is already QA PASS in the manifest and consolidated Work handoff."
