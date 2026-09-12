@@ -1,5 +1,5 @@
 schema_version: 1
-updated: 2026-09-12
+updated: 2026-09-13
 policy:
   gameplay_loop: AREA -> DISCOVERY -> HUNT_JOIN -> PARTY -> FUSION -> AREA_BOSS -> LEGACY -> NEXT_AREA
   priority: [CHAPTER_1, AREA, LINEAGE_FUSION, OFFLINE_ARENA, ANOMALY, SANCTUARY]
@@ -79,6 +79,7 @@ area01_supply:
   - {id: AREA01_RUNTIME_SP018, status: SPEC_READY_FOR_WORK, handoff: production/art_handoffs/AREA01_SP018_RUNTIME_MOTION_SPEC.yaml}
   - {id: AREA01_RUNTIME_SP031, status: SPEC_READY_FOR_WORK, handoff: production/art_handoffs/AREA01_SP031_RUNTIME_MOTION_SPEC.yaml}
   - {id: AREA01_RUNTIME_SP071, status: SPEC_READY_FOR_WORK, handoff: production/art_handoffs/AREA01_SP071_RUNTIME_MOTION_SPEC.yaml}
+  - {id: AREA01_RUNTIME_SP191, status: SPEC_READY_FOR_WORK, handoff: production/art_handoffs/AREA01_SP191_RUNTIME_MOTION_SPEC.yaml}
 area02_supply:
   - id: AREA02_RUNTIME_001
     asset: existing_locked_species_runtime_inventory
@@ -100,7 +101,7 @@ batch_supply:
   handoff: production/art_handoffs/FAST_ART_RUNTIME_BATCH_WORK_HANDOFF_2026-09-12.yaml
   status: ART_DIRECTOR_QA_PASS_BATCH_READY_FOR_WORK
   chapter1_fx: [CH1_FX_001, CH1_FX_002, CH1_FX_003, CH1_FX_004]
-  runtime_species: [SP-001, SP-011, SP-018, SP-031, SP-071, SP-044, SP-192]
+  runtime_species: [SP-001, SP-011, SP-018, SP-031, SP-071, SP-191, SP-044, SP-192]
   rule: "Work consumes these as batch lanes; Art does not create additional per-item queue administration unless defect evidence requires it."
 notes:
   - "TITLE/PROLOGUE should reuse an AREA/environment plate plus typography/grade unless runtime proves a dedicated raster necessary."
@@ -108,6 +109,7 @@ notes:
   - "OFFICIAL ART LOCK requires final repository file, SHA-256, source comparison QA, and documented visual constraints."
   - "SP-192 canonical binding is recovered and QA PASS; do not retain the obsolete recovery HOLD in active queues."
   - "SP-071 governed runtime motion is QA PASS and reconciled into active AREA01 supply; do not regenerate its battle art."
+  - "SP-191 governed runtime motion is QA PASS and reconciled into AREA01/batch supply; use existing boar rasters only and reopen Art only on runtime defect evidence."
 next_queue:
   - POST_CH1_SP044_RUNTIME_VIEWPORT_QA
   - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
