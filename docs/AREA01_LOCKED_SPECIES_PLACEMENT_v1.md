@@ -1,4 +1,4 @@
-# Post-Chapter-1 First Area — Locked Species Placement v1.8
+# Post-Chapter-1 First Area — Locked Species Placement v1.9
 
 Canonical base reviewed: main `eb54dc91a29578e892a9f832ee6ccd3e57b7f1ec` (2026-09-12)
 Owner: Chat / Issue #38
@@ -47,30 +47,50 @@ These are semantic labels, not mandated storage keys. Save implementation remain
 - Reload after durable challenge clear cannot duplicate clear rewards or close the next-area route.
 - SP-192 is a challenge target here, not automatically a JOIN reward. Any future JOIN eligibility requires a separate Chat-owned species/progression decision.
 
-## P2 handoff — victory must create immediate forward momentum
+## P2 — victory creates immediate forward momentum
 The first-area challenge must not end in another Archive/Record/COMING SOON dead-end. The one-time Manticore progression reward is **route access**, not another terminology-heavy collectible.
 
 Durable causal order:
 `MANTICORE_CHALLENGE_CLEARED -> BOUNDARY_ROUTE_OPENED -> NEXT_AREA_OPEN`.
 
-Player-facing resolution:
-1. On decisive clear, the torn wind boundary settles enough to reveal a traversable route. This is a world-state consequence of defeating the blocker, not a new inventory item.
-2. The primary next objective becomes **「裂け谷の向こうへ進む」**. Secondary copy may say **「新しい土地への道が開いた」**.
-3. The reward explanation is one short sentence: **「裂空マンティコアを退け、先へ進めるようになった。」** Do not require an Archive acknowledgement before travel.
-4. `BOUNDARY_ROUTE_OPENED` is granted exactly once with the challenge clear transaction or its canonical durable result. Animation, reward modal dismissal and navigation are never authority.
-5. Reload after the route opens resumes with the route open and the travel objective available. It never replays the challenge as mandatory and never closes the route.
-6. Manticore remains an encounter/challenge species. This P2 handoff does not grant JOIN, FUSION material, LEGACY, summon currency or a new battle command.
+Player-facing resolution: **「裂空マンティコアを退け、先へ進めるようになった。」** Primary CTA: **「裂け谷の向こうへ進む」**. No Archive acknowledgement is required before travel. Route-open authority is durable progression, never animation or modal dismissal.
 
-### Next-area entry contract
-This work unit deliberately locks only the **entry promise**, so Work can connect the existing data-driven WORLD/AREA system without inventing story semantics:
-- destination role: a new traversable area beyond the wind-torn boundary;
-- first player verb: **進む / 探索する**;
-- first-session promise: the next area must expose at least one new discoverable target or ecological clue before asking the player to return to HOME;
-- no forced Archive/Record screen between challenge clear and travel;
-- no requirement that SP-044 or SP-192 be in the active party;
-- exact next-area `areaId`, biome name and species roster remain a separate Chat/Art placement decision unless already canonical elsewhere.
+## P3 — next-area first discovery contract
+This v1.9 work unit closes the empty-unlock gap without inventing an ungoverned species identity. Until Chat + Art lock an exact roster, the next area is defined by its **ecological problem and first playable discovery**, not by a placeholder monster name.
 
-This prevents the runtime from replacing `次のエリア解放を待つ` with a cosmetically different dead-end. `NEXT_AREA_OPEN` means there is a real forward navigation target; until a target is bound, Work must not present the state as a completed player-facing unlock.
+Working player-facing area name: **「鳴石の裂け谷」**. This is a scenario label, not a hard-coded runtime `areaId`; Work must use the canonical data-driven WORLD/AREA identity when one exists.
+
+### Environment / story purpose
+Beyond the torn boundary, wind passing through exposed stone veins makes the valley itself ring. The important change from the previous forest is that traces are no longer only footprints or visible movement: **sound and timing become evidence**. This extends the Thunder Owl lesson (observe before acting) and the Manticore lesson (read an announced threat) without adding a new battle rule.
+
+First-entry player sequence:
+`NEXT_AREA_OPEN -> 鳴石の裂け谷へ進む -> 鳴る岩場を探索 -> 正体不明の鳴き返しを発見 -> 生態の手掛かりを記憶 -> FIRST_DISCOVERY_COMPLETE -> 次の探索対象が開く`.
+
+Player-facing copy is concrete and Japanese-first:
+- destination: **「鳴石の裂け谷」**
+- objective: **「音の返る岩場を調べる」**
+- discovery prompt: **「同じ音が、少し遅れて返ってくる。」**
+- result: **「この谷には、音に反応して動く生き物がいる。」**
+- next CTA: **「鳴き返しの主を探す」**
+
+### What the player learns
+The area lesson is **「手掛かりの種類が変わる」**. The player is not taught a new meter, command, rhythm input, timing QTE or audio-only accessibility dependency. Sound is narrative/ecological evidence; any runtime presentation must also be understandable visually/textually. This keeps the feature accessible and avoids collision with Work-owned input/UI systems.
+
+### Durable semantics
+Conceptual monotonic order:
+`NEXT_AREA_OPEN -> NEXT_AREA_ENTERED -> RESONANT_STONE_TRACE_FOUND -> NEXT_AREA_FIRST_DISCOVERY_COMPLETE -> NEXT_AREA_FIRST_TARGET_OPEN`.
+
+- Entering the area never consumes or rewrites Chapter 1 / Owl / Manticore receipts.
+- Reload after area entry resumes inside or at the canonical entry objective, not at the Manticore challenge.
+- Reload after the resonant trace preserves the clue and points to 「鳴き返しの主を探す」.
+- Discovery does not grant a monster, JOIN, reward currency, FUSION material or battle victory.
+- `NEXT_AREA_FIRST_TARGET_OPEN` may not be presented as complete until a canonical species/encounter target is bound by a later Chat/Art decision.
+- Unknown species identity stays unknown. Do not substitute SP-044, SP-192, SP-001 or any available art merely to fill the slot.
+
+### Content-growth requirement
+The next-area loop must be able to grow as:
+`DISCOVERY -> TARGET ENCOUNTER -> HUNT/JOIN or CHALLENGE -> PARTY/FUSION decision -> AREA CHALLENGE -> route consequence`.
+The exact first target is deliberately deferred to a source-governed species placement unit. This prevents another fake unlock while also preventing Chat from inventing an Art-Locked monster identity without evidence.
 
 ## Save / Chapter 1 compatibility
 Existing Chapter 1 receipts are never consumed, renamed, rewritten or downgraded. Conceptual P0 order remains:
@@ -84,12 +104,13 @@ Every post-Chapter-1 HOME/AREA state must answer:
 - **何をする？** one concrete action;
 - **何が増える？** monster, route or next objective.
 
-After owl JOIN the forward CTA becomes 「境界の裂傷を調べる」. After Manticore clear it becomes 「裂け谷の向こうへ進む」. Neither state should require another archive/record acknowledgement. LEGACY/MASTERY/REMNANT/RECORD and Build/JSON/Clarity/test terminology must not crowd out the journey.
+After owl JOIN the forward CTA becomes 「境界の裂傷を調べる」. After Manticore clear it becomes 「裂け谷の向こうへ進む」. After next-area entry it becomes 「音の返る岩場を調べる」 then 「鳴き返しの主を探す」. No state requires an Archive/Record acknowledgement. LEGACY/MASTERY/REMNANT/RECORD and Build/JSON/Clarity/test terminology must not crowd out the journey.
 
 ## Species / Art boundaries
 - SP-044 uses canonical locked Thunder Owl assets only.
 - SP-192 uses existing governed canonical derivatives only; no regeneration or redesign.
 - SP-001 ゴウラ remains excluded from generic fauna; an individual source is not generic population evidence.
+- P3 unknown target remains visually/species-unbound until a governed source placement exists.
 - Art availability never creates discovery, JOIN, challenge or reward receipts.
 
 ## Conflict boundary
