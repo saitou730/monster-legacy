@@ -1,67 +1,74 @@
-# Post-Chapter-1 First Area — Locked Species Placement v1.6
+# Post-Chapter-1 First Area — Locked Species Placement v1.7
 
 Canonical base reviewed: main `eb54dc91a29578e892a9f832ee6ccd3e57b7f1ec` (2026-09-12)
 Owner: Chat / Issue #38
 
 This is a design/progression handoff only. Runtime UI, battle binding, save migration implementation, QA, merge and publication remain Work-owned.
 
-## Current P0
-The first post-Chapter-1 playable proof must ship as:
+## P0 — first playable continuation
 `CH1_CLEAR -> DEPART -> DISCOVERY -> THUNDER_OWL_ENCOUNTER -> HUNT -> JOIN -> RETURN/NEXT_OBJECTIVE`.
 
-SP-044 雷フクロウ is the required first-area DISCOVERY -> HUNT/JOIN target. Use only its canonical locked source/runtime derivatives. The player-facing purpose is to teach **observe the ecosystem, then choose the opening**, rather than repeat Chapter 1's low-HP resonance lesson.
+SP-044 雷フクロウ is the required first DISCOVERY/HUNT/JOIN target. Player lesson: **observe the ecosystem, then choose the opening**. Normal copy is Japanese-first: 「痕跡を探す」「雷フクロウを見つける」「動きを読む」「隙をつく」「仲間になる」「次の目的へ」.
 
-## Latest-main Art correction
-Main now contains governed Art evidence for SP-192 裂空マンティコア (`POSTCH1_AREA_SP192_FOLLOWUP_PACKET.yaml` and its governing runtime-motion specification). The previous Art-binding HOLD in v1.5 is therefore obsolete.
+### Thunder Owl authority
+- DISCOVERY is a field/progression event, not a battle command and never grants ownership.
+- First-hunt READ is satisfied only after one announced owl action actually resolves and the party survives it.
+- Opening the encounter, reading NEXT/help, command selection/cancel or animation playback cannot satisfy READ.
+- READ adds no command, meter, status or STANCE rule.
+- Failed hunt preserves durable discovery, but not JOIN. Retry resumes at HUNT.
+- JOIN grants ownership exactly once. Repeat hunts never duplicate discovery/JOIN rewards.
+- Existing NEXT turn-start lock, 3-monster party and 2 COMMAND + remaining 1 STANCE are unchanged.
 
-However SP-192 is explicitly **P1 after the P0 Thunder Owl slice**. It must not replace SP-044, appear as generic filler, or delay the first playable continuation. Its placement is allowed only after the P0 owl route has durable progression semantics/runtime proof.
+## P1 — area-boundary challenge: 裂空マンティコア
+Latest main contains governed SP-192 Art evidence (`production/art_handoffs/POSTCH1_AREA_SP192_FOLLOWUP_PACKET.yaml`). P1 is now progression-authorized **only after the durable Thunder Owl JOIN/RETURN step**. It must never replace or block P0.
 
-SP-001 ゴウラ remains excluded from generic fauna; an individual character source must not be broadened into generic species population evidence.
+Narrative causality: 雷フクロウを追うことで、プレイヤーは「雷の痕跡」と「風圧で裂けた痕跡」の違いを読めるようになる。帰還時、エリア境界にそれまで判別できなかった大きな裂傷痕が見つかり、次の目的が「境界の裂傷を調べる」に更新される。雷フクロウがマンティコアを召喚・進化・配合するわけではない。
 
-## Thunder Owl DISCOVERY contract
-DISCOVERY is a field/progression event, not a new battle command. The player follows intermittent thunder/perch traces until the owl encounter becomes available. Discovery itself never grants ownership.
+Player-facing P1 sequence:
+`OWL_JOINED/RETURNED -> 裂傷痕を発見 -> 境界を調べる -> 裂空マンティコア遭遇 -> AREA CHALLENGE -> 勝利 -> 次エリアへの道を開く`.
 
-Player-facing sequence:
-1. **痕跡を探す** — enter the new area and identify thunder/perch traces.
-2. **雷フクロウを見つける** — discovery becomes durable and HUNT opens.
-3. **動きを読む** — in the first hunt, survive one announced owl action before JOIN eligibility can open.
-4. **隙をつく** — after that read predicate, resolve the encounter under the existing battle/JOIN interaction.
-5. **仲間になる** — first successful JOIN grants ownership exactly once.
-6. **次の目的へ** — return/progress without replaying discovery or first-JOIN presentation.
+### Manticore challenge lesson
+The challenge teaches **read -> evade -> punish**, using existing battle grammar only.
+1. 「構える」: an announced high-impact single-target action appears as the turn-start NEXT.
+2. 「かわす」: the player uses an already-existing evasion-capable choice/party relationship; no new DODGE button or third COMMAND is introduced.
+3. 「反撃する」: after a successful evade resolution, the next turn opens a temporary narrative/encounter vulnerability predicate in progression data. Work may translate this into existing damage/battle data, but Chat does not prescribe UI or a new meter.
+4. Victory after demonstrating the read/evade lesson clears the AREA CHALLENGE exactly once.
 
-Internal labels such as READ THE PERCH may remain implementation vocabulary, but normal player copy should use plain Japanese such as 「動きを読む」「隙をつく」. Do not expose receipt IDs, Build/JSON/Clarity/test terminology in the normal journey.
+A raw damage win before the lesson predicate may count as an ordinary encounter clear only if Work needs replay safety, but it MUST NOT silently grant the one-time area-boundary progression reward. The intended first-clear path requires at least one resolved successful evade before the decisive clear. This requirement belongs to encounter/progression data, not animation completion.
 
-## First-hunt semantics
-- The read predicate is satisfied only by resolving/surviving one announced owl action in that hunt.
-- Merely opening the encounter, viewing NEXT, opening help, selecting/cancelling COMMAND, or playing an animation does not satisfy it.
-- The read predicate introduces no new command, meter, status, or STANCE rule.
-- Existing NEXT turn-start lock, exactly 3 monsters, exactly 2 COMMAND + remaining 1 STANCE remain unchanged.
-- A failed hunt preserves durable discovery but not first JOIN ownership. Retry begins at HUNT, not at field discovery.
-- First JOIN is idempotent. Repeat hunts never replay discovery or duplicate ownership/rewards.
+### P1 durable semantics
+Conceptual monotonic order:
+`OWL_RETURNED -> MANTICORE_TRACE_DISCOVERED -> MANTICORE_CHALLENGE_OPEN -> MANTICORE_LESSON_PROVED -> MANTICORE_CHALLENGE_CLEARED -> NEXT_AREA_OPEN`.
 
-## Save / resume authority
-The first-area implementation must be additive/default-safe for existing Chapter 1 saves. Conceptual durable order is:
+These are semantic labels, not mandated storage keys. Save implementation remains data-driven and additive/default-safe. Resume targets the first incomplete durable milestone. Motion state, viewport state, help state and animation completion are never authority.
+
+- Reload after trace discovery resumes at the boundary investigation, not Thunder Owl discovery.
+- Reload after lesson proof but before victory may safely require the encounter to be fought again; it must not grant victory/reward from the proof alone.
+- Reload after durable challenge clear cannot duplicate clear rewards or close the next-area route.
+- SP-192 is a challenge target here, not automatically a JOIN reward. Any future JOIN eligibility requires a separate Chat-owned species/progression decision.
+
+## Save / Chapter 1 compatibility
+Existing Chapter 1 receipts are never consumed, renamed, rewritten or downgraded. Conceptual P0 order remains:
 `CH1_CLEAR -> AREA_UNLOCKED -> OWL_DISCOVERED -> OWL_JOINED -> RETURNED/NEXT_OBJECTIVE`.
 
-These names are semantic labels, not a requirement to persist literal `AREA01_*` keys. PR #49 intentionally defines areas by data `areaId`; Work must use the canonical WORLD/AREA identity selected by runtime data rather than hard-coding a numeric alias from this document.
-
-Resume always targets the first incomplete durable milestone. UI state, focus, animation completion, reduced-motion acknowledgement, or screen visibility never becomes progression authority. No Chapter 1 receipt is consumed, rewritten or downgraded.
-
-## After the P0 owl slice
-Once the owl slice is shipped, SP-192 裂空マンティコア is the preferred existing-Art candidate for the next ecology/challenge expansion. Narrative causality: after learning the owl's trace rhythm, the player can distinguish a larger, previously unreadable disturbance at the area boundary. The owl does not summon, evolve into, fuse into, or need to be actively partied for the manticore challenge.
-
-SP-192 progression must remain separate from motion/presentation. Existing governed animation availability cannot itself unlock discovery, challenge, victory, rewards or replay state.
+PR #49 defines areas by data `areaId`; Work should bind canonical WORLD/AREA identity rather than hard-code numeric aliases from this handoff.
 
 ## Player-facing clarity guard
-Post-Chapter-1 screens should answer three things without archive jargon:
-- **どこへ行く？** — the next area/field destination.
-- **何をする？** — e.g. 「雷の痕跡を探す」.
-- **何が増える？** — e.g. a newly discovered/joined monster and the next field objective.
+Every post-Chapter-1 HOME/AREA state must answer:
+- **どこへ行く？** destination;
+- **何をする？** one concrete action;
+- **何が増える？** monster, route or next objective.
 
-LEGACY/MASTERY/REMNANT/RECORD terminology must not crowd out the forward objective. Developer-only playtest controls remain outside normal player mode.
+After owl JOIN the forward CTA becomes 「境界の裂傷を調べる」, not another archive/record acknowledgement. LEGACY/MASTERY/REMNANT/RECORD and Build/JSON/Clarity/test terminology must not crowd out the journey.
+
+## Species / Art boundaries
+- SP-044 uses canonical locked Thunder Owl assets only.
+- SP-192 uses existing governed canonical derivatives only; no regeneration or redesign.
+- SP-001 ゴウラ remains excluded from generic fauna; an individual source is not generic population evidence.
+- Art availability never creates discovery, JOIN, challenge or reward receipts.
 
 ## Conflict boundary
-Chat does not implement root battle UI, long-press help, STANCE UX, mobile feel, accessibility, automated QA, save migration code, main merge, Pages/publication, prototype deployment, or asset generation. Work owns runtime binding/verification/publication. Art owns governed assets and Art Lock.
+Chat owns scenario/progression/encounter semantics only. No root battle UI, long-press help, STANCE UX, mobile feel, accessibility implementation, QA/automated tests, save migration code, main merge, Pages/publication, prototype deployment or asset generation. Work owns runtime binding/verification/publication; Art owns governed assets and Art Lock.
 
 ## Hard rules
-Portrait 9:16. NEXT fixed at turn start. Exactly 3 battle monsters. Exactly 2 COMMAND plus remaining 1 STANCE. Save compatibility is mandatory. `prototype/chapter1` remains an integration workspace and is not a public deployment target.
+Portrait 9:16. NEXT fixed at turn start. Exactly 3 battle monsters. Exactly 2 COMMAND plus remaining 1 STANCE. Save compatibility mandatory. `prototype/chapter1` is integration workspace only and is never the publication target.
