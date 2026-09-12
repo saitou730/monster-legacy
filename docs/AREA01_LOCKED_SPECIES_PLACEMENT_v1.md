@@ -1,71 +1,67 @@
-# AREA-01 Locked Species Placement v1.5
+# Post-Chapter-1 First Area — Locked Species Placement v1.6
 
-Canonical base reviewed: main 6173d7a24b15782c8167051104fbef821a26589f
+Canonical base reviewed: main `eb54dc91a29578e892a9f832ee6ccd3e57b7f1ec` (2026-09-12)
 Owner: Chat / Issue #38
 
-This is a design/progression handoff only. Runtime UI QA merge and publication remain Work-owned.
+This is a design/progression handoff only. Runtime UI, battle binding, save migration implementation, QA, merge and publication remain Work-owned.
 
-## Latest-main correction / Art evidence gate
-Latest main adds `production/art_handoffs/AREA02_EXISTING_LOCKED_SPECIES_RUNTIME_INVENTORY.yaml`. It canonically verifies SP-044 雷フクロウ and its existing runtime states, but places 裂空マンティコア on HOLD because its governing repository source, species ID, runtime path, and derivatives are not currently verified in the canonical visual-source evidence.
+## Current P0
+The first post-Chapter-1 playable proof must ship as:
+`CH1_CLEAR -> DEPART -> DISCOVERY -> THUNDER_OWL_ENCOUNTER -> HUNT -> JOIN -> RETURN/NEXT_OBJECTIVE`.
 
-Therefore this handoff supersedes the earlier wording that Work could already reuse existing manticore runtime derivatives. 裂空マンティコア remains a user-declared official Art Lock and may remain the intended semantic AREA CHALLENGE role, but **runtime binding is blocked until Art recovers/verifies the governing source binding and exact repository paths**. Chat must not invent those identifiers, paths, derivatives, visual traits, or substitute another species.
+SP-044 雷フクロウ is the required first-area DISCOVERY -> HUNT/JOIN target. Use only its canonical locked source/runtime derivatives. The player-facing purpose is to teach **observe the ecosystem, then choose the opening**, rather than repeat Chapter 1's low-HP resonance lesson.
 
-## Placement
-SP-044 雷フクロウ is the primary AREA-01 DISCOVERY to HUNT/JOIN target. Reuse its canonically verified governing source and runtime derivatives without redesign. First JOIN creates one durable ownership milestone; repeat hunts do not duplicate that first-JOIN progression.
+## Latest-main Art correction
+Main now contains governed Art evidence for SP-192 裂空マンティコア (`POSTCH1_AREA_SP192_FOLLOWUP_PACKET.yaml` and its governing runtime-motion specification). The previous Art-binding HOLD in v1.5 is therefore obsolete.
 
-裂空マンティコア is the intended AREA CHALLENGE gate at the design/progression layer only. It is not declared an evolution or fusion result and is not generic filler fauna. Challenge runtime/content binding stays HOLD until canonical Art evidence is restored.
+However SP-192 is explicitly **P1 after the P0 Thunder Owl slice**. It must not replace SP-044, appear as generic filler, or delay the first playable continuation. Its placement is allowed only after the P0 owl route has durable progression semantics/runtime proof.
 
-SP-001 ゴウラ is excluded from generic AREA-01 fauna because the current source is scoped to the individual ゴウラ and must not be broadened to all SP-001.
+SP-001 ゴウラ remains excluded from generic fauna; an individual character source must not be broadened into generic species population evidence.
 
-## Minimal route
-CH1_CLEAR -> WORLD/AREA-01 unlock -> 雷フクロウ DISCOVERY -> HUNT -> 雷フクロウ JOIN -> PARTY/FUSION freedom -> 裂空マンティコア AREA CHALLENGE [ART_BINDING_HOLD] -> AREA01_CLEAR -> next-area boundary.
+## Thunder Owl DISCOVERY contract
+DISCOVERY is a field/progression event, not a new battle command. The player follows intermittent thunder/perch traces until the owl encounter becomes available. Discovery itself never grants ownership.
 
-PARTY/FUSION is player freedom here; this document does not canonize a new fusion recipe.
+Player-facing sequence:
+1. **痕跡を探す** — enter the new area and identify thunder/perch traces.
+2. **雷フクロウを見つける** — discovery becomes durable and HUNT opens.
+3. **動きを読む** — in the first hunt, survive one announced owl action before JOIN eligibility can open.
+4. **隙をつく** — after that read predicate, resolve the encounter under the existing battle/JOIN interaction.
+5. **仲間になる** — first successful JOIN grants ownership exactly once.
+6. **次の目的へ** — return/progress without replaying discovery or first-JOIN presentation.
 
-## 雷フクロウ DISCOVERY -> JOIN ecology contract
-The AREA-01 owl encounter must teach observation before capture, rather than repeat Chapter 1's low-HP resonance lesson.
+Internal labels such as READ THE PERCH may remain implementation vocabulary, but normal player copy should use plain Japanese such as 「動きを読む」「隙をつく」. Do not expose receipt IDs, Build/JSON/Clarity/test terminology in the normal journey.
 
-Discovery is a non-combat field event: the player enters AREA-01 and finds intermittent thunder marks/perch traces. Following the trace sequence completes AREA01_OWL_DISCOVERED and makes the owl hunt available. Discovery itself never grants ownership.
+## First-hunt semantics
+- The read predicate is satisfied only by resolving/surviving one announced owl action in that hunt.
+- Merely opening the encounter, viewing NEXT, opening help, selecting/cancelling COMMAND, or playing an animation does not satisfy it.
+- The read predicate introduces no new command, meter, status, or STANCE rule.
+- Existing NEXT turn-start lock, exactly 3 monsters, exactly 2 COMMAND + remaining 1 STANCE remain unchanged.
+- A failed hunt preserves durable discovery but not first JOIN ownership. Retry begins at HUNT, not at field discovery.
+- First JOIN is idempotent. Repeat hunts never replay discovery or duplicate ownership/rewards.
 
-The first owl HUNT uses a two-step behavioral condition:
-1. **READ THE PERCH** — survive one announced owl action without forcing a JOIN check. This represents learning its rhythm; it is a progression predicate, not a new battle command or UI system.
-2. **OPENING** — after the read predicate is satisfied, resolve the hunt under the existing battle rules and existing JOIN interaction. Do not require the Chapter 1 wind-bat condition and do not introduce a new command, meter, status, or STANCE rule.
+## Save / resume authority
+The first-area implementation must be additive/default-safe for existing Chapter 1 saves. Conceptual durable order is:
+`CH1_CLEAR -> AREA_UNLOCKED -> OWL_DISCOVERED -> OWL_JOINED -> RETURNED/NEXT_OBJECTIVE`.
 
-On the first successful JOIN, write AREA01_OWL_JOINED exactly once. A failed hunt preserves AREA01_OWL_DISCOVERED but not AREA01_OWL_JOINED, and the next attempt begins at the hunt boundary. After first JOIN, repeat owl hunts are ordinary repeat encounters and never replay discovery or first-JOIN progression.
+These names are semantic labels, not a requirement to persist literal `AREA01_*` keys. PR #49 intentionally defines areas by data `areaId`; Work must use the canonical WORLD/AREA identity selected by runtime data rather than hard-coding a numeric alias from this document.
 
-Narrative intent: Chapter 1 taught **how to make a bond**; AREA-01 teaches **how to read an ecosystem before choosing the moment to engage**. The owl should feel watchful and territorial, not hostile by default. No dialogue, new species lore, fusion relation, or visual trait is canonized beyond existing locked sources.
+Resume always targets the first incomplete durable milestone. UI state, focus, animation completion, reduced-motion acknowledgement, or screen visibility never becomes progression authority. No Chapter 1 receipt is consumed, rewritten or downgraded.
 
-## 雷フクロウ JOIN -> intended challenge causality
-After AREA01_OWL_JOINED is durable, the player's completed observation route is treated as enough field knowledge to identify a previously unreadable disturbance pattern at the AREA boundary. This establishes the narrative cause for an intended stronger-presence challenge without requiring 雷フクロウ in the active party.
+## After the P0 owl slice
+Once the owl slice is shipped, SP-192 裂空マンティコア is the preferred existing-Art candidate for the next ecology/challenge expansion. Narrative causality: after learning the owl's trace rhythm, the player can distinguish a larger, previously unreadable disturbance at the area boundary. The owl does not summon, evolve into, fuse into, or need to be actively partied for the manticore challenge.
 
-`AREA01_CHALLENGE_UNLOCKED` may represent the semantic progression unlock, but runtime entry into the 裂空マンティコア encounter must remain unavailable while `MANTICORE_ART_BINDING_VERIFIED` is false. This hold must not roll back owl discovery/JOIN or fabricate replacement content. Once Art verification exists, Work may bind the intended challenge without changing the progression semantics here.
+SP-192 progression must remain separate from motion/presentation. Existing governed animation availability cannot itself unlock discovery, challenge, victory, rewards or replay state.
 
-## Challenge clear -> AREA01_CLEAR -> next-area boundary
-When the canonically bound challenge is eventually available, first victory writes AREA01_CHALLENGE_CLEARED exactly once. AREA01_CLEAR is a separate completion receipt written only after that durable victory. It does not award a new species, fusion recipe, visual form, command, or battle modifier.
+## Player-facing clarity guard
+Post-Chapter-1 screens should answer three things without archive jargon:
+- **どこへ行く？** — the next area/field destination.
+- **何をする？** — e.g. 「雷の痕跡を探す」.
+- **何が増える？** — e.g. a newly discovered/joined monster and the next field objective.
 
-Resume semantics remain monotonic: app close/reload never replays durable discovery, JOIN, challenge clear, or AREA clear. No Chapter 1 receipt is rewritten, consumed, or downgraded.
+LEGACY/MASTERY/REMNANT/RECORD terminology must not crowd out the forward objective. Developer-only playtest controls remain outside normal player mode.
 
-## AREA-01 end-to-end handoff / first-incomplete resolver
-Canonical monotonic order:
-1. CH1_CLEAR
-2. AREA01_UNLOCKED
-3. AREA01_OWL_DISCOVERED
-4. AREA01_OWL_JOINED
-5. AREA01_CHALLENGE_UNLOCKED
-6. AREA01_CHALLENGE_CLEARED
-7. AREA01_CLEAR
-
-Resume target is the first incomplete milestone whose prerequisites are durable. A semantic challenge unlock does not override the Art evidence gate: if the intended challenge binding is unresolved, routing stops safely at the challenge boundary and preserves all prior milestones.
-
-Invalid/legacy partial combinations heal forward without deleting durable ownership or duplicating rewards. Existing monster ownership remains authoritative. No AREA-01 milestone consumes or mutates Chapter 1 receipts.
-
-## Durable milestone semantics
-AREA01_UNLOCKED, AREA01_OWL_DISCOVERED, AREA01_OWL_JOINED, AREA01_CHALLENGE_UNLOCKED, AREA01_CHALLENGE_CLEARED, AREA01_CLEAR.
-
-Milestones are monotonic and idempotent. Defeat, HOME return, app close, or reload never removes discovery/JOIN/clear ownership. Existing saves remain valid through additive/default-safe Work binding.
+## Conflict boundary
+Chat does not implement root battle UI, long-press help, STANCE UX, mobile feel, accessibility, automated QA, save migration code, main merge, Pages/publication, prototype deployment, or asset generation. Work owns runtime binding/verification/publication. Art owns governed assets and Art Lock.
 
 ## Hard rules
-Portrait 9:16. NEXT fixed at turn start. Exactly 3 battle monsters. Exactly 2 COMMAND plus remaining 1 STANCE. Existing official sources only. prototype/chapter1 remains an integration workspace and is not a public deployment target.
-
-## Work boundary
-No root battle UI, long-press help, STANCE UX, mobile feel, accessibility, QA/automation, save migration code, main merge, publication, or asset generation is implemented here. Work owns runtime binding and verification; Art owns recovery/verification of missing governing sources and derivatives.
+Portrait 9:16. NEXT fixed at turn start. Exactly 3 battle monsters. Exactly 2 COMMAND plus remaining 1 STANCE. Save compatibility is mandatory. `prototype/chapter1` remains an integration workspace and is not a public deployment target.
