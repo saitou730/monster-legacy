@@ -8,6 +8,12 @@ policy:
   production_gate: "Ship at production-ready quality; fix minor issues in runtime QA instead of repeatedly regenerating near-identical art."
   character_policy: "Never reinterpret existing Official Art Lock species."
   throughput_rule: "Batch same-kind governed work. One-species-per-cycle administration is prohibited unless runtime QA identifies a species-specific defect."
+p0_alignment:
+  task: POST-CH1-AREA01-PLAYABLE
+  status: ART_SUPPLIED_AWAITING_RUNTIME_QA
+  canonical_species: SP-044
+  rule: "Thunder Owl governed runtime packet and existing owl backdrop are already supplied on main. Do not block the playable route on HOME promotion, optional polish, new background generation, or unrelated species expansion."
+  remaining_art_gate: "Validate canonical SP-044 + backdrop in Work runtime at 360x800 / 390x844 / 430x932; create new Art only if defect evidence proves the governed assets cannot satisfy the route."
 existing_character_art:
   status: OFFICIAL_ART_LOCK_INHERITED
   authority: canon/visual_source_map.yaml
@@ -103,6 +109,7 @@ notes:
   - "SP-192 canonical binding is recovered and QA PASS; do not retain the obsolete recovery HOLD in active queues."
   - "SP-071 governed runtime motion is QA PASS and reconciled into active AREA01 supply; do not regenerate its battle art."
 next_queue:
+  - POST_CH1_SP044_RUNTIME_VIEWPORT_QA
   - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
   - CH1_FX_BINARY_BATCH
   - LOCKED_RUNTIME_MOTION_BATCH
