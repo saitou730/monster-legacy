@@ -1,0 +1,85 @@
+schema_version: 1
+date: 2026-09-12
+status: ART_DIRECTOR_QA_PASS_READY_FOR_WORK
+target: POST-CH1-AREA01-PLAYABLE
+base_main: eb54dc91a29578e892a9f832ee6ccd3e57b7f1ec
+species: SP-044
+name: 雷フクロウ
+purpose: "Give Work one player-visible acceptance gate for the complete post-Ch1 Thunder Owl slice using only existing governed assets."
+preflight:
+  branch: art/p0-owl-runtime-acceptance-20260912
+  planned_files:
+    - production/art_handoffs/P0_SP044_RUNTIME_ACCEPTANCE_2026-09-12.yaml
+  save_paths:
+    - assets/battle/owl/idle.png
+    - assets/battle/owl/attack_prep.png
+    - assets/battle/owl/attack.png
+    - assets/battle/owl/hit.png
+    - assets/battle/owl/danger.png
+    - assets/battle/owl/stance.png
+    - assets/battle/owl/icon_portrait.png
+    - assets/art/owl_battle_backdrop.jpg
+  art_lock: OFFICIAL_ART_LOCK_INHERITED_NO_CHANGE
+  work_dependency: "Work binds this packet in the canonical root runtime, runs E2E/viewport QA, merges and publishes."
+source_policy:
+  authority: canon/visual_source_map.yaml
+  governing_source: assets/reference/雷フクロウ_CHARACTER_DESIGN_BIBLE_ML-001_v1.1.png
+  governing_sha256: 6e3cacaf83b8541d85560d9bf4358029c0be484af976125a399a7df14e72fedc
+  rule: "No reinterpretation, regeneration, recolor, morphing, anatomy synthesis, or replacement of existing owl battle rasters."
+runtime_assets:
+  idle: assets/battle/owl/idle.png
+  attack_prep: assets/battle/owl/attack_prep.png
+  attack: assets/battle/owl/attack.png
+  hit: assets/battle/owl/hit.png
+  danger: assets/battle/owl/danger.png
+  stance: assets/battle/owl/stance.png
+  icon: assets/battle/owl/icon_portrait.png
+  backdrop: assets/art/owl_battle_backdrop.jpg
+animation_contract:
+  anchor: monster_stage_center
+  sequences:
+    idle:
+      frames: [idle]
+      frame_ms: [860]
+      loop: true
+    attack:
+      frames: [attack_prep, attack, idle]
+      frame_ms: [150, 180, 250]
+      loop: false
+    hit:
+      frames: [hit, idle]
+      frame_ms: [160, 240]
+      loop: false
+    danger:
+      frames: [danger]
+      frame_ms: [680]
+      loop: true
+    stance:
+      frames: [stance, idle]
+      frame_ms: [230, 270]
+      loop: false
+  reduced_motion: "Use the canonical static state for the event and return to idle without synthesized in-between frames."
+player_visible_route:
+  - CH1_CLEAR_HOME
+  - DEPART
+  - DISCOVERY
+  - THUNDER_OWL_ENCOUNTER
+  - HUNT_BATTLE
+  - JOIN_ACKNOWLEDGEMENT
+  - RETURN_OR_NEXT_OBJECTIVE
+acceptance:
+  - "The same canonical SP-044 identity is preserved from DISCOVERY through battle and JOIN; no substitute species or alternate owl design appears."
+  - "owl_battle_backdrop.jpg is reused without source-byte modification unless runtime QA records a concrete blocking defect."
+  - "At 360x800, 390x844 and 430x932 the owl silhouette remains readable and does not obscure NEXT ACTION, command selection, STANCE help, HP/VOLTAGE, JOIN CTA, or the next objective."
+  - "Attack/hit/danger/stance state changes are visibly distinguishable without requiring color alone."
+  - "Reduced-motion remains progression-equivalent and never creates or suppresses JOIN/progression receipts."
+  - "No Art-only polish may block shipping this playable slice after the above checks pass."
+  - "Any runtime transform may position/scale the governed raster but may not stretch anatomy or crop identity-critical head/wing/tail silhouette."
+qa:
+  verdict: PASS
+  reason: "All required P0 character/background assets already exist under governed source; the highest-value Art action is a single runtime acceptance gate that prevents duplicate generation and gives Work concrete player-visible checks."
+next_queue:
+  - WORK_BIND_SP044_P0_PACKET
+  - WORK_VALIDATE_SP044_360_390_430
+  - WORK_SHIP_POST_CH1_AREA01
+  - P1_SP192_BOUNDARY_CHALLENGE_AFTER_P0
