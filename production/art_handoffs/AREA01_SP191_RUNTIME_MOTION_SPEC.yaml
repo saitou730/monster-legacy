@@ -1,0 +1,71 @@
+schema_version: 1
+updated: 2026-09-13
+id: AREA01_RUNTIME_SP191
+species_id: SP-191
+name: 荊棘の大猪
+area: AREA01
+status: SPEC_READY_FOR_WORK
+art_director_qa: PASS
+art_lock: OFFICIAL_ART_LOCK_INHERITED
+preflight:
+  target: SP-191 governed runtime motion
+  purpose: "Close the locked-species runtime-motion gap without generating or replacing character art."
+  branch: main
+  changed_files:
+    - production/art_handoffs/AREA01_SP191_RUNTIME_MOTION_SPEC.yaml
+  planned_asset_paths: []
+  work_dependency: "Work binds semantic battle events, viewport/UI regression QA, save neutrality and publication."
+source_policy: "Existing canon/visual_source_map.yaml governed SP-191 rasters only. No character regeneration, redraw, recolor, morphing, or synthesized in-between anatomy."
+governing_source:
+  path: assets/reference/荊棘の大猪_モンスターデザイン画稿.png
+  sha256: 3fcbec67740d77f1bbc63c48b423269865fcc26e00d217e0139758a8afcaa88a
+anchor: monster_stage_center
+motions:
+  idle:
+    frames:
+      - {order: 1, path: assets/battle/boar/idle.png, duration_ms: 900}
+    loop: true
+  attack:
+    frames:
+      - {order: 1, path: assets/battle/boar/idle.png, duration_ms: 160}
+      - {order: 2, path: assets/battle/boar/attack.png, duration_ms: 210}
+      - {order: 3, path: assets/battle/boar/idle.png, duration_ms: 280}
+    loop: false
+  hit:
+    frames:
+      - {order: 1, path: assets/battle/boar/hit.png, duration_ms: 180}
+      - {order: 2, path: assets/battle/boar/idle.png, duration_ms: 280}
+    loop: false
+  danger:
+    frames:
+      - {order: 1, path: assets/battle/boar/danger.png, duration_ms: 720}
+    loop: true
+  stance:
+    frames:
+      - {order: 1, path: assets/battle/boar/stance.png, duration_ms: 260}
+      - {order: 2, path: assets/battle/boar/idle.png, duration_ms: 300}
+    loop: false
+reduced_motion:
+  rule: "Disable runtime translation/scale/rotation/tremor and show the semantic canonical raster statically for the current state."
+qa:
+  governing_source_present_in_visual_source_map: PASS
+  required_core_raster_paths_registered: PASS
+  character_redesign_or_generation: PASS_NONE
+  frame_order_defined: PASS
+  per_frame_duration_defined: PASS
+  loop_state_defined: PASS
+  anchor_defined: PASS
+  reduced_motion_defined: PASS
+  root_runtime_modified: PASS_NONE
+  publishing_workflow_modified: PASS_NONE
+  existing_binary_overwrite: PASS_NONE
+  p0_interference: PASS_NONE
+work_handoff:
+  dependency: "Do not interrupt POST-CH1-AREA01-PLAYABLE. Consume this governed packet in the locked runtime-motion batch or when SP-191 runtime QA is reopened."
+  acceptance:
+    - "Use only the canonical SP-191 raster paths registered in canon/visual_source_map.yaml."
+    - "Preserve frame order, durations, loop flags and monster_stage_center anchor."
+    - "Verify 360x800, 390x844 and 430x932 without silhouette or action-UI clipping."
+    - "Report concrete runtime defect evidence before requesting replacement Art."
+official_art_lock_declaration_this_run: false
+next: "Add SP-191 to the locked runtime-motion batch manifest; Art reopens binary production only on runtime defect evidence."
