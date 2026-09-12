@@ -1,0 +1,74 @@
+schema_version: 1
+updated: 2026-09-12
+id: AREA02_SP192_RUNTIME_MOTION_WORK_HANDOFF
+owner: Art
+consumer: Work
+species: SP-192
+name: 裂空マンティコア
+status: READY_FOR_WORK_AFTER_P0
+priority: P1_AFTER_POST_CH1_AREA01
+art_director_qa: PASS
+art_lock:
+  status: OFFICIAL_ART_LOCK_INHERITED
+  governing_source: assets/reference/裂空マンティコア_CHARACTER_DESIGN_SHEET_ML-002_v1.2.png
+  governing_sha256: 0b1b8a4a9148cccd7342aa42e0a2d314d1dc09734b3137f064569777e40a1777
+  rule: Existing governed rasters only; no reinterpretation, regeneration, recolor, morphing, or synthesized anatomy.
+source_spec: production/art_handoffs/AREA02_SP192_RUNTIME_MOTION_SPEC.yaml
+runtime_contract:
+  anchor: monster_stage_center
+  idle:
+    frames:
+      - {path: assets/battle/manticore/idle.png, sha256: 579a8680176e2a4038cc00adfcbf41e4bd8d987c0492f8dec36298d3ac79dafa, duration_ms: 860}
+    loop: true
+  attack:
+    frames:
+      - {path: assets/battle/manticore/attack_prep.png, sha256: 7499717c0b803251b5033c2a8eb4775469205080b1147e380f01e08b4547f44c, duration_ms: 150}
+      - {path: assets/battle/manticore/attack.png, sha256: 38413bbd83088189ca5b1a4f6a51bbe7d8e476433aad64a2efbbf07ee998a1e6, duration_ms: 180}
+      - {path: assets/battle/manticore/idle.png, sha256: 579a8680176e2a4038cc00adfcbf41e4bd8d987c0492f8dec36298d3ac79dafa, duration_ms: 250}
+    loop: false
+  hit:
+    frames:
+      - {path: assets/battle/manticore/hit.png, sha256: 579a8680176e2a4038cc00adfcbf41e4bd8d987c0492f8dec36298d3ac79dafa, duration_ms: 160}
+      - {path: assets/battle/manticore/idle.png, sha256: 579a8680176e2a4038cc00adfcbf41e4bd8d987c0492f8dec36298d3ac79dafa, duration_ms: 240}
+    loop: false
+  danger:
+    frames:
+      - {path: assets/battle/manticore/danger.png, sha256: d7696dc21e26af752bbcb328f84ea5aabd2dc438f20393ef3373db5f09e2f595, duration_ms: 680}
+    loop: true
+  stance:
+    frames:
+      - {path: assets/battle/manticore/stance.png, sha256: 7499717c0b803251b5033c2a8eb4775469205080b1147e380f01e08b4547f44c, duration_ms: 230}
+      - {path: assets/battle/manticore/idle.png, sha256: 579a8680176e2a4038cc00adfcbf41e4bd8d987c0492f8dec36298d3ac79dafa, duration_ms: 270}
+    loop: false
+reduced_motion:
+  rule: Disable runtime transforms/temporal emphasis and show the corresponding canonical raster statically. No alternate character raster.
+placement_gate:
+  prerequisite: POST-CH1-AREA01-PLAYABLE is shipped or Work explicitly starts its immediate P1 follow-up.
+  progression_authority: PR #74 / Game Director progression only.
+  role: AREA_CHALLENGE
+  presentation_lesson: read -> evade -> punish using existing battle grammar; Art does not add a new command or mechanic.
+  forbidden_substitution: Never use SP-192 as Thunder Owl, generic fauna, unknown placeholder, or unresolved first-target identity.
+work_acceptance:
+  - Bind only the exact canonical paths and hashes above.
+  - Preserve frame order, duration, loop behavior and monster_stage_center anchor.
+  - Preserve Portrait 9:16 and existing battle UI safe zones.
+  - Verify 360x800, 390x844 and 430x932 without clipping the silhouette, danger read or action UI.
+  - Runtime transforms may add motion but must not distort anatomy, silhouette, palette or eye treatment.
+  - Reduced-motion mode must remain legible without generated variants.
+  - Any mismatch is reported as runtime QA evidence before requesting replacement Art.
+forbidden_changes:
+  - root game code by Art
+  - public workflow by Art
+  - assets/art/* replacement
+  - assets/battle/* replacement
+  - alternate SP-192 interpretation
+qa:
+  governing_source_present: PASS
+  canonical_hashes_preserved: PASS
+  frame_order_and_timing: PASS
+  loop_behavior: PASS
+  anchor: PASS
+  reduced_motion: PASS
+  duplicate_generation: NOT_REQUIRED
+  p0_interference: PASS_NO_BLOCK
+next: Work consumes this packet after the Thunder Owl P0 route; Art only reopens SP-192 if runtime QA produces concrete defect evidence.
