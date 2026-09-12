@@ -1,6 +1,6 @@
-# Post-Chapter-1 First Area — Locked Species Placement v1.9
+# Post-Chapter-1 First Area — Locked Species Placement v2.1
 
-Canonical base reviewed: main `eb54dc91a29578e892a9f832ee6ccd3e57b7f1ec` (2026-09-12)
+Canonical base reviewed: main `055647d2e1dbeaa1e4b5548c15b0632a9fce3c50` (2026-09-12)
 Owner: Chat / Issue #38
 
 This is a design/progression handoff only. Runtime UI, battle binding, save migration implementation, QA, merge and publication remain Work-owned.
@@ -10,13 +10,16 @@ This is a design/progression handoff only. Runtime UI, battle binding, save migr
 
 SP-044 雷フクロウ is the required first DISCOVERY/HUNT/JOIN target. Player lesson: **observe the ecosystem, then choose the opening**. Normal copy is Japanese-first: 「痕跡を探す」「雷フクロウを見つける」「動きを読む」「隙をつく」「仲間になる」「次の目的へ」.
 
-### Thunder Owl authority
+### Thunder Owl authority / latest-main acceptance alignment
+Latest main adds Art-side Thunder Owl P0 runtime acceptance gating. That acceptance evidence governs whether Work may bind the supplied visual packet; it does not create progression authority.
+
 - DISCOVERY is a field/progression event, not a battle command and never grants ownership.
 - First-hunt READ is satisfied only after one announced owl action actually resolves and the party survives it.
-- Opening the encounter, reading NEXT/help, command selection/cancel or animation playback cannot satisfy READ.
+- Opening the encounter, reading NEXT/help, command selection/cancel, animation playback, asset acceptance PASS, or runtime-binding readiness cannot satisfy READ or JOIN.
 - READ adds no command, meter, status or STANCE rule.
 - Failed hunt preserves durable discovery, but not JOIN. Retry resumes at HUNT.
 - JOIN grants ownership exactly once. Repeat hunts never duplicate discovery/JOIN rewards.
+- If a durable JOIN receipt exists but visual playback is interrupted, reload resumes after JOIN; visuals never reroll or revoke ownership.
 - Existing NEXT turn-start lock, 3-monster party and 2 COMMAND + remaining 1 STANCE are unchanged.
 
 ## P1 — area-boundary challenge: 裂空マンティコア
@@ -56,47 +59,47 @@ Durable causal order:
 Player-facing resolution: **「裂空マンティコアを退け、先へ進めるようになった。」** Primary CTA: **「裂け谷の向こうへ進む」**. No Archive acknowledgement is required before travel. Route-open authority is durable progression, never animation or modal dismissal.
 
 ## P3 — next-area first discovery contract
-This v1.9 work unit closes the empty-unlock gap without inventing an ungoverned species identity. Until Chat + Art lock an exact roster, the next area is defined by its **ecological problem and first playable discovery**, not by a placeholder monster name.
-
 Working player-facing area name: **「鳴石の裂け谷」**. This is a scenario label, not a hard-coded runtime `areaId`; Work must use the canonical data-driven WORLD/AREA identity when one exists.
 
-### Environment / story purpose
-Beyond the torn boundary, wind passing through exposed stone veins makes the valley itself ring. The important change from the previous forest is that traces are no longer only footprints or visible movement: **sound and timing become evidence**. This extends the Thunder Owl lesson (observe before acting) and the Manticore lesson (read an announced threat) without adding a new battle rule.
+Beyond the torn boundary, wind passing through exposed stone veins makes the valley itself ring. The important change from the previous forest is that traces are no longer only footprints or visible movement: **sound and timing become evidence**. This extends the Thunder Owl lesson and the Manticore lesson without adding a new battle rule.
 
 First-entry player sequence:
-`NEXT_AREA_OPEN -> 鳴石の裂け谷へ進む -> 鳴る岩場を探索 -> 正体不明の鳴き返しを発見 -> 生態の手掛かりを記憶 -> FIRST_DISCOVERY_COMPLETE -> 次の探索対象が開く`.
+`NEXT_AREA_OPEN -> 鳴石の裂け谷へ進む -> 鳴る岩場を探索 -> 正体不明の鳴き返しを発見 -> 生態の手掛かりを記憶 -> FIRST_DISCOVERY_COMPLETE -> 鳴き返しの主を探す`.
 
-Player-facing copy is concrete and Japanese-first:
+Player-facing copy:
 - destination: **「鳴石の裂け谷」**
 - objective: **「音の返る岩場を調べる」**
-- discovery prompt: **「同じ音が、少し遅れて返ってくる。」**
+- discovery: **「同じ音が、少し遅れて返ってくる。」**
 - result: **「この谷には、音に反応して動く生き物がいる。」**
 - next CTA: **「鳴き返しの主を探す」**
 
-### What the player learns
-The area lesson is **「手掛かりの種類が変わる」**. The player is not taught a new meter, command, rhythm input, timing QTE or audio-only accessibility dependency. Sound is narrative/ecological evidence; any runtime presentation must also be understandable visually/textually. This keeps the feature accessible and avoids collision with Work-owned input/UI systems.
+Sound is narrative/ecological evidence, not an audio-only accessibility dependency. No rhythm QTE, timing meter, extra command or STANCE rule is introduced.
 
-### Durable semantics
-Conceptual monotonic order:
+### P3 durable semantics
 `NEXT_AREA_OPEN -> NEXT_AREA_ENTERED -> RESONANT_STONE_TRACE_FOUND -> NEXT_AREA_FIRST_DISCOVERY_COMPLETE -> NEXT_AREA_FIRST_TARGET_OPEN`.
 
-- Entering the area never consumes or rewrites Chapter 1 / Owl / Manticore receipts.
-- Reload after area entry resumes inside or at the canonical entry objective, not at the Manticore challenge.
-- Reload after the resonant trace preserves the clue and points to 「鳴き返しの主を探す」.
-- Discovery does not grant a monster, JOIN, reward currency, FUSION material or battle victory.
-- `NEXT_AREA_FIRST_TARGET_OPEN` may not be presented as complete until a canonical species/encounter target is bound by a later Chat/Art decision.
-- Unknown species identity stays unknown. Do not substitute SP-044, SP-192, SP-001 or any available art merely to fill the slot.
+Existing Chapter 1/Owl/Manticore receipts are never consumed, renamed, rewritten or downgraded. Reload resumes at the first incomplete durable milestone. Discovery never grants ownership, currency, FUSION material or battle victory.
 
-### Content-growth requirement
-The next-area loop must be able to grow as:
-`DISCOVERY -> TARGET ENCOUNTER -> HUNT/JOIN or CHALLENGE -> PARTY/FUSION decision -> AREA CHALLENGE -> route consequence`.
-The exact first target is deliberately deferred to a source-governed species placement unit. This prevents another fake unlock while also preventing Chat from inventing an Art-Locked monster identity without evidence.
+## P4 — first-target binding gate (new in v2.1)
+The first real target after 「鳴き返しの主を探す」 must not be invented from whatever art happens to be available. Chat may bind a species only when **all seven** conditions below are evidenced from canonical main/Art governance:
 
-## Save / Chapter 1 compatibility
-Existing Chapter 1 receipts are never consumed, renamed, rewritten or downgraded. Conceptual P0 order remains:
-`CH1_CLEAR -> AREA_UNLOCKED -> OWL_DISCOVERED -> OWL_JOINED -> RETURNED/NEXT_OBJECTIVE`.
+1. exact canonical roster/species ID is known;
+2. exact approved Art Lock/source binding is known;
+3. the species ecology is compatible with the resonant-stone call/response clue without rewriting its locked identity;
+4. encounter role is explicitly chosen as `HUNT/JOIN` or `AREA_CHALLENGE`;
+5. player lesson can be expressed through existing battle/progression grammar;
+6. one durable growth consequence is defined (ownership, party/fusion option, route access, or another canonical progression reward);
+7. no higher-priority Art/Work P0 ownership or unresolved source HOLD is violated.
 
-PR #49 defines areas by data `areaId`; Work should bind canonical WORLD/AREA identity rather than hard-code numeric aliases from this handoff.
+Until all seven are satisfied, the target remains **unknown**. Do not show a fake silhouette implying a specific species, do not reuse SP-044/SP-192/SP-001, and do not award a placeholder reward.
+
+When a target is validly bound, its conceptual progression is:
+`NEXT_AREA_FIRST_TARGET_OPEN -> FIRST_TARGET_ENCOUNTERED -> FIRST_TARGET_RESOLVED -> NEXT_AREA_GROWTH_REWARD_GRANTED`.
+
+`FIRST_TARGET_RESOLVED` alone is not permission to grant a reward twice. The growth reward must be durable and exact-once; reload after its receipt advances to the next objective. Runtime storage keys remain Work-owned.
+
+### Handoff-ready acceptance payload
+A later Chat/Art binding unit should hand Work exactly this minimum payload in one batch: `{speciesId, governedAssetRef, ecologyReason, encounterRole, lessonPredicate, rewardType, nextObjective}`. Missing any field means the binding is not ready for runtime implementation.
 
 ## Player-facing clarity guard
 Every post-Chapter-1 HOME/AREA state must answer:
@@ -104,14 +107,14 @@ Every post-Chapter-1 HOME/AREA state must answer:
 - **何をする？** one concrete action;
 - **何が増える？** monster, route or next objective.
 
-After owl JOIN the forward CTA becomes 「境界の裂傷を調べる」. After Manticore clear it becomes 「裂け谷の向こうへ進む」. After next-area entry it becomes 「音の返る岩場を調べる」 then 「鳴き返しの主を探す」. No state requires an Archive/Record acknowledgement. LEGACY/MASTERY/REMNANT/RECORD and Build/JSON/Clarity/test terminology must not crowd out the journey.
+After owl JOIN: 「境界の裂傷を調べる」. After Manticore clear: 「裂け谷の向こうへ進む」. After next-area entry: 「音の返る岩場を調べる」 then 「鳴き返しの主を探す」. No state requires an Archive/Record acknowledgement. LEGACY/MASTERY/REMNANT/RECORD and Build/JSON/Clarity/test terminology must not crowd out the journey.
 
 ## Species / Art boundaries
 - SP-044 uses canonical locked Thunder Owl assets only.
 - SP-192 uses existing governed canonical derivatives only; no regeneration or redesign.
 - SP-001 ゴウラ remains excluded from generic fauna; an individual source is not generic population evidence.
-- P3 unknown target remains visually/species-unbound until a governed source placement exists.
-- Art availability never creates discovery, JOIN, challenge or reward receipts.
+- P3/P4 unknown target remains visually/species-unbound until a governed source placement exists.
+- Art availability or binary acceptance never creates discovery, JOIN, challenge or reward receipts.
 
 ## Conflict boundary
 Chat owns scenario/progression/encounter semantics only. No root battle UI, long-press help, STANCE UX, mobile feel, accessibility implementation, QA/automated tests, save migration code, main merge, Pages/publication, prototype deployment or asset generation. Work owns runtime binding/verification/publication; Art owns governed assets and Art Lock.
