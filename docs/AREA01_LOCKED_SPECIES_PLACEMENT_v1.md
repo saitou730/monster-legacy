@@ -1,4 +1,4 @@
-# Post-Chapter-1 First Area — Locked Species Placement v1.7
+# Post-Chapter-1 First Area — Locked Species Placement v1.8
 
 Canonical base reviewed: main `eb54dc91a29578e892a9f832ee6ccd3e57b7f1ec` (2026-09-12)
 Owner: Chat / Issue #38
@@ -20,7 +20,7 @@ SP-044 雷フクロウ is the required first DISCOVERY/HUNT/JOIN target. Player 
 - Existing NEXT turn-start lock, 3-monster party and 2 COMMAND + remaining 1 STANCE are unchanged.
 
 ## P1 — area-boundary challenge: 裂空マンティコア
-Latest main contains governed SP-192 Art evidence (`production/art_handoffs/POSTCH1_AREA_SP192_FOLLOWUP_PACKET.yaml`). P1 is now progression-authorized **only after the durable Thunder Owl JOIN/RETURN step**. It must never replace or block P0.
+Latest main contains governed SP-192 Art evidence (`production/art_handoffs/POSTCH1_AREA_SP192_FOLLOWUP_PACKET.yaml`). P1 is progression-authorized only after the durable Thunder Owl JOIN/RETURN step. It must never replace or block P0.
 
 Narrative causality: 雷フクロウを追うことで、プレイヤーは「雷の痕跡」と「風圧で裂けた痕跡」の違いを読めるようになる。帰還時、エリア境界にそれまで判別できなかった大きな裂傷痕が見つかり、次の目的が「境界の裂傷を調べる」に更新される。雷フクロウがマンティコアを召喚・進化・配合するわけではない。
 
@@ -31,8 +31,8 @@ Player-facing P1 sequence:
 The challenge teaches **read -> evade -> punish**, using existing battle grammar only.
 1. 「構える」: an announced high-impact single-target action appears as the turn-start NEXT.
 2. 「かわす」: the player uses an already-existing evasion-capable choice/party relationship; no new DODGE button or third COMMAND is introduced.
-3. 「反撃する」: after a successful evade resolution, the next turn opens a temporary narrative/encounter vulnerability predicate in progression data. Work may translate this into existing damage/battle data, but Chat does not prescribe UI or a new meter.
-4. Victory after demonstrating the read/evade lesson clears the AREA CHALLENGE exactly once.
+3. 「反撃する」: after a successful evade resolution, the next turn opens a temporary encounter vulnerability predicate in progression data. Work may translate this into existing battle data, but Chat does not prescribe UI or a new meter.
+4. Victory after demonstrating the lesson clears the AREA CHALLENGE exactly once.
 
 A raw damage win before the lesson predicate may count as an ordinary encounter clear only if Work needs replay safety, but it MUST NOT silently grant the one-time area-boundary progression reward. The intended first-clear path requires at least one resolved successful evade before the decisive clear. This requirement belongs to encounter/progression data, not animation completion.
 
@@ -47,6 +47,31 @@ These are semantic labels, not mandated storage keys. Save implementation remain
 - Reload after durable challenge clear cannot duplicate clear rewards or close the next-area route.
 - SP-192 is a challenge target here, not automatically a JOIN reward. Any future JOIN eligibility requires a separate Chat-owned species/progression decision.
 
+## P2 handoff — victory must create immediate forward momentum
+The first-area challenge must not end in another Archive/Record/COMING SOON dead-end. The one-time Manticore progression reward is **route access**, not another terminology-heavy collectible.
+
+Durable causal order:
+`MANTICORE_CHALLENGE_CLEARED -> BOUNDARY_ROUTE_OPENED -> NEXT_AREA_OPEN`.
+
+Player-facing resolution:
+1. On decisive clear, the torn wind boundary settles enough to reveal a traversable route. This is a world-state consequence of defeating the blocker, not a new inventory item.
+2. The primary next objective becomes **「裂け谷の向こうへ進む」**. Secondary copy may say **「新しい土地への道が開いた」**.
+3. The reward explanation is one short sentence: **「裂空マンティコアを退け、先へ進めるようになった。」** Do not require an Archive acknowledgement before travel.
+4. `BOUNDARY_ROUTE_OPENED` is granted exactly once with the challenge clear transaction or its canonical durable result. Animation, reward modal dismissal and navigation are never authority.
+5. Reload after the route opens resumes with the route open and the travel objective available. It never replays the challenge as mandatory and never closes the route.
+6. Manticore remains an encounter/challenge species. This P2 handoff does not grant JOIN, FUSION material, LEGACY, summon currency or a new battle command.
+
+### Next-area entry contract
+This work unit deliberately locks only the **entry promise**, so Work can connect the existing data-driven WORLD/AREA system without inventing story semantics:
+- destination role: a new traversable area beyond the wind-torn boundary;
+- first player verb: **進む / 探索する**;
+- first-session promise: the next area must expose at least one new discoverable target or ecological clue before asking the player to return to HOME;
+- no forced Archive/Record screen between challenge clear and travel;
+- no requirement that SP-044 or SP-192 be in the active party;
+- exact next-area `areaId`, biome name and species roster remain a separate Chat/Art placement decision unless already canonical elsewhere.
+
+This prevents the runtime from replacing `次のエリア解放を待つ` with a cosmetically different dead-end. `NEXT_AREA_OPEN` means there is a real forward navigation target; until a target is bound, Work must not present the state as a completed player-facing unlock.
+
 ## Save / Chapter 1 compatibility
 Existing Chapter 1 receipts are never consumed, renamed, rewritten or downgraded. Conceptual P0 order remains:
 `CH1_CLEAR -> AREA_UNLOCKED -> OWL_DISCOVERED -> OWL_JOINED -> RETURNED/NEXT_OBJECTIVE`.
@@ -59,7 +84,7 @@ Every post-Chapter-1 HOME/AREA state must answer:
 - **何をする？** one concrete action;
 - **何が増える？** monster, route or next objective.
 
-After owl JOIN the forward CTA becomes 「境界の裂傷を調べる」, not another archive/record acknowledgement. LEGACY/MASTERY/REMNANT/RECORD and Build/JSON/Clarity/test terminology must not crowd out the journey.
+After owl JOIN the forward CTA becomes 「境界の裂傷を調べる」. After Manticore clear it becomes 「裂け谷の向こうへ進む」. Neither state should require another archive/record acknowledgement. LEGACY/MASTERY/REMNANT/RECORD and Build/JSON/Clarity/test terminology must not crowd out the journey.
 
 ## Species / Art boundaries
 - SP-044 uses canonical locked Thunder Owl assets only.
