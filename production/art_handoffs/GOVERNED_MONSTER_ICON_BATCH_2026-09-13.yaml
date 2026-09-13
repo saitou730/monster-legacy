@@ -14,7 +14,7 @@ rules:
   - "Export is a deterministic crop/fit operation only; source pixels may be resampled for delivery size but not repainted."
   - "Transparent padding is allowed; generative fill/background replacement is forbidden."
   - "Do not overwrite any existing assets/art/* or assets/battle/* file. New icon files require Work-side hash verification before binding."
-  - "SP-044 is excluded: assets/battle/owl/icon_portrait.png already exists and remains canonical."
+  - "SP-044 and SP-192 are excluded from export: canonical icon_portrait.png derivatives already exist and must be reused."
 delivery:
   format: PNG
   canvas: "256x256"
@@ -32,6 +32,15 @@ delivery:
     - "no clipping of identity-defining anatomy"
     - "source SHA-256 verified before export"
     - "output SHA-256 recorded before runtime binding"
+reuse_existing:
+  - id: SP-044
+    name: 雷フクロウ
+    path: assets/battle/owl/icon_portrait.png
+    sha256: 2c3c71185d2a2f916bead8977dc93a29918865763c3a55105cb8d6bc32c7dc55
+  - id: SP-192
+    name: 裂空マンティコア
+    path: assets/battle/manticore/icon_portrait.png
+    sha256: dd89b38375476fbc4833ed1916116b38588b7e07d017da7d4b90833c57089a31
 species:
   - id: SP-001
     name: ゴウラ
@@ -63,12 +72,8 @@ species:
     source: assets/battle/boar/idle.png
     source_sha256: 8adf3660fed9efbc5982f5e4965cfe0663dd0317398d315ff57d299772069357
     planned_path: assets/icons/monsters/sp191_thorn_boar.png
-  - id: SP-192
-    name: 裂空マンティコア
-    source_policy: "Use the exact governed SP-192 idle raster registered in canon/visual_source_map.yaml; Work must resolve and verify its current path/SHA from canon at execution time. Do not substitute another species or candidate."
-    planned_path: assets/icons/monsters/sp192_manticore.png
 art_director_qa:
   verdict: PASS_SPEC
-  reason: "Closes a real runtime asset-class gap by deriving icons from already-governed character pixels; avoids duplicate generation and preserves every inherited Official Art Lock."
-work_dependency: "Work exports the seven icons deterministically, records output SHA-256 values, binds them to PARTY/HUNT/JOIN/archive surfaces as applicable, and performs UI regression QA."
+  reason: "Closes a real runtime asset-class gap from already-governed pixels while explicitly reusing canonical SP-044/SP-192 icons and avoiding duplicate exports."
+work_dependency: "Work exports six icons deterministically, records output SHA-256 values, reuses canonical SP-044/SP-192 icon_portrait assets, binds them to PARTY/HUNT/JOIN/archive surfaces as applicable, and performs UI regression QA."
 next: GOVERNED_MONSTER_ICON_WORK_EXPORT_AND_BIND
