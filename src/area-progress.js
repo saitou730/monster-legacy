@@ -100,10 +100,15 @@ window.MLArea = (() => {
     const state=window.MLStorage.load(), h=hunt(state);
     if(!h.lesson || !h.approach) return false;
     if(!commit(state,'discovered',window.MLStorage.save)) return false;
+    const committedArea=read(state);
     if(window.ML?.advanceArea) window.ML.advanceArea();
-    // Existing root advanceArea still persists its in-memory state. Re-assert the additive
-    // hunt payload after that transition so the #103 choice survives battle entry/reload.
-    saveHuntPatch({lesson:h.lesson,approach:h.approach,attempt:h.attempt,lastFailure:null});
+    // Root battle navigation persists its long-lived closure state. Reconcile that write with
+    // the authoritative discovery transaction so both ordered receipts and hunt evidence survive.
+    const latest=window.MLStorage.load();
+    if(latest?.chapter1?.progress?.state==='P20_CHAPTER1_COMPLETE_HOME'){
+      latest.area1={...(latest.area1||{}),...committedArea,hunt:{...(committedArea.hunt||{}),lesson:h.lesson,approach:h.approach,attempt:h.attempt,lastFailure:null}};
+      window.MLStorage.save(latest);
+    }
     return true;
   }
 
