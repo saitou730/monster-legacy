@@ -101,6 +101,9 @@ window.MLArea = (() => {
     if(!h.lesson || !h.approach) return false;
     if(!commit(state,'discovered',window.MLStorage.save)) return false;
     if(window.ML?.advanceArea) window.ML.advanceArea();
+    // Existing root advanceArea still persists its in-memory state. Re-assert the additive
+    // hunt payload after that transition so the #103 choice survives battle entry/reload.
+    saveHuntPatch({lesson:h.lesson,approach:h.approach,attempt:h.attempt,lastFailure:null});
     return true;
   }
 
