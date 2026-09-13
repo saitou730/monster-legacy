@@ -16,7 +16,7 @@
   "current_task": {
     "id": "POST-CH1-AREA01-PLAYABLE",
     "title": "Ship the first playable post-Chapter-1 area loop",
-    "status": "implemented_pending_browser_qa",
+    "status": "published_complete",
     "priority": "P0",
     "working_branch": "work/post-ch1-speed-batch",
     "definition_of_done": [
@@ -29,8 +29,17 @@
       "Automated regression/E2E covers Chapter 1 save compatibility and the new forward route.",
       "Validated implementation is integrated and public Pages deployment is verified before this task is called complete."
     ],
-    "next_action": "Finish PR #98 browser QA and save/retry verification, then merge and verify Pages. Do not duplicate current Work implementation.",
-    "working_pr": 98
+    "next_action": "POST-CH1-AREA01-PLAYABLE is shipped. Do not rework it without a reproducible regression. Technical Producer/Game Director should promote the next locked player-visible slice; Work should re-audit PR #74 downstream PARTY -> FUSION -> NEW SPECIES TEST -> CONTRACT boundaries before implementation.",
+    "working_pr": 98,
+    "publication": {
+      "merged_pr": 98,
+      "merge_sha": "5a4730815da59e228cb4e81eeb69c430f6260980",
+      "web_qa_run": 34769220859,
+      "web_qa": "PASS",
+      "pages_deploy": "PASS",
+      "pages_url": "https://saitou730.github.io/monster-legacy/",
+      "physical_android": "NOT_CLAIMED"
+    }
   },
   "parallel_lanes": {
     "game_director_chat": "Own player-facing Japanese copy, next-area progression semantics, discovery/JOIN conditions and acceptance criteria. Avoid reopening already locked Chapter 1 rules.",
