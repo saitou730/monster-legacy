@@ -1,0 +1,68 @@
+schema_version: 1
+base_main: 6d5fe35db12c88ddc76d61fd21468d588618d9c6
+owner: Art Director
+area: AREA_02_THUNDERSTEP_PLATEAU
+purpose: "Advance grounded ecology gaps while P0 Art is supplied; no P0 runtime dependency."
+policy:
+  existing_art_first: true
+  no_reinterpret_official_lock: true
+  concept_parallel_when_p0_art_supplied: true
+  official_lock_requires_repository_asset_and_sha256: true
+  root_runtime_changes: prohibited
+  destructive_asset_replacement: prohibited
+candidates:
+  - concept_id: A02-GROUND-A
+    working_name: イナズマトビネズミ
+    name_status: WORKING_NAME_NOT_CANON
+    stage: VISUAL_DIRECTION
+    qa: PASS_TO_VISUAL_EXPLORATION
+    ecology: "charged stone seam ground forager; prey/indicator species for Thunder Owl"
+    combat_role: "fast tempo / NEXT-order teaching enemy"
+    discovery: "conductive scratch/track inspection -> deterministic encounter"
+    join_hook: "control tempo/NEXT condition; no RNG-only gate"
+    fusion_hook: "conductive-lineage candidate for wind + conductive fixed result"
+    silhouette: "low horizontal mammal-like body; compact spring legs; single forked conductive tail-organ"
+    palette: "dry ochre/ash-brown hide; charcoal mineral plates; restrained pale electric-yellow contact accents"
+    eyes: "small alert non-sparkly eyes"
+    required_views: [front_three_quarter, side, rear_three_quarter, scale_comparison, eye_detail, tail_conductor_detail]
+    avoid: [fire_lizard_reptile_profile, round_mascot_body, permanent_lightning_aura, mecha_plating]
+    motion:
+      idle: {frames: [compress, scan, release], durations_ms: [260, 180, 300], loop: true, anchor: ground_contact_center}
+      attack: {frames: [coil, dash, recoil], durations_ms: [140, 160, 220], loop: false, anchor: ground_contact_center}
+      hit: {frames: [impact, skid, recover], durations_ms: [120, 180, 220], loop: false, anchor: ground_contact_center}
+      danger: {frames: [low_crouch, tail_twitch], durations_ms: [320, 240], loop: true, anchor: ground_contact_center}
+      stance: {frames: [brace, tail_ground], durations_ms: [220, 300], loop: true, anchor: ground_contact_center}
+  - concept_id: A02-STONEPLANT-B
+    working_name: アースモス
+    name_status: WORKING_NAME_NOT_CANON
+    stage: VISUAL_DIRECTION
+    qa: PASS_TO_VISUAL_EXPLORATION
+    ecology: "slow organism rooted into exposed ridge stone; bleeds residual charge into ground"
+    combat_role: "defensive SUPPRESS tutor / stability enemy"
+    discovery: "first qualified SUPPRESS -> ecology clue -> deterministic encounter"
+    join_hook: "controlled battle state + qualified SUPPRESS; no RNG-only gate"
+    fusion_hook: "stone/plant-lineage candidate for fire + stone/plant fixed result"
+    silhouette: "broad asymmetric porous-stone base; limited plant mass on one side; one sloped living-root ridge"
+    palette: "warm gray/brown porous stone; muted olive moss; small desaturated copper/amber root-vein marks"
+    eyes: "small recessed mineral-dark eyes if visible"
+    required_views: [front_three_quarter, side, rear_root_structure, top_silhouette, scale_comparison, stone_plant_boundary_detail]
+    avoid: [generic_flower, humanoid_treant, leaf_rabbit_silhouette, glowing_crystal_pile, round_mascot_body]
+    motion:
+      idle: {frames: [root_settle, frond_breathe], durations_ms: [420, 460], loop: true, anchor: root_contact_center}
+      attack: {frames: [root_load, stone_shove, settle], durations_ms: [220, 220, 320], loop: false, anchor: root_contact_center}
+      hit: {frames: [chip_recoil, root_regrip], durations_ms: [180, 300], loop: false, anchor: root_contact_center}
+      danger: {frames: [frond_fold, low_pulse], durations_ms: [340, 420], loop: true, anchor: root_contact_center}
+      stance: {frames: [root_spread, ground_lock], durations_ms: [300, 420], loop: true, anchor: root_contact_center}
+  - concept_id: A02-RARE-C
+    stage: CONCEPT_HOLD
+    qa: HOLD_VISUAL_DIRECTION
+    reason: "lineage/roster and visual basis remain too weak for image generation"
+art_director_qa:
+  result: PASS_WITH_ONE_HOLD
+  pass: [A02-GROUND-A, A02-STONEPLANT-B]
+  hold: [A02-RARE-C]
+  official_art_lock_new_species: NONE
+next_queue:
+  - A02_GROUND_A_VISUAL_EXPLORATION
+  - A02_STONEPLANT_B_VISUAL_EXPLORATION
+  - A02_RARE_C_HOLD_LINEAGE_BASIS
