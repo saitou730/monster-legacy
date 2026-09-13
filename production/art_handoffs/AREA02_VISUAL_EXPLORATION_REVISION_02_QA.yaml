@@ -1,0 +1,75 @@
+schema_version: 1
+base_main: 2d2ad6efa01e3ecfc8d4e136dde9693048b3d78d
+owner: Art Director
+branch: art/area02-species-batch-20260914
+source_direction: production/art_handoffs/AREA02_NEW_SPECIES_VISUAL_DIRECTION_BATCH_01.yaml
+previous_qa: production/art_handoffs/AREA02_VISUAL_EXPLORATION_BATCH_01_QA.yaml
+status: ART_DIRECTOR_QA_COMPLETE_REVISION_02
+production_artifact:
+  local_file: モンスター_レガシー_雷鳴高原図鑑.png
+  sha256: fa2be6addbb53bdcba1dac5d127070505758029a5e69a5edf1a64f5236616f04
+  repository_promotion: HOLD
+  reason: "Revision 02 is a non-canon exploration artifact. It improves role/silhouette readability but still violates direction-specific uniqueness gates; never bind to runtime or promote to governed assets."
+preflight:
+  p0_chapter1_art_need: NONE_NEW_ART_REQUIRED
+  evidence: "POST-CH1-AREA01-PLAYABLE is published_complete on latest main; SP-044 governed runtime derivatives remain canonical."
+  existing_art_inventory: "Official-lock species SP-001/SP-011/SP-018/SP-031/SP-044/SP-071/SP-191/SP-192 remain governed by canon/visual_source_map.yaml; no replacement generation performed."
+  work_order: "Work re-audits PARTY -> FUSION -> NEW SPECIES TEST -> CONTRACT boundaries; open PR #105 is Thunder Owl fun-pass runtime work and does not request replacement Art."
+qa:
+  A02-GROUND-A:
+    working_name: イナズマトビネズミ
+    result: HOLD_REVISE_03
+    improvement_vs_r01:
+      - lower forward-running silhouette and speed role read more clearly
+      - charcoal/ochre material split is cleaner
+      - action-pose family supports idle/run/attack/hit/danger/stance planning
+    remaining_defects:
+      - external lightning and zigzag appendage language remain too dominant
+      - silhouette still reads as familiar electric long-eared mascot rather than a unique plateau forager
+      - forked conductive tail-organ is not isolated as the single dominant identifier
+      - eyes remain larger/cuter than the approved small alert non-sparkly direction
+    preserve:
+      - low horizontal body
+      - rear-biased spring-leg dash posture
+      - dry ochre/ash-brown plus charcoal material family
+    revision_03_gate:
+      - remove free-floating lightning aura; electrical read only at ground contact/tail conductor
+      - reduce ear height and eliminate lightning-bolt ear tips
+      - redesign tail as one anatomical forked conductor with no multi-spike fan
+      - reduce eye area and lengthen muzzle/chest so silhouette reads animal/ecology first, element second
+  A02-STONEPLANT-B:
+    working_name: アースモス
+    result: HOLD_REVISE_03
+    improvement_vs_r01:
+      - plant mass and stone planes are less glossy and more natural
+      - grounded weight and defensive role are clearer
+      - action poses establish usable motion vocabulary without requiring new anatomy
+    remaining_defects:
+      - quadruped turtle/armored-beast anatomy remains too strong
+      - body is still substantially bilateral instead of one-sided root/stone organism
+      - centered mountain/plant crown creates a character-backpack read rather than integrated ecology
+      - visible facial expression remains too readable
+    preserve:
+      - footprint wider than height
+      - matte warm-gray stone plus muted olive vegetation
+      - heavy rooted defensive posture
+    revision_03_gate:
+      - remove shell/backpack body logic; make one continuous porous-stone mass the torso
+      - shift living plant mass to one side only and run a sloped exposed root ridge across the body
+      - reduce paired limb symmetry; use irregular support/root contacts
+      - recess eyes into stone shadow and remove readable mouth
+  A02-RARE-C:
+    result: HOLD_NO_GENERATION
+    reason: governing lineage/visual basis remains insufficient
+art_director_qa:
+  result: HOLD_TWO_REVISE_ONE_BLOCKED
+  duplicate_generation_check: PASS
+  official_lock_impact: NONE
+  visual_direction_lock: NOT_DECLARED
+  official_art_lock: NOT_DECLARED
+  runtime_use: PROHIBITED
+next_queue:
+  - A02_GROUND_A_SILHOUETTE_REVISION_03
+  - A02_STONEPLANT_B_SILHOUETTE_REVISION_03
+  - A02_RARE_C_HOLD_UNTIL_GOVERNING_BASIS
+throughput_rule: "Revision 03 must be a single two-species silhouette-focused batch. Do not create separate admin cycles or regenerate existing Official Art Lock species."
