@@ -13,7 +13,7 @@
   </div>
 </div>
 <div class="app">
-<header class="header"><div class="brand"><div class="logo">MONSTER LEGACY</div><div class="sub">Portrait Vertical Slice — Director Build v1.8.4 — Skill Guide</div></div><div class="headerActions"><button id="motionBtn" class="motionToggle" aria-pressed="false">MOTION ON</button><button id="musicBtn" class="music">♫ BGM OFF</button></div></header>
+<header class="header"><div class="brand"><div class="logo">MONSTER LEGACY</div><div class="sub">敵を読み、仲間と出会い、世代を継ぐ。</div></div><div class="headerActions"><button id="motionBtn" class="motionToggle" aria-pressed="false">MOTION ON</button><button id="musicBtn" class="music">♫ BGM OFF</button></div></header>
 <main>
 
 <section id="home" class="screen show">
@@ -108,7 +108,7 @@
   <div class="statline"><span>VOLTAGE</span><span id="huntVolText"></span></div><div class="vol"><i id="huntVol"></i></div>
  </div>
  <div class="panel next huntNextSticky"><div class="eyebrow">Next Action — LOCKED</div><div class="huntStickyStatus"><span>風コウモリ</span><b id="huntStickyHpText">HP 120 / 120</b><b id="huntStickyVolText">VOL 18</b><span id="huntBandBadge" class="bandBadge calm">CALM</span></div><div class="huntStickyBars"><i id="huntStickyHp"></i><i id="huntStickyVol"></i></div><strong>裂風急降下 → 火トカゲ</strong><div id="huntCond" class="small"></div></div>
- <div id="huntStage" class="lockedStage anim-idle"><div class="battleAtmosphere"></div><img id="huntEnemySprite" class="enemySprite" src="assets/battle/wind_bat/idle.png"><div id="huntFieldParty" class="fieldParty compactFieldParty"></div><div id="huntFx" class="fxLayer"></div><span class="artLockTag">OFFICIAL DESIGN LOCK</span></div>
+ <div id="huntStage" class="lockedStage anim-idle"><div class="battleAtmosphere"></div><img id="huntEnemySprite" class="enemySprite" src="assets/battle/wind_bat/idle.png"><div id="huntFieldParty" class="fieldParty compactFieldParty"></div><div id="huntFx" class="fxLayer"></div><span class="artLockTag directorOnly">OFFICIAL DESIGN LOCK</span></div>
  <div class="panel pad"><div class="eyebrow">2 Commands / 1 Stance</div><div id="huntParty" class="party"></div><div id="huntCommandCount" class="commandCount"><span>COMMAND</span><strong>0 / 2</strong></div><div id="huntStancePreview" class="stancePreview">2人を選ぶと、残り1体のSTANCEが発動。</div>
   <div id="huntQueue" class="panel queue">2つのCOMMANDを選択</div>
   <div class="actionRail"><div class="row"><button id="huntExec" class="btn primary" disabled>TURNを実行</button><button id="joinBtn" class="btn" style="display:none">RESONATE</button></div></div>
@@ -162,7 +162,7 @@
   <div class="statline"><span>VOLTAGE</span><span id="testVolText"></span></div><div class="vol"><i id="testVol"></i></div>
  </div>
  <div id="testNextCard" class="panel next"><div class="eyebrow">Next Action — TURN LOCKED</div><strong id="testNextName">残響突進 → 炎翼リザル</strong><span id="testNextTag" class="bandBadge heat">EVADE CHECK</span><div class="small">COMMAND選択中は予告を変更しない。</div></div>
- <div id="testStage" class="lockedStage testStage anim-idle"><div class="battleAtmosphere"></div><div class="testSigil"><span>✦</span><b>TACTICAL ECHO</b><small>NON-CANON TRAINING TARGET</small></div><div id="testFieldParty" class="fieldParty compactFieldParty"></div><div id="testFx" class="fxLayer"></div></div>
+ <div id="testStage" class="lockedStage testStage anim-idle"><div class="battleAtmosphere"></div><div class="testSigil"><span>✦</span><b>戦術残響</b><small>技を確かめる訓練相手</small></div><div id="testFieldParty" class="fieldParty compactFieldParty"></div><div id="testFx" class="fxLayer"></div></div>
  <div class="panel pad">
   <div class="eyebrow">Objective</div><div id="testObjectives" class="testObjectives"></div>
   <div class="eyebrow" style="margin-top:10px">2 Commands / 1 Stance</div><div id="testParty" class="party"></div>
@@ -257,7 +257,7 @@
      <button class="btn replayBtn" onclick="ML.resetBoss()">再戦</button>
    </div></div>
    <div id="bossResult"></div>
-   <details class="directorDetails">
+   <details class="directorDetails directorOnly">
      <summary>Director telemetry</summary>
      <div id="bossTelemetry" class="telemetry"></div>
      <div id="bossLog" class="log"></div>
@@ -265,6 +265,7 @@
  </div>
 </div></section>
 
+<section id="area" class="screen"><div class="panel"><h2>雷の痕跡を追って</h2><div id="areaContent"></div></div></section>
 </main>
 <nav class="nav">
  <button data-go="home" class="on">HOME</button><button data-go="story">STORY</button>
@@ -326,6 +327,7 @@
 <script src="src/test_battle.js"></script>
 <script src="src/playtest.js"></script>
 <script src="src/motion.js"></script>
+<script src="src/area-progress.js"></script>
 <script src="src/app.js"></script>
 <script src="src/skill-help.js"></script>
 <script type="module" src="src/chapter1/runtime.mjs"></script>

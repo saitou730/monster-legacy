@@ -9,6 +9,8 @@ window.ML = (() => {
   let hunt = null;
   let testBattle = null;
   let boss = null;
+  let areaHunt = false;
+  let areaRead = false;
   let resolvingBossTurn = false;
   let resolvingHuntTurn = false;
   let resolvingTestTurn = false;
@@ -210,6 +212,7 @@ window.ML = (() => {
     state.lastScreen = id;
     MLStorage.save(state);
 
+    if(id === "area") renderArea();
     if(id === "home") renderHome();
     if(id === "story") renderStory();
     if(id === "hunt") renderHunt();
@@ -381,14 +384,39 @@ window.ML = (() => {
     haptic(12);
   };
 
-  $("continueBtn").onclick = () => { const n=MLProgression.next(state); if(n.boss){state.selectedBoss=n.boss;boss=MLBattle.createBoss(n.boss,currentParty());} go(n.screen); };
-  $("journeyGoBtn").onclick = () => { const n=MLProgression.next(state); if(n.boss){state.selectedBoss=n.boss;boss=MLBattle.createBoss(n.boss,currentParty());} go(n.screen); };
+  $("continueBtn").onclick = () => { const n=MLProgression.next(state); if(state.chapter1?.progress?.state==="P20_CHAPTER1_COMPLETE_HOME"){go("area");return;} if(n.boss){state.selectedBoss=n.boss;boss=MLBattle.createBoss(n.boss,currentParty());} go(n.screen); };
+  $("journeyGoBtn").onclick = () => { const n=MLProgression.next(state); if(state.chapter1?.progress?.state==="P20_CHAPTER1_COMPLETE_HOME"){go("area");return;} if(n.boss){state.selectedBoss=n.boss;boss=MLBattle.createBoss(n.boss,currentParty());} go(n.screen); };
   $("resetSaveBtn").onclick = () => {
     if(confirm("Vertical Sliceの進行を初期化しますか？")){
       MLStorage.reset();
       location.reload();
     }
   };
+
+  function areaCommit(event){
+    if(MLArea.commit(state,event,MLStorage.save)) return true;
+    toast("進行を保存できませんでした。もう一度お試しください。");return false;
+  }
+  function renderArea(){
+    const a=MLArea.read(state);
+    const complete=state.chapter1?.progress?.state==="P20_CHAPTER1_COMPLETE_HOME";
+    const text=!complete?"まずは大猪との旅を終えよう。":!a.entered?"木々の向こうに、雷の痕跡が続いている。":!a.discovered?"焦げた枝と羽の跡がある。周囲を探してみよう。":!a.resolved?"雷フクロウを見つけた。予告された動きを一度受け切り、隙をつくろう。":!a.joined?"動きを読み、雷フクロウに力を認められた。":!a.returned?"雷フクロウが仲間になった。3体の戦闘編成はそのまま、拠点へ帰ろう。":"雷フクロウは仲間として記録された。境界には風圧で裂けた痕跡が残っている。";
+    const label=!a.entered?"森の先へ出発":!a.discovered?"痕跡を探す":!a.resolved?"雷フクロウに挑む":!a.joined?"雷フクロウを仲間にする":!a.returned?"仲間と帰還する":"拠点へ戻る";
+    $("areaContent").innerHTML=`${a.discovered?'<img src="assets/battle/owl/idle.png" alt="雷フクロウ" style="display:block;width:100%;height:240px;object-fit:contain">':''}<p>${text}</p><button id="areaAdvance" class="btn primary" ${complete?'':'disabled'} onclick="ML.advanceArea()">${label}</button><button class="btn" onclick="ML.go('home')">拠点へ</button>`;
+  }
+  function advanceArea(){
+    if(resolvingBossTurn) return;
+    const a=MLArea.read(state);
+    if(!a.entered){if(areaCommit('entered'))renderArea();}
+    else if(!a.discovered){if(areaCommit('discovered'))renderArea();}
+    else if(!a.resolved){
+      areaHunt=true;areaRead=false;state.selectedBoss='owl';
+      boss=MLBattle.createBoss('owl',currentParty());
+      go('boss',{chapterReady:true});
+    }else if(!a.joined){if(areaCommit('joined'))renderArea();}
+    else if(!a.returned){if(areaCommit('returned'))go('home');}
+    else go('home');
+  }
 
   function renderHome(){
     const chapterComplete=state.chapter1?.progress?.state==="P20_CHAPTER1_COMPLETE_HOME";
@@ -407,9 +435,14 @@ window.ML = (() => {
     const n=MLProgression.next(state);
     $("homeObjective").textContent = n.label;
     $("homeObjectiveSub").textContent = n.sub;
-    $("journeyGoBtn").textContent = chapterComplete ? "記録を見る ›" : n.kind === "BOSS" ? "挑む ›" : n.kind === "ARCHIVE" ? "開く ›" : "進む ›";
-    $("continueBtn").textContent = chapterComplete ? "CHAPTER COMPLETE" : n.kind === "ARCHIVE" ? "OPEN ARCHIVE" : "CONTINUE";
+    $("journeyGoBtn").textContent = chapterComplete ? "森の先へ進む ›" : n.kind === "BOSS" ? "挑む ›" : n.kind === "ARCHIVE" ? "開く ›" : "進む ›";
+    $("continueBtn").textContent = chapterComplete ? "探索へ" : n.kind === "ARCHIVE" ? "OPEN ARCHIVE" : "CONTINUE";
 
+    if(chapterComplete){
+      const a=MLArea.read(state);
+      $("homeObjective").textContent=a.returned?"雷フクロウと出会った森を探索する":a.joined?"新しい仲間と帰還しよう":a.resolved?"雷フクロウを仲間にしよう":a.discovered?"雷フクロウの動きを読もう":"森の先で雷の痕跡を探そう";
+      $("homeObjectiveSub").textContent="探索して生き物を見つけ、動きを読んで仲間にしよう。";
+    }
     const route = [
       {id:"story",label:"STORY",sub:"残響の獣",done:!!state.storyComplete, unlocked:true},
       {id:"hunt",label:"HUNT",sub:"風コウモリ",done:!!state.joinedBat, unlocked:!!state.storyComplete},
@@ -433,7 +466,7 @@ window.ML = (() => {
       hero.querySelectorAll(".homeReturnNotice").forEach(x=>x.remove());
       if(state.storyComplete||state.joinedBat||state.fused||state.testComplete||Object.values(state.mastery||{}).some(Boolean)){
         const note=document.createElement("div"); note.className="homeReturnNotice"; note.textContent=chapterComplete
-          ? "CHAPTER 1 COMPLETE — 仲間、系譜、契約、不退転の記録を保存しました。"
+          ? "大猪を越えた。森の先へ、新しい仲間を探しに行こう。"
           : `進行記録を更新しました。次は「${n.label}」。`; hero.appendChild(note);
       }
     }
@@ -450,7 +483,7 @@ window.ML = (() => {
       homeScreen.classList.toggle("homeChapterComplete",chapterComplete||mastered.length===3);
     }
     const feedbackPanel=$("chapterFeedbackPanel");
-    if(feedbackPanel) feedbackPanel.hidden=!chapterComplete;
+    if(feedbackPanel) feedbackPanel.hidden=!(chapterComplete && (params.has("director") || params.has("tester")));
     const legacyShelf=$("homeLegacyShelf");
     if(legacyShelf){
       const order=["unyielding","quiet_thunder","falling_wind"];
@@ -1342,6 +1375,7 @@ window.ML = (() => {
 
   // ---------- BOSS ----------
   function selectBoss(id){
+    areaHunt=false;areaRead=false;
     if(resolvingBossTurn) return;
     if(!D.bosses[id]) return;
     if(window.MLPlaytest) MLPlaytest.event("boss_select",{boss:id});
@@ -1393,14 +1427,14 @@ window.ML = (() => {
         <div class="battlePerspectiveFloor"></div>
         <div id="bossFx" class="fxLayer"></div>
         <div id="bossCallout" class="battleCallout"></div>
-        <span class="artLockTag">OFFICIAL DESIGN LOCK</span>`;
+        <span class="artLockTag directorOnly">OFFICIAL DESIGN LOCK</span>`;
       scene.style.backgroundImage = "none";
       scene.style.background = "radial-gradient(circle at 50% 15%,#26364f,#090d14 65%)";
       if(window.MLMotion) MLMotion.ensureAtmosphere("bossStage");
     }else{
       stage.className = "battleArt combatStage placeholder";
       const sigil = spec.id === "owl" ? "⚡" : "✦";
-      stage.innerHTML = `<div class="artPending"><div class="sigil">${sigil}</div><strong>${spec.name}</strong><span>DESIGN LOCKED — BATTLE ASSET PENDING</span></div>
+      stage.innerHTML = `<div class="artPending"><div class="sigil">${sigil}</div><strong>${spec.name}</strong><span>姿を捉えきれない強敵</span></div>
         <div id="bossFx" class="fxLayer"></div><div id="bossCallout" class="battleCallout"></div>`;
       scene.style.backgroundImage = "none";
       scene.style.background = "radial-gradient(circle at 50% 15%,#26364f,#090d14 65%)";
@@ -1546,6 +1580,12 @@ window.ML = (() => {
     $("bossResult").innerHTML = boss.won
       ? `<div class="bossReward"><div class="eyebrow">${boss.mastery||storedMastery?"MASTERY COMPLETE":"BOSS CLEAR"}</div><div class="rewardName">${chapterClaim?'LEGACY「不退転」を受取可能':boss.mastery||storedMastery?`LEGACY CORE「${core?.name||"—"}」`:"MASTERY未達"}</div><div class="small">${boss.mastery||storedMastery?(core?.theme||""):D.bosses[boss.id].mastery}</div>${allBossCleared?`<div class="coreClear">THREE BOSS CORE CLEAR<br><small>RAISE / SUPPRESS / CRASH の3戦術を突破</small></div>`:""}<div class="bossResultActions">${chapterClaim?'<button class="btn primary" onclick="ML.showLegacyClaim()">不退転を受け取る</button>':boss.mastery||storedMastery?'<button class="btn primary" onclick="ML.go(\'archive\')">残響を継ぐ</button>':'<button class="btn primary" onclick="ML.resetBoss()">MASTERY再戦</button>'}<button class="btn" onclick="ML.openBossSelect()">別Boss</button></div></div>`
       : "";
+    if(areaHunt && boss.id==='owl'){
+      $("bossTitle").textContent='雷の痕跡 — 仲間を探す';
+      $("bossMastery").innerHTML='<b>動きを読んで、隙をつく</b><div class="small">予告された攻撃を一度受け切ってから勝利すると、仲間に誘える。</div>';
+      if(boss.won) $("bossResult").innerHTML='<p>雷フクロウがこちらを見つめている。</p><button class="btn primary" onclick="ML.go(\'area\')">雷フクロウのもとへ</button>';
+      else if(!boss.party.some(u=>u.hp>0)) $("bossResult").innerHTML='<p>いったん退いて、もう一度挑もう。</p><button class="btn primary" onclick="ML.advanceArea()">再挑戦</button>';
+    }
     $("bossTelemetry").innerHTML = `<b>TURN ${boss.turn}</b> / VOL ${boss.vol} / CRASH ${boss.crashCount} / RAGE ${boss.enteredRage?"ENTERED":"AVOIDED"} / LEGACY ${boss.legacyTriggered?"TRIGGERED":"—"}`;
     $("bossStage").classList.toggle("dangerVignette",boss.vol>=90);
     const dangerBanner=$("bossDangerBanner");
@@ -1802,6 +1842,7 @@ window.ML = (() => {
     const volDeltaText = boss.vol>=90 ? "DANGER" : MLBattle.band(boss.vol);
     setTimeout(()=>{syncBossImpactHud();addFx("bossStage",volDeltaText,"damagePop vol");},430);
 
+    if(areaHunt && boss.id==="owl" && !areaRead && boss.hp<=0) boss.hp=1;
     if(boss.hp <= 0){
       setTimeout(async()=>{
         await finishBoss(log);
@@ -1848,6 +1889,7 @@ window.ML = (() => {
       }
       if(!enemyWasSkipped) MLAudio.event("hit");
       enemyAction(log);
+      if(areaHunt && boss.id==="owl" && !enemyWasSkipped && boss.party.some(u=>u.hp>0)) areaRead=true;
       syncBossImpactHud();
       if(!enemyWasSkipped){
         animateFieldImpact(enemyLocked);
@@ -1885,6 +1927,13 @@ window.ML = (() => {
   };
 
   async function finishBoss(log){
+    if(areaHunt && boss.id==='owl'){
+      if(!areaRead || !areaCommit('resolved')){boss.hp=1;return;}
+      boss.won=true;
+      log.push('雷フクロウの動きを読み切った。仲間に誘おう。');
+      $("bossLog").innerHTML=log.join('<br>');
+      return;
+    }
     boss.won = true;
     boss.mastery = MLBattle.masteryCheck(boss);
     if(window.MLPlaytest) MLPlaytest.event("boss_clear",{boss:boss.id,turn:boss.turn,vol:boss.vol,mastery:boss.mastery,legacySurvived:!!boss.legacySurvived,crashCount:boss.crashCount});
@@ -1922,6 +1971,7 @@ window.ML = (() => {
   }
 
   function resetBoss(){
+    if(areaHunt){advanceArea();return;}
     if(resolvingBossTurn) return;
     if(window.MLPlaytest){ MLPlaytest.inc("bossReplays",1); MLPlaytest.event("boss_replay",{boss:state.selectedBoss}); }
     resolvingBossTurn = false;
@@ -1942,5 +1992,5 @@ window.ML = (() => {
   go("home");
   if(window.MLPlaytest){ MLPlaytest.bind(); MLPlaytest.event("app_ready",{screen:state.lastScreen||"home"}); }
 
-  return {closeSkillHelp:closeSheet,skillHelp,monsterDetail,showIntro,showLegacyClaim,go,goJourney,storyNext,storyCmd,storyStance,storyVol,storyEquip,storyBoss,setEquipment,setPartyLegacy,setPartyFocus,assignParty,confirmParty,setLegacy,archiveTab,completeChapterArchive,openHunt,pickHunt,removeHunt,openTest,pickTest,removeTest,advanceFromTest,acknowledgeContract,summonLyra,equipLyra,selectBoss,openBossSelect,openBoss,pickBoss,removeBoss,resetBoss};
+  return {advanceArea,closeSkillHelp:closeSheet,skillHelp,monsterDetail,showIntro,showLegacyClaim,go,goJourney,storyNext,storyCmd,storyStance,storyVol,storyEquip,storyBoss,setEquipment,setPartyLegacy,setPartyFocus,assignParty,confirmParty,setLegacy,archiveTab,completeChapterArchive,openHunt,pickHunt,removeHunt,openTest,pickTest,removeTest,advanceFromTest,acknowledgeContract,summonLyra,equipLyra,selectBoss,openBossSelect,openBoss,pickBoss,removeBoss,resetBoss};
 })();

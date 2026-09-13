@@ -24,8 +24,8 @@ test('battle detail sheet exposes dialog semantics and restores focus', async ({
   await expect(opener).toBeFocused();
 });
 
-test('optional playtest dialog focuses close and returns to its opener', async ({ page }) => {
-  await page.goto('/');
+test('optional playtest dialog focuses close and returns to its opener in director mode', async ({ page }) => {
+  await page.goto('/?director=1');
   await page.locator('#bootStart').tap();
   await page.waitForFunction(() => Boolean(window.MLChapter1));
   await page.evaluate(() => {

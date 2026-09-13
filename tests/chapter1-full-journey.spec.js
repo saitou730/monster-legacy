@@ -112,12 +112,9 @@ test('fresh START reaches replay-safe Chapter 1 complete HOME through every play
   await page.locator('#chapterArchiveGate .btn').tap();
   await phase(page, 'P20_CHAPTER1_COMPLETE_HOME');
   await expect(page.locator('#home')).toHaveClass(/show/);
-  await expect(page.locator('#homeObjective')).toHaveText('CHAPTER 1 COMPLETE');
-  await expect(page.locator('#chapterFeedbackPanel')).toBeVisible();
-  await expect(page.locator('#playtestModal')).not.toHaveClass(/show/);
-  await page.locator('#playtestSurveyBtn').tap();
-  await expect(page.locator('#playtestModal')).toHaveClass(/show/);
-  await page.locator('#playtestClose').tap();
+  await expect(page.locator('#homeObjective')).toHaveText('森の先で雷の痕跡を探そう');
+  await expect(page.locator('#journeyGoBtn')).toContainText('森の先へ進む');
+  await expect(page.locator('#chapterFeedbackPanel')).toBeHidden();
   await expect(page.locator('#playtestModal')).not.toHaveClass(/show/);
 
   // Reload from the final save: no duplicate JOIN/FUSION/SUMMON/LEGACY.

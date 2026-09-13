@@ -7,7 +7,7 @@
     "test:e2e": "playwright test",
     "test:e2e:mobile": "playwright test --project=android-chrome",
     "verify:assets": "python3 scripts/verify_asset_manifest.py",
-    "test:regression": "node tests/motion-regression.cjs"
+    "test:regression": "node tests/motion-regression.cjs && node --test tests/area-progress.test.cjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.0",
