@@ -1,0 +1,65 @@
+schema_version: 1
+base_main: 2d2ad6efa01e3ecfc8d4e136dde9693048b3d78d
+owner: Art Director
+branch: art/area02-species-batch-20260914
+status: VISUAL_DIRECTION_LOCK_CANDIDATE_PASS
+scope: [A02-GROUND-A, A02-STONEPLANT-B]
+preflight:
+  latest_main_checked: true
+  next_queue_checked: true
+  art_manifest_checked: true
+  visual_source_map_checked: true
+  open_pr_checked: 105
+  chapter1_blocking_art: NONE
+  existing_official_lock_reinterpretation: NONE
+  work_dependency: "PR #105 uses governed SP-044 and requests no replacement Art; new Area 02 species remain nonblocking."
+source_chain:
+  direction: production/art_handoffs/AREA02_NEW_SPECIES_VISUAL_DIRECTION_BATCH_01.yaml
+  revision_02_qa: production/art_handoffs/AREA02_VISUAL_EXPLORATION_REVISION_02_QA.yaml
+  revision_03_artifact_status: NON_CANON_EXPLORATION_REVIEWED
+locks:
+  A02-GROUND-A:
+    working_name: イナズマトビネズミ
+    name_status: WORKING_NAME_NOT_CANON
+    result: VISUAL_DIRECTION_LOCK_CANDIDATE_PASS
+    locked_silhouette: "low horizontal plateau forager; rear-biased spring legs; narrow chest; one anatomical forked conductive tail is the sole dominant identifier"
+    locked_palette: "dry ochre/ash-brown hide; charcoal mineral contact plates; pale electric yellow restricted to conductor/contact points"
+    locked_eyes: "small alert recessed/non-sparkly eyes; no oversized cute treatment"
+    locked_prohibitions: ["no free-floating lightning aura", "no lightning-bolt ears", "no multi-spike tail fan", "no reptile Fire Lizard profile", "no robot/mecha plating", "no round mascot proportions"]
+    required_final_views: [front_three_quarter, side, rear_three_quarter, scale_comparison, eye_detail, tail_conductor_detail]
+    runtime_motion_contract:
+      idle: {frame_order: [compress, scan, release], durations_ms: [260, 180, 300], loop: true, anchor: ground_contact_center}
+      attack: {frame_order: [coil, dash, recoil], durations_ms: [140, 160, 220], loop: false, anchor: ground_contact_center}
+      hit: {frame_order: [impact, skid, recover], durations_ms: [120, 180, 220], loop: false, anchor: ground_contact_center}
+      danger: {frame_order: [low_crouch, tail_twitch], durations_ms: [320, 240], loop: true, anchor: ground_contact_center}
+      stance: {frame_order: [brace, tail_ground], durations_ms: [220, 300], loop: true, anchor: ground_contact_center}
+  A02-STONEPLANT-B:
+    working_name: アースモス
+    name_status: WORKING_NAME_NOT_CANON
+    result: VISUAL_DIRECTION_LOCK_CANDIDATE_PASS
+    locked_silhouette: "one continuous asymmetric porous-stone organism; footprint wider than height; plant mass on one side only; sloped exposed living-root ridge; irregular root/support contacts"
+    locked_palette: "matte warm gray/brown porous stone; muted olive/moss vegetation; tiny desaturated copper/amber root-vein accents"
+    locked_eyes: "small mineral-dark eyes recessed into stone shadow; no readable human-like mouth"
+    locked_prohibitions: ["no turtle shell/backpack anatomy", "no bilateral quadruped symmetry", "no centered plant crown", "no glowing crystal pile", "no treant/humanoid tree", "no Leaf Rabbit silhouette", "no cute smile"]
+    required_final_views: [front_three_quarter, side, rear_root_structure, top_silhouette, scale_comparison, stone_plant_boundary_detail]
+    runtime_motion_contract:
+      idle: {frame_order: [root_settle, frond_breathe], durations_ms: [420, 460], loop: true, anchor: root_contact_center}
+      attack: {frame_order: [root_load, stone_shove, settle], durations_ms: [220, 220, 320], loop: false, anchor: root_contact_center}
+      hit: {frame_order: [chip_recoil, root_regrip], durations_ms: [180, 300], loop: false, anchor: root_contact_center}
+      danger: {frame_order: [frond_fold, low_pulse], durations_ms: [340, 420], loop: true, anchor: root_contact_center}
+      stance: {frame_order: [root_spread, ground_lock], durations_ms: [300, 420], loop: true, anchor: root_contact_center}
+official_art_lock:
+  declared: false
+  reason: "Final repository six-view sheets, final file paths and SHA-256/source-comparison QA do not yet exist."
+  promotion_gate: [final_repository_file, sha256, all_required_views, source_comparison_qa, color_body_eye_silhouette_prohibitions_verified]
+runtime_use: PROHIBITED_UNTIL_OFFICIAL_ART_LOCK
+art_director_qa:
+  result: PASS_TO_FINAL_DESIGN_SHEET
+  duplicate_generation_check: PASS
+  existing_official_lock_impact: NONE
+next_queue:
+  - A02_GROUND_A_FINAL_SIX_VIEW_SHEET
+  - A02_STONEPLANT_B_FINAL_SIX_VIEW_SHEET
+  - SOURCE_COMPARISON_QA_AND_SHA256
+  - OFFICIAL_ART_LOCK_DECISION
+  - A02_RARE_C_REMAINS_HOLD
