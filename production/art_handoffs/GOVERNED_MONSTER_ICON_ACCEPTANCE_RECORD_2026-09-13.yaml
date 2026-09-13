@@ -1,0 +1,151 @@
+schema_version: 1
+record_id: GOVERNED_MONSTER_ICON_ACCEPTANCE_RECORD_2026_09_13
+updated: 2026-09-13
+status: READY_FOR_WORK_EVIDENCE
+purpose: "Single canonical evidence record for the six governed icon exports; prevents ad-hoc QA, silent source drift, duplicate exports, and accidental Art Lock changes."
+authority:
+  - canon/visual_source_map.yaml
+  - production/ART_SUPPLY_PHASE1_CHAPTER1.yaml
+  - production/art_handoffs/GOVERNED_MONSTER_ICON_BATCH_2026-09-13.yaml
+execution_order:
+  prerequisite: POST_CH1_SP044_RUNTIME_VIEWPORT_QA
+  this_lane: GOVERNED_MONSTER_ICON_WORK_EXPORT_AND_BIND
+rules:
+  - "Work must re-read latest main immediately before export."
+  - "Do not fill PASS from this template in advance; every PASS field requires runtime/export evidence."
+  - "If planned_path exists, set collision_preflight to HOLD_COLLISION until provenance/SHA is reconciled; never overwrite or suffix-duplicate automatically."
+  - "If verified source SHA differs from expected source SHA, set verdict to HOLD_SOURCE_MISMATCH and stop that species."
+  - "No redraw, recolor, generative fill, anatomy synthesis, silhouette change, eye change, or source-external opaque pixels."
+  - "SP-044 and SP-192 are reuse-only and intentionally absent from export records."
+record_fields:
+  readability_values: [PENDING, PASS, HOLD_READABILITY]
+  identity_values: [PENDING, PASS, REJECT]
+  collision_values: [PENDING, PASS_CLEAR, HOLD_COLLISION]
+  binding_values: [PENDING, PASS, HOLD_RUNTIME]
+  verdict_values: [PENDING, PASS, HOLD_SOURCE_MISMATCH, HOLD_COLLISION, HOLD_CROP, HOLD_READABILITY, HOLD_RUNTIME, REJECT]
+exports:
+  - species_id: SP-001
+    name: ゴウラ
+    source_path: assets/battle/goura/idle.png
+    expected_source_sha256: 902b1c4e37ef72f1b5c945be211c4817d34c5000e0273ae7e53e7439635e494a
+    verified_source_sha256: PENDING
+    output_path: assets/icons/monsters/sp001_goura.png
+    output_sha256: PENDING
+    crop_box_or_contain_transform: PENDING
+    transparent_padding_px: PENDING
+    collision_preflight: PENDING
+    readability_64: PENDING
+    readability_96: PENDING
+    readability_128: PENDING
+    readability_256: PENDING
+    art_lock_identity_check: PENDING
+    bound_surfaces: []
+    runtime_binding_check: PENDING
+    verdict: PENDING
+  - species_id: SP-011
+    name: 火トカゲ
+    source_path: assets/battle/fire/idle.png
+    expected_source_sha256: 7bb51274e6445fe3f44494eea00ebd1471df721d588e975a924a9bf54c9b0fd8
+    verified_source_sha256: PENDING
+    output_path: assets/icons/monsters/sp011_fire_lizard.png
+    output_sha256: PENDING
+    crop_box_or_contain_transform: PENDING
+    transparent_padding_px: PENDING
+    collision_preflight: PENDING
+    readability_64: PENDING
+    readability_96: PENDING
+    readability_128: PENDING
+    readability_256: PENDING
+    art_lock_identity_check: PENDING
+    bound_surfaces: []
+    runtime_binding_check: PENDING
+    verdict: PENDING
+  - species_id: SP-018
+    name: 炎翼リザル
+    source_path: assets/battle/flame/idle.png
+    expected_source_sha256: 62edf235a15c09edfed17c893e74a5e75287f76d2ee3c938c9ce06a101bbaeff
+    verified_source_sha256: PENDING
+    output_path: assets/icons/monsters/sp018_flame_wing.png
+    output_sha256: PENDING
+    crop_box_or_contain_transform: PENDING
+    transparent_padding_px: PENDING
+    collision_preflight: PENDING
+    readability_64: PENDING
+    readability_96: PENDING
+    readability_128: PENDING
+    readability_256: PENDING
+    art_lock_identity_check: PENDING
+    bound_surfaces: []
+    runtime_binding_check: PENDING
+    verdict: PENDING
+  - species_id: SP-031
+    name: 風コウモリ
+    source_path: assets/battle/wind_bat/idle.png
+    expected_source_sha256: 8d523d30d4e931e9c44998d34e93bd68b8c1a78eeb7d1b80808a4c4d5a09660d
+    verified_source_sha256: PENDING
+    output_path: assets/icons/monsters/sp031_wind_bat.png
+    output_sha256: PENDING
+    crop_box_or_contain_transform: PENDING
+    transparent_padding_px: PENDING
+    collision_preflight: PENDING
+    readability_64: PENDING
+    readability_96: PENDING
+    readability_128: PENDING
+    readability_256: PENDING
+    art_lock_identity_check: PENDING
+    bound_surfaces: []
+    runtime_binding_check: PENDING
+    verdict: PENDING
+  - species_id: SP-071
+    name: 葉ウサギ
+    source_path: assets/battle/leaf/idle.png
+    expected_source_sha256: 1d55bdb3fe6ad44d9628548b0f4edf8b7d099b5974ee535b50047452be89981c
+    verified_source_sha256: PENDING
+    output_path: assets/icons/monsters/sp071_leaf_rabbit.png
+    output_sha256: PENDING
+    crop_box_or_contain_transform: PENDING
+    transparent_padding_px: PENDING
+    collision_preflight: PENDING
+    readability_64: PENDING
+    readability_96: PENDING
+    readability_128: PENDING
+    readability_256: PENDING
+    art_lock_identity_check: PENDING
+    bound_surfaces: []
+    runtime_binding_check: PENDING
+    verdict: PENDING
+  - species_id: SP-191
+    name: 荊棘の大猪
+    source_path: assets/battle/boar/idle.png
+    expected_source_sha256: 8adf3660fed9efbc5982f5e4965cfe0663dd0317398d315ff57d299772069357
+    verified_source_sha256: PENDING
+    output_path: assets/icons/monsters/sp191_thorn_boar.png
+    output_sha256: PENDING
+    crop_box_or_contain_transform: PENDING
+    transparent_padding_px: PENDING
+    collision_preflight: PENDING
+    readability_64: PENDING
+    readability_96: PENDING
+    readability_128: PENDING
+    readability_256: PENDING
+    art_lock_identity_check: PENDING
+    bound_surfaces: []
+    runtime_binding_check: PENDING
+    verdict: PENDING
+reuse_evidence:
+  - species_id: SP-044
+    name: 雷フクロウ
+    path: assets/battle/owl/icon_portrait.png
+    expected_sha256: 2c3c71185d2a2f916bead8977dc93a29918865763c3a55105cb8d6bc32c7dc55
+    policy: REUSE_ONLY_NO_EXPORT
+  - species_id: SP-192
+    name: 裂空マンティコア
+    path: assets/battle/manticore/icon_portrait.png
+    expected_sha256: dd89b38375476fbc4833ed1916116b38588b7e07d017da7d4b90833c57089a31
+    policy: REUSE_ONLY_NO_EXPORT
+batch_verdict: PENDING
+batch_pass_rule: "PASS only when all six export verdicts are PASS, SP-044/SP-192 reuse SHA values are verified on execution main, bound surfaces have runtime regression evidence, and no governed Art was overwritten or reinterpreted."
+art_director_qa:
+  verdict: PASS_SPEC
+  reason: "The record exactly mirrors the already-approved governed export constraints and turns them into auditable Work evidence without creating or changing character pixels."
+next_on_completion: "Update production/ART_SUPPLY_PHASE1_CHAPTER1.yaml icon_supply status to WORK_QA_PASS only after this record contains evidence-backed PASS values."
