@@ -2,7 +2,7 @@ schema_version: 1
 run_id: FAST_ART_SUPPLY_BATCH_001
 date: 2026-09-13
 branch: art/fast-supply-batch-20260912
-base_main: 96bc47acb6bbeaab95a4e200445b9b0c1fe4e616
+base_main: c0fefb8dc1ab5237d792d4e883d2febecfbb5b8b
 status: ART_DIRECTOR_QA_PASS_BATCH_READY_FOR_WORK
 authority:
   - docs/WORK_GITHUB_MASTER_HANDOFF_2026-09-07.md
@@ -31,33 +31,27 @@ inventory_decision:
   blocked_named_art: [ART-GRAUSEN-PALETTE, ART-BULK-DIFFERENTIATION, ART-NOCTA-SOURCE, ART-LUCIA, ART-PHIL]
   blocked_named_art_action: HOLD_NO_GENERATION
 batch_scope:
-  runtime_motion_handoffs:
-    - SP-001
-    - SP-011
-    - SP-018
-    - SP-031
-    - SP-071
-    - SP-191
-    - SP-044
-    - SP-192
-  chapter1_binary_packet:
-    - CH1_FX_001_JOIN
-    - CH1_FX_002_FUSION
-    - CH1_FX_003_CONTRACT_SUMMON
-    - CH1_FX_004_LEGACY
+  runtime_motion_handoffs: [SP-001, SP-011, SP-018, SP-031, SP-071, SP-191, SP-044, SP-192]
+  governed_icon_completion:
+    handoff: production/art_handoffs/GOVERNED_MONSTER_ICON_BATCH_2026-09-13.yaml
+    species: [SP-001, SP-011, SP-018, SP-031, SP-071, SP-191, SP-192]
+    excluded_existing_icon: SP-044
+    status: SPEC_READY_FOR_WORK
+  chapter1_binary_packet: [CH1_FX_001_JOIN, CH1_FX_002_FUSION, CH1_FX_003_CONTRACT_SUMMON, CH1_FX_004_LEGACY]
   home:
     action: PROMOTE_EXISTING_APPROVED_CANDIDATE_ONLY
     gate: repository_raster_plus_360x800_390x844_430x932_overlay_QA_plus_SHA256
-work_dependency: "Work owns SP-044 runtime binding/viewport QA first, then accessibility preference detection, consolidated FX/locked-motion binding, physical Android QA, merge and publication."
+work_dependency: "Work owns SP-044 runtime binding/viewport QA first, then governed icon export/binding, accessibility preference detection, consolidated FX/locked-motion binding, physical Android QA, merge and publication."
 art_lock_state: INHERITED_NO_NEW_OFFICIAL_LOCK
 art_director_qa:
   verdict: PASS
   official_art_lock_new: false
   duplicate_generation: false
-  reason: "Reconciled stale run metadata to latest canonical P0 and added already-governed SP-191 to the recorded batch; no raster/source/runtime code changed."
+  reason: "P0 Art remains supplied. Added one governed batch spec to close the missing icon lane for seven already-locked species; SP-044 existing icon is explicitly reused. No character pixels were regenerated or reinterpreted."
 next_queue:
   - POST_CH1_SP044_RUNTIME_VIEWPORT_QA
+  - GOVERNED_MONSTER_ICON_WORK_EXPORT_AND_BIND
   - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
   - CH1_FX_BINARY_BATCH
   - LOCKED_RUNTIME_MOTION_BATCH
-reconciliation_note: "2026-09-13: supersedes stale QA-ANDROID-AND-TEMPO / IN_PROGRESS metadata in this run record. Canonical P0 is POST-CH1-AREA01-PLAYABLE; SP-191 is already QA PASS in the manifest and consolidated Work handoff."
+reconciliation_note: "2026-09-13: current Art run now includes governed icon completion after inventory found seven locked species without an explicit icon delivery lane."
