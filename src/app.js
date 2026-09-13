@@ -627,7 +627,6 @@ window.ML = (() => {
     const tile=(kind,glyph,name)=>`<button data-help-unit="${u.id}" data-help-kind="${kind}" data-help-context="${ctx.context}" class="commandTile ${queued?.kind===kind?"on":""}" ${disabled?"disabled":""} onclick="${ctx.pick}('${u.id}','${kind}')" aria-label="${u.name} ${name}"><span>${glyph}</span><b>${name}</b></button>`;
     return `<div class="panel unit formalUnit ${selected} ${stance} ${u.hp<=0?"ko":""}">
       <button type="button" class="unitTop unitInspect" onclick="ML.monsterDetail('${u.id}','${ctx.context}')" aria-label="${u.name}の能力と技を見る">${u.battle ? `<img class="unitSprite" src="${MLAsset(`${u.battle}/${spriteState}.png`)}" alt="">` : ""}<div class="unitIdentity"><b>${u.name}</b><span class="unitStateBadge">${stateLabel}</span></div></button>
-      ${helpButton(u.id,"STANCE",ctx.context)}
       <div class="formalHp"><span>HP</span><div class="mini"><i style="width:${Math.max(0,100*u.hp/u.maxHp)}%"></i></div><small>${u.hp}/${u.maxHp}</small></div>
       ${stance ? `<div class="stanceLock"><span>STANCE</span><b>${u.stance}</b></div>` : `<div class="commandTiles inlineCommandTiles">${tile("CORE","◆",u.core)}${tile("ROLE","◇",u.role)}${tile("EQUIPMENT","✦",eq.name)}</div>`}
     </div>`;
@@ -678,10 +677,9 @@ window.ML = (() => {
     const eq = equippedFor(u.id);
     const hpPct = Math.max(0,Math.round(100*u.hp/u.maxHp));
     const disabled = stance || u.hp<=0 || boss.won || resolvingBossTurn;
-    const tile=(kind,glyph,name)=>`<div class="skillWithHelp"><button data-help-unit="${u.id}" data-help-kind="${kind}" data-help-context="boss" class="commandTile ${queued?.kind===kind?"on":""}" ${disabled?"disabled":""} onclick="ML.pickBoss('${u.id}','${kind}')" aria-label="${u.name} ${name}"><span>${glyph}</span><b>${name}</b></button>${helpButton(u.id,kind,"boss")}</div>`;
+    const tile=(kind,glyph,name)=>`<button data-help-unit="${u.id}" data-help-kind="${kind}" data-help-context="boss" class="commandTile ${queued?.kind===kind?"on":""}" ${disabled?"disabled":""} onclick="ML.pickBoss('${u.id}','${kind}')" aria-label="${u.name} ${name}"><span>${glyph}</span><b>${name}</b></button>`;
     return `<div class="panel unit formalUnit ${selected?"active":""} ${stance?"stance":""} ${u.hp<=0?"ko":""}">
       <button type="button" class="unitTop unitInspect" onclick="ML.monsterDetail('${u.id}','boss')" aria-label="${u.name}の能力と技を見る">${u.battle ? `<img class="unitSprite" src="${MLAsset(`${u.battle}/${spriteState}.png`)}" alt="">` : ""}<div class="unitIdentity"><b>${u.name}</b><span class="unitStateBadge">${stateLabel}</span></div></button>
-      ${helpButton(u.id,"STANCE","boss")}
       <div class="formalHp"><span>HP</span><div class="mini"><i style="width:${hpPct}%"></i></div><small>${u.hp}/${u.maxHp}</small></div>
       ${MLLegacy.equippedCore(D,state,u.id)?`<div class="equipmentTag legacyTag">LEGACY ${MLLegacy.equippedCore(D,state,u.id).name}</div>`:""}
       ${stance ? `<div class="stanceLock"><span>STANCE</span><b>${u.stance}</b><small>${stanceText(u.id)}</small></div>` : `<div class="commandTiles">${tile("CORE","◆",u.core)}${tile("ROLE","◇",u.role)}${tile("EQUIPMENT","✦",eq.name)}</div>`}
@@ -1855,8 +1853,8 @@ window.ML = (() => {
     // v1.3.2: clearly separate PLAYER RESOLVE -> ENEMY READ -> ENEMY IMPACT -> NEXT TURN.
     // Patch releases must not move the permanent UI layout; readability is temporal only.
     setTimeout(async()=>{
-      const label = enemyWasSkipped ? "ENEMY ACTION — CRASH" : `ENEMY ACTION — ${enemyLocked.name||"NEXT"}`;
-      callout(label, enemyWasSkipped ? "crash" : (enemyLocked.legacy ? "legacy" : "next"));
+      const label = enemyWasSkipped ? "敵の行動｜CRASH" : `敵の行動｜${enemyLocked.name||"NEXT"}`;
+      callout(label, enemyWasSkipped ? "crash" : (enemyLocked.legacy ? "legacy" : "enemy"));
       if(window.MLMotion){
         MLMotion.focus("bossStage","enemy",enemyLocked.target||null);
         if(MLMotion.enemyWarning) MLMotion.enemyWarning("bossStage",enemyLocked,enemyWasSkipped);

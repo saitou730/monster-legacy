@@ -71,15 +71,32 @@ test('boss: compact STANCE card hides long prose while explicit help remains ava
   await expect(page.locator('#journeyResult')).toHaveClass(/show/);
   await page.locator('#journeyResultPrimary').tap();
   await page.evaluate(()=>ML.go('boss'));
-  await page.locator('#bossParty .formalUnit').nth(0).locator('.commandTile').first().tap();
+  // Select the second and third monsters so ゴウラ is the deliberate STANCE.
   await page.locator('#bossParty .formalUnit').nth(1).locator('.commandTile').first().tap();
+  await page.locator('#bossParty .formalUnit').nth(2).locator('.commandTile').first().tap();
 
   const stanceCard = page.locator('#bossParty .formalUnit.stance');
   await expect(stanceCard).toHaveCount(1);
   await expect(stanceCard.locator('.stanceLock small')).toBeHidden();
-  const help = stanceCard.locator('.skillInfo');
-  await expect(help).toBeVisible();
-  await help.tap();
+  await expect(stanceCard.locator('.skillInfo')).toHaveCount(0);
+  await stanceCard.locator('.unitInspect').tap();
   await expect(page.locator('#sheet')).toHaveClass(/show/);
-  await expect(page.locator('#sheetBody')).toContainText('COMMANDを2体分選ぶと');
+  await expect(page.locator('#sheetBody')).toContainText('STANCE');
+  await expect(page.locator('#sheetBody')).toContainText('45%');
+});
+
+
+test('boss: enemy action callout stays compact and leaves the decision UI unobscured', async ({ page }) => {
+  await page.goto('/');await page.locator('#bootStart').tap();
+  if(await page.locator('#journeyResult').evaluate(el=>el.classList.contains('show'))) await page.locator('#journeyResultPrimary').tap();
+  await page.evaluate(()=>ML.go('boss'));
+  await page.locator('#bossParty .formalUnit').nth(0).locator('.commandTile').first().tap();
+  await page.locator('#bossParty .formalUnit').nth(1).locator('.commandTile').first().tap();
+  await page.locator('#bossExec').tap();
+  await page.waitForTimeout(1450);
+  const callout=page.locator('#bossCallout');
+  await expect(callout).toContainText('敵の行動');
+  const style=await callout.evaluate(el=>({fontSize:parseFloat(getComputedStyle(el).fontSize),top:getComputedStyle(el).top}));
+  expect(style.fontSize).toBeLessThanOrEqual(12);
+  await expect(page.locator('#bossParty')).toBeInViewport();
 });

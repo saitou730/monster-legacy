@@ -256,7 +256,7 @@ window.MLMotion = (() => {
     setTimeout(()=>{
       stage.classList.remove('enemy-read','enemy-read-aoe','enemy-read-random','enemy-read-skip');
       stage.querySelectorAll('.fieldAlly.enemyThreat').forEach(el=>el.classList.remove('enemyThreat'));
-    },1700);
+    },1100);
   }
 
   function enemyImpactBeat(stageId, action={}){

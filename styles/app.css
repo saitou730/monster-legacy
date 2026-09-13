@@ -1146,3 +1146,38 @@ body.bossMode .bossScroll>.combatTray{margin-top:-1px}
 .monsterDetailHero img{width:92px;height:96px;object-fit:contain;filter:drop-shadow(0 9px 10px #000)}.monsterDetailHero span,.monsterDetailGrid span{display:block;font-size:8px;letter-spacing:.14em;color:#d8b56a}.monsterDetailHero b{display:block;font-size:20px;margin-top:3px}.monsterDetailHero small{display:block;color:#8fa0b2;font-size:8px;margin-top:4px}
 .monsterDetailGrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}.monsterDetailGrid section{min-height:79px;padding:9px;border:1px solid #37475b;border-radius:10px;background:#0b121c}.monsterDetailGrid section.stance{grid-column:1/-1;border-color:#5279a0;background:linear-gradient(90deg,#102237,#0b141f)}.monsterDetailGrid b{display:block;font-size:12px;margin-top:5px}.monsterDetailGrid small{display:block;font-size:9px;line-height:1.45;color:#a9b7c6;margin-top:4px}.monsterDetail>p{font-size:10px;color:#8796a6;margin:9px 2px}.monsterDetail>.btn{width:100%;min-height:48px}
 @media(max-width:380px){.monsterDetailHero{grid-template-columns:74px 1fr}.monsterDetailHero img{width:74px;height:80px}.monsterDetailGrid{grid-template-columns:1fr}.monsterDetailGrid section.stance{grid-column:auto}}
+
+
+/* v1.8.8 — Android battle density pass: decisions first, details on tap. */
+body.bossMode .combatParty .formalUnit{min-height:86px}
+body.bossMode .combatParty .unitInspect{min-height:34px}
+body.bossMode .combatParty .unitSprite{width:28px;height:28px;flex-basis:28px}
+body.bossMode .combatParty .unitStateBadge{font-size:5.5px;padding:2px 4px}
+body.bossMode .commandTiles{margin-top:2px}
+body.bossMode .commandTile{min-height:32px}
+body.bossMode .stanceLock{height:auto;min-height:32px;margin-top:2px}
+body.bossMode .replayBtn{
+  min-height:44px!important;width:56px;flex:0 0 56px;
+  opacity:.52;border-color:#394553;background:#0a0f16;color:#7f8d9d;
+  font-size:9px;box-shadow:none
+}
+body.bossMode .replayBtn:focus-visible,
+body.bossMode .replayBtn:hover{opacity:.9;color:#c6d0dc;border-color:#59697b}
+.battleCallout.enemy{
+  top:18%;min-width:0;width:max-content;max-width:84%;
+  padding:6px 10px;border:1px solid rgba(255,142,126,.48);border-radius:999px;
+  background:rgba(66,15,20,.78);color:#ffe7df;
+  font:800 10px/1.15 system-ui,sans-serif;letter-spacing:.08em;
+  text-shadow:0 1px 4px #000;box-shadow:0 5px 18px rgba(0,0,0,.34)
+}
+.battleCallout.enemy.show{animation:enemyCompactCallout .62s ease-out forwards}
+@keyframes enemyCompactCallout{
+  0%{opacity:0;transform:translate(-50%,-35%) scale(.94)}
+  20%,72%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-62%) scale(.98)}
+}
+@media(max-width:380px){
+  body.bossMode .combatParty .formalUnit{min-height:82px;padding:4px}
+  body.bossMode .commandTile{min-height:30px}
+  body.bossMode .replayBtn{width:52px;flex-basis:52px}
+}
