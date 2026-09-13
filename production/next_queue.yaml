@@ -16,7 +16,7 @@
   "current_task": {
     "id": "POST-CH1-AREA01-PLAYABLE",
     "title": "Ship the first playable post-Chapter-1 area loop",
-    "status": "in_progress",
+    "status": "implemented_pending_browser_qa",
     "priority": "P0",
     "working_branch": "work/post-ch1-speed-batch",
     "definition_of_done": [
@@ -29,7 +29,8 @@
       "Automated regression/E2E covers Chapter 1 save compatibility and the new forward route.",
       "Validated implementation is integrated and public Pages deployment is verified before this task is called complete."
     ],
-    "next_action": "Implement the complete slice on work/post-ch1-speed-batch. Do not spend another cycle only documenting it."
+    "next_action": "Finish PR #98 browser QA and save/retry verification, then merge and verify Pages. Do not duplicate current Work implementation.",
+    "working_pr": 98
   },
   "parallel_lanes": {
     "game_director_chat": "Own player-facing Japanese copy, next-area progression semantics, discovery/JOIN conditions and acceptance criteria. Avoid reopening already locked Chapter 1 rules.",
