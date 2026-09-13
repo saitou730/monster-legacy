@@ -16,7 +16,10 @@ async function choose(page, unitIndex, kind){
 test('HUNT applies visible guard, heal and primed-core STANCE effects', async ({ page }) => {
   await openFreshHunt(page);
 
-  await page.locator('#huntParty .skillInfo[data-help-unit="goura"]').tap();
+  const goura=page.locator('#huntParty .formalUnit').filter({hasText:'ゴウラ'});
+  await expect(goura.locator('.skillInfo')).toHaveCount(0);
+  await goura.locator('.unitInspect').tap();
+  await expect(page.locator('#sheetBody')).toContainText('STANCE');
   await expect(page.locator('#sheetBody')).toContainText('45%');
   await expect(page.locator('#sheetBody')).not.toContainText('未実装');
   await page.locator('#sheetBody .btn').tap();
