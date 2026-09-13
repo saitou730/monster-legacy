@@ -1,7 +1,12 @@
 schema_version: 1
 date: 2026-09-13
 status: ART_DIRECTOR_QA_PASS_BATCH_READY_FOR_WORK
-base_main: 52fefd6a6cd46b7e99ab13b47889b6a82fd032e1
+base_main: 86c246c87b99dcafd30bcdb5857cb044b5de2461
+freshness_check:
+  verified_on_main: 86c246c87b99dcafd30bcdb5857cb044b5de2461
+  verdict: PASS_NO_SOURCE_OR_PRIORITY_DRIFT
+  evidence: "Latest main change only strengthened governed icon export preflight/collision handling; P0, visual_source_map authority, Art manifest ordering, SP-044/SP-192 reuse, HOME HOLD, FX packet and locked-motion batch remain compatible."
+  work_rule: "Work must still re-read latest main immediately before binary/export execution; any later source SHA/path or planned-output collision triggers the HOLD rules in the governing packet."
 run_record: production/art_runs/2026-09-12_FAST_ART_SUPPLY_BATCH_001.yaml
 purpose: "Replace one-monster-per-cycle administration with one consolidated Work handoff for all currently governed presentation lanes, motion lanes, and the four Chapter 1 FX lanes."
 priority_order:
@@ -66,7 +71,7 @@ work_boundary:
 art_director_qa:
   verdict: PASS
   official_art_lock_new: false
-  reason: "Work handoff now matches the canonical Art manifest: SP-044 viewport QA first, six governed icon exports with SP-044/SP-192 reuse second, HOME held without regeneration, then FX/motion batches. No locked design DNA changes."
+  reason: "Work handoff is freshly reconciled to canonical main: SP-044 viewport QA first, six governed icon exports with SP-044/SP-192 reuse second, HOME held without regeneration, then FX/motion batches. No locked design DNA changes."
 next_art_decision:
   - "Do not create more per-species queue-only files for these eight motion lanes unless runtime QA finds a species-specific defect."
   - "Keep SP-044 runtime viewport QA ahead of icon/HOME/FX/motion polish while POST-CH1-AREA01-PLAYABLE remains P0."
