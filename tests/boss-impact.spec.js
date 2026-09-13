@@ -71,8 +71,9 @@ test('boss: compact STANCE card hides long prose while explicit help remains ava
   await expect(page.locator('#journeyResult')).toHaveClass(/show/);
   await page.locator('#journeyResultPrimary').tap();
   await page.evaluate(()=>ML.go('boss'));
-  await page.locator('#bossParty .formalUnit').nth(0).locator('.commandTile').first().tap();
+  // Select the second and third monsters so ゴウラ is the deliberate STANCE.
   await page.locator('#bossParty .formalUnit').nth(1).locator('.commandTile').first().tap();
+  await page.locator('#bossParty .formalUnit').nth(2).locator('.commandTile').first().tap();
 
   const stanceCard = page.locator('#bossParty .formalUnit.stance');
   await expect(stanceCard).toHaveCount(1);
