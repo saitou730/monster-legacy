@@ -28,11 +28,12 @@ test('completed Chapter 1 continues through #103 hunt, qualified Owl resolution,
  await page.evaluate(()=>{const s=MLStorage.load();s.area1.hunt.attempt={...(s.area1.hunt.attempt||{}),suppressProven:true,rageEntered:false};MLStorage.save(s);});
  expect(await page.evaluate(()=>{const s=MLStorage.load();return MLArea.commit(s,'resolved',MLStorage.save);})).toBe(true);
 
- // Resolution survives reload; JOIN remains the only exact-once SP-044 ownership transaction and party stays exactly three.
+ // Resolution survives reload; use the canonical root JOIN confirmation while preserving exact-once ownership and a 3-monster party.
  await page.reload();await page.locator('#bootStart').tap();await page.locator('#journeyGoBtn').tap();
- await expect(page.getByRole('heading',{name:'雷フクロウが同行を選んだ'})).toBeVisible();
+ await expect(page.getByRole('heading',{name:'雷の痕跡を追って'})).toBeVisible();
+ await expect(page.getByRole('button',{name:'雷フクロウを仲間にする'})).toBeVisible();
  expect(await page.evaluate(()=>MLStorage.load().monsterRoster||[])).toEqual([]);
- await page.getByRole('button',{name:'JOINを記録する'}).tap();
+ await page.getByRole('button',{name:'雷フクロウを仲間にする'}).tap();
  await page.locator('#areaAdvance').tap();
  await page.reload();
  expect(await page.evaluate(()=>MLStorage.load().monsterRoster)).toEqual(['SP-044']);
