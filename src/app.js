@@ -1427,14 +1427,14 @@ window.ML = (() => {
         <div class="battlePerspectiveFloor"></div>
         <div id="bossFx" class="fxLayer"></div>
         <div id="bossCallout" class="battleCallout"></div>
-        <span class="artLockTag">OFFICIAL DESIGN LOCK</span>`;
+        <span class="artLockTag directorOnly">OFFICIAL DESIGN LOCK</span>`;
       scene.style.backgroundImage = "none";
       scene.style.background = "radial-gradient(circle at 50% 15%,#26364f,#090d14 65%)";
       if(window.MLMotion) MLMotion.ensureAtmosphere("bossStage");
     }else{
       stage.className = "battleArt combatStage placeholder";
       const sigil = spec.id === "owl" ? "⚡" : "✦";
-      stage.innerHTML = `<div class="artPending"><div class="sigil">${sigil}</div><strong>${spec.name}</strong><span>DESIGN LOCKED — BATTLE ASSET PENDING</span></div>
+      stage.innerHTML = `<div class="artPending"><div class="sigil">${sigil}</div><strong>${spec.name}</strong><span>姿を捉えきれない強敵</span></div>
         <div id="bossFx" class="fxLayer"></div><div id="bossCallout" class="battleCallout"></div>`;
       scene.style.backgroundImage = "none";
       scene.style.background = "radial-gradient(circle at 50% 15%,#26364f,#090d14 65%)";
