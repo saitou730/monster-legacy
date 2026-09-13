@@ -483,7 +483,7 @@ window.ML = (() => {
       homeScreen.classList.toggle("homeChapterComplete",chapterComplete||mastered.length===3);
     }
     const feedbackPanel=$("chapterFeedbackPanel");
-    if(feedbackPanel) feedbackPanel.hidden=!chapterComplete;
+    if(feedbackPanel) feedbackPanel.hidden=!(chapterComplete && (params.has("director") || params.has("tester")));
     const legacyShelf=$("homeLegacyShelf");
     if(legacyShelf){
       const order=["unyielding","quiet_thunder","falling_wind"];
