@@ -20,7 +20,8 @@ test('intro persists; tap and long-press explain skills without selecting comman
  await skill.dispatchEvent('pointerdown',{button:0,pointerType:'mouse',clientX:1,clientY:1});
  await page.waitForTimeout(550);
  await skill.dispatchEvent('pointerup',{button:0,pointerType:'mouse',clientX:1,clientY:1});
- await expect(page.locator('#sheetBody')).toContainText('火牙');
+ await expect(page.locator('#sheetTitle')).toContainText('火牙');
+ await expect(page.locator('#sheetBody')).toContainText('基礎31');
  await expect(page.locator('#bossQueue .ql')).toHaveCount(0);
  await page.locator('#sheetBody .btn').tap();
  await skill.tap();await expect(page.locator('#bossQueue .ql')).toHaveCount(1);
