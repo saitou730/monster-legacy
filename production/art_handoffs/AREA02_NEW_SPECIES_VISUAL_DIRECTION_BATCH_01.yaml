@@ -1,0 +1,89 @@
+schema_version: 1
+base_main: 2d2ad6efa01e3ecfc8d4e136dde9693048b3d78d
+owner: Art Director
+branch: art/area02-species-batch-20260914
+area: AREA_02_THUNDERSTEP_PLATEAU
+status: ART_DIRECTOR_QA_PASS_WITH_ONE_HOLD
+art_lock_state: CONCEPT_VISUAL_DIRECTION_ONLY
+work_dependency: NONE_P0_ALREADY_PUBLISHED
+policy:
+  existing_art_first: true
+  no_reinterpret_official_lock: true
+  root_runtime_changes: prohibited
+  destructive_asset_replacement: prohibited
+  official_lock_requires_final_repo_asset_sha256_views_constraints: true
+candidates:
+  - concept_id: A02-GROUND-A
+    working_name: イナズマトビネズミ
+    name_status: WORKING_NAME_NOT_CANON
+    stage: VISUAL_DIRECTION
+    qa: PASS_TO_VISUAL_EXPLORATION
+    ecology:
+      niche: charged stone seam ground forager; prey/indicator species for Thunder Owl
+      discovery: conductive scratch/track inspection -> deterministic encounter
+    combat:
+      role: fast tempo / NEXT-order teaching enemy
+      behavior: short feints and quick committed dash; low durability; punishes late command selection
+      join_hook: win while controlling tempo/NEXT condition; no RNG-only gate
+    fusion_hook: candidate conductive lineage parent; fixed result must be separately governed before use
+    silhouette:
+      body: low horizontal mammal-like body; compact spring legs; narrow chest
+      signature: single forked conductive tail-organ held clear of body silhouette
+      avoid: [Fire Lizard reptile profile, round mascot body, permanent lightning aura, robot/mecha plating]
+    palette:
+      base: dry ochre/ash-brown natural hide
+      secondary: charcoal mineral plates
+      accent: restrained pale electric yellow on tail-organ/contact points only
+    eyes: small alert non-sparkly eyes; no oversized cute treatment
+    required_views: [front_three_quarter, side, rear_three_quarter, scale_comparison, eye_detail, tail_conductor_detail]
+    runtime_future: [idle, attack, hit, danger, stance, icon]
+    motion:
+      idle: {frame_order: [compress, scan, release], durations_ms: [260, 180, 300], loop: true, anchor: ground_contact_center}
+      attack: {frame_order: [coil, dash, recoil], durations_ms: [140, 160, 220], loop: false, anchor: ground_contact_center}
+      hit: {frame_order: [impact, skid, recover], durations_ms: [120, 180, 220], loop: false, anchor: ground_contact_center}
+      danger: {frame_order: [low_crouch, tail_twitch], durations_ms: [320, 240], loop: true, anchor: ground_contact_center}
+      stance: {frame_order: [brace, tail_ground], durations_ms: [220, 300], loop: true, anchor: ground_contact_center}
+  - concept_id: A02-STONEPLANT-B
+    working_name: アースモス
+    name_status: WORKING_NAME_NOT_CANON
+    stage: VISUAL_DIRECTION
+    qa: PASS_TO_VISUAL_EXPLORATION
+    ecology:
+      niche: slow organism rooted into exposed ridge stone; bleeds residual charge into ground
+      discovery: qualified SUPPRESS -> ecology clue -> deterministic encounter
+    combat:
+      role: defensive SUPPRESS tutor / stability enemy
+      behavior: absorbs tempo, exposes controlled windows, punishes uncontrolled VOLTAGE escalation
+      join_hook: maintain controlled battle state and use qualified SUPPRESS; no RNG-only gate
+    fusion_hook: candidate stone/plant lineage parent; fixed result must be separately governed before use
+    silhouette:
+      body: broad asymmetric porous-stone base with limited plant mass rising from one side
+      signature: one sloped living-root ridge crossing the stone body; footprint wider than height
+      avoid: [generic flower monster, treant/humanoid tree, Leaf Rabbit silhouette, glowing crystal pile, round mascot body]
+    palette:
+      base: warm gray/brown porous stone
+      secondary: muted olive/moss green
+      accent: small desaturated copper/amber root-vein marks
+    eyes: small recessed mineral-dark eyes if visible; no human mouth/cute smile
+    required_views: [front_three_quarter, side, rear_root_structure, top_silhouette, scale_comparison, stone_plant_boundary_detail]
+    runtime_future: [idle, attack, hit, danger, stance, icon]
+    motion:
+      idle: {frame_order: [root_settle, frond_breathe], durations_ms: [420, 460], loop: true, anchor: root_contact_center}
+      attack: {frame_order: [root_load, stone_shove, settle], durations_ms: [220, 220, 320], loop: false, anchor: root_contact_center}
+      hit: {frame_order: [chip_recoil, root_regrip], durations_ms: [180, 300], loop: false, anchor: root_contact_center}
+      danger: {frame_order: [frond_fold, low_pulse], durations_ms: [340, 420], loop: true, anchor: root_contact_center}
+      stance: {frame_order: [root_spread, ground_lock], durations_ms: [300, 420], loop: true, anchor: root_contact_center}
+  - concept_id: A02-RARE-C
+    stage: CONCEPT_HOLD
+    qa: HOLD_VISUAL_DIRECTION
+    reason: ecology function exists but lineage/visual governing basis is insufficient; do not generate
+art_director_qa:
+  result: PASS_WITH_ONE_HOLD
+  pass: [A02-GROUND-A, A02-STONEPLANT-B]
+  hold: [A02-RARE-C]
+  duplicate_generation_check: PASS
+  official_lock_impact: NONE
+next_queue:
+  - A02_GROUND_A_VISUAL_EXPLORATION
+  - A02_STONEPLANT_B_VISUAL_EXPLORATION
+  - A02_RARE_C_HOLD_UNTIL_GOVERNING_BASIS
