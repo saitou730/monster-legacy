@@ -12,6 +12,10 @@ test('portrait battle keeps commands and execute action above the fold', async (
   await expect(execute).toBeVisible();
   await expect(execute).toBeInViewport();
   await expect(page.locator('#bossParty .commandTile').first()).toBeInViewport();
+  await expect(page.locator('#bossParty .skillInfo')).toHaveCount(0);
+  await expect(page.locator('.replayBtn')).toBeInViewport();
+  const retryOpacity = await page.locator('.replayBtn').evaluate(el => parseFloat(getComputedStyle(el).opacity));
+  expect(retryOpacity).toBeLessThan(0.8);
 
   const geometry = await scroll.evaluate((node) => ({
     scrollTop: node.scrollTop,
