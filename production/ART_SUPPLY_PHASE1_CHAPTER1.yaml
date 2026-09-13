@@ -103,6 +103,14 @@ batch_supply:
   chapter1_fx: [CH1_FX_001, CH1_FX_002, CH1_FX_003, CH1_FX_004]
   runtime_species: [SP-001, SP-011, SP-018, SP-031, SP-071, SP-191, SP-044, SP-192]
   rule: "Work consumes these as batch lanes; Art does not create additional per-item queue administration unless defect evidence requires it."
+icon_supply:
+  id: GOVERNED_MONSTER_ICON_BATCH_2026_09_13
+  status: SPEC_READY_FOR_WORK
+  handoff: production/art_handoffs/GOVERNED_MONSTER_ICON_BATCH_2026-09-13.yaml
+  export_species: [SP-001, SP-011, SP-018, SP-031, SP-071, SP-191, SP-192]
+  reuse_existing: [SP-044]
+  rule: "Deterministic crop/fit from visual_source_map-governed existing pixels only; no redraw, recolor, generative fill, reinterpretation, or overwrite of existing battle/art assets."
+  work_dependency: "Work exports seven 256x256 transparent PNG icons, verifies source/output SHA-256, binds them to applicable runtime surfaces, and runs 64/96/128/256 readability plus UI regression QA."
 notes:
   - "TITLE/PROLOGUE should reuse an AREA/environment plate plus typography/grade unless runtime proves a dedicated raster necessary."
   - "BOSS replay reuses FIELD base with encounter grade/FX; no dedicated background until runtime QA demonstrates need."
@@ -110,8 +118,10 @@ notes:
   - "SP-192 canonical binding is recovered and QA PASS; do not retain the obsolete recovery HOLD in active queues."
   - "SP-071 governed runtime motion is QA PASS and reconciled into active AREA01 supply; do not regenerate its battle art."
   - "SP-191 governed runtime motion is QA PASS and reconciled into AREA01/batch supply; use existing boar rasters only and reopen Art only on runtime defect evidence."
+  - "Governed icon completion is presentation-only and must never create, infer, roll back, or duplicate durable gameplay progression receipts."
 next_queue:
   - POST_CH1_SP044_RUNTIME_VIEWPORT_QA
+  - GOVERNED_MONSTER_ICON_WORK_EXPORT_AND_BIND
   - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
   - CH1_FX_BINARY_BATCH
   - LOCKED_RUNTIME_MOTION_BATCH
