@@ -1,0 +1,68 @@
+schema_version: 1
+base_main: 2d2ad6efa01e3ecfc8d4e136dde9693048b3d78d
+owner: Art Director
+branch: art/area02-species-batch-20260914
+source_direction: production/art_handoffs/AREA02_NEW_SPECIES_VISUAL_DIRECTION_BATCH_01.yaml
+status: ART_DIRECTOR_QA_COMPLETE
+production_artifact:
+  local_file: wide_concept_art_game_asset_sheet_style_illustra.png
+  sha256: 1b2dd6245d8a94fe1f608698b574d944ec2a6e1f59e96fb752f3ad88ccb4ef5f
+  repository_promotion: HOLD
+  reason: "Exploration sheet is intentionally non-canon and contains visual drift from the approved direction. Do not promote to assets/art or assets/battle."
+qa:
+  A02-GROUND-A:
+    working_name: イナズマトビネズミ
+    result: HOLD_REVISE
+    strengths:
+      - low horizontal fast ground-read is immediately legible
+      - charcoal + ochre + restrained electric family is directionally useful
+      - large ears and rear-biased spring posture support scout/tempo role
+    defects:
+      - generated silhouette reads too close to a familiar electric mascot archetype
+      - lightning aura is too dominant; direction required minor electrical accent only
+      - forked conductive tail-organ is not the primary unique silhouette feature
+      - eye treatment is too cute/large versus small alert non-sparkly direction
+    locked_from_exploration:
+      - low horizontal mammal body
+      - long spring legs / rapid dash posture
+      - ochre + charcoal natural-material palette family
+    next_revision:
+      - reduce external lightning by at least 80 percent
+      - make one forked tail conductor the dominant identifier
+      - shrink eyes and lengthen narrow chest/muzzle read
+      - avoid zigzag ear/tail language and mascot cheek-lightning motifs
+  A02-STONEPLANT-B:
+    working_name: アースモス
+    result: HOLD_REVISE
+    strengths:
+      - wide grounded footprint clearly differentiates from Leaf Rabbit
+      - porous stone + living plant boundary reads well at thumbnail size
+      - muted stone/olive family is suitable for plateau ecology
+    defects:
+      - current body is too turtle/golem-like and too bilaterally symmetrical
+      - glowing amber fissures are too strong; direction required matte non-luminous material
+      - face is too expressive/anthropomorphic
+      - plant crown is too decorative and centered; required asymmetric limited plant mass from one side
+    locked_from_exploration:
+      - footprint wider than height
+      - porous warm-gray stone + muted olive material pairing
+      - visibly integrated root/stone boundary
+    next_revision:
+      - shift plant mass strongly to one side and expose sloped root ridge across body
+      - remove shell/turtle anatomy cues and bilateral limb symmetry
+      - remove luminous cracks; use desaturated copper/amber root-vein marks only
+      - recess eyes further and remove readable mouth expression
+  A02-RARE-C:
+    result: HOLD_NO_GENERATION
+    reason: governing lineage/visual basis remains insufficient
+art_lock:
+  visual_direction_lock: NOT_DECLARED
+  official_art_lock: NOT_DECLARED
+  rule: "No final repository image/SHA/view set exists. Exploration pixels are not canonical and must not be reused as governed runtime art."
+work_dependency:
+  p0: NONE
+  runtime_use: PROHIBITED_UNTIL_OFFICIAL_LOCK
+next_queue:
+  - A02_GROUND_A_VISUAL_EXPLORATION_REVISION_02
+  - A02_STONEPLANT_B_VISUAL_EXPLORATION_REVISION_02
+  - A02_RARE_C_HOLD_UNTIL_GOVERNING_BASIS
