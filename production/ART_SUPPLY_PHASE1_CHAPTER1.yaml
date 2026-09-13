@@ -107,10 +107,10 @@ icon_supply:
   id: GOVERNED_MONSTER_ICON_BATCH_2026_09_13
   status: SPEC_READY_FOR_WORK
   handoff: production/art_handoffs/GOVERNED_MONSTER_ICON_BATCH_2026-09-13.yaml
-  export_species: [SP-001, SP-011, SP-018, SP-031, SP-071, SP-191, SP-192]
-  reuse_existing: [SP-044]
-  rule: "Deterministic crop/fit from visual_source_map-governed existing pixels only; no redraw, recolor, generative fill, reinterpretation, or overwrite of existing battle/art assets."
-  work_dependency: "Work exports seven 256x256 transparent PNG icons, verifies source/output SHA-256, binds them to applicable runtime surfaces, and runs 64/96/128/256 readability plus UI regression QA."
+  export_species: [SP-001, SP-011, SP-018, SP-031, SP-071, SP-191]
+  reuse_existing: [SP-044, SP-192]
+  rule: "Deterministic crop/fit from visual_source_map-governed existing pixels only; no redraw, recolor, generative fill, reinterpretation, or overwrite of existing battle/art assets. Existing canonical icon_portrait derivatives for SP-044 and SP-192 must be reused, not duplicated."
+  work_dependency: "Work exports six 256x256 transparent PNG icons, verifies source/output SHA-256, reuses canonical SP-044/SP-192 portraits, binds them to applicable runtime surfaces, and runs 64/96/128/256 readability plus UI regression QA."
 notes:
   - "TITLE/PROLOGUE should reuse an AREA/environment plate plus typography/grade unless runtime proves a dedicated raster necessary."
   - "BOSS replay reuses FIELD base with encounter grade/FX; no dedicated background until runtime QA demonstrates need."
