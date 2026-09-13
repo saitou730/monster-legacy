@@ -8,9 +8,11 @@ test('intro persists; tap and long-press explain skills without selecting comman
  await page.reload();await page.locator('#bootStart').tap();
  await expect(page.locator('#journeyResult')).not.toHaveClass(/show/);
  await page.evaluate(()=>ML.go('boss'));
- await page.locator('#bossParty .skillInfo[data-help-unit="goura"][data-help-kind="STANCE"]').tap();
+ const gouraCard=page.locator('#bossParty .formalUnit').filter({hasText:'ゴウラ'});
+ await expect(gouraCard.locator('.skillInfo')).toHaveCount(0);
+ await gouraCard.locator('.unitInspect').tap();
+ await expect(page.locator('#sheetBody')).toContainText('STANCE');
  await expect(page.locator('#sheetBody')).toContainText('45%');
- await expect(page.locator('#sheetBody')).toContainText('残った1体');
  await expect(page.locator('#bossQueue .ql')).toHaveCount(0);
  await page.locator('#sheetBody .btn').tap();
  const skill=page.locator('#bossParty .commandTile[data-help-unit="fire"][data-help-kind="CORE"]');
