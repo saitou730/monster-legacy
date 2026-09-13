@@ -119,8 +119,14 @@ notes:
   - "SP-071 governed runtime motion is QA PASS and reconciled into active AREA01 supply; do not regenerate its battle art."
   - "SP-191 governed runtime motion is QA PASS and reconciled into AREA01/batch supply; use existing boar rasters only and reopen Art only on runtime defect evidence."
   - "Governed icon completion is presentation-only and must never create, infer, roll back, or duplicate durable gameplay progression receipts."
+queue_policy:
+  canonical_p0_first: true
+  rule: "Until POST-CH1-AREA01-PLAYABLE ships, Art must not spend a production cycle on non-blocking icon, HOME, Chapter 1 FX, locked-motion polish, Fusion Lab, or unrelated species expansion unless Work supplies concrete defect evidence that blocks the playable P0."
+  defect_evidence_required: [viewport, screenshot_or_precise_visual_description, asset_role, observed_defect]
+  no_defect_action: "Do not generate replacement Art. Keep supplied governed assets unchanged and return execution to Work runtime integration/QA."
 next_queue:
   - POST_CH1_SP044_RUNTIME_VIEWPORT_QA
+nonblocking_backlog_after_p0:
   - GOVERNED_MONSTER_ICON_WORK_EXPORT_AND_BIND
   - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
   - CH1_FX_BINARY_BATCH
