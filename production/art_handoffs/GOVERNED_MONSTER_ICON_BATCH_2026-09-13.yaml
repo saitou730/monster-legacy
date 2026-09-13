@@ -15,6 +15,12 @@ rules:
   - "Transparent padding is allowed; generative fill/background replacement is forbidden."
   - "Do not overwrite any existing assets/art/* or assets/battle/* file. New icon files require Work-side hash verification before binding."
   - "SP-044 and SP-192 are excluded from export: canonical icon_portrait.png derivatives already exist and must be reused."
+preflight:
+  checked_on_main: 54aa8c248373a2fd26855d31e6efb615c0086467
+  output_directory_search: "No existing assets/icons/monsters entries were found on canonical main during Art Director preflight."
+  spot_check: "assets/icons/monsters/sp001_goura.png returned Not Found on canonical main."
+  collision_policy: "Immediately before export, Work must re-check each planned_path on latest main. If a planned_path now exists, HOLD_COLLISION and compare its provenance/SHA; never overwrite or create a suffixed duplicate automatically."
+  stale_main_policy: "If main advances before export, re-read visual_source_map and this handoff. A source SHA/path change requires HOLD_SOURCE_MISMATCH until Art Director reconciliation; do not export from the stale source."
 delivery:
   format: PNG
   canvas: "256x256"
@@ -47,8 +53,9 @@ acceptance_record_required:
     - readability_128
     - readability_256
     - art_lock_identity_check
-  pass_rule: "PASS only when expected_source_sha256 equals verified_source_sha256, output is 256x256 RGBA/transparent, no source-external opaque pixels are introduced, identity-defining anatomy is not clipped, all four readability checks pass, and output_sha256 is recorded before binding."
-  hold_rule: "HOLD_SOURCE_MISMATCH if source SHA differs from canon; HOLD_CROP if identity anatomy cannot fit safely; HOLD_READABILITY if 64px identity fails. Do not regenerate or repaint to escape HOLD."
+    - collision_preflight
+  pass_rule: "PASS only when expected_source_sha256 equals verified_source_sha256, planned output path is collision-free on latest main, output is 256x256 RGBA/transparent, no source-external opaque pixels are introduced, identity-defining anatomy is not clipped, all four readability checks pass, and output_sha256 is recorded before binding."
+  hold_rule: "HOLD_SOURCE_MISMATCH if source SHA differs from canon; HOLD_COLLISION if planned output path already exists without reconciled provenance; HOLD_CROP if identity anatomy cannot fit safely; HOLD_READABILITY if 64px identity fails. Do not regenerate or repaint to escape HOLD."
   reject_rule: "REJECT if redraw/recolor/generative fill/anatomy synthesis or overwrite of governed battle/art assets occurred."
 reuse_existing:
   - id: SP-044
@@ -92,6 +99,6 @@ species:
     planned_path: assets/icons/monsters/sp191_thorn_boar.png
 art_director_qa:
   verdict: PASS_SPEC
-  reason: "Closes a real runtime asset-class gap from already-governed pixels while explicitly reusing canonical SP-044/SP-192 icons and avoiding duplicate exports. Acceptance evidence now prevents silent source drift or repainting during Work export."
-work_dependency: "Work exports six icons deterministically, emits the required per-export acceptance record, records output SHA-256 values, reuses canonical SP-044/SP-192 icon_portrait assets, binds them to PARTY/HUNT/JOIN/archive surfaces as applicable, and performs UI regression QA."
+  reason: "Closes a real runtime asset-class gap from already-governed pixels while explicitly reusing canonical SP-044/SP-192 icons and avoiding duplicate exports. Acceptance evidence plus latest-main collision preflight prevents silent source drift, accidental overwrite, duplicate suffix exports, or repainting during Work export."
+work_dependency: "Work exports six icons deterministically after latest-main collision/source preflight, emits the required per-export acceptance record, records output SHA-256 values, reuses canonical SP-044/SP-192 icon_portrait assets, binds them to PARTY/HUNT/JOIN/archive surfaces as applicable, and performs UI regression QA."
 next: GOVERNED_MONSTER_ICON_WORK_EXPORT_AND_BIND
