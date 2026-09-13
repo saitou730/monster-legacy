@@ -1,15 +1,23 @@
 schema_version: 1
 date: 2026-09-13
 status: ART_DIRECTOR_QA_PASS_BATCH_READY_FOR_WORK
-base_main: 7c1b3f50b235a79958018fe7fe596039ebfdefc0
+base_main: 52fefd6a6cd46b7e99ab13b47889b6a82fd032e1
 run_record: production/art_runs/2026-09-12_FAST_ART_SUPPLY_BATCH_001.yaml
-purpose: "Replace one-monster-per-cycle administration with one consolidated Work handoff for all currently governed motion lanes plus the four Chapter 1 FX lanes."
+purpose: "Replace one-monster-per-cycle administration with one consolidated Work handoff for all currently governed presentation lanes, motion lanes, and the four Chapter 1 FX lanes."
 priority_order:
   - POST_CH1_SP044_RUNTIME_VIEWPORT_QA
+  - GOVERNED_MONSTER_ICON_WORK_EXPORT_AND_BIND
   - CH1_ENV_002_HOME_REPOSITORY_PROMOTION
   - CH1_FX_BINARY_BATCH
   - AREA01_LOCKED_MOTION_BATCH
   - AREA02_LOCKED_MOTION_BATCH
+governed_icon_batch:
+  source_packet: production/art_handoffs/GOVERNED_MONSTER_ICON_BATCH_2026-09-13.yaml
+  status: SPEC_READY_FOR_WORK
+  export_species: [SP-001, SP-011, SP-018, SP-031, SP-071, SP-191]
+  reuse_existing: [SP-044, SP-192]
+  execution_rule: "Export six icons deterministically from governed existing pixels only; reuse canonical SP-044/SP-192 icon_portrait derivatives; no redraw, recolor, generative fill, reinterpretation, or destructive overwrite."
+  acceptance: [source_sha256_verified, output_sha256_recorded, readability_64px, readability_96px, readability_128px, readability_256px, ui_regression_pass]
 chapter1_fx_batch:
   source_packet: production/art_handoffs/CH1_FX_MODULAR_WORK_PACKET.yaml
   status: SPEC_READY_FOR_WORK_BINARY
@@ -41,8 +49,8 @@ locked_motion_batch:
   preservation_rule: "Use only existing canonical runtime derivatives recorded in canon/visual_source_map.yaml. No regeneration, synthesized anatomy, or destructive replacement."
   sp191_reconciliation: "2026-09-13: SP-191 was already QA PASS and present in the canonical Art manifest/batch supply; added here to remove stale Work-handoff omission. Existing boar rasters only."
 home_lane:
-  status: REVIEW_WAITING_FOR_EXISTING_APPROVED_RASTER
-  action: "Promote/export the already-approved portrait candidate only; no further near-identical generation."
+  status: HOLD_SOURCE_RASTER_REQUIRED_FOR_LOCALIZED_EDIT
+  action: "Do not regenerate. Resume only if the exact approved candidate raster is recovered; then perform localized cleanup, repository promotion, SHA-256 registration and viewport overlay QA. HOME presentation is non-gating for P0 gameplay."
   acceptance: [repository_path, sha256, overlay_QA_360x800, overlay_QA_390x844, overlay_QA_430x932]
 holds:
   - {id: ART-GRAUSEN-PALETTE, action: HOLD_SOURCE_RECOVERY_ONLY}
@@ -58,8 +66,9 @@ work_boundary:
 art_director_qa:
   verdict: PASS
   official_art_lock_new: false
-  reason: "All batched lanes already have governing sources/specs; SP-191 reconciliation removes a stale handoff omission without changing locked design DNA."
+  reason: "Work handoff now matches the canonical Art manifest: SP-044 viewport QA first, six governed icon exports with SP-044/SP-192 reuse second, HOME held without regeneration, then FX/motion batches. No locked design DNA changes."
 next_art_decision:
   - "Do not create more per-species queue-only files for these eight motion lanes unless runtime QA finds a species-specific defect."
-  - "Keep SP-044 runtime viewport QA ahead of HOME/FX/motion polish while POST-CH1-AREA01-PLAYABLE remains P0."
-  - "After P0 runtime evidence, consume the consolidated locked motion batch; reopen Art only for evidenced defects or source-governed visible ecology gaps."
+  - "Keep SP-044 runtime viewport QA ahead of icon/HOME/FX/motion polish while POST-CH1-AREA01-PLAYABLE remains P0."
+  - "Do not regenerate HOME while its exact approved candidate raster is unavailable."
+  - "After P0 runtime evidence, consume governed icon/FX/motion batches; reopen Art only for evidenced defects or source-governed visible ecology gaps."
