@@ -1,0 +1,74 @@
+schema_version: 1
+asset_id: GOVERNED_MONSTER_ICON_BATCH_2026_09_13
+updated: 2026-09-13
+status: SPEC_READY_FOR_WORK
+purpose: "Complete the icon lane for inherited Official Art Lock species without regenerating or reinterpreting character art."
+authority:
+  - canon/visual_source_map.yaml
+  - production/ART_SUPPLY_PHASE1_CHAPTER1.yaml
+  - production/art_handoffs/FAST_ART_RUNTIME_BATCH_WORK_HANDOFF_2026-09-12.yaml
+art_lock: INHERITED_NO_NEW_OFFICIAL_LOCK
+rules:
+  - "Never redraw, recolor, morph, synthesize anatomy, change eyes/body proportions, or alter silhouette."
+  - "Use only a visual_source_map-governed existing raster/source for each species."
+  - "Export is a deterministic crop/fit operation only; source pixels may be resampled for delivery size but not repainted."
+  - "Transparent padding is allowed; generative fill/background replacement is forbidden."
+  - "Do not overwrite any existing assets/art/* or assets/battle/* file. New icon files require Work-side hash verification before binding."
+  - "SP-044 is excluded: assets/battle/owl/icon_portrait.png already exists and remains canonical."
+delivery:
+  format: PNG
+  canvas: "256x256"
+  alpha: true
+  anchor: icon_center
+  fit: "contain full identity-defining head/face and enough upper silhouette to remain recognizable; never crop eyes, ears/horns/wings that define identity"
+  safe_margin: "minimum 8% canvas on the tightest identity-defining edge where source permits"
+  background: transparent
+  runtime_scale_policy: "downscale from 256; do not upscale a smaller source beyond native clarity if it causes destructive blur"
+  qa_view_sizes: [64, 96, 128, 256]
+  qa_checks:
+    - "recognizable at 64px"
+    - "eyes and primary silhouette remain readable"
+    - "no source-external pixels except transparent padding"
+    - "no clipping of identity-defining anatomy"
+    - "source SHA-256 verified before export"
+    - "output SHA-256 recorded before runtime binding"
+species:
+  - id: SP-001
+    name: ゴウラ
+    source: assets/battle/goura/idle.png
+    source_sha256: 902b1c4e37ef72f1b5c945be211c4817d34c5000e0273ae7e53e7439635e494a
+    planned_path: assets/icons/monsters/sp001_goura.png
+  - id: SP-011
+    name: 火トカゲ
+    source: assets/battle/fire/idle.png
+    source_sha256: 7bb51274e6445fe3f44494eea00ebd1471df721d588e975a924a9bf54c9b0fd8
+    planned_path: assets/icons/monsters/sp011_fire_lizard.png
+  - id: SP-018
+    name: 炎翼リザル
+    source: assets/battle/flame/idle.png
+    source_sha256: 62edf235a15c09edfed17c893e74a5e75287f76d2ee3c938c9ce06a101bbaeff
+    planned_path: assets/icons/monsters/sp018_flame_wing.png
+  - id: SP-031
+    name: 風コウモリ
+    source: assets/battle/wind_bat/idle.png
+    source_sha256: 8d523d30d4e931e9c44998d34e93bd68b8c1a78eeb7d1b80808a4c4d5a09660d
+    planned_path: assets/icons/monsters/sp031_wind_bat.png
+  - id: SP-071
+    name: 葉ウサギ
+    source: assets/battle/leaf/idle.png
+    source_sha256: 1d55bdb3fe6ad44d9628548b0f4edf8b7d099b5974ee535b50047452be89981c
+    planned_path: assets/icons/monsters/sp071_leaf_rabbit.png
+  - id: SP-191
+    name: 荊棘の大猪
+    source: assets/battle/boar/idle.png
+    source_sha256: 8adf3660fed9efbc5982f5e4965cfe0663dd0317398d315ff57d299772069357
+    planned_path: assets/icons/monsters/sp191_thorn_boar.png
+  - id: SP-192
+    name: 裂空マンティコア
+    source_policy: "Use the exact governed SP-192 idle raster registered in canon/visual_source_map.yaml; Work must resolve and verify its current path/SHA from canon at execution time. Do not substitute another species or candidate."
+    planned_path: assets/icons/monsters/sp192_manticore.png
+art_director_qa:
+  verdict: PASS_SPEC
+  reason: "Closes a real runtime asset-class gap by deriving icons from already-governed character pixels; avoids duplicate generation and preserves every inherited Official Art Lock."
+work_dependency: "Work exports the seven icons deterministically, records output SHA-256 values, binds them to PARTY/HUNT/JOIN/archive surfaces as applicable, and performs UI regression QA."
+next: GOVERNED_MONSTER_ICON_WORK_EXPORT_AND_BIND
