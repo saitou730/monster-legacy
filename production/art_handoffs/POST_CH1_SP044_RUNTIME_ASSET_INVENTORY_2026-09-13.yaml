@@ -1,0 +1,43 @@
+schema_version: 1
+updated: 2026-09-13
+owner: Art Director
+p0_task: POST-CH1-AREA01-PLAYABLE
+species: SP-044
+name: 雷フクロウ
+status: ART_DIRECTOR_QA_PASS_READY_FOR_WORK_VIEWPORT_QA
+art_lock: OFFICIAL_ART_LOCK_INHERITED
+governing_source:
+  path: assets/reference/雷フクロウ_CHARACTER_DESIGN_BIBLE_ML-001_v1.1.png
+  sha256: 6e3cacaf83b8541d85560d9bf4358029c0be484af976125a399a7df14e72fedc
+policy:
+  - Existing governed pixels only; no reinterpretation, redraw, recolor, generative fill, morphing, or synthesized anatomy.
+  - Do not replace or overwrite assets/art/* or assets/battle/* during this Art run.
+  - Runtime viewport defects must be fixed by Work transforms/crop/layout first; reopen Art only with defect evidence proving governed assets cannot satisfy the route.
+repository_inventory:
+  - {role: attack, path: assets/battle/owl/attack.png, git_blob_sha: e7a51f164ee6802b25ca882a8b4ea9804fdee4ee, canonical_sha256: edb1ce15e24879141ecb10cade15006db867f3a0feda7ee91200fdf28d99bc69}
+  - {role: attack_prep, path: assets/battle/owl/attack_prep.png, git_blob_sha: b7efb3e14f98e4f0b3ecd48948e1b87fa39ee021, canonical_sha256: 48b10fc51bf90922f87e02f6721ff4a8b66811a7a03c8db473ce5940a918d199}
+  - {role: danger, path: assets/battle/owl/danger.png, git_blob_sha: 8353229a900415161004ba0a31dced31d182b857, canonical_sha256: f281ffa31b4d7a19f5501aed9399b9cd241d2b7efa8ca3d205cce7967b284550}
+  - {role: hit, path: assets/battle/owl/hit.png, git_blob_sha: c5fb5bb6ca18fb53b39739266e417d146f9979b5, canonical_sha256: 0feda8711ca6b999ca70d475460b8a5ded67cfc0addb7f68a5d80681e5a12ccb}
+  - {role: icon, path: assets/battle/owl/icon_portrait.png, git_blob_sha: 31ede24aca87f81b68116b5bf2909ad7ce82ed85, canonical_sha256: 2c3c71185d2a2f916bead8977dc93a29918865763c3a55105cb8d6bc32c7dc55}
+  - {role: idle, path: assets/battle/owl/idle.png, git_blob_sha: a30632bcec29dbddec258aba8d48ddf838fedd1d, canonical_sha256: e2bbe8ae445014d613b4349a5e57cb95219b86a599343c667fcfb5e24fd17492}
+  - {role: stance, path: assets/battle/owl/stance.png, git_blob_sha: b7efb3e14f98e4f0b3ecd48948e1b87fa39ee021, canonical_sha256: 48b10fc51bf90922f87e02f6721ff4a8b66811a7a03c8db473ce5940a918d199}
+art_director_qa:
+  inventory_complete: PASS
+  canonical_binding_present: PASS
+  duplicate_generation_needed: false
+  reinterpretation_needed: false
+  verdict: PASS
+work_acceptance:
+  viewport_sizes: [360x800, 390x844, 430x932]
+  required_checks:
+    - idle/attack/hit/danger/stance remain identifiable and unobscured in portrait battle layout
+    - icon remains readable at actual runtime presentation size
+    - no clipping of defining owl silhouette/eyes/wing lightning language
+    - no asset substitution from SP-192 or unresolved species
+  on_pass: keep Art closed and continue playable slice
+  on_fail: attach screenshot plus viewport plus role plus exact defect; Art evaluates localized governed fix before any regeneration
+next_art_queue:
+  - GOVERNED_MONSTER_ICON_WORK_EXPORT_AND_BIND
+  - CH1_ENV_002_HOME_REPOSITORY_PROMOTION_IF_SOURCE_RASTER_EXISTS
+  - CH1_FX_BINARY_BATCH
+  - LOCKED_RUNTIME_MOTION_BATCH
