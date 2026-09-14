@@ -14,27 +14,27 @@
     ]
   },
   "current_task": {
-    "id": "POST-CH1-AREA01-PLAYABLE",
-    "title": "Ship the first playable post-Chapter-1 area loop",
-    "status": "published_complete",
+    "id": "ISSUE-103-THUNDER-OWL-FUN-PASS",
+    "title": "Validate the published Thunder Owl fun pass in natural play",
+    "status": "technical_published_pending_fun_acceptance",
     "priority": "P0",
-    "working_branch": "work/post-ch1-speed-batch",
+    "working_branch": null,
     "definition_of_done": [
-      "Existing P20 Chapter 1 saves continue without reset or duplicate rewards.",
-      "Completed HOME presents a clear Japanese next objective and a direct new-area departure CTA instead of waiting for future content.",
-      "Normal player mode no longer foregrounds developer-only Build/JSON/Clarity/playtest language.",
-      "The next area is actually playable: depart -> explore/discover -> encounter Thunder Owl -> battle/hunt -> JOIN -> return/progress to the next objective.",
-      "Only verified canonical/Art-Locked Thunder Owl assets are used; unresolved Manticore identity is not silently substituted.",
-      "Portrait 9:16, 3-monster party, 2 COMMAND + 1 STANCE and turn-start NEXT lock remain intact.",
-      "Automated regression/E2E covers Chapter 1 save compatibility and the new forward route.",
-      "Validated implementation is integrated and public Pages deployment is verified before this task is called complete."
+      "Existing P20/CH1_CLEAR saves remain valid and resume from the furthest durable hunt checkpoint.",
+      "The hunt presents more than one meaningful pre-battle choice and at least one visible battle-opening consequence.",
+      "Thunder Owl combat rewards intentional NEXT reading and the canonical 2 COMMAND + remaining 1 STANCE tradeoff.",
+      "Earned JOIN is deterministic, explains success/failure in player language, and preserves valid discovery progress on retry.",
+      "SP-044 ownership is recorded exactly once and the active party remains exactly three unless the player explicitly changes formation later.",
+      "360x800 / 390x844 / 430x932 automated coverage is green.",
+      "Canonical root runtime is merged and Pages deployment is green.",
+      "Natural player validation confirms the route feels meaningfully better than the prior button-chain flow before #103 is closed."
     ],
-    "next_action": "POST-CH1-AREA01-PLAYABLE is shipped. Do not rework it without a reproducible regression. Technical Producer/Game Director should promote the next locked player-visible slice; Work should re-audit PR #74 downstream PARTY -> FUSION -> NEW SPECIES TEST -> CONTRACT boundaries before implementation.",
-    "working_pr": 98,
+    "next_action": "Technical implementation is shipped. Do not promote Issue #100 Manticore, PARTY/FUSION/TEST/CONTRACT, AREA02 or new species until Issue #103 receives natural-play fun acceptance or a concrete regression/fun defect is reported. Work should respond only to reproducible #103 runtime/QA issues; otherwise hold root progression changes.",
+    "working_pr": 105,
     "publication": {
-      "merged_pr": 98,
-      "merge_sha": "5a4730815da59e228cb4e81eeb69c430f6260980",
-      "web_qa_run": 34769220859,
+      "merged_pr": 105,
+      "merge_sha": "d1cdb54bcf5bc450dfe13c9d2b268c6b9ba6d119",
+      "web_qa_run": 34789975827,
       "web_qa": "PASS",
       "pages_deploy": "PASS",
       "pages_url": "https://saitou730.github.io/monster-legacy/",
@@ -42,15 +42,15 @@
     }
   },
   "parallel_lanes": {
-    "game_director_chat": "Own player-facing Japanese copy, next-area progression semantics, discovery/JOIN conditions and acceptance criteria. Avoid reopening already locked Chapter 1 rules.",
-    "work": "Own root runtime implementation, save compatibility, UI, battle integration, automated tests, CI, merge and Pages verification.",
-    "art": "Supply only source-governed Area 1/Thunder Owl/background/FX assets needed by the playable slice; Art Lock remains higher priority than speed. Do not block runtime on optional polish.",
-    "technical_producer": "Keep WIP focused on POST-CH1-AREA01-PLAYABLE, resolve cross-lane conflicts from GitHub evidence, and prevent documentation-only loops or duplicated work."
+    "game_director_chat": "Collect natural-play feedback on Issue #103 and refine only concise player-facing semantics/copy if the frozen mechanics remain intact. Do not promote downstream progression before the fun gate.",
+    "work": "Issue #103 runtime is technically shipped. Own reproducible regressions, save compatibility, UI/battle QA, automated tests and publication integrity; otherwise hold progression changes until fun acceptance evidence exists.",
+    "art": "No new Art is required for the shipped #103 pass unless Work provides concrete missing-state evidence. Art Lock remains higher priority than optional polish.",
+    "technical_producer": "Issue #103 is technically published but remains the active Fun Gate. Prevent downstream Manticore/PARTY/FUSION/TEST/CONTRACT/new-species promotion until natural-play acceptance or a scoped #103 fix is identified."
   },
   "android_qa": {
     "mode": "play_first_evidence_collection",
-    "rule": "Physical Android checks remain an internal quality map, but the player is not required to run all 12 scripted checks each cycle. Accept natural gameplay screenshots/descriptions, map them to gates internally, fix, regress, integrate and publish. Never fabricate physical-device PASS from browser CI.",
-    "status": "collect_during_normal_play"
+    "rule": "Physical Android checks remain an internal quality map, but the player is not required to run all scripted checks each cycle. Accept natural gameplay screenshots/descriptions, map them to gates internally, fix, regress, integrate and publish. Never fabricate physical-device PASS from browser CI.",
+    "status": "await_natural_play_evidence"
   },
   "blocked_art": [
     "ART-GRAUSEN-PALETTE: source recovery required",
@@ -59,6 +59,6 @@
     "ART-LUCIA: dedicated source missing",
     "ART-PHIL: unique individual source missing; do not substitute generic SP-031"
   ],
-  "completed_history_note": "Detailed Chapter 1/QA completion evidence exists in git history before schema v2. Do not redo completed Chapter 1 inventory unless a regression requires it.",
-  "resume_rule": "Read latest main + this file + Issue #38/open relevant PRs. Continue the current P0 until shipped or a genuine external blocker exists. Prefer one large coherent implementation batch over many tiny handoffs."
+  "completed_history_note": "POST-CH1-AREA01-PLAYABLE (#98) and Android battle UI density (#102) are published. Issue #103 Fun Pass is merged at d1cdb54 and canonical Web QA/Pages are green. Detailed Chapter 1/QA completion evidence remains in git history.",
+  "resume_rule": "Read latest main + this file + Issue #38 + Issue #103 + open relevant PRs. If #103 has new natural-play evidence, fix only the concrete scoped defect and republish. If there is no new evidence or regression, do not invent downstream work ahead of the active fun gate."
 }
