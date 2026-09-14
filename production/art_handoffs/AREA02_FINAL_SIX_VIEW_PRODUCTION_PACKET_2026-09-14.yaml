@@ -1,0 +1,91 @@
+schema_version: 1
+base_main: d1cdb54bcf5bc450dfe13c9d2b268c6b9ba6d119
+owner: Art Director
+branch: art/area02-species-batch-20260914
+status: FINAL_SIX_VIEW_PRODUCTION_PACKET_READY
+scope: [A02-GROUND-A, A02-STONEPLANT-B]
+preflight:
+  latest_main_checked: d1cdb54bcf5bc450dfe13c9d2b268c6b9ba6d119
+  latest_main_change: "Thunder Owl fun pass merged; no replacement Art request"
+  next_queue_checked: true
+  art_manifest_checked: true
+  visual_source_map_checked: true
+  open_prs_checked: true
+  existing_official_lock_reinterpretation: NONE
+  chapter1_blocking_art: NONE
+  work_order: "POST-CH1 shipped; downstream PARTY -> FUSION -> NEW SPECIES TEST -> CONTRACT re-audit remains next implementation boundary"
+  duplicate_asset_generation: PROHIBITED
+source_chain:
+  visual_direction_lock_candidate: production/art_handoffs/AREA02_VISUAL_DIRECTION_LOCK_CANDIDATE_2026-09-14.yaml
+  governing_existing_species: canon/visual_source_map.yaml
+art_lock_state:
+  A02-GROUND-A: VISUAL_DIRECTION_LOCK_CANDIDATE_PASS_NOT_OFFICIAL
+  A02-STONEPLANT-B: VISUAL_DIRECTION_LOCK_CANDIDATE_PASS_NOT_OFFICIAL
+  existing_official_species: [SP-001, SP-011, SP-018, SP-031, SP-044, SP-071, SP-191, SP-192]
+production:
+  A02-GROUND-A:
+    working_name: イナズマトビネズミ
+    final_sheet_planned_path: assets/reference/area02/A02-GROUND-A_final_design_sheet.png
+    required_views:
+      front_three_quarter: "primary read; low horizontal plateau-forager body; narrow chest; rear-biased spring legs; tail clearly separated from torso"
+      side: "prove low center of gravity and leg compression; one forked conductor tail only"
+      rear_three_quarter: "prove tail originates anatomically as one organ; no fan/multiple tails"
+      scale_comparison: "show materially smaller/lighter than SP-044 Thunder Owl; no mascot enlargement"
+      eye_detail: "small alert recessed/non-sparkly eye; no oversized highlight"
+      tail_conductor_detail: "single anatomical tail terminating in restrained forked conductive organ; no free lightning aura"
+    palette: "dry ochre/ash-brown hide; charcoal mineral contact plates; pale electric yellow only at conductor/contact points"
+    silhouette: "low horizontal ground runner; rear-biased spring legs; narrow chest; one forked conductive tail is sole dominant identifier"
+    eyes: "small alert recessed/non-sparkly"
+    prohibitions: [free_floating_lightning_aura, lightning_bolt_ears, multi_spike_tail_fan, fire_lizard_reptile_profile, robot_mecha_plating, round_mascot_proportions]
+    runtime_motion_contract:
+      idle: {frame_order: [compress, scan, release], durations_ms: [260, 180, 300], loop: true, anchor: ground_contact_center}
+      attack: {frame_order: [coil, dash, recoil], durations_ms: [140, 160, 220], loop: false, anchor: ground_contact_center}
+      hit: {frame_order: [impact, skid, recover], durations_ms: [120, 180, 220], loop: false, anchor: ground_contact_center}
+      danger: {frame_order: [low_crouch, tail_twitch], durations_ms: [320, 240], loop: true, anchor: ground_contact_center}
+      stance: {frame_order: [brace, tail_ground], durations_ms: [220, 300], loop: true, anchor: ground_contact_center}
+  A02-STONEPLANT-B:
+    working_name: アースモス
+    final_sheet_planned_path: assets/reference/area02/A02-STONEPLANT-B_final_design_sheet.png
+    required_views:
+      front_three_quarter: "one continuous asymmetric porous-stone organism; footprint wider than height; vegetation mass on one side only"
+      side: "prove no turtle shell/backpack anatomy and no bilateral quadruped body"
+      rear_root_structure: "expose sloped living-root ridge and irregular support contacts; no four-leg symmetry"
+      top_silhouette: "prove off-center plant mass and asymmetric stone footprint"
+      scale_comparison: "show slow grounded mid-size organism; avoid boss-scale read"
+      stone_plant_boundary_detail: "matte porous stone transitions into living root/vegetation without crystal glow or mechanical seam"
+    palette: "matte warm gray/brown porous stone; muted olive/moss vegetation; tiny desaturated copper/amber root-vein accents"
+    silhouette: "continuous asymmetric porous-stone mass; wider than tall; one-sided vegetation; sloped exposed living-root ridge; irregular root contacts"
+    eyes: "small mineral-dark eyes recessed into stone shadow; no readable human mouth"
+    prohibitions: [turtle_shell_backpack_anatomy, bilateral_quadruped_symmetry, centered_plant_crown, glowing_crystal_pile, treant_humanoid_tree, leaf_rabbit_silhouette, cute_smile]
+    runtime_motion_contract:
+      idle: {frame_order: [root_settle, frond_breathe], durations_ms: [420, 460], loop: true, anchor: root_contact_center}
+      attack: {frame_order: [root_load, stone_shove, settle], durations_ms: [220, 220, 320], loop: false, anchor: root_contact_center}
+      hit: {frame_order: [chip_recoil, root_regrip], durations_ms: [180, 300], loop: false, anchor: root_contact_center}
+      danger: {frame_order: [frond_fold, low_pulse], durations_ms: [340, 420], loop: true, anchor: root_contact_center}
+      stance: {frame_order: [root_spread, ground_lock], durations_ms: [300, 420], loop: true, anchor: root_contact_center}
+qa_gate:
+  required_before_official_art_lock:
+    - final_repository_png_exists
+    - all_six_views_present_and_consistent
+    - sha256_recorded
+    - source_chain_comparison_pass
+    - palette_body_eye_silhouette_prohibitions_pass
+    - no_collision_with_existing_official_species
+  reject_if:
+    - "A02-GROUND-A reads as generic electric mascot or Fire Lizard derivative"
+    - "A02-STONEPLANT-B reads as turtle/golem/quadruped or Leaf Rabbit derivative"
+    - "view-to-view anatomy changes"
+    - "unapproved glow/lightning becomes dominant identifier"
+  official_art_lock_declared: false
+art_director_qa:
+  result: PASS_PACKET_READY_FOR_FINAL_SHEET
+  reason: "Direction is sufficiently constrained to produce one final six-view sheet per candidate without further exploratory generations."
+  existing_official_lock_impact: NONE
+runtime_use: PROHIBITED_UNTIL_OFFICIAL_ART_LOCK
+next_queue:
+  - PRODUCE_A02_GROUND_A_FINAL_SIX_VIEW_ONCE
+  - PRODUCE_A02_STONEPLANT_B_FINAL_SIX_VIEW_ONCE
+  - REPOSITORY_SAVE_AND_SHA256
+  - SOURCE_COMPARISON_QA
+  - OFFICIAL_ART_LOCK_DECISION
+  - IF_REJECT_FIX_ONLY_FAILED_VIEW_OR_CONSTRAINT_DO_NOT_RESTART_EXPLORATION
