@@ -1,0 +1,33 @@
+schema_version: 1
+base_main: 659e8ee5ed2c14271fa93ae02489010206ce6e72
+owner: Art Director
+status: ART_DIRECTOR_QA_PASS_HOLD
+active_gate: ISSUE-103-THUNDER-OWL-FUN-PASS
+purpose: "Prevent Art from promoting downstream/new-species work while canonical next_queue holds progression at natural-play fun acceptance."
+preflight:
+  latest_main_checked: true
+  next_queue_checked: true
+  visual_source_map_checked: true
+  art_manifest_checked: true
+  open_prs_checked: true
+  work_order_checked: true
+inventory:
+  official_locked_species: [SP-001, SP-011, SP-018, SP-031, SP-044, SP-071, SP-191, SP-192]
+  issue103_required_new_art: false
+  issue103_governed_species: SP-044
+  sp044_source_policy: "Reuse governing source and existing runtime derivatives from canon/visual_source_map.yaml. No reinterpretation, redraw, regeneration, or replacement without concrete Work defect evidence."
+  duplicate_generation: prohibited
+work_dependency:
+  state: "technical_published_pending_fun_acceptance"
+  art_action: "HOLD new AREA02/new-species promotion. Respond only to concrete missing-state/visual defect evidence from Work or natural play."
+  downstream_hold: [ISSUE-100-MANTICORE, PARTY_FUSION_TEST_CONTRACT, AREA02_PROMOTION, NEW_SPECIES_OFFICIAL_LOCK]
+qa:
+  result: PASS_HOLD
+  reason: "Canonical production/next_queue.yaml explicitly prohibits downstream Manticore/PARTY/FUSION/TEST/CONTRACT/AREA02/new-species promotion until Issue #103 natural-play fun acceptance or a concrete scoped defect. No new Art is required for shipped #103."
+  destructive_asset_change: false
+  root_runtime_change: false
+  workflow_change: false
+next_queue:
+  - "Await natural-play Issue #103 acceptance or concrete visual defect evidence."
+  - "If defect evidence arrives, patch only the governed SP-044/background/runtime-art state implicated by evidence; preserve Official Art Lock."
+  - "After fun acceptance, re-read latest main/next_queue before resuming AREA02 final-six-view or any new-species promotion."
