@@ -16,41 +16,51 @@ Target slice:
 - Pixel texture filtering: nearest on the root CanvasItem
 - Compatibility renderer first for broad Android/Web export coverage
 
-## Current v0.2 playable prototype
+## Current v0.3 playable prototype
 - Opens through `project.godot`
 - Main scene: `scenes/main.tscn`
-- Runtime script: `scripts/main.gd`
+- Active runtime script: `scripts/main_v03.gd`
+- Previous v0.2 script retained as `scripts/main.gd` for reference
 - Keyboard field movement: arrows / WASD
 - Touch field movement: lower-left D-pad
-- Code-drawn pixel field with route, trees, shrine marker and tall-grass encounter zones
+- Animated code-drawn field with route, side path, pond/bridge landmark, shrine, trees and tall grass
+- Four-step placeholder walk cadence and directional character read
+- Grass and foliage sway
 - Short deterministic grass dwell triggers an encounter transition
-- Battle screen is playable with programmatic temporary monster silhouettes
+- Battle intro slide-in for both sides
 - Enemy/player idle bob animation
 - Enemy/player HP bars and hit flash feedback
-- COMMAND attack button with two command points per turn
-- STANCE guard button reducing the next enemy strike
-- NEXT TURN resolves the enemy action and resets the turn grammar
+- COMMAND attack lunge
+- Hit-stop on contact
+- Battle shake
+- Pixel hit particles
+- Enemy KO drop/fade presentation
+- Two COMMAND points per turn
+- STANCE guard reducing the next enemy strike
+- NEXT TURN enemy lunge/impact and turn reset
 - RUN returns to the field with encounter cooldown
 - Mouse/keyboard battle controls for desktop checking plus touch buttons for mobile
 
-**Important:** every current character/monster block sprite is a non-canonical placeholder. Do not regenerate or reinterpret locked official monster designs to fill the prototype. Bind exact approved Pixel Master assets when they are available.
+**Important:** every current character/monster block sprite is a non-canonical placeholder. Do not promote it as official species art. Bind exact approved Pixel Master assets when available.
 
-## What v0.2 proves
-The Godot lane now has a complete first interaction loop rather than a static mock:
+## What v0.3 proves
+The Godot lane now demonstrates both the basic loop and a first combat-feel pass:
 
-`FIELD MOVEMENT -> TALL GRASS -> ENCOUNTER TRANSITION -> BATTLE -> COMMAND/STANCE/NEXT -> RETURN TO FIELD`
+`FIELD MOVEMENT -> TALL GRASS -> ENCOUNTER -> BATTLE INTRO -> COMMAND LUNGE -> HIT-STOP/SHAKE/PARTICLES -> STANCE/NEXT -> KO -> RETURN`
 
 This intentionally stops before claiming canonical RESONANCE/JOIN, save migration, or official art integration. Those require explicit design/asset authority and should not be faked with placeholders.
 
 ## Next implementation order
-1. Replace programmatic environment blocks with a real TileMap/TileSet pipeline.
-2. Bind an approved protagonist Pixel Master sprite sheet with four-direction idle/walk animation.
-3. Replace the temporary battle silhouettes with exact approved MONSTER LEGACY Pixel Master sprites.
-4. Expand battle presentation with short attack/hit/KO clips, screen shake, hit-stop, particles and SFX hooks.
-5. Implement the canonical three-monster presentation and the exact `2 COMMAND + remaining 1 STANCE` selection grammar instead of the current single-lead teaching mock.
-6. Add RESONANCE/JOIN only after the canonical Chapter/Fun Gate authority allows it.
-7. Add save adapter only after an explicit migration contract is approved; do not silently replace the Web save schema.
-8. Add Android export profile and physical-device QA.
+1. Run v0.3 in Godot 4.x and fix any editor/runtime errors before promotion.
+2. Replace programmatic environment blocks with a real TileMap/TileSet pipeline.
+3. Bind an approved protagonist Pixel Master sprite sheet with four-direction idle/walk animation.
+4. Replace temporary battle silhouettes with exact approved MONSTER LEGACY Pixel Master sprites.
+5. Split field/battle into dedicated scenes once the v0.3 runtime is verified.
+6. Implement the canonical three-monster presentation and exact `2 COMMAND + remaining 1 STANCE` selection grammar instead of the current single-lead teaching mock.
+7. Add SFX/BGM hooks after visual timing is verified.
+8. Add RESONANCE/JOIN only after the canonical Chapter/Fun Gate authority allows it.
+9. Add save adapter only after an explicit migration contract is approved; do not silently replace the Web save schema.
+10. Add Android export profile and physical-device QA.
 
 ## Asset pipeline
 Recommended authority chain:
