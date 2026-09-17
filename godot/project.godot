@@ -17,6 +17,3 @@ window/stretch/aspect="keep"
 [rendering]
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-
-[application_run]
-main_scene="res://scenes/main.tscn"
