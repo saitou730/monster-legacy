@@ -1,0 +1,38 @@
+{
+  "species_id": "SP-011",
+  "species_name": "火トカゲ",
+  "authority": "canon/visual_source_map.yaml",
+  "motion_spec": "production/art_handoffs/AREA01_SP011_RUNTIME_MOTION_SPEC.yaml",
+  "governing_source": {
+    "path": "assets/reference/火トカゲ_モンスターデザインシート.png",
+    "sha256": "446462af2a05f3ed5e6975deea6ea40246dc6faebce646804d234f6adb313df2"
+  },
+  "mirrored_runtime_rasters": {
+    "idle": {
+      "canonical_path": "assets/battle/fire/idle.png",
+      "godot_path": "godot/assets/fire/idle.png",
+      "sha256": "7bb51274e6445fe3f44494eea00ebd1471df721d588e975a924a9bf54c9b0fd8"
+    },
+    "attack": {
+      "canonical_path": "assets/battle/fire/attack.png",
+      "godot_path": "godot/assets/fire/attack.png",
+      "sha256": "f9457765f268989c9eebb3efbbf7988bb346162f7e83196da7bce219bf7635b8"
+    },
+    "hit": {
+      "canonical_path": "assets/battle/fire/hit.png",
+      "godot_path": "godot/assets/fire/hit.png",
+      "sha256": "7bb51274e6445fe3f44494eea00ebd1471df721d588e975a924a9bf54c9b0fd8"
+    },
+    "danger": {
+      "canonical_path": "assets/battle/fire/danger.png",
+      "godot_path": "godot/assets/fire/danger.png",
+      "sha256": "9bca23fbdb2b0059ded00050cf70f36bbf3bbf810cee45b9a7dcf43c2b96638a"
+    },
+    "stance": {
+      "canonical_path": "assets/battle/fire/stance.png",
+      "godot_path": "godot/assets/fire/stance.png",
+      "sha256": "6b6f690f84dca979aa244b8d705062c906ea79d517c0639896c736b58251ee99"
+    }
+  },
+  "policy": "Exact binary mirrors only. No redraw, recolor, silhouette change, eye redesign, anatomy synthesis, destructive replacement, or synthesized in-between character frames."
+}
