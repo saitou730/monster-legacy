@@ -78,7 +78,7 @@ func _draw_background() -> void:
 	# 24 px tile rhythm to establish the future pixel-art grid.
 	for y in range(int(WORLD_TOP), int(WORLD_BOTTOM), 24):
 		for x in range(0, int(BASE_SIZE.x), 24):
-			var alternate := ((x / 24) + (y / 24)) as int
+			var alternate := int(x / 24) + int(y / 24)
 			if alternate % 2 == 0:
 				draw_rect(Rect2(Vector2(x, y), Vector2(24, 24)), Color("648f51"))
 
