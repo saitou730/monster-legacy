@@ -1,0 +1,44 @@
+{
+  "species_id": "SP-031",
+  "species_name": "風コウモリ",
+  "authority": "production/art_handoffs/AREA01_SP031_RUNTIME_MOTION_SPEC.yaml",
+  "governing_source": {
+    "path": "assets/reference/風コウモリ公式モンスターデザインシート.png",
+    "sha256": "eaad2dc29f26e8ce82f28cc408bb5943eb2d3054e2977e07652f8aac876e5ec3"
+  },
+  "mirrored_runtime_rasters": {
+    "idle": {
+      "canonical_path": "assets/battle/wind_bat/idle.png",
+      "godot_path": "godot/assets/wind_bat/idle.png",
+      "sha256": "8d523d30d4e931e9c44998d34e93bd68b8c1a78eeb7d1b80808a4c4d5a09660d"
+    },
+    "attack": {
+      "canonical_path": "assets/battle/wind_bat/attack.png",
+      "godot_path": "godot/assets/wind_bat/attack.png",
+      "sha256": "b02169688336eafbc690b2260572ee44b60ea80e76a317bdb7cef93166ac528c"
+    },
+    "hit": {
+      "canonical_path": "assets/battle/wind_bat/hit.png",
+      "godot_path": "godot/assets/wind_bat/hit.png",
+      "sha256": "8d523d30d4e931e9c44998d34e93bd68b8c1a78eeb7d1b80808a4c4d5a09660d"
+    },
+    "danger": {
+      "canonical_path": "assets/battle/wind_bat/danger.png",
+      "godot_path": "godot/assets/wind_bat/danger.png",
+      "sha256": "81f5b2811c187a9e3ec45e0b9eaf5e267cea0a18ac20355448a0773c445cc217"
+    },
+    "stance": {
+      "canonical_path": "assets/battle/wind_bat/stance.png",
+      "godot_path": "godot/assets/wind_bat/stance.png",
+      "sha256": "397312b5398b1c0e388f8d89e74c1544426840b91be4f075c40b1a264ad20590"
+    }
+  },
+  "motion_contract": {
+    "idle_ms": 760,
+    "attack_ms": [120, 150, 230],
+    "hit_ms": [150, 230],
+    "danger_ms": 620,
+    "stance_ms": [220, 260]
+  },
+  "policy": "Exact binary mirrors only. No reinterpretation, redraw, recolor, anatomy synthesis, or synthesized in-between character frames. Runtime translation/hover/recoil only."
+}
