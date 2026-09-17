@@ -16,25 +16,39 @@ Target slice:
 - Pixel texture filtering: nearest on the root CanvasItem
 - Compatibility renderer first for broad Android/Web export coverage
 
-Godot's documentation recommends configuring portrait projects through Display > Window and describes `viewport` scaling as rendering to the fixed base viewport before scaling to the target display, which is a good baseline for deliberate pixel-art presentation.
-
-## Current v0.1
+## Current v0.2 playable prototype
 - Opens through `project.godot`
 - Main scene: `scenes/main.tscn`
 - Runtime script: `scripts/main.gd`
-- Keyboard: arrows / WASD
-- Touch: lower-left D-pad
-- Placeholder field, grass, trees, player, and HUD are drawn in code
+- Keyboard field movement: arrows / WASD
+- Touch field movement: lower-left D-pad
+- Code-drawn pixel field with route, trees, shrine marker and tall-grass encounter zones
+- Short deterministic grass dwell triggers an encounter transition
+- Battle screen is playable with programmatic temporary monster silhouettes
+- Enemy/player idle bob animation
+- Enemy/player HP bars and hit flash feedback
+- COMMAND attack button with two command points per turn
+- STANCE guard button reducing the next enemy strike
+- NEXT TURN resolves the enemy action and resets the turn grammar
+- RUN returns to the field with encounter cooldown
+- Mouse/keyboard battle controls for desktop checking plus touch buttons for mobile
 
-**Important:** placeholder drawing is not canonical character/monster art. Do not regenerate or reinterpret locked official monster designs to fill this prototype. Bind exact approved assets when they are available.
+**Important:** every current character/monster block sprite is a non-canonical placeholder. Do not regenerate or reinterpret locked official monster designs to fill the prototype. Bind exact approved Pixel Master assets when they are available.
+
+## What v0.2 proves
+The Godot lane now has a complete first interaction loop rather than a static mock:
+
+`FIELD MOVEMENT -> TALL GRASS -> ENCOUNTER TRANSITION -> BATTLE -> COMMAND/STANCE/NEXT -> RETURN TO FIELD`
+
+This intentionally stops before claiming canonical RESONANCE/JOIN, save migration, or official art integration. Those require explicit design/asset authority and should not be faked with placeholders.
 
 ## Next implementation order
 1. Replace programmatic environment blocks with a real TileMap/TileSet pipeline.
-2. Add locked protagonist sprite sheet with 4-direction idle/walk animation.
-3. Add encounter zones and deterministic test encounter.
-4. Add a separate battle scene preserving `NEXT` turn-start lock, exactly 3 monsters, exactly 2 COMMAND + remaining 1 STANCE.
-5. Bind official locked monster sprites as sprite sheets; never regenerate them at runtime.
-6. Add short attack / hit / KO animation clips, screen shake, hit-stop, particles, and SFX hooks.
+2. Bind an approved protagonist Pixel Master sprite sheet with four-direction idle/walk animation.
+3. Replace the temporary battle silhouettes with exact approved MONSTER LEGACY Pixel Master sprites.
+4. Expand battle presentation with short attack/hit/KO clips, screen shake, hit-stop, particles and SFX hooks.
+5. Implement the canonical three-monster presentation and the exact `2 COMMAND + remaining 1 STANCE` selection grammar instead of the current single-lead teaching mock.
+6. Add RESONANCE/JOIN only after the canonical Chapter/Fun Gate authority allows it.
 7. Add save adapter only after an explicit migration contract is approved; do not silently replace the Web save schema.
 8. Add Android export profile and physical-device QA.
 
@@ -52,4 +66,7 @@ Once a Pixel Master is approved, treat the exact source asset as immutable and d
 - Do not change root Pages deployment/workflows from this lane.
 - Preserve Art Lock and existing gameplay invariants.
 
-Refs: #38 #103 #107
+## Verification boundary
+Repository diff and source consistency can be checked from GitHub. A Godot editor/device runtime PASS is not claimed until the project is actually opened and run in Godot 4.x.
+
+Refs: #38 #103 #107 #108
