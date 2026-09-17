@@ -21,6 +21,7 @@ Target slice:
 - Main scene: `scenes/main.tscn`
 - Active runtime script: `scripts/main_v03.gd`
 - Previous v0.2 script retained as `scripts/main.gd` for reference
+- QA checklist: `QA_V03.md`
 - Keyboard field movement: arrows / WASD
 - Touch field movement: lower-left D-pad
 - Animated code-drawn field with route, side path, pond/bridge landmark, shrine, trees and tall grass
@@ -77,6 +78,6 @@ Once a Pixel Master is approved, treat the exact source asset as immutable and d
 - Preserve Art Lock and existing gameplay invariants.
 
 ## Verification boundary
-Repository diff and source consistency can be checked from GitHub. A Godot editor/device runtime PASS is not claimed until the project is actually opened and run in Godot 4.x.
+Repository diff and source consistency can be checked from GitHub. A Godot editor/device runtime PASS is not claimed until the project is actually opened and run in Godot 4.x. Use `QA_V03.md` as the promotion checklist.
 
 Refs: #38 #103 #107 #108
