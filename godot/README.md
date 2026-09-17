@@ -3,81 +3,91 @@
 This directory is a **parallel Godot prototype**. The canonical public Web runtime remains at repository root and is not replaced by this work.
 
 ## Goal
-Build a portrait-first 2D pixel RPG vertical slice with the warmth/readability of the GBA monster-RPG era while preserving MONSTER LEGACY's own identity, systems, Art Lock, and mobile-first controls.
+Build a portrait-first 2D monster RPG vertical slice with the warmth/readability of the GBA era while preserving MONSTER LEGACY's own identity, systems, Art Lock, and mobile-first controls.
 
-Target slice:
+Current target slice:
 
-`HOME -> FIELD -> ENCOUNTER -> BATTLE -> RESONANCE/JOIN -> RETURN`
+`FIELD -> TALL GRASS -> ENCOUNTER -> BATTLE -> RETURN`
 
 ## Engine baseline
 - Godot 4.x
 - Base viewport: `390 x 844` portrait
 - Stretch mode: `viewport` + `keep`
-- Pixel texture filtering: nearest on the root CanvasItem
+- Pixel-friendly nearest filtering on the root CanvasItem
 - Compatibility renderer first for broad Android/Web export coverage
 
-## Current v0.3 playable prototype
-- Opens through `project.godot`
+## Current v0.5
 - Main scene: `scenes/main.tscn`
-- Active runtime script: `scripts/main_v03.gd`
-- Previous v0.2 script retained as `scripts/main.gd` for reference
-- QA checklist: `QA_V03.md`
-- Keyboard field movement: arrows / WASD
-- Touch field movement: lower-left D-pad
+- Active runtime: `scripts/main_v05.gd`
+- Prior prototype layers retained as `main.gd`, `main_v03.gd`, `main_v04.gd`
+- QA: `QA_V05.md`
+- Keyboard: arrows / WASD
+- Touch: lower-left D-pad plus battle buttons
 - Animated code-drawn field with route, side path, pond/bridge landmark, shrine, trees and tall grass
-- Four-step placeholder walk cadence and directional character read
+- Placeholder protagonist walking cadence and directional read
 - Grass and foliage sway
-- Short deterministic grass dwell triggers an encounter transition
-- Battle intro slide-in for both sides
-- Enemy/player idle bob animation
-- Enemy/player HP bars and hit flash feedback
-- COMMAND attack lunge
-- Hit-stop on contact
-- Battle shake
-- Pixel hit particles
-- Enemy KO drop/fade presentation
+- Deterministic grass dwell -> encounter transition
+- Battle intro slide-in, idle motion, HP bars, impact pause, shake, particles and KO presentation
 - Two COMMAND points per turn
 - STANCE guard reducing the next enemy strike
-- NEXT TURN enemy lunge/impact and turn reset
-- RUN returns to the field with encounter cooldown
-- Mouse/keyboard battle controls for desktop checking plus touch buttons for mobile
+- NEXT TURN enemy action + turn reset
+- RUN returns to the field
 
-**Important:** every current character/monster block sprite is a non-canonical placeholder. Do not promote it as official species art. Bind exact approved Pixel Master assets when available.
+## Locked battle identities now integrated
+### SP-011 火トカゲ — enemy
+Godot mirrors the exact canonical runtime rasters under `godot/assets/fire/`:
+- idle
+- attack
+- hit
+- danger
+- stance
 
-## What v0.3 proves
-The Godot lane now demonstrates both the basic loop and a first combat-feel pass:
+`assets/fire/SOURCE_LOCK.json` records governing paths/hashes. The enemy uses exact governed rasters and runtime translation/hover only. Its canonical attack presentation is aligned to the 140 ms idle -> 170 ms attack -> 250 ms settle contract. DANGER uses reduced hover amplitude with no body scale pulse.
 
-`FIELD MOVEMENT -> TALL GRASS -> ENCOUNTER -> BATTLE INTRO -> COMMAND LUNGE -> HIT-STOP/SHAKE/PARTICLES -> STANCE/NEXT -> KO -> RETURN`
+### SP-031 風コウモリ — party lead
+Godot mirrors the exact canonical runtime rasters under `godot/assets/wind_bat/`:
+- idle
+- attack
+- hit
+- danger
+- stance
 
-This intentionally stops before claiming canonical RESONANCE/JOIN, save migration, or official art integration. Those require explicit design/asset authority and should not be faked with placeholders.
+`assets/wind_bat/SOURCE_LOCK.json` records governing paths/hashes. COMMAND, hit, STANCE and DANGER states now draw the governed character rasters instead of the old temporary blue block monster.
+
+The v0.5 teaching attack still preserves the earlier 340 ms prototype action window. The canonical SP-031 500 ms attack contract is intentionally not claimed exact until the project is run in Godot and the feel/import behavior is verified.
+
+## Current playable prototype loop
+`FIELD MOVEMENT -> TALL GRASS -> ENCOUNTER -> SP-031 vs SP-011 -> COMMAND / STANCE / NEXT -> KO -> RETURN`
+
+## Art boundary
+The two battle monsters above now use locked MONSTER LEGACY assets. The **field protagonist and environment are still code-drawn placeholders**, so this is not yet a finished pixel-art slice and should not be described as Ruby/Sapphire-level visual completion.
+
+Do not redraw, recolor, reinterpret, change eyes/silhouettes, or synthesize new anatomy frames for locked species. Runtime translation, hover and small recoil are permitted only where their motion specs allow them.
 
 ## Next implementation order
-1. Run v0.3 in Godot 4.x and fix any editor/runtime errors before promotion.
+1. Run v0.5 in Godot 4.x and fix parser/import/runtime issues before promotion.
 2. Replace programmatic environment blocks with a real TileMap/TileSet pipeline.
-3. Bind an approved protagonist Pixel Master sprite sheet with four-direction idle/walk animation.
-4. Replace temporary battle silhouettes with exact approved MONSTER LEGACY Pixel Master sprites.
-5. Split field/battle into dedicated scenes once the v0.3 runtime is verified.
-6. Implement the canonical three-monster presentation and exact `2 COMMAND + remaining 1 STANCE` selection grammar instead of the current single-lead teaching mock.
-7. Add SFX/BGM hooks after visual timing is verified.
-8. Add RESONANCE/JOIN only after the canonical Chapter/Fun Gate authority allows it.
-9. Add save adapter only after an explicit migration contract is approved; do not silently replace the Web save schema.
+3. Create/approve a true protagonist Pixel Master + 4-direction walk sheet.
+4. Tune SP-031 timing to its exact motion contract after first runtime feel pass.
+5. Split field and battle into dedicated scenes.
+6. Expand battle from the single-lead teaching mock toward the canonical three-monster presentation while preserving `2 COMMAND + remaining 1 STANCE`.
+7. Bind existing SFX/BGM through Godot AudioStreamPlayer nodes after visual timing is verified.
+8. Add RESONANCE/JOIN only when canonical progression authority allows it.
+9. Add save adapter only after an explicit migration contract is approved.
 10. Add Android export profile and physical-device QA.
 
 ## Asset pipeline
-Recommended authority chain:
+`Concept -> Official Design Sheet -> Art Lock -> governed runtime raster / approved Pixel Master -> Sprite Sheet -> Godot import`
 
-`Concept -> Official Design Sheet -> Art Lock -> Pixel Master Sprite -> Sprite Sheet -> Godot import`
-
-Once a Pixel Master is approved, treat the exact source asset as immutable and derive animation frames from it rather than asking an image model to redraw the species from scratch.
+Once a source is approved, preserve exact identity and derive only allowed runtime motion rather than asking an image model to redraw the species from scratch.
 
 ## Governance
-- `main` is canonical source of truth.
-- Issue #103 remains the current canonical Fun Gate.
-- Godot work stays under `godot/` until separately promoted.
-- Do not change root Pages deployment/workflows from this lane.
-- Preserve Art Lock and existing gameplay invariants.
+- `main` remains canonical source of truth.
+- Issue #103 remains the canonical Fun Gate.
+- Godot stays isolated under `godot/` until separately accepted/promoted.
+- Root Pages deployment/workflows, Web save schema and #103 mechanics are untouched.
 
 ## Verification boundary
-Repository diff and source consistency can be checked from GitHub. A Godot editor/device runtime PASS is not claimed until the project is actually opened and run in Godot 4.x. Use `QA_V03.md` as the promotion checklist.
+Repository diff/source integrity can be checked in GitHub. A Godot editor/device runtime PASS is **not claimed** until `godot/project.godot` is actually opened and run in Godot 4.x. Use `QA_V05.md` as the promotion checklist.
 
 Refs: #38 #103 #107 #108
