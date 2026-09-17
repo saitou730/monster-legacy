@@ -70,7 +70,11 @@ func _apply_enemy_attack() -> void:
 func _draw_enemy_pixel_monster(center: Vector2) -> void:
 	# Motion follows AREA01_SP011_RUNTIME_MOTION_SPEC:
 	# idle bob = transform only; attack = idle -> attack -> idle; hit/danger use exact governed rasters.
-	var bob := sin(battle_time * 4.0) * 2.0
+	var normal_bob := sin(battle_time * 4.0) * 2.0
+	var bob := normal_bob
+	if enemy_hp > 0 and enemy_hp <= 30:
+		# Danger explicitly uses reduced idle amplitude, with no flashing or body scaling.
+		bob = normal_bob * 0.35
 	var fade := 1.0
 	var drop := 0.0
 	if enemy_hp <= 0:
@@ -98,10 +102,7 @@ func _draw_enemy_pixel_monster(center: Vector2) -> void:
 		return
 
 	if enemy_hp <= 30:
-		var pulse := 1.0 + sin(battle_time * 5.0) * 0.015
-		var danger_size := Vector2(132.0, 132.0) * pulse
-		var danger_rect := Rect2(center - danger_size * 0.5 + Vector2(0.0, bob + drop), danger_size)
-		draw_texture_rect(FIRE_DANGER, danger_rect, false, tint)
+		draw_texture_rect(FIRE_DANGER, rect, false, tint)
 		return
 
 	draw_texture_rect(FIRE_IDLE, rect, false, tint)
