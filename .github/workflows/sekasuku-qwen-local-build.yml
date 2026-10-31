@@ -1,0 +1,78 @@
+name: Build Sekasuku Voice Reader v2 Qwen Local
+
+on:
+  push:
+    branches:
+      - sekasuku-voice-reader-build
+    paths:
+      - '.github/workflows/sekasuku-qwen-local-build.yml'
+  workflow_dispatch:
+
+jobs:
+  build-qwen-local:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+    steps:
+      - name: Checkout upstream Qwen3 TTS Android
+        uses: actions/checkout@v4
+        with:
+          repository: Danmoreng/qwen3-tts-android
+          path: qwen
+          submodules: recursive
+          fetch-depth: 1
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Install Android 36, NDK and CMake
+        run: |
+          SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          test -x "$SDKMANAGER"
+          yes | "$SDKMANAGER" --licenses >/dev/null || true
+          "$SDKMANAGER" \
+            'platforms;android-36' \
+            'build-tools;36.0.0' \
+            'platform-tools' \
+            'ndk;27.2.12479018' \
+            'cmake;3.22.1'
+
+      - name: Brand test build for Sekasuku
+        working-directory: qwen
+        run: |
+          sed -i 's#<string name="app_name">Qwen3 TTS</string>#<string name="app_name">せかすく Voice Reader v2</string>#' app/src/main/res/values/strings.xml
+          mkdir -p app/src/main/assets
+          cp LICENSE app/src/main/assets/QWEN3_TTS_ANDROID_MIT_LICENSE.txt
+          printf '%s\n' \
+            'Sekasuku Voice Reader v2 test build.' \
+            'Local TTS engine: Qwen3-TTS Android by Danmoreng (MIT License).' \
+            'Qwen3-TTS model is downloaded separately at runtime and is not bundled in this APK.' \
+            > app/src/main/assets/SEKASUKU_NOTICE.txt
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build release APK
+        working-directory: qwen
+        run: |
+          chmod +x ./gradlew
+          ./gradlew :app:assembleRelease --no-daemon
+
+      - name: Verify and collect APK
+        run: |
+          test -s qwen/app/build/outputs/apk/release/app-release.apk
+          mkdir -p artifacts
+          cp qwen/app/build/outputs/apk/release/app-release.apk artifacts/Sekasuku_Voice_Reader_v2_QwenLocal.apk
+          ls -lh artifacts/Sekasuku_Voice_Reader_v2_QwenLocal.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: sekasuku-voice-reader-v2-qwen-local
+          path: artifacts/Sekasuku_Voice_Reader_v2_QwenLocal.apk
+          if-no-files-found: error
